@@ -53,7 +53,7 @@ void Game::load()
 	Cube* a = new Cube();
 	a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
 	a->setScale(100.0f);
-	Quaternion q(Vector3::unitY, -Maths::piOver2);
+	Quaternion q(Vector3::unitY, -90);
 	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
 	a->setRotation(q);
 
@@ -107,11 +107,6 @@ void Game::load()
 	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-
-	// Corsshair
-	Actor* crosshairActor = new Actor();
-	crosshairActor->setScale(2.0f);
-	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 
 	changeCamera(1);
 }
@@ -207,7 +202,6 @@ void Game::changeCamera(int mode)
 	// Disable everything
 	fps->setState(Actor::ActorState::Paused);
 	fps->setVisible(false);
-	crosshair->setVisible(false);
 	follow->setState(Actor::ActorState::Paused);
 	follow->setVisible(false);
 	orbit->setState(Actor::ActorState::Paused);
@@ -221,7 +215,6 @@ void Game::changeCamera(int mode)
 	default:
 		fps->setState(Actor::ActorState::Active);
 		fps->setVisible(true);
-		crosshair->setVisible(true);
 		break;
 	case 2:
 		follow->setState(Actor::ActorState::Active);

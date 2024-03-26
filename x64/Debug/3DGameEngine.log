@@ -1,77 +1,26 @@
 ﻿C:\VisualStudio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (SimpleEngineWithOpenGL-032.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Actor.cpp
-  AnimSpriteComponent.cpp
-  BackgroundSpriteComponent.cpp
-  CameraComponent.cpp
-  FollowActor.cpp
-  FollowCameraComponent.cpp
-  FPSCameraComponent.cpp
-  CircleCollisionComponent.cpp
-  Component.cpp
-  ControllerState.cpp
-  Cube.cpp
-  FPSActor.cpp
   Game.cpp
-  InputComponent.cpp
-  InputSystem.cpp
-  KeyboardState.cpp
-  Log.cpp
-  Main.cpp
-  Matrix4.cpp
-  Mesh.cpp
-  Generating Code...
-  Compiling...
-  MeshComponent.cpp
-C:\Users\leo.rocher\Downloads\3DGameEngine\MeshComponent.cpp(28,33): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  MouseState.cpp
-  MoveComponent.cpp
-  OrbitActor.cpp
-  OrbitCameraComponent.cpp
-  Plane.cpp
-  Quaternion.cpp
-  Random.cpp
-  Rectangle.cpp
-  RendererOGL.cpp
-  Assets.cpp
-C:\Users\leo.rocher\Downloads\3DGameEngine\Assets.cpp(262,33): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-C:\Users\leo.rocher\Downloads\3DGameEngine\Assets.cpp(279,98): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-  Shader.cpp
-  Sphere.cpp
-  Spline.cpp
-  SplineActor.cpp
-  SplineCameraComponent.cpp
-  SpriteComponent.cpp
-  Texture.cpp
-  Timer.cpp
-  Vector2.cpp
-  Generating Code...
-  Compiling...
-  Vector3.cpp
-  VertexArray.cpp
-C:\Users\leo.rocher\Downloads\3DGameEngine\VertexArray.cpp(14,49): warning C4244: 'argument': conversion from 'double' to 'GLsizeiptr', possible loss of data
-  Window.cpp
-  Generating Code...
-  3DGameEngine.vcxproj -> C:\Users\leo.rocher\Downloads\3DGameEngine\x64\Debug\3DGameEngine.exe
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Audio\Master Bank.bank
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Audio\Master Bank.strings.bank
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Meshes\Cube.gpmesh
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Meshes\Plane.gpmesh
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Meshes\RacingCar.gpmesh
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Meshes\Rifle.gpmesh
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Meshes\Sphere.gpmesh
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Shaders\BasicMesh.frag
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Shaders\BasicMesh.vert
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Shaders\Phong.frag
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Shaders\Phong.vert
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Shaders\Sprite.frag
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Shaders\Sprite.vert
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Crosshair.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Cube.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Default.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\HealthBar.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Plane.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\RacingCar.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Radar.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Rifle.png
-  C:\Users\leo.rocher\Downloads\3DGameEngine\Res\Textures\Sphere.png
+  3DGameEngine.vcxproj -> D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\3DGameEngine.exe
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.bank
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.strings.bank
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Cube.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Plane.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\RacingCar.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Rifle.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Sphere.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\BasicMesh.frag
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\BasicMesh.vert
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Phong.frag
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Phong.vert
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Sprite.frag
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Sprite.vert
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Crosshair.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Cube.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Default.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\HealthBar.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Plane.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\RacingCar.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Radar.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Rifle.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Sphere.png
   22 File(s) copied
