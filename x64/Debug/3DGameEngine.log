@@ -1,5 +1,4 @@
 ﻿C:\VisualStudio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (SimpleEngineWithOpenGL-032.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Game.cpp
   3DGameEngine.vcxproj -> D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\3DGameEngine.exe
   D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.bank
   D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.strings.bank
@@ -8,6 +7,7 @@
   D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\RacingCar.gpmesh
   D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Rifle.gpmesh
   D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Sphere.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Target.gpmesh
   D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\BasicMesh.frag
   D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\BasicMesh.vert
   D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Phong.frag
@@ -23,4 +23,5 @@
   D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Radar.png
   D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Rifle.png
   D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Sphere.png
-  22 File(s) copied
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Target.png
+  24 File(s) copied

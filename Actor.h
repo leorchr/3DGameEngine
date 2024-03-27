@@ -39,6 +39,7 @@ public:
 	Vector3 getForward() const;
 	Vector3 getRight() const;
 	void computeWorldTransform();
+	void rotateToNewForward(const Vector3& newForward);
 
 	void processInput(const struct InputState& inputState);
 	virtual void actorInput(const struct InputState& inputState);
