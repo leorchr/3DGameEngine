@@ -14,9 +14,5 @@ public:
 	void setVisible(bool isVisible);
 
 private:
-	class MeshComponent* meshComponent;
 	class StationaryCameraComponent* cameraComponent;
-	class Actor* StationaryModel;
-	class BoxComponent* boxComponent;
-	const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);
 };

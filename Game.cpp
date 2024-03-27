@@ -10,6 +10,7 @@
 #include "StationaryActor.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
+#include "ArrowActor.h"
 #include <algorithm>
 
 bool Game::initialize()
@@ -50,6 +51,8 @@ void Game::load()
 	stationary = new StationaryActor();
 	fps = new FPSActor();
 
+	ArrowActor *arrow = new ArrowActor();
+
 
 	Quaternion q(Vector3::unitY, -Maths::piOver2);
 	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi*2));
@@ -67,11 +70,6 @@ void Game::load()
 			a->setRotation(q);
 		}
 	}
-
-
-	SphereActor* b = new SphereActor();
-	b->setPosition(Vector3(200.0f, -75.0f, 0.0f));
-	b->setScale(Vector3(3.0f, 3.0f, 3.0f));
 
 	// Floor and walls
 

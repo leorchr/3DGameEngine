@@ -9,9 +9,7 @@
 
 StationaryActor::StationaryActor() :
 	Actor(),
-	meshComponent(nullptr),
-	cameraComponent(nullptr),
-	boxComponent(nullptr)
+	cameraComponent(nullptr)
 {
 	cameraComponent = new StationaryCameraComponent(this);
 }
@@ -33,7 +31,7 @@ void StationaryActor::actorInput(const InputState& inputState)
 void StationaryActor::shoot()
 {
 	// Get start point (in center of screen on near plane)
-	Vector3 screenPoint(0.0f, 1.0f, 0.0f);
+	Vector3 screenPoint(0.0f, 0.0f, 0.0f);
 	Vector3 start = getGame().getRenderer().unproject(screenPoint);
 	// Get end point (in center of screen, between near and far)
 	screenPoint.z = 0.9f;
@@ -44,7 +42,7 @@ void StationaryActor::shoot()
 	// Spawn a ball
 	BallActor* ball = new BallActor();
 	ball->setPlayer(this);
-	ball->setPosition(start + dir * 20.0f);
+	ball->setPosition(Vector3(0,0,-90) + dir * 20.0f);
 	// Rotate the ball to face new direction
 	ball->rotateToNewForward(dir);
 }

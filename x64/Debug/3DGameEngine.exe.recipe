@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\3DGameEngine.exe</FullPath>
+      <FullPath>D:\GitHub\3DGameEngine\x64\Debug\3DGameEngine.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

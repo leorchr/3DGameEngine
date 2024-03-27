@@ -1,0 +1,17 @@
+#pragma once
+#include "Actor.h"
+#include "MeshComponent.h"
+#include "Assets.h"
+
+
+class ArrowActor : public Actor
+{
+public:
+	ArrowActor();
+
+	void updateActor(float dt) override;
+
+private:
+	MeshComponent* mc;
+};
+
