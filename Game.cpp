@@ -12,7 +12,6 @@
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include <algorithm>
-#include <algorithm>
 
 bool Game::initialize()
 {
@@ -34,7 +33,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Default.png", "Default");
 	Assets::loadTexture(renderer, "Res\\Textures\\Cube.png", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\HealthBar.png", "HealthBar");
-	Assets::loadTexture(renderer, "Res\\Textures\\Plane.png", "Plane");
+	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Sphere.png", "Sphere");
 	Assets::loadTexture(renderer, "Res\\Textures\\Crosshair.png", "Crosshair");
@@ -65,42 +64,39 @@ void Game::load()
 	// Floor and walls
 
 	// Setup floor
-	const float start = -1250.0f;
-	const float size = 250.0f;
-	for (int i = 0; i < 10; i++)
+	const float start = 0.0f;
+	const float size = 50.0f;
+	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			PlaneActor* p = new PlaneActor();
-			p->setPosition(Vector3(start + i * size, start + j * size, -100.0f));
-		}
+		PlaneActor* p = new PlaneActor();
+		p->setPosition(Vector3(start + i * size * p->getScale(), start, -100.0f));
 	}
 
 	// Left/right walls
 	q = Quaternion(Vector3::unitX, Maths::piOver2);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * size, start - size, 0.0f));
+		p->setPosition(Vector3(start + i * size, start - size*3, -200.0f));
 		p->setRotation(q);
 
 		p = new PlaneActor();
-		p->setPosition(Vector3(start + i * size, -start + size, 0.0f));
+		p->setPosition(Vector3(start + i * size, -start + size*3, -200.0f));
 		p->setRotation(q);
 	}
 
-	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::piOver2));
-	// Forward/back walls
-	for (int i = 0; i < 10; i++)
-	{
-		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start - size, start + i * size, 0.0f));
-		p->setRotation(q);
+	//q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::piOver2));
+	//// Forward/back walls
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	PlaneActor* p = new PlaneActor();
+	//	p->setPosition(Vector3(start - size, start + i * size, 0.0f));
+	//	p->setRotation(q);
 
-		p = new PlaneActor();
-		p->setPosition(Vector3(-start + size, start + i * size, 0.0f));
-		p->setRotation(q);
-	}
+	//	p = new PlaneActor();
+	//	p->setPosition(Vector3(-start + size, start + i * size, 0.0f));
+	//	p->setRotation(q);
+	//}
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
