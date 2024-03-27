@@ -25,12 +25,12 @@ public:
 	Game& getGame() const { return game; }
 	const ActorState getState() const { return state; }
 	const Vector3 getPosition() const { return position; }
-	const float getScale() const { return scale; }
+	const Vector3 getScale() const { return scale; }
 	const Quaternion getRotation() const { return rotation; }
 	const Matrix4& getWorldTransform() const { return worldTransform;  }
 
 	void setPosition(Vector3 positionP);
-	void setScale(float scaleP);
+	void setScale(Vector3 scaleP);
 	void setRotation(Quaternion rotationP);
 	void setState(ActorState stateP);
 
@@ -53,7 +53,7 @@ private:
 	Game& game;
 	ActorState state;
 	Vector3 position;
-	float scale;
+	Vector3 scale;
 	Quaternion rotation;
 	Matrix4 worldTransform;
 	bool mustRecomputeWorldTransform;

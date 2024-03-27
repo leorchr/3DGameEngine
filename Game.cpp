@@ -31,7 +31,7 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\Default.png", "Default");
-	Assets::loadTexture(renderer, "Res\\Textures\\Cube.png", "Cube");
+	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\HealthBar.png", "HealthBar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
@@ -50,26 +50,38 @@ void Game::load()
 
 	fps = new FPSActor();
 
-	CubeActor* a = new CubeActor();
-	a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
-	a->setScale(100.0f);
+
 	Quaternion q(Vector3::unitY, -Maths::piOver2);
-	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
-	a->setRotation(q);
+	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi*2));
+
+	// Pins
+	const float sizePins = 17.0f;
+	const float spacePins = 17.0f;
+	const float scaleX = 45.0f;
+
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < j+1; i++) {
+			CubeActor* a = new CubeActor();
+			a->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleX / 2));
+			a->setScale(Vector3(scaleX, sizePins, sizePins));
+			a->setRotation(q);
+		}
+	}
+
 
 	SphereActor* b = new SphereActor();
 	b->setPosition(Vector3(200.0f, -75.0f, 0.0f));
-	b->setScale(3.0f);
+	b->setScale(Vector3(3.0f, 3.0f, 3.0f));
 
 	// Floor and walls
 
 	// Setup floor
 	const float start = 0.0f;
-	const float size = 50.0f;
+	const float sizePlane = 50.0f;
 	for (int i = 0; i < 11; i++)
 	{
 		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * size * p->getScale(), start, -100.0f));
+		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start, -100.0f));
 	}
 
 	// Left/right walls
@@ -77,11 +89,11 @@ void Game::load()
 	for (int i = 0; i < 20; i++)
 	{
 		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * size, start - size*3, -200.0f));
+		p->setPosition(Vector3(start + i * sizePlane, start - sizePlane*3, -200.0f));
 		p->setRotation(q);
 
 		p = new PlaneActor();
-		p->setPosition(Vector3(start + i * size, -start + size*3, -200.0f));
+		p->setPosition(Vector3(start + i * sizePlane, -start + sizePlane*3, -200.0f));
 		p->setRotation(q);
 	}
 
@@ -101,13 +113,13 @@ void Game::load()
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
 	DirectionalLight& dir = renderer.getDirectionalLight();
-	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
+	dir.direction = Vector3(0.5f, -0.707f, -0.707f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
-	// Corsshair
+	// Crosshair
 	Actor* crosshairActor = new Actor();
-	crosshairActor->setScale(2.0f);
+	crosshairActor->setScale(Vector3(2.0f, 2.0f, 2.0f));
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 
 	TargetActor* t = new TargetActor();

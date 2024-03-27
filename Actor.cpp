@@ -7,7 +7,7 @@
 Actor::Actor() :
 	state(Actor::ActorState::Active),
 	position(Vector3::zero),
-	scale(1.0f),
+	scale(Vector3(1.0f, 1.0f, 1.0f)),
 	rotation(Quaternion::identity),
 	mustRecomputeWorldTransform(true),
 	game(Game::instance())
@@ -32,7 +32,7 @@ void Actor::setPosition(Vector3 positionP)
 	mustRecomputeWorldTransform = true;
 }
 
-void Actor::setScale(float scaleP)
+void Actor::setScale(Vector3 scaleP)
 {
 	scale = scaleP;
 	mustRecomputeWorldTransform = true;

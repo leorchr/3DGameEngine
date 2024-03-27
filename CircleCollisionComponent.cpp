@@ -7,7 +7,7 @@ CircleCollisionComponent::CircleCollisionComponent(Actor* owner) : Component(own
 
 float CircleCollisionComponent::getRadius() const
 {
-	return owner.getScale() * radius;
+	return owner.getScale().x * radius;
 }
 
 void CircleCollisionComponent::setRadius(float radiusP)
