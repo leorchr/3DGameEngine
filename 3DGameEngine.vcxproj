@@ -192,6 +192,8 @@
     <ClCompile Include="SplineActor.cpp" />
     <ClCompile Include="SplineCameraComponent.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="StationaryActor.cpp" />
+    <ClCompile Include="StationaryCameraComponent.cpp" />
     <ClCompile Include="TargetActor.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -250,6 +252,8 @@
     <ClInclude Include="SplineActor.h" />
     <ClInclude Include="SplineCameraComponent.h" />
     <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="StationaryActor.h" />
+    <ClInclude Include="StationaryCameraComponent.h" />
     <ClInclude Include="TargetActor.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />

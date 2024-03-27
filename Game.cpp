@@ -7,8 +7,7 @@
 #include "SphereActor.h"
 #include "PlaneActor.h"
 #include "FPSActor.h"
-#include "FollowActor.h"
-#include "OrbitActor.h"
+#include "StationaryActor.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include <algorithm>
@@ -48,6 +47,7 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 
+	stationary = new StationaryActor();
 	fps = new FPSActor();
 
 
@@ -130,6 +130,8 @@ void Game::load()
 	t->setPosition(Vector3(1450.0f, -500.0f, 200.0f));
 	t = new TargetActor();
 	t->setPosition(Vector3(1450.0f, 500.0f, 200.0f));
+
+	changeCamera(1);
 }
 
 void Game::processInput()
@@ -151,6 +153,14 @@ void Game::processInput()
 	{
 		isRunning = false;
 	}
+	if (input.keyboard.getKeyState(SDL_SCANCODE_1) == ButtonState::Pressed)
+	{
+		changeCamera(1);
+	}
+	else if (input.keyboard.getKeyState(SDL_SCANCODE_2) == ButtonState::Pressed)
+	{
+		changeCamera(2);
+	}
 
 	// Actor input
 	isUpdatingActors = true;
@@ -159,6 +169,31 @@ void Game::processInput()
 		actor->processInput(input);
 	}
 	isUpdatingActors = false;
+}
+
+void Game::changeCamera(int mode)
+{
+	// Disable everything
+	stationary->setState(Actor::ActorState::Paused);
+	stationary->setVisible(false);
+	fps->setState(Actor::ActorState::Paused);
+	fps->setVisible(false);
+	crosshair->setVisible(false);
+
+	// Enable the camera specified by the mode
+	switch (mode)
+	{
+	case 1:
+	default:
+		stationary->setState(Actor::ActorState::Active);
+		stationary->setVisible(true);
+		break;
+	case 2:
+		fps->setState(Actor::ActorState::Active);
+		fps->setVisible(true);
+		crosshair->setVisible(true);
+		break;
+	}
 }
 
 void Game::update(float dt)

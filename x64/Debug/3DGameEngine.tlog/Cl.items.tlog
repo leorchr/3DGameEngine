@@ -45,6 +45,8 @@ D:\GAME3\rocherLeo\3DGameEngine\Spline.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\D
 D:\GAME3\rocherLeo\3DGameEngine\SplineActor.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\SplineActor.obj
 D:\GAME3\rocherLeo\3DGameEngine\SplineCameraComponent.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\SplineCameraComponent.obj
 D:\GAME3\rocherLeo\3DGameEngine\SpriteComponent.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\SpriteComponent.obj
+D:\GAME3\rocherLeo\3DGameEngine\StationaryActor.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\StationaryActor.obj
+D:\GAME3\rocherLeo\3DGameEngine\StationaryCameraComponent.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\StationaryCameraComponent.obj
 D:\GAME3\rocherLeo\3DGameEngine\TargetActor.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\TargetActor.obj
 D:\GAME3\rocherLeo\3DGameEngine\Texture.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\Texture.obj
 D:\GAME3\rocherLeo\3DGameEngine\Timer.cpp;D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\Timer.obj

@@ -62,7 +62,11 @@ private:
 	vector<Actor*> pendingActors;
 
 	// Game specific
+	// Game specific
+	void changeCamera(int mode);
+
 	class FPSActor* fps;
+	class StationaryActor* stationary;
 	class SpriteComponent* crosshair;
 	vector<PlaneActor*> planes;
 };

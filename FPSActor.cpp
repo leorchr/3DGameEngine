@@ -16,7 +16,6 @@ FPSActor::FPSActor() :
 	audioComponent(nullptr), 
 	meshComponent(nullptr),
 	cameraComponent(nullptr),
-	lastFootstep(0.0f),
 	boxComponent(nullptr)
 {
 	moveComponent = new MoveComponent(this);
