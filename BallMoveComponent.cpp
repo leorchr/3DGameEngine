@@ -22,6 +22,7 @@ void BallMoveComponent::update(float dt)
 {
 	owner.rotateToNewForward(dir);
 	// Base class update moves based on forward speed
+	setForwardSpeed(getForwardSpeed() * 0.995f);
 	MoveComponent::update(dt);
 }
 
