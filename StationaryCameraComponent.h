@@ -7,8 +7,7 @@ class StationaryCameraComponent : public CameraComponent
 public:
 	StationaryCameraComponent(class Actor* ownerP);
 
-	void update(float dt) override;
-
+	void recomputeRotation();
 	void setPitch(float pitchP);
 	void setYaw(float yawP);
 	float getPitch() const { return pitch; }

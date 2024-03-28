@@ -7,11 +7,13 @@
 #include "BallActor.h"
 #include "Collisions.h"
 
-StationaryActor::StationaryActor() :
+StationaryActor::StationaryActor(float pitchP, float yawP) :
 	Actor(),
 	cameraComponent(nullptr)
 {
 	cameraComponent = new StationaryCameraComponent(this);
+	cameraComponent->setPitch(pitchP);
+	cameraComponent->setYaw(yawP);
 }
 
 void StationaryActor::updateActor(float dt)
@@ -47,7 +49,7 @@ void StationaryActor::shoot()
 	ball->rotateToNewForward(dir);
 }
 
-void StationaryActor::setVisible(bool isVisible)
+void StationaryActor::setCameraOrientation()
 {
-	//meshComponent->setVisible(isVisible);
+	cameraComponent->recomputeRotation();
 }

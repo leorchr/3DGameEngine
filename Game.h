@@ -65,8 +65,10 @@ private:
 	// Game specific
 	void changeCamera(int mode);
 
-	class FPSActor* fps;
 	class StationaryActor* stationary;
+	class StationaryActor* stationary2;
+	class StationaryActor* stationary3;
+	class FPSActor* fps;
 	class SpriteComponent* crosshair;
 	vector<PlaneActor*> planes;
 };

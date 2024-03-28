@@ -5,13 +5,12 @@
 class StationaryActor : public Actor
 {
 public:
-	StationaryActor();
+	StationaryActor(float pitchP = 0, float yawP = 0);
 
 	void updateActor(float dt) override;
 	void actorInput(const struct InputState& inputState) override;
 	void shoot();
-
-	void setVisible(bool isVisible);
+	void setCameraOrientation();
 
 private:
 	class StationaryCameraComponent* cameraComponent;

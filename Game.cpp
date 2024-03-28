@@ -49,6 +49,10 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 
 	stationary = new StationaryActor();
+	stationary2 = new StationaryActor(Maths::toRadians(40.0f), Maths::toRadians(-30.0f));
+	stationary2->setPosition(Vector3(650, 100, 100));
+	stationary3 = new StationaryActor(Maths::pi/2);
+	stationary3->setPosition(Vector3(850, 0, 200));
 	fps = new FPSActor();
 
 	ArrowActor *arrow = new ArrowActor();
@@ -159,6 +163,14 @@ void Game::processInput()
 	{
 		changeCamera(2);
 	}
+	else if (input.keyboard.getKeyState(SDL_SCANCODE_3) == ButtonState::Pressed)
+	{
+		changeCamera(3);
+	}
+	else if (input.keyboard.getKeyState(SDL_SCANCODE_4) == ButtonState::Pressed)
+	{
+		changeCamera(4);
+	}
 
 	// Actor input
 	isUpdatingActors = true;
@@ -173,7 +185,8 @@ void Game::changeCamera(int mode)
 {
 	// Disable everything
 	stationary->setState(Actor::ActorState::Paused);
-	stationary->setVisible(false);
+	stationary2->setState(Actor::ActorState::Paused);
+	stationary3->setState(Actor::ActorState::Paused);
 	fps->setState(Actor::ActorState::Paused);
 	fps->setVisible(false);
 	crosshair->setVisible(false);
@@ -184,9 +197,17 @@ void Game::changeCamera(int mode)
 	case 1:
 	default:
 		stationary->setState(Actor::ActorState::Active);
-		stationary->setVisible(true);
+		stationary->setCameraOrientation();
 		break;
 	case 2:
+		stationary2->setState(Actor::ActorState::Active);
+		stationary2->setCameraOrientation();
+		break;
+	case 3:
+		stationary3->setState(Actor::ActorState::Active);
+		stationary3->setCameraOrientation();
+		break;
+	case 4:
 		fps->setState(Actor::ActorState::Active);
 		fps->setVisible(true);
 		crosshair->setVisible(true);
