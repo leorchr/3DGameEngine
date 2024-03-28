@@ -64,12 +64,14 @@ void Game::load()
 	const float spacePins = 17.0f;
 	const float scaleX = 45.0f;
 
+	int numberPins = 0;
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < j+1; i++) {
-			CubeActor* a = new CubeActor();
-			a->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleX / 2));
-			a->setScale(Vector3(scaleX, sizePins, sizePins));
-			a->setRotation(q);
+			pins.push_back(new PinActor());
+			pins[numberPins]->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleX / 2));
+			pins[numberPins]->setScale(Vector3(scaleX, sizePins, sizePins));
+			pins[numberPins]->setRotation(q);
+			numberPins++;
 		}
 	}
 

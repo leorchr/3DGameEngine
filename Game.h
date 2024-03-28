@@ -9,6 +9,7 @@
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
 #include "PlayerActor.h"
+#include "PinActor.h"
 
 using std::vector;
 
@@ -71,6 +72,7 @@ private:
 	class StationaryActor* stationary3;
 	class FPSActor* fps;
 	class SpriteComponent* crosshair;
+	vector<PinActor*> pins;
 	vector<PlaneActor*> planes;
 };
 
