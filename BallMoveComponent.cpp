@@ -36,12 +36,8 @@ void BallMoveComponent::update(float dt)
 	LineSegment l(start, end);
 	PhysicsSystem::CollisionInfo info;
 	if (owner.getGame().getPhysicsSystem().segmentCast(l, info))
-	{
-		BallActor* ball = dynamic_cast<BallActor*>(info.actor);
-		if (ball)
-		{
-			cout << "oui" << endl;
-		}
+	
+		setForwardSpeed(0);
 	}
 
 }
