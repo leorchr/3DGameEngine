@@ -97,7 +97,7 @@ void FPSActor::actorInput(const InputState& inputState)
 	// Shoot
 	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
 	{
-		shoot();
+		//shoot();
 	}
 }
 

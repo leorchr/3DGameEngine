@@ -97,17 +97,17 @@ void Game::load()
 		p->setRotation(q);
 	}
 
+	//const float sizeWall = 100.0f;
 	//q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::piOver2));
 	//// Forward/back walls
-	//for (int i = 0; i < 10; i++)
+	//for (int i = 0; i < 21; i++)
 	//{
-	//	PlaneActor* p = new PlaneActor();
-	//	p->setPosition(Vector3(start - size, start + i * size, 0.0f));
-	//	p->setRotation(q);
-
-	//	p = new PlaneActor();
-	//	p->setPosition(Vector3(-start + size, start + i * size, 0.0f));
-	//	p->setRotation(q);
+	//	for (int j = 0; j < 21; j++)
+	//	{
+	//		PlaneActor* p = new PlaneActor();
+	//		p->setPosition(Vector3(1200 + start - sizeWall, -1000 + start + i * sizeWall, -1000 + j *sizeWall));
+	//		p->setRotation(q);
+	//	}
 	//}
 
 	// Setup lights
@@ -121,15 +121,6 @@ void Game::load()
 	Actor* crosshairActor = new Actor();
 	crosshairActor->setScale(Vector3(2.0f, 2.0f, 2.0f));
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
-
-	TargetActor* t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 0.0f, 100.0f));
-	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 0.0f, 400.0f));
-	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, -500.0f, 200.0f));
-	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 500.0f, 200.0f));
 
 	changeCamera(1);
 }
@@ -209,8 +200,6 @@ void Game::changeCamera(int mode)
 		break;
 	case 4:
 		fps->setState(Actor::ActorState::Active);
-		fps->setVisible(true);
-		crosshair->setVisible(true);
 		break;
 	}
 }

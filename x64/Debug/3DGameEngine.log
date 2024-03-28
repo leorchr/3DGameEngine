@@ -1,19 +1,5 @@
 ﻿C:\VisualStudio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (SimpleEngineWithOpenGL-032.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Actor.cpp
-  ArrowActor.cpp
-  BallMoveComponent.cpp
-  BoxComponent.cpp
-  CameraComponent.cpp
-  FPSActor.cpp
   Game.cpp
-  Main.cpp
-  MeshComponent.cpp
-D:\GAME3\rocherLeo\3DGameEngine\MeshComponent.cpp(28,33): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  PlaneActor.cpp
-  PlayerActor.cpp
-  SpriteComponent.cpp
-  StationaryActor.cpp
-  Generating Code...
   3DGameEngine.vcxproj -> D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\3DGameEngine.exe
   D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.bank
   D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.strings.bank

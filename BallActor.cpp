@@ -3,7 +3,7 @@
 #include "Assets.h"
 #include "BallMoveComponent.h"
 
-BallActor::BallActor() : Actor(), lifetimeSpan(2.0f), ballMove(nullptr)
+BallActor::BallActor() : Actor(), lifetimeSpan(5.0f), ballMove(nullptr)
 {
 	MeshComponent* mc = new MeshComponent(this);
 	mc->setMesh(Assets::getMesh("Mesh_Sphere"));
