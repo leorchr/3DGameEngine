@@ -10,6 +10,7 @@ public:
 	ArrowActor(float speedP);
 
 	void updateActor(float dt) override;
+	void setVisible(bool isVisible);
 
 private:
 	MeshComponent* mc;

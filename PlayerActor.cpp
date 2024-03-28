@@ -10,6 +10,9 @@ PlayerActor::PlayerActor(float pitchP, float yawP) :
 	cameraComponent = new StationaryCameraComponent(this);
 	cameraComponent->setPitch(pitchP);
 	cameraComponent->setYaw(yawP);
+
+	arrow = new ArrowActor(1.0f);
+
 }
 
 void PlayerActor::updateActor(float dt)
@@ -48,4 +51,9 @@ void PlayerActor::shoot()
 void PlayerActor::setCameraOrientation()
 {
 	cameraComponent->recomputeRotation();
+}
+
+void PlayerActor::setVisible(bool isVisible)
+{
+	arrow->setVisible(isVisible);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "ArrowActor.h"
 #include "Vector3.h"
 
 class PlayerActor : public Actor
@@ -11,7 +12,9 @@ public:
 	void actorInput(const struct InputState& inputState) override;
 	void shoot();
 	void setCameraOrientation();
+	void setVisible(bool isVisible);
 
 private:
 	class StationaryCameraComponent* cameraComponent;
+	ArrowActor* arrow;
 };

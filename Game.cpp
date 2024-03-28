@@ -10,7 +10,6 @@
 #include "StationaryActor.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
-#include "ArrowActor.h"
 #include "PlayerActor.h"
 #include <algorithm>
 
@@ -55,8 +54,6 @@ void Game::load()
 	stationary3 = new StationaryActor(Maths::pi/2);
 	stationary3->setPosition(Vector3(850, 0, 200));
 	fps = new FPSActor();
-
-	ArrowActor *arrow = new ArrowActor(1.0f);
 
 
 	Quaternion q(Vector3::unitY, -Maths::piOver2);
@@ -186,6 +183,7 @@ void Game::changeCamera(int mode)
 {
 	// Disable everything
 	player->setState(Actor::ActorState::Paused);
+	player->setVisible(false);
 	stationary2->setState(Actor::ActorState::Paused);
 	stationary3->setState(Actor::ActorState::Paused);
 	fps->setState(Actor::ActorState::Paused);
@@ -199,6 +197,7 @@ void Game::changeCamera(int mode)
 	default:
 		player->setState(Actor::ActorState::Active);
 		player->setCameraOrientation();
+		player->setVisible(true);
 		break;
 	case 2:
 		stationary2->setState(Actor::ActorState::Active);

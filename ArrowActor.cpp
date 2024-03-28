@@ -24,3 +24,7 @@ void ArrowActor::updateActor(float dt)
 	if (Maths::toDegrees(yaw) < -45 && speed < 0) speed = Maths::abs(speed);
 	setRotation(newRotation);
 }
+
+void ArrowActor::setVisible(bool isVisible) {
+	mc->setVisible(isVisible);
+}
