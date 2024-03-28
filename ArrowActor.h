@@ -7,11 +7,12 @@
 class ArrowActor : public Actor
 {
 public:
-	ArrowActor();
+	ArrowActor(float speedP);
 
 	void updateActor(float dt) override;
 
 private:
 	MeshComponent* mc;
+	float speed;
 };
 

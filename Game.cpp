@@ -11,6 +11,7 @@
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include "ArrowActor.h"
+#include "PlayerActor.h"
 #include <algorithm>
 
 bool Game::initialize()
@@ -48,14 +49,14 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 
-	stationary = new StationaryActor();
+	player = new PlayerActor();
 	stationary2 = new StationaryActor(Maths::toRadians(40.0f), Maths::toRadians(-30.0f));
 	stationary2->setPosition(Vector3(650, 100, 100));
 	stationary3 = new StationaryActor(Maths::pi/2);
 	stationary3->setPosition(Vector3(850, 0, 200));
 	fps = new FPSActor();
 
-	ArrowActor *arrow = new ArrowActor();
+	ArrowActor *arrow = new ArrowActor(1.0f);
 
 
 	Quaternion q(Vector3::unitY, -Maths::piOver2);
@@ -184,7 +185,7 @@ void Game::processInput()
 void Game::changeCamera(int mode)
 {
 	// Disable everything
-	stationary->setState(Actor::ActorState::Paused);
+	player->setState(Actor::ActorState::Paused);
 	stationary2->setState(Actor::ActorState::Paused);
 	stationary3->setState(Actor::ActorState::Paused);
 	fps->setState(Actor::ActorState::Paused);
@@ -196,8 +197,8 @@ void Game::changeCamera(int mode)
 	{
 	case 1:
 	default:
-		stationary->setState(Actor::ActorState::Active);
-		stationary->setCameraOrientation();
+		player->setState(Actor::ActorState::Active);
+		player->setCameraOrientation();
 		break;
 	case 2:
 		stationary2->setState(Actor::ActorState::Active);

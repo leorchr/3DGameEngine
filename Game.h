@@ -8,6 +8,7 @@
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
+#include "PlayerActor.h"
 
 using std::vector;
 
@@ -65,7 +66,7 @@ private:
 	// Game specific
 	void changeCamera(int mode);
 
-	class StationaryActor* stationary;
+	class PlayerActor* player;
 	class StationaryActor* stationary2;
 	class StationaryActor* stationary3;
 	class FPSActor* fps;
