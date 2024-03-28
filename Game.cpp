@@ -89,11 +89,11 @@ void Game::load()
 	for (int i = 0; i < 20; i++)
 	{
 		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane, start - sizePlane*3, -200.0f));
+		p->setPosition(Vector3(start + i * sizePlane, 15 + start - sizePlane*3, -170.0f));
 		p->setRotation(q);
 
 		p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane, -start + sizePlane*3, -200.0f));
+		p->setPosition(Vector3(start + i * sizePlane, -15 -start + sizePlane*3, -170.0f));
 		p->setRotation(q);
 	}
 

@@ -24,6 +24,7 @@ void BallMoveComponent::update(float dt)
 	// Base class update moves based on forward speed
 	setForwardSpeed(getForwardSpeed() * 0.995f);
 	MoveComponent::update(dt);
+	if (owner.getPosition().y > 100 || owner.getPosition().y < -100) dir = Vector3::unitX;
 }
 
 void BallMoveComponent::setDir(Vector3 dirP)
