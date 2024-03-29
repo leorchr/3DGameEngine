@@ -9,6 +9,7 @@
 #include "FPSActor.h"
 #include "StationaryActor.h"
 #include "SplineActor.h"
+#include "ScoreActor.h"
 #include "TargetActor.h"
 #include "PlayerActor.h"
 #include <algorithm>
@@ -43,7 +44,21 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Rifle.png", "Rifle");
 	Assets::loadTexture(renderer, "Res\\Textures\\Target.png", "Target");
 
+	//Score Numbers
+	Assets::loadTexture(renderer, "Res\\Textures\\0.png", "0");
+	Assets::loadTexture(renderer, "Res\\Textures\\1.png", "1");
+	Assets::loadTexture(renderer, "Res\\Textures\\2.png", "2");
+	Assets::loadTexture(renderer, "Res\\Textures\\3.png", "3");
+	Assets::loadTexture(renderer, "Res\\Textures\\4.png", "4");
+	Assets::loadTexture(renderer, "Res\\Textures\\5.png", "5");
+	Assets::loadTexture(renderer, "Res\\Textures\\6.png", "6");
+	Assets::loadTexture(renderer, "Res\\Textures\\7.png", "7");
+	Assets::loadTexture(renderer, "Res\\Textures\\8.png", "8");
+	Assets::loadTexture(renderer, "Res\\Textures\\9.png", "9");
+	Assets::loadTexture(renderer, "Res\\Textures\\10.png", "10");
+
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
+	Assets::loadMesh("Res\\Meshes\\Score.gpmesh", "Mesh_Score");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
 	Assets::loadMesh("Res\\Meshes\\Sphere.gpmesh", "Mesh_Sphere");
 	Assets::loadMesh("Res\\Meshes\\Rifle.gpmesh", "Mesh_Rifle");
@@ -57,6 +72,12 @@ void Game::load()
 	stationary3->setPosition(Vector3(850, 0, 200));
 	fps = new FPSActor();
 
+	//Score display
+	scoreActor = new ScoreActor();
+	scoreActor->setPosition(Vector3(350, 200, 100));
+	scoreActor->setScale(Vector3(75, 75, 75));
+	scoreActor->rotate(Vector3::unitY, Maths::toRadians(90.0f));
+	scoreActor->rotate(Vector3::unitX, Maths::toRadians(90.0f));
 
 	// Pins
 	const float sizePins = 17.0f;
@@ -330,4 +351,5 @@ void Game::endGame() {
 			numberPins++;
 		}
 	}
+	scoreActor->setScore(0);
 }

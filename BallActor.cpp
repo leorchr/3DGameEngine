@@ -23,11 +23,10 @@ void BallActor::updateActor(float dt)
 	lifetimeSpan -= dt;
 	if (lifetimeSpan < 0.0f)
 	{
+		getGame().getScoreActor()->setScore(getGame().getScore());
 		setState(ActorState::Dead);
 		getGame().getPlayer()->currentState++;
 		if (getGame().getScore() == 10 || getGame().getPlayer()->shotNumber == 2) getGame().endGame();
-		//show score
-
 	}
 }
 

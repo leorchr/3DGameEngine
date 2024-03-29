@@ -13,6 +13,7 @@ PlayerActor::PlayerActor(float pitchP, float yawP) :
 
 	arrow = new ArrowActor(1.0f, 15.0f);
 	currentState = 1;
+	shotNumber = 0;
 }
 
 void PlayerActor::updateActor(float dt)

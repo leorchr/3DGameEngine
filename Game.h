@@ -10,6 +10,7 @@
 #include "PlaneActor.h"
 #include "PlayerActor.h"
 #include "PinActor.h"
+#include "ScoreActor.h"
 
 using std::vector;
 
@@ -47,6 +48,7 @@ public:
 	void removePlane(class PlaneActor* plane);
 	vector<PlaneActor*>& getPlanes() { return planes; }
 	PlayerActor* getPlayer() { return player; }
+	ScoreActor* getScoreActor() { return scoreActor; }
 	int getScore() { return score; }
 	void setScore(int scoreP);
 	void endGame();
@@ -78,5 +80,6 @@ private:
 	vector<PinActor*> pins;
 	vector<PlaneActor*> planes;
 	int score;
+	ScoreActor* scoreActor;
 };
 
