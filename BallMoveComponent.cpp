@@ -6,6 +6,7 @@
 #include "PhysicsSystem.h"
 #include "BallActor.h"
 #include "Game.h"
+#include "PinActor.h"
 
 #include <iostream>
 using namespace std;
@@ -28,15 +29,25 @@ void BallMoveComponent::update(float dt)
 	MoveComponent::update(dt);
 	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) dir = Vector3::unitX;
 
-	const float segmentLength = 4.0f;
-	Vector3 start = owner.getPosition();
-	Vector3 dir = owner.getForward();
-	Vector3 end = start + dir * segmentLength;
-	LineSegment l(start, end);
 	PhysicsSystem::CollisionInfo info;
-	if (owner.getGame().getPhysicsSystem().segmentCast(l, info))
+
+	BallActor* ballActor = static_cast<BallActor*>(&owner);
+
+	if (owner.getGame().getPhysicsSystem().boxCast(*ballActor->getBoxComponent(), info))
 	{
-		setForwardSpeed(0);
+		cout << info.actor << endl;
+		PinActor* pinActor = static_cast<PinActor*>(info.actor);
+		if (pinActor)
+		{
+			if (!pinActor->getOnlyOnce()) {
+				Vector3 hitDir = pinActor->getPosition() - owner.getPosition();
+				hitDir.normalize();
+				hitDir.z = 0;
+				pinActor->getMoveComponent()->setForwardSpeed(hitDir.x * getForwardSpeed());
+				pinActor->getMoveComponent()->setStrafeSpeed(hitDir.y * getForwardSpeed());
+				pinActor->setOnlyOnce(true);
+			}
+		}
 	}
 
 }

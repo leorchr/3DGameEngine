@@ -7,9 +7,16 @@ PinActor::PinActor() : Actor()
 	mc->setMesh(Assets::getMesh("Mesh_Cube"));
 	bc = new BoxComponent(this);
 	bc->setObjectBox(Assets::getMesh("Mesh_Cube").getBox());
+	movec = new MoveComponent(this);
+	onlyOnce = false;
 }
 
 void PinActor::updateActor(float dt)
 {
 	Actor::updateActor(dt);
+}
+
+void PinActor::setOnlyOnce(bool onceP)
+{
+	onlyOnce = onceP;
 }

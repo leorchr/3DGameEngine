@@ -1,5 +1,6 @@
 #include "PhysicsSystem.h"
 #include "Collisions.h"
+#include "Actor.h"
 #include "BoxComponent.h"
 #include <algorithm>
 
@@ -46,6 +47,25 @@ bool PhysicsSystem::segmentCast(const LineSegment& l, CollisionInfo& outColl)
 				outColl.actor = &box->getOwner();
 				collided = true;
 			}
+		}
+	}
+	return collided;
+}
+
+bool PhysicsSystem::boxCast(BoxComponent& boxComponent, CollisionInfo& outColl)
+{
+	bool collided = false;
+
+	for (auto box : boxes)
+	{
+		float t = 0;
+		if (box == &boxComponent) continue;
+
+		if (Collisions::intersect(boxComponent.getWorldBox(), box->getWorldBox()))
+		{
+			outColl.box = box;
+			outColl.actor = &box->getOwner();
+			collided = true;
 		}
 	}
 	return collided;

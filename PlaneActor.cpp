@@ -10,9 +10,6 @@ PlaneActor::PlaneActor() : Actor()
 	MeshComponent* mc = new MeshComponent(this);
 	Mesh* mesh = &Assets::getMesh("Mesh_Plane");
 	mc->setMesh(*mesh);
-	box = new BoxComponent(this);
-	box->setObjectBox(mesh->getBox());
-
 	getGame().addPlane(this);
 }
 
