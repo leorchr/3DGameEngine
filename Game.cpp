@@ -309,5 +309,25 @@ void Game::setScore(int scoreP)
 }
 
 void Game::endGame() {
-	cout << " Bonjour !" << endl;
+	player->currentState = 5;
+	player->shotNumber = 0;
+	for (auto pin : pins) {
+		pin->setState(Actor::ActorState::Dead);
+	}
+	pins.clear();
+
+	// Pins
+	const float sizePins = 17.0f;
+	const float spacePins = 17.0f;
+	const float scaleZ = 45.0f;
+
+	int numberPins = 0;
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < j + 1; i++) {
+			pins.push_back(new PinActor());
+			pins[numberPins]->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleZ / 2));
+			pins[numberPins]->setScale(Vector3(sizePins, sizePins, scaleZ));
+			numberPins++;
+		}
+	}
 }

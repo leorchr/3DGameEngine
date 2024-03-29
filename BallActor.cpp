@@ -26,6 +26,7 @@ void BallActor::updateActor(float dt)
 		setState(ActorState::Dead);
 		getGame().getPlayer()->currentState++;
 		if (getGame().getScore() == 10 || getGame().getPlayer()->shotNumber == 2) getGame().endGame();
+		//show score
 
 	}
 }
