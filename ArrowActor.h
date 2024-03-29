@@ -11,8 +11,6 @@ public:
 
 	void updateActor(float dt) override;
 	void setVisible(bool isVisible);
-	void setCurrentState(int currentStateP);
-	int getCurrentState() { return currentState; }
 	float getMaxScaleY() { return maxScaleY; }
 	float getMinScaleY() { return minScaleY; }
 
@@ -20,7 +18,6 @@ private:
 	MeshComponent* mc;
 	float rotationSpeed;
 	float scaleSpeed;
-	int currentState;
 	Vector3 baseScale;
 
 	Quaternion newRotation;

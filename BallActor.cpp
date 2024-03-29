@@ -26,7 +26,7 @@ void BallActor::updateActor(float dt)
 	if (lifetimeSpan < 0.0f)
 	{
 		setState(ActorState::Dead);
-		getGame().getPlayer()->getArrow()->setCurrentState(getGame().getPlayer()->getArrow()->getCurrentState() + 1);
+		getGame().getPlayer()->currentState++;
 		cout << getGame().getScore() << endl;
 	}
 }

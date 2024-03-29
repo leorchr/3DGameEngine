@@ -12,7 +12,7 @@ PlayerActor::PlayerActor(float pitchP, float yawP) :
 	cameraComponent->setYaw(yawP);
 
 	arrow = new ArrowActor(1.0f, 15.0f);
-
+	currentState = 1;
 }
 
 void PlayerActor::updateActor(float dt)
@@ -22,11 +22,25 @@ void PlayerActor::updateActor(float dt)
 
 void PlayerActor::actorInput(const InputState& inputState)
 {
-	// Shoot
+	// Shoot bowling ball
 	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
 	{
-		if(arrow->getCurrentState() != 4) arrow->setCurrentState(arrow->getCurrentState() + 1);
-		if (arrow->getCurrentState() == 3) shoot();
+		if (currentState != 4) {
+			currentState++;
+			switch (currentState) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3 :
+				shoot();
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			}
+		}
 	}
 }
 
@@ -40,7 +54,6 @@ void PlayerActor::shoot()
 
 	ball->getBallMoveComponent()->setDir(dir);
 	ball->getBallMoveComponent()->setForwardSpeed(arrow->getScale().y*500/arrow->getMaxScaleY());
-	arrow->setCurrentState(arrow->getCurrentState() + 1);
 }
 
 void PlayerActor::setCameraOrientation()
