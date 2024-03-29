@@ -34,7 +34,7 @@ void PlayerActor::shoot()
 {
 	BallActor* ball = new BallActor();
 	ball->setPlayer(this);
-	ball->setPosition(Vector3(80.0f, 0.0f, -60.0f));
+	ball->setPosition(Vector3(80.0f, 0.0f, -85.0f));
 	Vector3 dir = arrow->getForward();
 	dir.normalize();
 

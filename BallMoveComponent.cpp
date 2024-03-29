@@ -5,7 +5,6 @@
 #include "Collisions.h"
 #include "PhysicsSystem.h"
 #include "BallActor.h"
-#include "TargetActor.h"
 #include "Game.h"
 
 #include <iostream>
@@ -27,7 +26,7 @@ void BallMoveComponent::update(float dt)
 	// Base class update moves based on forward speed
 	setForwardSpeed(getForwardSpeed() * 0.995f);
 	MoveComponent::update(dt);
-	if (owner.getPosition().y > 100 || owner.getPosition().y < -100) dir = Vector3::unitX;
+	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) dir = Vector3::unitX;
 
 	const float segmentLength = 4.0f;
 	Vector3 start = owner.getPosition();
@@ -36,7 +35,7 @@ void BallMoveComponent::update(float dt)
 	LineSegment l(start, end);
 	PhysicsSystem::CollisionInfo info;
 	if (owner.getGame().getPhysicsSystem().segmentCast(l, info))
-	
+	{
 		setForwardSpeed(0);
 	}
 
