@@ -46,6 +46,9 @@ public:
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	vector<PlaneActor*>& getPlanes() { return planes; }
+	PlayerActor* getPlayer() { return player; }
+	int getScore() { return score; }
+	void SetScore(int scoreP);
 
 
 private:
@@ -74,5 +77,6 @@ private:
 	class SpriteComponent* crosshair;
 	vector<PinActor*> pins;
 	vector<PlaneActor*> planes;
+	int score;
 };
 

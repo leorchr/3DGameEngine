@@ -1,5 +1,6 @@
 #include "PinActor.h"
 #include "Assets.h"
+#include "Game.h"
 
 PinActor::PinActor() : Actor(), lifetimeSpan(1.0f)
 {
@@ -27,4 +28,5 @@ void PinActor::updateActor(float dt)
 void PinActor::onHit()
 {
 	onlyOnce = true;
+	getGame().SetScore(getGame().getScore() + 1);
 }

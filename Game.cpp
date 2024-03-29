@@ -321,3 +321,8 @@ void Game::removePlane(PlaneActor* plane)
 	auto iter = std::find(begin(planes), end(planes), plane);
 	planes.erase(iter);
 }
+
+void Game::SetScore(int scoreP)
+{
+	score = scoreP;
+}

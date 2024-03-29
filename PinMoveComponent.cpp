@@ -8,9 +8,6 @@
 #include "Game.h"
 #include "PinActor.h"
 
-#include <iostream>
-using namespace std;
-
 PinMoveComponent::PinMoveComponent(Actor* ownerP) : MoveComponent(ownerP), player(nullptr)
 {
 	dir = owner.getForward();

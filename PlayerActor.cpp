@@ -25,7 +25,7 @@ void PlayerActor::actorInput(const InputState& inputState)
 	// Shoot
 	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
 	{
-		arrow->setCurrentState(arrow->getCurrentState() + 1);
+		if(arrow->getCurrentState() != 4) arrow->setCurrentState(arrow->getCurrentState() + 1);
 		if (arrow->getCurrentState() == 3) shoot();
 	}
 }
@@ -40,6 +40,7 @@ void PlayerActor::shoot()
 
 	ball->getBallMoveComponent()->setDir(dir);
 	ball->getBallMoveComponent()->setForwardSpeed(arrow->getScale().y*500/arrow->getMaxScaleY());
+	arrow->setCurrentState(arrow->getCurrentState() + 1);
 }
 
 void PlayerActor::setCameraOrientation()

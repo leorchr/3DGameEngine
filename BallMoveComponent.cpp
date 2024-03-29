@@ -8,9 +8,6 @@
 #include "Game.h"
 #include "PinActor.h"
 
-#include <iostream>
-using namespace std;
-
 BallMoveComponent::BallMoveComponent(Actor* ownerP) : MoveComponent(ownerP), player(nullptr)
 {
 	dir = owner.getForward();
@@ -35,7 +32,6 @@ void BallMoveComponent::update(float dt)
 
 	if (owner.getGame().getPhysicsSystem().boxCast(*ballActor->getBoxComponent(), info))
 	{
-		cout << info.actor << endl;
 		PinActor* pinActor = static_cast<PinActor*>(info.actor);
 		if (pinActor)
 		{

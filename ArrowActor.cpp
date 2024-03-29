@@ -54,6 +54,9 @@ void ArrowActor::updateActor(float dt)
 		break;
 
 	case 4:
+		break;
+
+	case 5:
 		scaleY = 0;
 		setScale(baseScale);
 		currentState = 1;

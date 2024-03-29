@@ -10,7 +10,6 @@ public:
 
 	void updateActor(float dt) override;
 	void setPlayer(Actor* player);
-	void hitTarget();
 	BallMoveComponent* getBallMoveComponent() { return ballMove; }
 	BoxComponent* getBoxComponent() { return boxComponent; }
 

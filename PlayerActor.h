@@ -13,6 +13,7 @@ public:
 	void shoot();
 	void setCameraOrientation();
 	void setVisible(bool isVisible);
+	ArrowActor* getArrow() { return arrow; }
 
 private:
 	class StationaryCameraComponent* cameraComponent;
