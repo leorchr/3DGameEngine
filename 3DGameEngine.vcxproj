@@ -180,6 +180,7 @@
     <ClCompile Include="OrbitCameraComponent.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="PinActor.cpp" />
+    <ClCompile Include="PinMoveComponent.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PlaneActor.cpp" />
     <ClCompile Include="PlayerActor.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="OrbitCameraComponent.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="PinActor.h" />
+    <ClInclude Include="PinMoveComponent.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PlaneActor.h" />
     <ClInclude Include="PlayerActor.h" />

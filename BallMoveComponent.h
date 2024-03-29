@@ -17,4 +17,3 @@ protected:
 	class Actor* player;
 	Vector3 dir;
 };
-

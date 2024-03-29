@@ -2,20 +2,22 @@
 #include "Actor.h"
 #include "MeshComponent.h"
 #include "BoxComponent.h"
-#include "MoveComponent.h"
+#include "PinMoveComponent.h"
 
 class PinActor : public Actor
 {
 public:
 	PinActor();
 	void updateActor(float dt) override;
-	MoveComponent* getMoveComponent() { return movec; }
+	PinMoveComponent* getMoveComponent() { return pc; }
 	bool getOnlyOnce() { return onlyOnce; }
-	void setOnlyOnce(bool onceP);
+	BoxComponent* getBoxComponent() { return bc; }
+	void onHit();
 	
 private:
 	MeshComponent* mc;
-	MoveComponent* movec;
+	PinMoveComponent* pc;
 	BoxComponent* bc;
 	bool onlyOnce;
+	float lifetimeSpan;
 };
