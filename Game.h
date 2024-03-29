@@ -28,7 +28,7 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : isRunning(true), isUpdatingActors(false), fps(nullptr), crosshair(nullptr) {}
+	Game() : isRunning(true), isUpdatingActors(false), fps(nullptr)	 {}
 
 public:
 	bool initialize();
@@ -48,7 +48,8 @@ public:
 	vector<PlaneActor*>& getPlanes() { return planes; }
 	PlayerActor* getPlayer() { return player; }
 	int getScore() { return score; }
-	void SetScore(int scoreP);
+	void setScore(int scoreP);
+	void endGame();
 
 
 private:
@@ -74,7 +75,6 @@ private:
 	class StationaryActor* stationary2;
 	class StationaryActor* stationary3;
 	class FPSActor* fps;
-	class SpriteComponent* crosshair;
 	vector<PinActor*> pins;
 	vector<PlaneActor*> planes;
 	int score;

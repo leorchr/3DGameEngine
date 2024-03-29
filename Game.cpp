@@ -12,6 +12,8 @@
 #include "TargetActor.h"
 #include "PlayerActor.h"
 #include <algorithm>
+#include <iostream>
+using namespace std;
 
 bool Game::initialize()
 {
@@ -56,9 +58,6 @@ void Game::load()
 	fps = new FPSActor();
 
 
-	Quaternion q(Vector3::unitY, -Maths::piOver2);
-	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi*2));
-
 	// Pins
 	const float sizePins = 17.0f;
 	const float spacePins = 17.0f;
@@ -70,12 +69,13 @@ void Game::load()
 			pins.push_back(new PinActor());
 			pins[numberPins]->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleZ / 2));
 			pins[numberPins]->setScale(Vector3(sizePins, sizePins, scaleZ));
-			//pins[numberPins]->setRotation(q);
 			numberPins++;
 		}
 	}
 
 	// Floor and walls
+	Quaternion q(Vector3::unitY, -Maths::piOver2);
+	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi*2));
 
 	// Setup floor
 	const float start = 0.0f;
@@ -99,30 +99,12 @@ void Game::load()
 		p->setRotation(q);
 	}
 
-	//const float sizeWall = 100.0f;
-	//q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::piOver2));
-	//// Forward/back walls
-	//for (int i = 0; i < 21; i++)
-	//{
-	//	for (int j = 0; j < 21; j++)
-	//	{
-	//		PlaneActor* p = new PlaneActor();
-	//		p->setPosition(Vector3(1200 + start - sizeWall, -1000 + start + i * sizeWall, -1000 + j *sizeWall));
-	//		p->setRotation(q);
-	//	}
-	//}
-
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
 	DirectionalLight& dir = renderer.getDirectionalLight();
 	dir.direction = Vector3(0.5f, -0.707f, -0.707f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-
-	// Crosshair
-	Actor* crosshairActor = new Actor();
-	crosshairActor->setScale(Vector3(2.0f, 2.0f, 2.0f));
-	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 
 	changeCamera(1);
 }
@@ -181,7 +163,6 @@ void Game::changeCamera(int mode)
 	stationary3->setState(Actor::ActorState::Paused);
 	fps->setState(Actor::ActorState::Paused);
 	fps->setVisible(false);
-	crosshair->setVisible(false);
 
 	// Enable the camera specified by the mode
 	switch (mode)
@@ -322,7 +303,11 @@ void Game::removePlane(PlaneActor* plane)
 	planes.erase(iter);
 }
 
-void Game::SetScore(int scoreP)
+void Game::setScore(int scoreP)
 {
 	score = scoreP;
+}
+
+void Game::endGame() {
+	cout << " Bonjour !" << endl;
 }

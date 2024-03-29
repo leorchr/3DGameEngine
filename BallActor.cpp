@@ -3,8 +3,6 @@
 #include "Assets.h"
 #include "BallMoveComponent.h"
 #include "Game.h"
-#include <iostream>
-using namespace std;
 
 BallActor::BallActor() : Actor(), lifetimeSpan(5.0f), ballMove(nullptr)
 {
@@ -27,7 +25,8 @@ void BallActor::updateActor(float dt)
 	{
 		setState(ActorState::Dead);
 		getGame().getPlayer()->currentState++;
-		cout << getGame().getScore() << endl;
+		if (getGame().getScore() == 10 || getGame().getPlayer()->shotNumber == 2) getGame().endGame();
+
 	}
 }
 

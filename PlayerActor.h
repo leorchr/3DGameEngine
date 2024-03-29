@@ -15,6 +15,7 @@ public:
 	void setVisible(bool isVisible);
 	ArrowActor* getArrow() { return arrow; }
 	int currentState;
+	int shotNumber;
 
 private:
 	class StationaryCameraComponent* cameraComponent;

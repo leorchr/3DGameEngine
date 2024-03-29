@@ -15,18 +15,10 @@ PinActor::PinActor() : Actor(), lifetimeSpan(1.0f)
 void PinActor::updateActor(float dt)
 {
 	Actor::updateActor(dt);
-
-	if (onlyOnce) {
-		lifetimeSpan -= dt;
-		if (lifetimeSpan < 0.0f)
-		{
-			setState(ActorState::Dead);
-		}
-	}
 }
 
 void PinActor::onHit()
 {
 	onlyOnce = true;
-	getGame().SetScore(getGame().getScore() + 1);
+	getGame().setScore(getGame().getScore() + 1);
 }

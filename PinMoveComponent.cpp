@@ -1,6 +1,7 @@
 #include "PinMoveComponent.h"
 #include "Actor.h"
 #include "Vector3.h"
+#include "Vector2.h"
 #include "LineSegment.h"
 #include "Collisions.h"
 #include "PhysicsSystem.h"
@@ -22,6 +23,7 @@ void PinMoveComponent::update(float dt)
 {
 	owner.rotateToNewForward(dir);
 	setForwardSpeed(getForwardSpeed() * 0.995f);
+	setStrafeSpeed(getStrafeSpeed() * 0.995f);
 	MoveComponent::update(dt);
 
 	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) dir = Vector3::unitX;
@@ -40,8 +42,10 @@ void PinMoveComponent::update(float dt)
 				hitDir.normalize();
 				hitDir.z = 0;
 
-				pinActor->getMoveComponent()->setDir(hitDir);
-				pinActor->getMoveComponent()->setForwardSpeed(getForwardSpeed());
+				pinActor->getMoveComponent()->setForwardSpeed(getForwardSpeed()* hitDir.x * 0.7f);
+				pinActor->getMoveComponent()->setStrafeSpeed(getStrafeSpeed()* hitDir.y * 0.7f);
+				setForwardSpeed(getForwardSpeed() * 0.65f);
+				setStrafeSpeed(getStrafeSpeed() * 0.65f);
 				pinActor->onHit();
 			}
 		}

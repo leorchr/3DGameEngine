@@ -39,8 +39,9 @@ void BallMoveComponent::update(float dt)
 				Vector3 hitDir = pinActor->getPosition() - owner.getPosition();
 				hitDir.normalize();
 				hitDir.z = 0;
-				pinActor->getMoveComponent()->setDir(hitDir);
-				pinActor->getMoveComponent()->setForwardSpeed(getForwardSpeed());
+				pinActor->getMoveComponent()->setForwardSpeed(getForwardSpeed()*hitDir.x * 0.7f);
+				pinActor->getMoveComponent()->setStrafeSpeed(getForwardSpeed()* hitDir.y * 0.7f);
+				setForwardSpeed(getForwardSpeed() * 0.65f);
 				pinActor->onHit();
 			}
 		}

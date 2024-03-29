@@ -35,4 +35,3 @@ void SpriteComponent::setVisible(bool isVisibleP)
 {
 	isVisible = isVisibleP;
 }
-

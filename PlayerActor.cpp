@@ -34,6 +34,7 @@ void PlayerActor::actorInput(const InputState& inputState)
 				break;
 			case 3 :
 				shoot();
+				shotNumber++;
 				break;
 			case 4:
 				break;

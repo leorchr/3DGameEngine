@@ -32,7 +32,7 @@ void BoxComponent::onUpdateWorldTransform()
 	worldBox = objectBox;
 
 	worldBox.min *= owner.getScale().x;
-	worldBox.max *= owner.getScale().x;
+	worldBox.max *= owner.getScale().y;
 	if (shouldRotate)
 	{
 		worldBox.rotate(owner.getRotation());

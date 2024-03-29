@@ -24,6 +24,11 @@ void MoveComponent::setStrafeSpeed(float strafeSpeedP)
 	strafeSpeed = strafeSpeedP;
 }
 
+void MoveComponent::addForce(Vector3 force)
+{
+
+}
+
 void MoveComponent::update(float dt)
 {
 	if (!Maths::nearZero(angularSpeed))
