@@ -62,6 +62,15 @@ public:
 		return *this;
 	}
 
+	// Vector *=
+	Vector3& operator*=(const Vector3& right)
+	{
+		x *= right.x;
+		y *= right.y;
+		z *= right.z;
+		return *this;
+	}
+
 	// Vector +=
 	Vector3& operator+=(const Vector3& right)
 	{

@@ -1,41 +1,62 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (SimpleEngineWithOpenGL-032.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
-  3DGameEngine.vcxproj -> D:\GitHub\3DGameEngine\x64\Debug\3DGameEngine.exe
-  D:\GitHub\3DGameEngine\Res\Audio\Master Bank.bank
-  D:\GitHub\3DGameEngine\Res\Audio\Master Bank.strings.bank
-  D:\GitHub\3DGameEngine\Res\Meshes\Cube.gpmesh
-  D:\GitHub\3DGameEngine\Res\Meshes\Plane.gpmesh
-  D:\GitHub\3DGameEngine\Res\Meshes\RacingCar.gpmesh
-  D:\GitHub\3DGameEngine\Res\Meshes\Rifle.gpmesh
-  D:\GitHub\3DGameEngine\Res\Meshes\Score.gpmesh
-  D:\GitHub\3DGameEngine\Res\Meshes\Sphere.gpmesh
-  D:\GitHub\3DGameEngine\Res\Meshes\Target.gpmesh
-  D:\GitHub\3DGameEngine\Res\Shaders\BasicMesh.frag
-  D:\GitHub\3DGameEngine\Res\Shaders\BasicMesh.vert
-  D:\GitHub\3DGameEngine\Res\Shaders\Phong.frag
-  D:\GitHub\3DGameEngine\Res\Shaders\Phong.vert
-  D:\GitHub\3DGameEngine\Res\Shaders\Sprite.frag
-  D:\GitHub\3DGameEngine\Res\Shaders\Sprite.vert
-  D:\GitHub\3DGameEngine\Res\Textures\0.png
-  D:\GitHub\3DGameEngine\Res\Textures\1.png
-  D:\GitHub\3DGameEngine\Res\Textures\10.png
-  D:\GitHub\3DGameEngine\Res\Textures\2.png
-  D:\GitHub\3DGameEngine\Res\Textures\3.png
-  D:\GitHub\3DGameEngine\Res\Textures\4.png
-  D:\GitHub\3DGameEngine\Res\Textures\5.png
-  D:\GitHub\3DGameEngine\Res\Textures\6.png
-  D:\GitHub\3DGameEngine\Res\Textures\7.png
-  D:\GitHub\3DGameEngine\Res\Textures\8.png
-  D:\GitHub\3DGameEngine\Res\Textures\9.png
-  D:\GitHub\3DGameEngine\Res\Textures\Crosshair.png
-  D:\GitHub\3DGameEngine\Res\Textures\Cube.png
-  D:\GitHub\3DGameEngine\Res\Textures\Default.png
-  D:\GitHub\3DGameEngine\Res\Textures\HealthBar.png
-  D:\GitHub\3DGameEngine\Res\Textures\Planch.png
-  D:\GitHub\3DGameEngine\Res\Textures\Plane.png
-  D:\GitHub\3DGameEngine\Res\Textures\RacingCar.png
-  D:\GitHub\3DGameEngine\Res\Textures\Radar.png
-  D:\GitHub\3DGameEngine\Res\Textures\Radar.png~
-  D:\GitHub\3DGameEngine\Res\Textures\Rifle.png
-  D:\GitHub\3DGameEngine\Res\Textures\Sphere.png
-  D:\GitHub\3DGameEngine\Res\Textures\Target.png
-  38 fichier(s) copiÚ(s)
+﻿C:\VisualStudio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (SimpleEngineWithOpenGL-032.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Actor.cpp
+  ArrowActor.cpp
+  BallActor.cpp
+  BallMoveComponent.cpp
+  BoxComponent.cpp
+  CameraComponent.cpp
+  FPSActor.cpp
+  FollowActor.cpp
+  Game.cpp
+  InputComponent.cpp
+  Main.cpp
+  MeshComponent.cpp
+D:\GAME3\rocherLeo\3DGameEngine\MeshComponent.cpp(28,33): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  MoveComponent.cpp
+  PinActor.cpp
+  PinMoveComponent.cpp
+  PlaneActor.cpp
+  PlayerActor.cpp
+  SpriteComponent.cpp
+  StationaryActor.cpp
+  Generating Code...
+  3DGameEngine.vcxproj -> D:\GAME3\rocherLeo\3DGameEngine\x64\Debug\3DGameEngine.exe
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.bank
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Audio\Master Bank.strings.bank
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Cube.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Plane.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\RacingCar.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Rifle.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Score.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Sphere.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Meshes\Target.gpmesh
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\BasicMesh.frag
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\BasicMesh.vert
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Phong.frag
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Phong.vert
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Sprite.frag
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Shaders\Sprite.vert
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\0.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\1.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\10.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\2.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\3.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\4.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\5.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\6.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\7.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\8.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\9.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Crosshair.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Cube.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Default.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\HealthBar.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Planch.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Plane.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\RacingCar.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Radar.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Radar.png~
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Rifle.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Sphere.png
+  D:\GAME3\rocherLeo\3DGameEngine\Res\Textures\Target.png
+  38 File(s) copied

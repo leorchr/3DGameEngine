@@ -104,7 +104,7 @@ void Game::load()
 	for (int i = 0; i < 11; i++)
 	{
 		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start, -100.0f));
+		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start, -101.0f));
 	}
 
 	// Left/right walls
