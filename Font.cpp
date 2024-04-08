@@ -13,8 +13,7 @@ Font::~Font()
 
 bool Font::initialize()
 {
-	if (TTF_Init() != 0)
-	{
+	if (TTF_Init() != 0) {
 		Log::error(LogCategory::System, "Failed to initialize SDL_ttf");
 		return false;
 	}
@@ -32,22 +31,24 @@ void Font::unload()
 	{
 		TTF_CloseFont(font.second);
 	}
+
 }
 
-Texture* Font::renderText(const string& text, const Vector3& color, int pointSize) 
+Texture* Font::renderText(const string& text, const Vector3& color, int pointSize)
 {
 	Texture* texture = nullptr;
 	SDL_Color sdlColor;
+
 	sdlColor.r = static_cast<Uint8>(color.x * 255);
-	sdlColor.r = static_cast<Uint8>(color.y * 255);
-	sdlColor.r = static_cast<Uint8>(color.z * 255);
+	sdlColor.g = static_cast<Uint8>(color.y * 255);
+	sdlColor.b = static_cast<Uint8>(color.z * 255);
 	sdlColor.a = 255;
 
 	auto iter = fontData.find(pointSize);
 	if (iter != fontData.end()) {
 		TTF_Font* font = iter->second;
 		SDL_Surface* surf = TTF_RenderUTF8_Blended(font, text.c_str(), sdlColor);
-		if(surf != nullptr) {
+		if (surf != nullptr) {
 			texture = new Texture();
 			texture->createFromSurface(surf);
 			SDL_FreeSurface(surf);
@@ -55,13 +56,13 @@ Texture* Font::renderText(const string& text, const Vector3& color, int pointSiz
 	}
 	else {
 		std::ostringstream loadError;
-		loadError << "Point size " << pointSize << " is unsupported";
+		loadError << "Point size " << pointSize << " is unsupported.";
 		Log::error(LogCategory::Application, loadError.str());
 	}
-
 	return texture;
 }
 
-void Font::addFontData(int size, TTF_Font* fontSize) {
-	fontData.emplace(size, fontSize);
+void Font::addFontData(int size, TTF_Font* fontsize)
+{
+	fontData.emplace(size, fontsize);
 }

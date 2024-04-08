@@ -31,7 +31,7 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : state(GameState::Gameplay), isUpdatingActors(false), fps(nullptr), crosshair(nullptr) {}
+	Game() : isRunning(true), isUpdatingActors(false), fps(nullptr), crosshair(nullptr), state(GameState::Gameplay) {}
 
 public:
 	bool initialize();
