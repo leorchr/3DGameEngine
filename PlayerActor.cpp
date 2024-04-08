@@ -33,7 +33,7 @@ void PlayerActor::actorInput(const InputState& inputState)
 				break;
 			case 2:
 				break;
-			case 3 :
+			case 3:
 				shoot();
 				shotNumber++;
 				break;
@@ -53,9 +53,7 @@ void PlayerActor::shoot()
 	ball->setPosition(Vector3(80.0f, 0.0f, -85.0f));
 	Vector3 dir = arrow->getForward();
 	dir.normalize();
-
-	ball->getBallMoveComponent()->setDir(dir);
-	ball->getBallMoveComponent()->setForwardSpeed(arrow->getScale().y*500/arrow->getMaxScaleY());
+	ball->getBallMoveComponent()->setVelocity(dir * (arrow->getScale().y * 500 / arrow->getMaxScaleY()));
 }
 
 void PlayerActor::setCameraOrientation()

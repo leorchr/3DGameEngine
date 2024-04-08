@@ -9,7 +9,6 @@ PinActor::PinActor() : Actor(), lifetimeSpan(1.0f)
 	bc = new BoxComponent(this);
 	bc->setObjectBox(Assets::getMesh("Mesh_Cube").getBox());
 	pc = new PinMoveComponent(this);
-	onlyOnce = false;
 }
 
 void PinActor::updateActor(float dt)
@@ -19,6 +18,5 @@ void PinActor::updateActor(float dt)
 
 void PinActor::onHit()
 {
-	onlyOnce = true;
-	getGame().setScore(getGame().getScore() + 1);
+	//getGame().setScore(getGame().getScore() + 1);
 }

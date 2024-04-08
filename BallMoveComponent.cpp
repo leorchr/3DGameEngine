@@ -20,11 +20,7 @@ void BallMoveComponent::setPlayer(Actor* playerP)
 
 void BallMoveComponent::update(float dt)
 {
-	owner.rotateToNewForward(dir);
-	// Base class update moves based on forward speed
-	setForwardSpeed(getForwardSpeed() * 0.995f);
-	MoveComponent::update(dt);
-	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) dir = Vector3::unitX;
+	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) setVelocity(Vector3::unitX * 50);
 
 	PhysicsSystem::CollisionInfo info;
 
@@ -35,18 +31,15 @@ void BallMoveComponent::update(float dt)
 		PinActor* pinActor = static_cast<PinActor*>(info.actor);
 		if (pinActor)
 		{
-			if (!pinActor->getOnlyOnce()) {
-				Vector3 hitDir = pinActor->getPosition() - owner.getPosition();
-				hitDir.normalize();
-				hitDir.z = 0;
-				pinActor->getMoveComponent()->setForwardSpeed(getForwardSpeed()*hitDir.x * 0.7f);
-				pinActor->getMoveComponent()->setStrafeSpeed(getForwardSpeed()* hitDir.y * 0.7f);
-				setForwardSpeed(getForwardSpeed() * 0.65f);
-				pinActor->onHit();
-			}
+			Vector3 hitDir = pinActor->getPosition() - owner.getPosition();
+			hitDir.z = 0;
+			hitDir.normalize();
+			Vector3 f = hitDir * getVelocity().length();
+			pinActor->getMoveComponent()->addForce(f);
+			pinActor->onHit();
 		}
 	}
-
+	MoveComponent::update(dt);
 }
 
 void BallMoveComponent::setDir(Vector3 dirP)

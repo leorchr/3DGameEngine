@@ -6,7 +6,7 @@
 MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP)
 	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), angularSpeed(0.0f), strafeSpeed(0.0f)
 {
-
+	velocity = Vector3(0, 0, 0);
 }
 
 void MoveComponent::setForwardSpeed(float forwardSpeedP)
@@ -24,8 +24,20 @@ void MoveComponent::setStrafeSpeed(float strafeSpeedP)
 	strafeSpeed = strafeSpeedP;
 }
 
+void MoveComponent::setVelocity(Vector3 velocityP)
+{
+	velocity = velocityP;
+}
+
+void MoveComponent::addForce(Vector3 force)
+{
+	velocity += force;
+}
+
 void MoveComponent::update(float dt)
 {
+	velocity *= friction;
+
 	if (!Maths::nearZero(angularSpeed))
 	{
 		Quaternion newRotation = owner.getRotation();
@@ -39,6 +51,13 @@ void MoveComponent::update(float dt)
 		Vector3 newPosition = owner.getPosition();
 		newPosition += owner.getForward() * forwardSpeed * dt;
 		newPosition += owner.getRight() * strafeSpeed * dt;
+		owner.setPosition(newPosition);
+	}
+
+	if (!Maths::nearZero(velocity.x) || !Maths::nearZero(velocity.y))
+	{
+		Vector3 newPosition = owner.getPosition();
+		newPosition += velocity * dt;
 		owner.setPosition(newPosition);
 	}
 }

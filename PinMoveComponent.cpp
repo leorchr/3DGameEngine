@@ -21,11 +21,6 @@ void PinMoveComponent::setPlayer(Actor* playerP)
 
 void PinMoveComponent::update(float dt)
 {
-	owner.rotateToNewForward(dir);
-	setForwardSpeed(getForwardSpeed() * 0.995f);
-	setStrafeSpeed(getStrafeSpeed() * 0.995f);
-	MoveComponent::update(dt);
-
 	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) dir = Vector3::unitX;
 
 	PhysicsSystem::CollisionInfo info;
@@ -34,23 +29,19 @@ void PinMoveComponent::update(float dt)
 
 	if (owner.getGame().getPhysicsSystem().boxCast(*pinActor->getBoxComponent(), info))
 	{
-		PinActor* pinActor = static_cast<PinActor*>(info.actor);
-		if (pinActor)
+		PinActor* pinColl = dynamic_cast<PinActor*>(info.actor);
+		if (pinColl)
 		{
-			if (!pinActor->getOnlyOnce()) {
-				Vector3 hitDir = pinActor->getPosition() - owner.getPosition();
-				hitDir.normalize();
-				hitDir.z = 0;
-
-				pinActor->getMoveComponent()->setForwardSpeed(getForwardSpeed()* hitDir.x * 0.7f);
-				pinActor->getMoveComponent()->setStrafeSpeed(getStrafeSpeed()* hitDir.y * 0.7f);
-				setForwardSpeed(getForwardSpeed() * 0.65f);
-				setStrafeSpeed(getStrafeSpeed() * 0.65f);
-				pinActor->onHit();
-			}
+			Vector3 hitDir = pinColl->getPosition() - owner.getPosition();
+			hitDir.normalize();
+			hitDir.z = 0;
+			Vector3 midForce = (pinColl->getMoveComponent()->getVelocity() + getVelocity()) * 0.5f;
+			pinColl->getMoveComponent()->addForce(hitDir * midForce.length()/**velocity.length()*/);
+			setVelocity(midForce);
+			pinColl->onHit();
 		}
 	}
-
+	MoveComponent::update(dt);
 }
 
 void PinMoveComponent::setDir(Vector3 dirP)
