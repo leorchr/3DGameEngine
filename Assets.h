@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "Font.h"
 using std::map;
 using std::string;
 
@@ -17,6 +18,7 @@ public:
     static std::map<std::string, Texture> textures;
     static std::map<std::string, Shader> shaders;
     static std::map<std::string, Mesh> meshes;
+    static std::map<std::string, Font> fonts;
 
     // Loads a texture from file
     static Texture loadTexture(IRenderer& renderer, const string& filename, const string& name);
@@ -40,6 +42,12 @@ public:
     // Retrieves a stored mesh
     static Mesh& getMesh(const std::string& name);
 
+    // Loads a font from file
+    static Font loadFont(const string& filename, const string& name);
+
+    // Retrieves a stored font
+    static Font& getFont(const std::string& name);
+
     // Properly de-allocates all loaded resources
     static void clear();
 
@@ -56,5 +64,6 @@ private:
 
     static Mesh loadMeshFromFile(const string& filename);
 
+    static Font loadFontFromFile(const string& filename);
 };
 

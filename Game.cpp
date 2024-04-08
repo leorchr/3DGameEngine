@@ -12,15 +12,15 @@
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include <algorithm>
-#include <algorithm>
 
 bool Game::initialize()
 {
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
 	bool isInputInit = inputSystem.initialize();
+	bool isFontInit = Font::initialize();
 
-	return isWindowInit && isRendererInit && isInputInit; // Return bool && bool && bool ...to detect error
+	return isWindowInit && isRendererInit && isInputInit && isFontInit; // Return bool && bool && bool ...to detect error
 }
 
 void Game::load()
@@ -48,6 +48,8 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\Rifle.gpmesh", "Mesh_Rifle");
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
+
+	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 
 	fps = new FPSActor();
 
@@ -225,6 +227,7 @@ void Game::close()
 	inputSystem.close();
 	renderer.close();
 	window.close();
+	Font::close();
 	SDL_Quit();
 }
 
