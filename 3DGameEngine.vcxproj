@@ -158,6 +158,7 @@
     <ClCompile Include="CubeActor.cpp" />
     <ClCompile Include="FollowActor.cpp" />
     <ClCompile Include="FollowCameraComponent.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSCameraComponent.cpp" />
     <ClCompile Include="CircleCollisionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="CubeActor.h" />
     <ClInclude Include="FollowActor.h" />
     <ClInclude Include="FollowCameraComponent.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="FPSCameraComponent.h" />
     <ClInclude Include="CircleCollisionComponent.h" />
     <ClInclude Include="Component.h" />

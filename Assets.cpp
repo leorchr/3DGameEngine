@@ -9,6 +9,7 @@
 std::map<std::string, Texture> Assets::textures;
 std::map<std::string, Shader> Assets::shaders;
 std::map<std::string, Mesh> Assets::meshes;
+std::map < std::string, Font > Assets::fonts;
 
 Texture Assets::loadTexture(IRenderer& renderer, const string& filename, const string& name)
 {
@@ -61,6 +62,23 @@ Mesh& Assets::getMesh(const std::string& name)
     return meshes[name];
 }
 
+Font Assets::loadFont(const string& filename, const string& name)
+{
+    fonts[name] = loadFontFromFile(filename);
+    return Font();
+}
+
+Font& Assets::getFont(const std::string& name)
+{
+	if (fonts.find(name) == end(fonts))
+	{
+		std::ostringstream loadError;
+		loadError << "Font " << name << " does not exist in assets manager.";
+		Log::error(LogCategory::Application, loadError.str());
+	}
+	return fonts[name];
+}
+
 void Assets::clear()
 {
     // (Properly) delete all textures
@@ -75,6 +93,9 @@ void Assets::clear()
     for (auto iter : meshes)
         iter.second.unload();
     meshes.clear();
+    for(auto iter:fonts)
+        iter.second.unload();
+    fonts.clear();
 }
 
 Texture Assets::loadTextureFromFile(IRenderer& renderer, const string& filename)
@@ -284,4 +305,30 @@ Mesh Assets::loadMeshFromFile(const string& filename)
     Log::info("Loaded mesh " + filename);
 
 	return mesh;
+}
+
+Font Assets::loadFontFromFile(const string& filename) {
+    vector<int> fontSizes = {
+        8, 9,
+        10, 11, 12, 14, 16, 18,
+        20, 24, 26, 28,
+        30, 32, 34, 36, 38,
+        40, 42, 44, 46, 48,
+        52, 56,
+        60, 64, 68,
+        72
+    };
+
+    Font font;
+    for(auto& size : fontSizes) {
+		TTF_Font* ttfFont = TTF_OpenFont(filename.c_str(), size);
+        if(ttfFont == nullptr) {
+			std::ostringstream s;
+			s << "Failed to load font " << filename << " in size " << size;
+			Log::error(LogCategory::Application, s.str());
+		}
+        font.addFontData(size, ttfFont);
+	}
+    Log::info("Loaded font " + filename);
+    return font;
 }
