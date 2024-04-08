@@ -38,9 +38,9 @@ Texture* Font::renderText(const string& text, const Vector3& color, int pointSiz
 {
 	Texture* texture = nullptr;
 	SDL_Color sdlColor;
-	sdlColor.r = static_cast(color.x * 255);
-	sdlColor.r = static_cast(color.y * 255);
-	sdlColor.r = static_cast(color.z * 255);
+	sdlColor.r = static_cast<Uint8>(color.x * 255);
+	sdlColor.r = static_cast<Uint8>(color.y * 255);
+	sdlColor.r = static_cast<Uint8>(color.z * 255);
 	sdlColor.a = 255;
 
 	auto iter = fontData.find(pointSize);

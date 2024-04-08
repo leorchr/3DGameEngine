@@ -21,7 +21,5 @@ public:
 
 private:
 	std::unordered_map <int, TTF_Font*> fontData;
-
-
 };
 
