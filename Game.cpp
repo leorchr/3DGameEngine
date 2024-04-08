@@ -11,6 +11,7 @@
 #include "OrbitActor.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
+#include "PauseScreen.h"
 #include <algorithm>
 
 bool Game::initialize()
@@ -134,57 +135,91 @@ void Game::processInput()
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		isRunning = inputSystem.processEvent(event);
+		bool isRunning = inputSystem.processEvent(event);
+		if (!isRunning) state = GameState::Quit;
 	}
 
 	inputSystem.update();
 	const InputState& input = inputSystem.getInputState();
-
-	// Escape: quit game
-	if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
+	if (state == GameState::Gameplay)
 	{
-		isRunning = false;
+		// Escape: pause game
+		if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) ==
+			ButtonState::Released)
+		{
+			new PauseScreen();
+			return;
+		}
+		// Actor input
+		isUpdatingActors = true;
+		for (auto actor : actors)
+		{
+			actor->processInput(input);
+		}
+		isUpdatingActors = false;
 	}
-
-	// Actor input
-	isUpdatingActors = true;
-	for (auto actor : actors)
+	else
 	{
-		actor->processInput(input);
+		if (!UIStack.empty())
+		{
+			UIStack.back()->processInput(input);
+		}
 	}
-	isUpdatingActors = false;
 }
 
 void Game::update(float dt)
 {
-	// Update actors 
-	isUpdatingActors = true;
-	for(auto actor: actors) 
+	if (state == GameState::Gameplay)
 	{
-		actor->update(dt);
-	}
-	isUpdatingActors = false;
-
-	// Move pending actors to actors
-	for (auto pendingActor: pendingActors)
-	{
-		pendingActor->computeWorldTransform();
-		actors.emplace_back(pendingActor);
-	}
-	pendingActors.clear();
-
-	// Delete dead actors
-	vector<Actor*> deadActors;
-	for (auto actor : actors)
-	{
-		if (actor->getState() == Actor::ActorState::Dead)
+		// Update actors 
+		isUpdatingActors = true;
+		for(auto actor: actors) 
 		{
-			deadActors.emplace_back(actor);
+			actor->update(dt);
+		}
+		isUpdatingActors = false;
+
+		// Move pending actors to actors
+		for (auto pendingActor: pendingActors)
+		{
+			pendingActor->computeWorldTransform();
+			actors.emplace_back(pendingActor);
+		}
+		pendingActors.clear();
+
+		// Delete dead actors
+		vector<Actor*> deadActors;
+		for (auto actor : actors)
+		{
+			if (actor->getState() == Actor::ActorState::Dead)
+			{
+				deadActors.emplace_back(actor);
+			}
+		}
+		for (auto deadActor : deadActors)
+		{
+			delete deadActor;
 		}
 	}
-	for (auto deadActor : deadActors)
+	for (auto ui : UIStack)
 	{
-		delete deadActor;
+		if (ui->getState() == UIState::Active)
+		{
+			ui->update(dt);
+		}
+	}
+	auto iter = UIStack.begin();
+	while (iter != UIStack.end())
+	{
+		if ((*iter)->getState() == UIState::Closing)
+		{
+			delete* iter;
+			iter = UIStack.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
 	}
 }
 
@@ -199,7 +234,7 @@ void Game::loop()
 {
 	Timer timer;
 	float dt = 0;
-	while (isRunning)
+	while (state != GameState::Quit)
 	{
 		float dt = timer.computeDeltaTime() / 1000.0f;
 		processInput();
@@ -259,6 +294,16 @@ void Game::removeActor(Actor* actor)
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();
 	}
+}
+
+void Game::pushUI(UIScreen* screen)
+{
+	UIStack.emplace_back(screen);
+}
+
+void Game::setState(GameState stateP)
+{
+	state = stateP;
 }
 
 void Game::addPlane(PlaneActor* plane)

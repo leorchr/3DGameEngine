@@ -18,6 +18,7 @@ public:
 	bool initialize(Window& window);
 	void beginDraw();
 	void draw();
+	void drawUI();
 	void endDraw();
 	void close();
 	IRenderer::Type type() { return Type::OGL; }

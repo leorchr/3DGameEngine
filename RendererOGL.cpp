@@ -5,7 +5,8 @@
 #include "SpriteComponent.h"
 #include "MeshComponent.h"
 #include "Log.h"
-
+#include "Game.h"
+#include "UIScreen.h"
 #include <GL/glew.h>
 #include <SDL_image.h>
 
@@ -80,6 +81,15 @@ void RendererOGL::draw()
 {
 	drawMeshes();
 	drawSprites();
+	drawUI();
+}
+
+void RendererOGL::drawUI()
+{
+	for (auto ui : Game::instance().getUIStack())
+	{
+		ui->draw(Assets::getShader("Sprite"));
+	}
 }
 
 void RendererOGL::endDraw()

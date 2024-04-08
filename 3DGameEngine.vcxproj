@@ -178,6 +178,7 @@
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="OrbitActor.cpp" />
     <ClCompile Include="OrbitCameraComponent.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PlaneActor.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="TargetActor.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="VertexArray.cpp" />
@@ -211,6 +213,7 @@
     <ClInclude Include="BoxComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Collisions.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="CubeActor.h" />
     <ClInclude Include="FollowActor.h" />
     <ClInclude Include="FollowCameraComponent.h" />
@@ -237,6 +240,7 @@
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="OrbitActor.h" />
     <ClInclude Include="OrbitCameraComponent.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PlaneActor.h" />
@@ -255,6 +259,7 @@
     <ClInclude Include="TargetActor.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="UIScreen.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="VertexArray.h" />
