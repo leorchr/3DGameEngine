@@ -35,7 +35,8 @@ void BallMoveComponent::update(float dt)
 			hitDir.z = 0;
 			hitDir.normalize();
 			Vector3 f = hitDir * getVelocity().length();
-			pinActor->getMoveComponent()->addForce(f);
+			ballActor->getBallMoveComponent()->setVelocity(ballActor->getBallMoveComponent()->getVelocity()/2);
+			pinActor->getMoveComponent()->addForce(f/2.0f);
 			pinActor->onHit();
 		}
 	}

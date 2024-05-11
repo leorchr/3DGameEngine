@@ -32,13 +32,15 @@ void PinMoveComponent::update(float dt)
 		PinActor* pinColl = dynamic_cast<PinActor*>(info.actor);
 		if (pinColl)
 		{
-			Vector3 hitDir = pinColl->getPosition() - owner.getPosition();
-			hitDir.normalize();
-			hitDir.z = 0;
-			Vector3 midForce = (pinColl->getMoveComponent()->getVelocity() + getVelocity()) * 0.5f;
-			pinColl->getMoveComponent()->addForce(hitDir * midForce.length()/**velocity.length()*/);
-			setVelocity(midForce);
-			pinColl->onHit();
+			if (pinActor->getMoveComponent()->getVelocity().length() > 0.0f) {
+				Vector3 hitDir = pinColl->getPosition() - owner.getPosition();
+				hitDir.z = 0;
+				hitDir.normalize();
+				Vector3 f = hitDir * getVelocity().length();
+				pinActor->getMoveComponent()->setVelocity(pinActor->getMoveComponent()->getVelocity() / 2);
+				pinColl->getMoveComponent()->addForce(f / 2.0f);
+				pinColl->onHit();
+			}
 		}
 	}
 	MoveComponent::update(dt);
