@@ -18,4 +18,5 @@ private:
 	PinMoveComponent* pc;
 	BoxComponent* bc;
 	float lifetimeSpan;
+	bool alreadyDone;
 };

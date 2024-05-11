@@ -425,4 +425,5 @@ void Game::endGame() {
 		}
 	}
 	scoreActor->setScore(0);
+	setScore(0);
 }
