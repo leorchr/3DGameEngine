@@ -20,7 +20,10 @@ void BallMoveComponent::setPlayer(Actor* playerP)
 
 void BallMoveComponent::update(float dt)
 {
-	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) setVelocity(Vector3::unitX * 50);
+	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) {
+		if(owner.getPosition().z == -85.0f) owner.setPosition(Vector3(owner.getPosition().x, owner.getPosition().y, owner.getPosition().z - 10));
+		setVelocity(Vector3::unitX * 50);
+	}
 
 	PhysicsSystem::CollisionInfo info;
 

@@ -3,7 +3,9 @@
 	"vertexformat":"PosNormTex",
 	"shader":"Phong",
 	"textures":[
-		"Plane"
+		"Plane",
+		"Ground",
+		"Wall"
 	],
 	"specularPower":100.0,
 	"vertices":[

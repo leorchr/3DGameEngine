@@ -34,15 +34,18 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\Default.png", "Default");
-	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Cube");
+	Assets::loadTexture(renderer, "Res\\Textures\\Pin.png", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\HealthBar.png", "HealthBar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
-	Assets::loadTexture(renderer, "Res\\Textures\\Sphere.png", "Sphere");
+	Assets::loadTexture(renderer, "Res\\Textures\\Ball.png", "Sphere");
 	Assets::loadTexture(renderer, "Res\\Textures\\Crosshair.png", "Crosshair");
 	Assets::loadTexture(renderer, "Res\\Textures\\RacingCar.png", "RacingCar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Rifle.png", "Rifle");
 	Assets::loadTexture(renderer, "Res\\Textures\\Target.png", "Target");
+	Assets::loadTexture(renderer, "Res\\Textures\\Arrow2.png", "Arrow");
+	Assets::loadTexture(renderer, "Res\\Textures\\Ground.jpg", "Ground");
+	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Wall");
 
 	//Score Numbers
 	Assets::loadTexture(renderer, "Res\\Textures\\0.png", "0");
@@ -74,22 +77,38 @@ void Game::load()
 
 	//Score display
 	scoreActor = new ScoreActor();
-	scoreActor->setPosition(Vector3(350, 200, 100));
-	scoreActor->setScale(Vector3(75, 75, 75));
+	scoreActor->setPosition(Vector3(750, 400, 100));
+	scoreActor->setScale(Vector3(150, 150, 5));
 	scoreActor->rotate(Vector3::unitY, Maths::toRadians(90.0f));
 	scoreActor->rotate(Vector3::unitX, Maths::toRadians(90.0f));
+
+	Quaternion q2(Vector3::unitY, Maths::piOver2);
+	q2 = Quaternion::concatenate(q2, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
+	PlaneActor* p = new PlaneActor();
+	p->getMesh()->setTextureIndex(0);
+	p->setScale(Vector3(2, 0.1f, 1));
+	p->setPosition(Vector3(750, 350, 0));
+	p->setRotation(q2);
+
+	PlaneActor* p2 = new PlaneActor();
+	p2->getMesh()->setTextureIndex(0);
+	p2->setScale(Vector3(2, 0.1f, 1));
+	p2->setPosition(Vector3(750, 450, 0));
+	p2->setRotation(q2);
 
 	// Pins
 	const float sizePins = 17.0f;
 	const float spacePins = 17.0f;
-	const float scaleZ = 45.0f;
+	const float scaleY = 45.0f;
 
 	int numberPins = 0;
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < j+1; i++) {
 			pins.push_back(new PinActor());
-			pins[numberPins]->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleZ / 2));
-			pins[numberPins]->setScale(Vector3(sizePins, sizePins, scaleZ));
+			pins[numberPins]->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleY / 2));
+			pins[numberPins]->setScale(Vector3(sizePins, scaleY, sizePins));
+			pins[numberPins]->setRotation(Quaternion(Vector3::unitX, Maths::piOver2));
+			pins[numberPins]->rotate(Vector3::unitZ, Maths::piOver2);
 			numberPins++;
 		}
 	}
@@ -100,30 +119,82 @@ void Game::load()
 
 	// Setup floor
 	const float start = 0.0f;
-	const float sizePlane = 50.0f;
+	const float sizePlane = 100.0f;
 	for (int i = 0; i < 11; i++)
 	{
 		PlaneActor* p = new PlaneActor();
 		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start, -101.0f));
 	}
 
-	// Left/right walls
-	q = Quaternion(Vector3::unitX, Maths::piOver2);
-	for (int i = 0; i < 20; i++)
+	// Setup Back Wall
+	for (int i = 0; i < 21; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			PlaneActor* p = new PlaneActor();
+			p->getMesh()->setTextureIndex(2);
+			p->setPosition(Vector3(1200, -2000 + sizePlane * i * 2, -50.0f + sizePlane * j * 2));
+			p->setRotation(q2);
+		}
+	}
+
+
+	//Setup Gutters
+	for (int i = 0; i < 11; i++)
 	{
 		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane, 15 + start - sizePlane*3, -170.0f));
+		p->getMesh()->setTextureIndex(1);
+		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, -35 + start, -110.0f));
+	}
+
+	for (int i = 0; i < 11; i++)
+	{
+		PlaneActor* p = new PlaneActor();
+		p->getMesh()->setTextureIndex(1);
+		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, 35 + start, -110.0f));
+	}
+
+
+	const float start2 = 235.0f;
+	//Setup Ground
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 20; j++)
+		{
+			PlaneActor* p = new PlaneActor();
+			p->getMesh()->setTextureIndex(1);
+			p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start2 + j * sizePlane * 2, -70.0f));
+		}	
+	}
+
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 20; j++)
+		{
+			PlaneActor* p = new PlaneActor();
+			p->getMesh()->setTextureIndex(1);
+			p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, -start2 - j * sizePlane * 2, -70.0f));
+		}
+	}
+
+
+	// Left/right walls
+	q = Quaternion(Vector3::unitX, Maths::piOver2);
+	for (int i = 0; i < 11; i++)
+	{
+		PlaneActor* p = new PlaneActor();
+		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, 15 + start - sizePlane * 1.5f, -170.0f));
 		p->setRotation(q);
 
 		p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane, -15 -start + sizePlane*3, -170.0f));
+		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, -15 -start + sizePlane * 1.5f, -170.0f));
 		p->setRotation(q);
 	}
 
 	// Setup lights
-	renderer.setAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
+	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
 	DirectionalLight& dir = renderer.getDirectionalLight();
-	dir.direction = Vector3(0.5f, -0.707f, -0.707f);
+	dir.direction = Vector3(0.5f, 0.2f, -0.7f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
@@ -347,7 +418,9 @@ void Game::endGame() {
 		for (int i = 0; i < j + 1; i++) {
 			pins.push_back(new PinActor());
 			pins[numberPins]->setPosition(Vector3(800.0f + sizePins * j + spacePins * j, i * sizePins + spacePins * i - sizePins * j, -100.0f + scaleZ / 2));
-			pins[numberPins]->setScale(Vector3(sizePins, sizePins, scaleZ));
+			pins[numberPins]->setScale(Vector3(sizePins, scaleZ, sizePins));
+			pins[numberPins]->setRotation(Quaternion(Vector3::unitX, Maths::piOver2));
+			pins[numberPins]->rotate(Vector3::unitZ, Maths::piOver2);
 			numberPins++;
 		}
 	}

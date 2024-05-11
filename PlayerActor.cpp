@@ -11,7 +11,7 @@ PlayerActor::PlayerActor(float pitchP, float yawP) :
 	cameraComponent->setPitch(pitchP);
 	cameraComponent->setYaw(yawP);
 
-	arrow = new ArrowActor(1.0f, 15.0f);
+	arrow = new ArrowActor(1.0f, 50.0f);
 	currentState = 1;
 	shotNumber = 0;
 }
@@ -53,7 +53,7 @@ void PlayerActor::shoot()
 	ball->setPosition(Vector3(80.0f, 0.0f, -85.0f));
 	Vector3 dir = arrow->getForward();
 	dir.normalize();
-	ball->getBallMoveComponent()->setVelocity(dir * (arrow->getScale().y * 500 / arrow->getMaxScaleY()));
+	ball->getBallMoveComponent()->setVelocity(dir * (arrow->getScale().y * 2000 / arrow->getMaxScaleY()));
 }
 
 void PlayerActor::setCameraOrientation()

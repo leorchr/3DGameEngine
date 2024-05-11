@@ -21,8 +21,7 @@ void PinMoveComponent::setPlayer(Actor* playerP)
 
 void PinMoveComponent::update(float dt)
 {
-	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) dir = Vector3::unitX;
-
+	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) setVelocity(Vector3::unitX * 50);
 	PhysicsSystem::CollisionInfo info;
 
 	PinActor* pinActor = static_cast<PinActor*>(&owner);

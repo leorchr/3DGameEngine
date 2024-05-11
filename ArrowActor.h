@@ -11,8 +11,8 @@ public:
 
 	void updateActor(float dt) override;
 	void setVisible(bool isVisible);
-	float getMaxScaleY() { return maxScaleY; }
-	float getMinScaleY() { return minScaleY; }
+	float getMaxScaleY() { return maxScaleX; }
+	float getMinScaleY() { return minScaleX; }
 
 private:
 	MeshComponent* mc;
@@ -24,8 +24,8 @@ private:
 	Quaternion increment;
 	float angle;
 	float yaw;
-	float scaleY;
-	float maxScaleY;
-	float minScaleY;
+	float scaleX;
+	float maxScaleX;
+	float minScaleX;
 };
 

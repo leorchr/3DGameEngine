@@ -7,8 +7,9 @@ ArrowActor::ArrowActor(float rotationSpeedP, float scaleSpeedP) :
 {
 	mc = new MeshComponent(this);
 	mc->setMesh(Assets::getMesh("Mesh_Cube"));
+	mc->setTextureIndex(1);
 
-	baseScale = Vector3(50.0f, 5.0f, 5.0f);
+	baseScale = Vector3(50.0f, 15.0f, 5.0f);
 	setScale(baseScale);
 	setRotation(Quaternion::identity);
 	setPosition(Vector3(80.0f, 0.0f, -60.0f));
@@ -18,9 +19,9 @@ ArrowActor::ArrowActor(float rotationSpeedP, float scaleSpeedP) :
 	increment = Quaternion::identity;
 	angle = 0;
 	yaw = 0;
-	scaleY = 0;
-	maxScaleY = 15;
-	minScaleY = 4;
+	scaleX = 0;
+	maxScaleX = 70;
+	minScaleX = 30;
 }
 
 void ArrowActor::updateActor(float dt)
@@ -39,10 +40,10 @@ void ArrowActor::updateActor(float dt)
 		setRotation(newRotation);
 		break;
 	case 2:
-		if (baseScale.y + scaleY > maxScaleY && scaleSpeed > 0) scaleSpeed = -Maths::abs(scaleSpeed);
-		if (baseScale.y + scaleY < minScaleY && scaleSpeed < 0) scaleSpeed = Maths::abs(scaleSpeed);
-		scaleY += dt * scaleSpeed;
-		setScale(Vector3(baseScale.x, baseScale.y + scaleY, baseScale.z));
+		if (baseScale.x + scaleX > maxScaleX && scaleSpeed > 0) scaleSpeed = -Maths::abs(scaleSpeed);
+		if (baseScale.x + scaleX < minScaleX && scaleSpeed < 0) scaleSpeed = Maths::abs(scaleSpeed);
+		scaleX += dt * scaleSpeed;
+		setScale(Vector3(baseScale.x + scaleX, baseScale.y, baseScale.z));
 		break;
 	case 3:
 		getGame().getPlayer()->currentState++;
@@ -50,7 +51,7 @@ void ArrowActor::updateActor(float dt)
 	case 4:
 		break;
 	case 5:
-		scaleY = 0;
+		scaleX = 0;
 		setScale(baseScale);
 		getGame().getPlayer()->currentState = 1;
 		break;
