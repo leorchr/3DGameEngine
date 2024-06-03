@@ -15,10 +15,11 @@ using std::string;
 class Assets
 {
 public:
-    static std::map<std::string, Texture> textures;
-    static std::map<std::string, Shader> shaders;
-    static std::map<std::string, Mesh> meshes;
-    static std::map<std::string, Font> fonts;
+    static std::map<string, Texture> textures;
+    static std::map<string, Shader> shaders;
+    static std::map<string, Mesh> meshes;
+    static std::map<string, Font> fonts;
+    static std::map<string, string> texts;
 
     // Loads a texture from file
     static Texture loadTexture(IRenderer& renderer, const string& filename, const string& name);
@@ -30,8 +31,8 @@ public:
     // geometry) shader's source code. If tcShaderFile, teShaderFile, gShaderFile are not nullptr, it also loads
     // tessellation and geometry shaders
     static Shader loadShader(const std::string& vShaderFile, const std::string& fShaderFile,
-                             const std::string& tcShaderFile, const std::string& teShaderFile,
-                             const std::string& gShaderFile, const std::string& name);
+        const std::string& tcShaderFile, const std::string& teShaderFile,
+        const std::string& gShaderFile, const std::string& name);
 
     // Retrieves a stored shader
     static Shader& getShader(const std::string& name);
@@ -48,6 +49,12 @@ public:
     // Retrieves a stored font
     static Font& getFont(const std::string& name);
 
+    // Loads texts from a localization file
+    static void loadText(const string& filename);
+
+    // Retrieves a localized text
+    static const string& getText(const string& key);
+
     // Properly de-allocates all loaded resources
     static void clear();
 
@@ -59,11 +66,10 @@ private:
 
     // Loads and generates a shader from file
     static Shader loadShaderFromFile(const std::string& vShaderFile, const std::string& fShaderFile,
-                                     const std::string& tcShaderFile = "", const std::string& teShaderFile = "",
-                                     const std::string& gShaderFile = "");
+        const std::string& tcShaderFile = "", const std::string& teShaderFile = "",
+        const std::string& gShaderFile = "");
 
     static Mesh loadMeshFromFile(const string& filename);
 
     static Font loadFontFromFile(const string& filename);
 };
-

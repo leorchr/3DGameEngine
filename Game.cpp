@@ -10,6 +10,7 @@
 #include "StationaryActor.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
+#include "PauseScreen.h"
 #include <algorithm>
 #include <iostream>
 using namespace std;
@@ -19,8 +20,9 @@ bool Game::initialize()
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
 	bool isInputInit = inputSystem.initialize();
+	bool isFontInit = Font::initialize();
 
-	return isWindowInit && isRendererInit && isInputInit; // Return bool && bool && bool ...to detect error
+	return isWindowInit && isRendererInit && isInputInit && isFontInit; // Return bool && bool && bool ...to detect error
 }
 
 void Game::load()
@@ -43,6 +45,13 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Target.png", "Target");
 	Assets::loadTexture(renderer, "Res\\Textures\\Ground.jpg", "Ground");
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Wall");
+	Assets::loadTexture(renderer, "Res\\Textures\\ButtonYellow.png", "ButtonYellow");
+	Assets::loadTexture(renderer, "Res\\Textures\\ButtonBlue.png", "ButtonBlue");
+	Assets::loadTexture(renderer, "Res\\Textures\\DialogBG.png", "DialogBG");
+	Assets::loadTexture(renderer, "Res\\Textures\\CrosshairRed.png", "CrosshairRed");
+	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
+	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
+	Assets::loadTexture(renderer, "Res\\Textures\\RadarArrow.png", "RadarArrow");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -51,12 +60,11 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 
-	fps = new FPSActor();
+	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
+	Assets::loadText("Res\\Localization\\English.gptext");
 
-	// Corsshair
-	Actor* crosshairActor = new Actor();
-	crosshairActor->setScale(Vector3(2.0f,2.0f,2.0f));
-	SpriteComponent* crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
+	fps = new FPSActor();
+	hud = new HUD();
 
 
 	{
@@ -160,6 +168,15 @@ void Game::load()
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
 	}
+
+	TargetActor* t = new TargetActor();
+	t->setPosition(Vector3(1450.0f, 0.0f, 100.0f));
+	t = new TargetActor();
+	t->setPosition(Vector3(1450.0f, 0.0f, 400.0f));
+	t = new TargetActor();
+	t->setPosition(Vector3(1450.0f, -500.0f, 200.0f));
+	t = new TargetActor();
+	t->setPosition(Vector3(1450.0f, 500.0f, 200.0f));
 }
 
 void Game::processInput()
@@ -170,57 +187,96 @@ void Game::processInput()
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		isRunning = inputSystem.processEvent(event);
+		bool isRunning = inputSystem.processEvent(event);
+		if (!isRunning) state = GameState::Quit;
 	}
 
 	inputSystem.update();
 	const InputState& input = inputSystem.getInputState();
 
-	// Escape: quit game
-	if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
+	if (state == GameState::Gameplay)
 	{
-		isRunning = false;
-	}
+		// Escape: pause game
+		if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
+		{
+			new PauseScreen();
+			return;
+		}
 
-	// Actor input
-	isUpdatingActors = true;
-	for (auto actor : actors)
-	{
-		actor->processInput(input);
+		// Actor input
+		isUpdatingActors = true;
+		for (auto actor : actors)
+		{
+			actor->processInput(input);
+		}
+		isUpdatingActors = false;
 	}
-	isUpdatingActors = false;
+	else
+	{
+		if (!UIStack.empty())
+		{
+			UIStack.back()->processInput(input);
+		}
+	}
 }
 
 void Game::update(float dt)
 {
-	// Update actors 
-	isUpdatingActors = true;
-	for(auto actor: actors) 
-	{
-		actor->update(dt);
-	}
-	isUpdatingActors = false;
 
-	// Move pending actors to actors
-	for (auto pendingActor: pendingActors)
+	if (state == GameState::Gameplay)
 	{
-		pendingActor->computeWorldTransform();
-		actors.emplace_back(pendingActor);
-	}
-	pendingActors.clear();
-
-	// Delete dead actors
-	vector<Actor*> deadActors;
-	for (auto actor : actors)
-	{
-		if (actor->getState() == Actor::ActorState::Dead)
+		// Update actors 
+		isUpdatingActors = true;
+		for (auto actor : actors)
 		{
-			deadActors.emplace_back(actor);
+			actor->update(dt);
+		}
+		isUpdatingActors = false;
+
+		// Move pending actors to actors
+		for (auto pendingActor : pendingActors)
+		{
+			pendingActor->computeWorldTransform();
+			actors.emplace_back(pendingActor);
+		}
+		pendingActors.clear();
+
+		// Delete dead actors
+		vector<Actor*> deadActors;
+		for (auto actor : actors)
+		{
+			if (actor->getState() == Actor::ActorState::Dead)
+			{
+				deadActors.emplace_back(actor);
+			}
+		}
+		for (auto deadActor : deadActors)
+		{
+			delete deadActor;
 		}
 	}
-	for (auto deadActor : deadActors)
+
+	// Update UI screens
+	for (auto ui : UIStack)
 	{
-		delete deadActor;
+		if (ui->getState() == UIState::Active)
+		{
+			ui->update(dt);
+		}
+	}
+	// Delete any UIScreens that are closed
+	auto iter = UIStack.begin();
+	while (iter != UIStack.end())
+	{
+		if ((*iter)->getState() == UIState::Closing)
+		{
+			delete* iter;
+			iter = UIStack.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
 	}
 }
 
@@ -235,7 +291,7 @@ void Game::loop()
 {
 	Timer timer;
 	float dt = 0;
-	while (isRunning)
+	while (state != GameState::Quit)
 	{
 		float dt = timer.computeDeltaTime() / 1000.0f;
 		processInput();
@@ -260,10 +316,16 @@ void Game::unload()
 
 void Game::close()
 {
+	Font::close();
 	inputSystem.close();
 	renderer.close();
 	window.close();
 	SDL_Quit();
+}
+
+void Game::setState(GameState stateP)
+{
+	state = stateP;
 }
 
 void Game::addActor(Actor* actor)
@@ -294,6 +356,11 @@ void Game::removeActor(Actor* actor)
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();
 	}
+}
+
+void Game::pushUI(UIScreen* screen)
+{
+	UIStack.emplace_back(screen);
 }
 
 void Game::addPlane(PlaneActor* plane)

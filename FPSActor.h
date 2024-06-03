@@ -10,6 +10,7 @@ public:
 	void updateActor(float dt) override;
 	void actorInput(const struct InputState& inputState) override;
 	void shoot();
+
 	void setVisible(bool isVisible);
 	void fixCollisions();
 

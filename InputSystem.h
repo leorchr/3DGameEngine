@@ -8,7 +8,7 @@ enum class ButtonState
 {
 	None,
 	Pressed,
-	Released, 
+	Released,
 	Held
 };
 

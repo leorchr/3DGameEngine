@@ -8,8 +8,14 @@
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
+#include "HUD.h"
 
 using std::vector;
+
+enum class GameState
+{
+	Gameplay, Pause, Quit
+};
 
 class Game
 {
@@ -26,7 +32,7 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : isRunning(true), isUpdatingActors(false), fps(nullptr)	 {}
+	Game() : state(GameState::Gameplay), isUpdatingActors(false), fps(nullptr), crosshair(nullptr) {}
 
 public:
 	bool initialize();
@@ -35,27 +41,36 @@ public:
 	void unload();
 	void close();
 
+	GameState getState() const { return state; }
+	void setState(GameState stateP);
+
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 	RendererOGL& getRenderer() { return renderer; }
 	PhysicsSystem& getPhysicsSystem() { return physicsSystem; }
+	InputSystem& getInputSystem() { return inputSystem; }
+	const vector<class UIScreen*>& getUIStack() { return UIStack; }
+	void pushUI(class UIScreen* screen);
+	HUD* getHUD() { return hud; }
 
 	// Game-specific
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	vector<PlaneActor*>& getPlanes() { return planes; }
-
+	class FPSActor* getPlayer() { return fps; }
 
 private:
 	void processInput();
 	void update(float dt);
 	void render();
 
-	bool isRunning;
+	GameState state;
 	Window window;
 	RendererOGL renderer;
 	InputSystem inputSystem;
 	PhysicsSystem physicsSystem;
+	vector<class UIScreen*> UIStack;
+	HUD* hud;
 
 	bool isUpdatingActors;
 	vector<Actor*> actors;
@@ -63,6 +78,6 @@ private:
 
 	// Game specific
 	class FPSActor* fps;
+	class SpriteComponent* crosshair;
 	vector<PlaneActor*> planes;
 };
-

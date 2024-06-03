@@ -75,8 +75,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\External\SDL2-2.30.1\include;$(SolutionDir)\External\SDL2_image-2.8.2\include;$(SolutionDir)\External\SDL2_ttf-2.22.0\include;$(SolutionDir)\External\SDL2_mixer-2.8.0\include;$(SolutionDir)\External\glew-2.1.0\include;$(SolutionDir)\External\rapidjson\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\External\SDL2-2.30.1\lib\x64;$(SolutionDir)\External\SDL2_image-2.8.2\lib\x64;$(SolutionDir)\External\SDL2_ttf-2.22.0\lib\x64;$(SolutionDir)\External\SDL2_mixer-2.8.0\lib\x64;$(SolutionDir)\External\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\External\SDL2-2.0.12\include;$(SolutionDir)\External\SDL2_image-2.0.5\include;$(SolutionDir)\External\SDL2_ttf-2.0.15\include;$(SolutionDir)\External\SDL2_mixer-2.0.4\include;$(SolutionDir)\External\glew-2.1.0\include;$(SolutionDir)\External\rapidjson\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\External\SDL2-2.0.12\lib\x64;$(SolutionDir)\External\SDL2_image-2.0.5\lib\x64;$(SolutionDir)\External\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)\External\SDL2_mixer-2.0.4\lib\x64;$(SolutionDir)\External\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -152,9 +152,11 @@
     <ClCompile Include="BallActor.cpp" />
     <ClCompile Include="BallMoveComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="CubeActor.cpp" />
+    <ClCompile Include="DialogBox.cpp" />
     <ClCompile Include="FollowActor.cpp" />
     <ClCompile Include="FollowCameraComponent.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -165,6 +167,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="FPSActor.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="KeyboardState.cpp" />
@@ -178,6 +181,7 @@
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="OrbitActor.cpp" />
     <ClCompile Include="OrbitCameraComponent.cpp" />
+    <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PlaneActor.cpp" />
@@ -196,8 +200,10 @@
     <ClCompile Include="StationaryActor.cpp" />
     <ClCompile Include="StationaryCameraComponent.cpp" />
     <ClCompile Include="TargetActor.cpp" />
+    <ClCompile Include="TargetComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="VertexArray.cpp" />
@@ -211,9 +217,12 @@
     <ClInclude Include="BallActor.h" />
     <ClInclude Include="BallMoveComponent.h" />
     <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Collisions.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="CubeActor.h" />
+    <ClInclude Include="DialogBox.h" />
     <ClInclude Include="FollowActor.h" />
     <ClInclude Include="FollowCameraComponent.h" />
     <ClInclude Include="Font.h" />
@@ -225,6 +234,7 @@
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="FPSActor.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="IRenderer.h" />
@@ -239,6 +249,7 @@
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="OrbitActor.h" />
     <ClInclude Include="OrbitCameraComponent.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PlaneActor.h" />
@@ -257,19 +268,24 @@
     <ClInclude Include="StationaryActor.h" />
     <ClInclude Include="StationaryCameraComponent.h" />
     <ClInclude Include="TargetActor.h" />
+    <ClInclude Include="TargetComponent.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="UIScreen.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="VertexArray.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Res\Localization\English.gptext" />
+    <None Include="Res\Localization\Russian.gptext" />
     <None Include="Res\Meshes\Cube.gpmesh" />
     <None Include="Res\Meshes\Plane.gpmesh" />
     <None Include="Res\Meshes\RacingCar.gpmesh" />
     <None Include="Res\Meshes\Rifle.gpmesh" />
     <None Include="Res\Meshes\Sphere.gpmesh" />
+    <None Include="Res\Meshes\Target.gpmesh" />
     <None Include="Res\Shaders\BasicMesh.frag" />
     <None Include="Res\Shaders\BasicMesh.vert" />
     <None Include="Res\Shaders\Phong.frag" />

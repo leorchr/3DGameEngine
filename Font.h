@@ -1,9 +1,9 @@
 #pragma once
-#include "SDL_ttf.h"
-#include <unordered_map> 
+#include <string>
+#include <unordered_map>
+#include <SDL_ttf.h>
 #include "Vector3.h"
 #include "Color.h"
-#include <string>
 using std::string;
 
 class Font
@@ -17,9 +17,10 @@ public:
 
 	void unload();
 	class Texture* renderText(const string& text, const Vector3& color = Color::white, int pointSize = 10);
+
 	void addFontData(int size, TTF_Font* fontSize);
 
 private:
-	std::unordered_map <int, TTF_Font*> fontData;
+	// Each font stores TTF fonts for all point sizes
+	std::unordered_map<int, TTF_Font*> fontData;
 };
-

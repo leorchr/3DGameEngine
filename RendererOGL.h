@@ -47,6 +47,7 @@ public:
 private:
 	void drawMeshes();
 	void drawSprites();
+	void drawUI();
 
 	Window* window;
 	SDL_GLContext context;
@@ -61,4 +62,3 @@ private:
 	Vector3 ambientLight;
 	DirectionalLight dirLight;
 };
-

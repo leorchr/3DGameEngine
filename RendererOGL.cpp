@@ -5,11 +5,13 @@
 #include "SpriteComponent.h"
 #include "MeshComponent.h"
 #include "Log.h"
+#include "Game.h"
+#include "UIScreen.h"
 
 #include <GL/glew.h>
 #include <SDL_image.h>
 
-RendererOGL::RendererOGL():
+RendererOGL::RendererOGL() :
 	window(nullptr),
 	context(nullptr),
 	spriteVertexArray(nullptr),
@@ -67,7 +69,7 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	spriteVertexArray = new VertexArray(spriteVertices, 4, indices, 6);
-    return true;
+	return true;
 }
 
 void RendererOGL::beginDraw()
@@ -81,6 +83,7 @@ void RendererOGL::draw()
 {
 	drawMeshes();
 	drawSprites();
+	drawUI();
 }
 
 void RendererOGL::endDraw()
@@ -164,7 +167,7 @@ void RendererOGL::drawSprites()
 	glDisable(GL_DEPTH_TEST);
 	// Enable alpha blending on the color buffer
 	glEnable(GL_BLEND);
-//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
@@ -180,6 +183,14 @@ void RendererOGL::drawSprites()
 		{
 			sprite->draw(*this);
 		}
+	}
+}
+
+void RendererOGL::drawUI()
+{
+	for (auto ui : Game::instance().getUIStack())
+	{
+		ui->draw(Assets::getShader("Sprite"));
 	}
 }
 
