@@ -5,12 +5,14 @@
 #include "Log.h"
 #include "RendererOGL.h"
 #include <rapidjson/document.h>
+#include <rapidjson/istreamwrapper.h>
 
 std::map<string, Texture> Assets::textures;
 std::map<string, Shader> Assets::shaders;
 std::map<string, Mesh> Assets::meshes;
 std::map<string, Font> Assets::fonts;
 std::map<string, string> Assets::texts;
+std::map<string, std::vector<std::vector<int>>> Assets::maps;
 
 Texture Assets::loadTexture(IRenderer& renderer, const string& filename, const string& name)
 {
@@ -134,6 +136,23 @@ const string& Assets::getText(const string& key)
     }
 }
 
+// Loads a font from file
+std::vector<std::vector<int>> Assets::loadMap(const string& filename, const string& name) {
+    maps[name] = loadMapFromFile(filename);
+    return maps[name];
+}
+
+// Retrieves a stored font
+std::vector<vector<int>> Assets::getMap(const std::string& name) {
+    if (maps.find(name) == end(maps))
+    {
+        std::ostringstream loadError;
+        loadError << "Map " << name << " does not exist in assets manager.";
+        Log::error(LogCategory::Application, loadError.str());
+    }
+    return maps[name];
+}
+
 void Assets::clear()
 {
     // Delete all textures
@@ -154,6 +173,8 @@ void Assets::clear()
     fonts.clear();
     // Delete texts
     texts.clear();
+    // Delete all maps
+    maps.clear();
 }
 
 Texture Assets::loadTextureFromFile(IRenderer& renderer, const string& filename)
@@ -392,4 +413,47 @@ Font Assets::loadFontFromFile(const string& filename)
     }
     Log::info("Loaded font " + filename);
     return font;
+}
+
+std::vector<vector<int>> Assets::loadMapFromFile(const string& filename)
+{
+    std::ifstream file(filename);
+    if (!file.is_open())
+    {
+        Log::error(LogCategory::Application, "File not found: Map " + filename);
+    }
+
+
+    rapidjson::IStreamWrapper isw(file);
+    rapidjson::Document doc;
+    doc.ParseStream(isw);
+
+    if (!doc.IsObject())
+    {
+        std::ostringstream s;
+        s << "Map " << filename << " is not valid json";
+        Log::error(LogCategory::Application, s.str());
+    }
+    
+
+    const rapidjson::Value& position = doc["pos"];
+    if (!position.IsArray() || position.Size() < 1)
+    {
+        std::ostringstream s;
+        s << "Map " << filename << " has no positions";
+        Log::error(LogCategory::Application, s.str());
+    }
+
+
+    std::vector<vector<int>> positions;
+
+    for (const auto& arr : position.GetArray()) {
+        std::vector<int> inner_vec;
+        for (const auto& val : arr.GetArray()) {
+            inner_vec.push_back(val.GetInt());
+        }
+
+        positions.push_back(inner_vec);
+    }
+    return positions;
 }

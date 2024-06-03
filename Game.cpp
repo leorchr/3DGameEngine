@@ -13,6 +13,7 @@
 #include "PauseScreen.h"
 #include <algorithm>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 bool Game::initialize()
@@ -34,7 +35,7 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\Default.png", "Default");
-	Assets::loadTexture(renderer, "Res\\Textures\\Pin.png", "Cube");
+	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\HealthBar.png", "HealthBar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
@@ -63,101 +64,44 @@ void Game::load()
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 
+	Assets::loadMap("Res\\Maps\\map.json", "BaseMap");
+
 	fps = new FPSActor();
 	hud = new HUD();
 
 
 	{
-	Quaternion q2(Vector3::unitY, Maths::piOver2);
-	q2 = Quaternion::concatenate(q2, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
-	PlaneActor* p = new PlaneActor();
-	p->getMesh()->setTextureIndex(0);
-	p->setScale(Vector3(2, 0.1f, 1));
-	p->setPosition(Vector3(750, 350, 0));
-	p->setRotation(q2);
 
-	PlaneActor* p2 = new PlaneActor();
-	p2->getMesh()->setTextureIndex(0);
-	p2->setScale(Vector3(2, 0.1f, 1));
-	p2->setPosition(Vector3(750, 450, 0));
-	p2->setRotation(q2);
-
-	// Floor and walls
-	Quaternion q(Vector3::unitY, -Maths::piOver2);
-	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi*2));
+	Quaternion q(Vector3::unitY, Maths::piOver2);
+	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
 
 	// Setup floor
-	const float start = 0.0f;
+	const float start = -1000.0f;
+	const float start2 = -2000.0f;
 	const float sizePlane = 100.0f;
 	for (int i = 0; i < 11; i++)
 	{
-		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start, -101.0f));
-	}
-
-	// Setup Back Wall
-	for (int i = 0; i < 21; i++)
-	{
-		for (int j = 0; j < 2; j++)
-		{
-			PlaneActor* p = new PlaneActor();
-			p->getMesh()->setTextureIndex(2);
-			p->setPosition(Vector3(1200, -2000 + sizePlane * i * 2, -50.0f + sizePlane * j * 2));
-			p->setRotation(q2);
-		}
-	}
-
-
-	//Setup Gutters
-	for (int i = 0; i < 11; i++)
-	{
-		PlaneActor* p = new PlaneActor();
-		p->getMesh()->setTextureIndex(1);
-		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, -35 + start, -110.0f));
-	}
-
-	for (int i = 0; i < 11; i++)
-	{
-		PlaneActor* p = new PlaneActor();
-		p->getMesh()->setTextureIndex(1);
-		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, 35 + start, -110.0f));
-	}
-
-
-	const float start2 = 235.0f;
-	//Setup Ground
-	for (int i = 0; i < 11; i++)
-	{
 		for (int j = 0; j < 20; j++)
 		{
 			PlaneActor* p = new PlaneActor();
 			p->getMesh()->setTextureIndex(1);
-			p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start2 + j * sizePlane * 2, -70.0f));
-		}	
-	}
-
-	for (int i = 0; i < 11; i++)
-	{
-		for (int j = 0; j < 20; j++)
-		{
-			PlaneActor* p = new PlaneActor();
-			p->getMesh()->setTextureIndex(1);
-			p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, -start2 - j * sizePlane * 2, -70.0f));
+			p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start2 + j * sizePlane * 2, -101.0f));
 		}
 	}
 
+	std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
 
-	// Left/right walls
-	q = Quaternion(Vector3::unitX, Maths::piOver2);
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < map.size(); i++)
 	{
-		PlaneActor* p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, 15 + start - sizePlane * 1.5f, -170.0f));
-		p->setRotation(q);
-
-		p = new PlaneActor();
-		p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, -15 -start + sizePlane * 1.5f, -170.0f));
-		p->setRotation(q);
+		for (int y = 0; y < map[i].size(); y++)
+		{
+			if (map[i][y] == 1) {
+				Actor* cube = new CubeActor();
+				cube->setScale(Vector3(500, 500, 500));
+				cube->setPosition(Vector3(-1000 + 500 * i,-1000 + 500 * y, 100));
+				cube->setRotation(q);
+			}
+		}
 	}
 
 	// Setup lights
@@ -372,4 +316,15 @@ void Game::removePlane(PlaneActor* plane)
 {
 	auto iter = std::find(begin(planes), end(planes), plane);
 	planes.erase(iter);
+}
+
+void Game::addCube(CubeActor* cube)
+{
+	cubes.emplace_back(cube);
+}
+
+void Game::removeCube(CubeActor* cube)
+{
+	auto iter = std::find(begin(cubes), end(cubes), cube);
+	cubes.erase(iter);
 }

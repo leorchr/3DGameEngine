@@ -412,6 +412,9 @@
     <None Include="Res\Shaders\Sprite.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Res\Maps\map.json">
+      <Filter>Maps</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -455,6 +458,9 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{439b6b67-415d-48a9-a248-531cf0e34242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maps">
+      <UniqueIdentifier>{186384ac-08db-42d7-b504-435fd1fedae8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

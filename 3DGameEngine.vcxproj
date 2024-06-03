@@ -280,6 +280,7 @@
   <ItemGroup>
     <None Include="Res\Localization\English.gptext" />
     <None Include="Res\Localization\Russian.gptext" />
+    <None Include="Res\Maps\map.json" />
     <None Include="Res\Meshes\Cube.gpmesh" />
     <None Include="Res\Meshes\Plane.gpmesh" />
     <None Include="Res\Meshes\RacingCar.gpmesh" />
