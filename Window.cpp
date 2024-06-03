@@ -13,7 +13,7 @@ bool Window::initialize()
 		return false;
 	}
 
-	SDLWindow = SDL_CreateWindow("Bowling", 100, 100, width, height, SDL_WINDOW_OPENGL);
+	SDLWindow = SDL_CreateWindow("Doom", 100, 100, width, height, SDL_WINDOW_OPENGL);
 	if (!SDLWindow)
 	{
 		Log::error(LogCategory::System, "Failed to create window");

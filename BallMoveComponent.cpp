@@ -5,12 +5,11 @@
 #include "Collisions.h"
 #include "PhysicsSystem.h"
 #include "BallActor.h"
+#include "TargetActor.h"
 #include "Game.h"
-#include "PinActor.h"
 
 BallMoveComponent::BallMoveComponent(Actor* ownerP) : MoveComponent(ownerP), player(nullptr)
 {
-	dir = owner.getForward();
 }
 
 void BallMoveComponent::setPlayer(Actor* playerP)
@@ -20,33 +19,31 @@ void BallMoveComponent::setPlayer(Actor* playerP)
 
 void BallMoveComponent::update(float dt)
 {
-	if (owner.getPosition().y > 110 || owner.getPosition().y < -110) {
-		if(owner.getPosition().z == -85.0f) owner.setPosition(Vector3(owner.getPosition().x, owner.getPosition().y, owner.getPosition().z - 10));
-		setVelocity(Vector3::unitX * 50);
-	}
+	// Construct segment in direction of travel
+	const float segmentLength = 30.0f;
+	Vector3 start = owner.getPosition();
+	Vector3 dir = owner.getForward();
+	Vector3 end = start + dir * segmentLength;
 
+	// Create line segment
+	LineSegment l(start, end);
+
+	// Test segment vs world
 	PhysicsSystem::CollisionInfo info;
-
-	BallActor* ballActor = static_cast<BallActor*>(&owner);
-
-	if (owner.getGame().getPhysicsSystem().boxCast(*ballActor->getBoxComponent(), info))
+	// (Don't collide vs player)
+	if (owner.getGame().getPhysicsSystem().segmentCast(l, info) && info.actor != player)
 	{
-		PinActor* pinActor = static_cast<PinActor*>(info.actor);
-		if (pinActor)
+		// If we collided, reflect the ball about the normal
+		dir = Vector3::reflect(dir, info.normal);
+		owner.rotateToNewForward(dir);
+		// Did we hit a target?
+		TargetActor* target = dynamic_cast<TargetActor*>(info.actor);
+		if (target)
 		{
-			Vector3 hitDir = pinActor->getPosition() - owner.getPosition();
-			hitDir.z = 0;
-			hitDir.normalize();
-			Vector3 f = hitDir * getVelocity().length();
-			ballActor->getBallMoveComponent()->setVelocity(ballActor->getBallMoveComponent()->getVelocity()/2);
-			pinActor->getMoveComponent()->addForce(f/2.0f);
-			pinActor->onHit();
+			static_cast<BallActor*>(&owner)->hitTarget();
 		}
 	}
-	MoveComponent::update(dt);
-}
 
-void BallMoveComponent::setDir(Vector3 dirP)
-{
-	dir = dirP;
+	// Base class update moves based on forward speed
+	MoveComponent::update(dt);
 }

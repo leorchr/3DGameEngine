@@ -60,4 +60,3 @@ private:
 
 	vector<Component*> components;
 };
-

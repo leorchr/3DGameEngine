@@ -8,9 +8,6 @@
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
-#include "PlayerActor.h"
-#include "PinActor.h"
-#include "ScoreActor.h"
 
 using std::vector;
 
@@ -47,11 +44,6 @@ public:
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	vector<PlaneActor*>& getPlanes() { return planes; }
-	PlayerActor* getPlayer() { return player; }
-	ScoreActor* getScoreActor() { return scoreActor; }
-	int getScore() { return score; }
-	void setScore(int scoreP);
-	void endGame();
 
 
 private:
@@ -70,16 +62,7 @@ private:
 	vector<Actor*> pendingActors;
 
 	// Game specific
-	// Game specific
-	void changeCamera(int mode);
-
-	class PlayerActor* player;
-	class StationaryActor* stationary2;
-	class StationaryActor* stationary3;
 	class FPSActor* fps;
-	vector<PinActor*> pins;
 	vector<PlaneActor*> planes;
-	int score;
-	ScoreActor* scoreActor;
 };
 

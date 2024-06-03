@@ -1,8 +1,5 @@
 #pragma once
 #include "Actor.h"
-#include "BallMoveComponent.h"
-#include "BoxComponent.h"
-
 class BallActor : public Actor
 {
 public:
@@ -10,12 +7,10 @@ public:
 
 	void updateActor(float dt) override;
 	void setPlayer(Actor* player);
-	BallMoveComponent* getBallMoveComponent() { return ballMove; }
-	BoxComponent* getBoxComponent() { return boxComponent; }
+	void hitTarget();
+
 
 private:
-	BallMoveComponent* ballMove;
-	BoxComponent* boxComponent;
+	class BallMoveComponent* ballMove;
 	float lifetimeSpan;
 };
-
