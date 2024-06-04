@@ -109,4 +109,9 @@ namespace Maths
 	{
 		return static_cast<int>(std::round(num));
 	}
+
+	inline int pow(float num)
+	{
+		return num*num;
+	}
 }

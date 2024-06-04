@@ -46,6 +46,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Target.png", "Target");
 	Assets::loadTexture(renderer, "Res\\Textures\\Ground.jpg", "Ground");
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Wall");
+	Assets::loadTexture(renderer, "Res\\Textures\\WallIco.png", "WallIco");
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Res\\Textures\\DialogBG.png", "DialogBG");
@@ -69,19 +70,18 @@ void Game::load()
 	fps = new FPSActor();
 	hud = new HUD();
 
-
 	{
 
 	Quaternion q(Vector3::unitY, Maths::piOver2);
 	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
 
 	// Setup floor
-	const float start = -1000.0f;
-	const float start2 = -2000.0f;
+	const float start = -2000.0f;
+	const float start2 = -3000.0f;
 	const float sizePlane = 100.0f;
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < 33; i++)
 	{
-		for (int j = 0; j < 20; j++)
+		for (int j = 0; j < 50; j++)
 		{
 			PlaneActor* p = new PlaneActor();
 			p->getMesh()->setTextureIndex(1);
@@ -93,13 +93,21 @@ void Game::load()
 
 	for (int i = 0; i < map.size(); i++)
 	{
+		std::vector<int> invertMap = map[i];
+		std::reverse(invertMap.begin(), invertMap.end());
 		for (int y = 0; y < map[i].size(); y++)
 		{
-			if (map[i][y] == 1) {
+			if (invertMap[y] == 1) {
 				Actor* cube = new CubeActor();
 				cube->setScale(Vector3(500, 500, 500));
-				cube->setPosition(Vector3(-1000 + 500 * i,-1000 + 500 * y, 100));
+				cube->setPosition(Vector3(500 * i, 500 * y, 150));
 				cube->setRotation(q);
+			}
+			else if (invertMap[y] == 2) {
+				fps->setPosition(Vector3(500 * i,500 * y, 0));
+			}
+			else if (invertMap[y] == 3) {
+				fps->setObjectivePos(Vector3(500 * i,500 * y, 0));
 			}
 		}
 	}

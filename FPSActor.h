@@ -13,6 +13,7 @@ public:
 
 	void setVisible(bool isVisible);
 	void fixCollisions();
+	void setObjectivePos(Vector3 objectivePos);
 
 private:
 	class MoveComponent* moveComponent;
@@ -20,6 +21,7 @@ private:
 	class FPSCameraComponent* cameraComponent;
 	class Actor* FPSModel;
 	class BoxComponent* boxComponent;
+	Vector3 objectivePos;
 };
 
 const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);

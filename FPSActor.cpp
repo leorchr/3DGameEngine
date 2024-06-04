@@ -9,6 +9,7 @@
 #include "BallActor.h"
 #include "BoxComponent.h"
 #include "Collisions.h"
+#include <iostream>
 
 FPSActor::FPSActor() :
 	Actor(),
@@ -29,6 +30,7 @@ FPSActor::FPSActor() :
 	AABB collision(Vector3(-25.0f, -25.0f, -87.5f), Vector3(25.0f, 25.0f, 87.5f));
 	boxComponent->setObjectBox(collision);
 	boxComponent->setShouldRotate(false);
+	objectivePos = Vector3(Maths::infinity, 0, 0);
 }
 
 void FPSActor::updateActor(float dt)
@@ -46,6 +48,11 @@ void FPSActor::updateActor(float dt)
 	FPSModel->setRotation(q);
 
 	fixCollisions();
+
+	float sqDist = Maths::pow(objectivePos.x - getPosition().x) + Maths::pow(objectivePos.y - getPosition().y);
+	if (sqDist < 30000) {
+		Game::instance().setState(GameState::Quit);
+	}
 }
 
 void FPSActor::actorInput(const InputState& inputState)
@@ -216,4 +223,9 @@ void FPSActor::fixCollisions()
 			boxComponent->onUpdateWorldTransform();
 		}
 	}
+}
+
+void FPSActor::setObjectivePos(Vector3 objectivePos)
+{
+	this->objectivePos = objectivePos;
 }

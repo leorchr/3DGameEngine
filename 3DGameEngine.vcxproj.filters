@@ -178,6 +178,9 @@
     <ClCompile Include="StationaryActor.cpp">
       <Filter>Prefabs\Views</Filter>
     </ClCompile>
+    <ClCompile Include="WallComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -367,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="StationaryActor.h">
       <Filter>Prefabs\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="WallComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
