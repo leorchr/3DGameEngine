@@ -55,6 +55,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
 	Assets::loadTexture(renderer, "Res\\Textures\\RadarArrow.png", "RadarArrow");
+	Assets::loadTexture(renderer, "Res\\Textures\\Blackbg.jpg", "Blackbg");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -70,7 +71,7 @@ void Game::load()
 
 	fps = new FPSActor();
 	hud = new HUD();
-	new HitPoints();
+	hitPoints = new HitPoints();
 
 	{
 
@@ -169,6 +170,16 @@ void Game::processInput()
 			actor->processInput(input);
 		}
 		isUpdatingActors = false;
+		if (!UIStack.empty()) {
+			// Update UI screens
+			for (auto ui : UIStack)
+			{
+				if (ui->getState() == UIState::Active)
+				{
+					ui->processInput(input);
+				}
+			}
+		}
 	}
 	else
 	{
@@ -177,6 +188,7 @@ void Game::processInput()
 			UIStack.back()->processInput(input);
 		}
 	}
+
 }
 
 void Game::update(float dt)
@@ -342,4 +354,23 @@ void Game::removeCube(CubeActor* cube)
 {
 	auto iter = std::find(begin(cubes), end(cubes), cube);
 	cubes.erase(iter);
+}
+
+void Game::gameOver() {
+	hitPoints->close();
+
+	std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
+
+	for (int i = 0; i < map.size(); i++)
+	{
+		std::vector<int> invertMap = map[i];
+		std::reverse(invertMap.begin(), invertMap.end());
+		for (int y = 0; y < map[i].size(); y++)
+		{
+			if (invertMap[y] == 2) {
+				fps->setPosition(Vector3(500 * i, 500 * y, 0));
+			}
+		}
+	}
+	hitPoints = new HitPoints();
 }

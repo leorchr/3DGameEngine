@@ -7,7 +7,7 @@ class HitPoints : public UIScreen
 {
 public:
 	HitPoints();
-	~HitPoints();
+	~HitPoints() override;
 	void draw(class Shader& shader) override;
 	void update(float dt) override;
 
@@ -15,4 +15,5 @@ public:
 
 private:
 	int hp;
+	bool onlyOnce;
 };

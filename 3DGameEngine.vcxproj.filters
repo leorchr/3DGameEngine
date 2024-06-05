@@ -185,6 +185,9 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="GameOverScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -382,6 +385,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Text.h" />
+    <ClInclude Include="GameOverScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Localization\English.gptext">

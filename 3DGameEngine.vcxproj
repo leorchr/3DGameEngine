@@ -167,6 +167,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="FPSActor.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="HitPoints.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputComponent.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="FPSActor.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="HitPoints.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputComponent.h" />

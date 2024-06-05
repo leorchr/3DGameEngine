@@ -64,6 +64,8 @@ public:
 	vector<CubeActor*>& getCubes() { return cubes; }
 	class FPSActor* getPlayer() { return fps; }
 
+	void gameOver();
+
 private:
 	void processInput();
 	void update(float dt);
@@ -84,6 +86,7 @@ private:
 	// Game specific
 	class FPSActor* fps;
 	class SpriteComponent* crosshair;
+	class HitPoints* hitPoints;
 	vector<PlaneActor*> planes;
 	vector<CubeActor*> cubes;
 };
