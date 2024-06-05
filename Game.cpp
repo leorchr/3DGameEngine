@@ -11,6 +11,7 @@
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include "PauseScreen.h"
+#include "HitPoints.h"
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -69,6 +70,7 @@ void Game::load()
 
 	fps = new FPSActor();
 	hud = new HUD();
+	new HitPoints();
 
 	{
 
@@ -119,16 +121,21 @@ void Game::load()
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
-	}
+	Quaternion q2(Vector3::unitZ, Maths::pi);
 
 	TargetActor* t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 0.0f, 100.0f));
+	t->setPosition(Vector3(1450.0f, 2000.0f, 100.0f));
+	t->setRotation(q2);
 	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 0.0f, 400.0f));
+	t->setPosition(Vector3(1450.0f, 2000.0f, 400.0f));
+	t->setRotation(q2);
 	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, -500.0f, 200.0f));
+	t->setPosition(Vector3(1450.0f, 1500.0f, 200.0f));
+	t->setRotation(q2);
 	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 500.0f, 200.0f));
+	t->setPosition(Vector3(1450.0f, 2500.0f, 200.0f));
+	t->setRotation(q2);
+	}
 }
 
 void Game::processInput()

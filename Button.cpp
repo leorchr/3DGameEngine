@@ -32,7 +32,7 @@ void Button::setName(const std::string& nameP)
 		delete nameTex;
 		nameTex = nullptr;
 	}
-	nameTex = font.renderText(name, Color::white, 20);
+	nameTex = font.renderKeyText(name, Color::white, 20);
 }
 
 void Button::setHighlighted(bool isHighlightedP)

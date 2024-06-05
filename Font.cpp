@@ -35,7 +35,7 @@ void Font::unload()
 	}
 }
 
-Texture* Font::renderText(const string& textKey, const Vector3& color, int pointSize)
+Texture* Font::renderKeyText(const string& textKey, const Vector3& color, int pointSize)
 {
 	Texture* texture = nullptr;
 
@@ -70,6 +70,44 @@ Texture* Font::renderText(const string& textKey, const Vector3& color, int point
 
 	return texture;
 }
+
+Texture* Font::renderText(const string& text, const Vector3& color, int pointSize)
+{
+	Texture* texture = nullptr;
+
+	// Convert to SDL_Color
+	SDL_Color sdlColor;
+	sdlColor.r = static_cast<Uint8>(color.x * 255);
+	sdlColor.g = static_cast<Uint8>(color.y * 255);
+	sdlColor.b = static_cast<Uint8>(color.z * 255);
+	sdlColor.a = 255;
+
+	// Find the font data for this point size
+	auto iter = fontData.find(pointSize);
+	if (iter != fontData.end())
+	{
+		TTF_Font* font = iter->second;
+		const string& actualText = text;
+		// Draw this to a surface (blended for alpha)
+		SDL_Surface* surf = TTF_RenderUTF8_Blended(font, actualText.c_str(), sdlColor);
+		if (surf != nullptr)
+		{
+			texture = new Texture();
+			texture->createFromSurface(surf);
+			SDL_FreeSurface(surf);
+		}
+	}
+	else
+	{
+		std::ostringstream loadError;
+		loadError << "Point size " << pointSize << " is unsupported.";
+		Log::error(LogCategory::Application, loadError.str());
+	}
+
+	return texture;
+}
+
+
 
 void Font::addFontData(int size, TTF_Font* fontSize)
 {

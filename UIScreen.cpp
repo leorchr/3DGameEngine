@@ -35,7 +35,7 @@ void UIScreen::setTitle(const string& titleP, const Vector3& color, int pointSiz
 		delete title;
 		title = nullptr;
 	}
-	title = font.renderText(titleP, color, pointSize);
+	title = font.renderKeyText(titleP, color, pointSize);
 }
 
 void UIScreen::update(float dt)

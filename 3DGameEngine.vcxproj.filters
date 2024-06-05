@@ -181,6 +181,10 @@
     <ClCompile Include="WallComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="HitPoints.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -374,6 +378,10 @@
     <ClInclude Include="WallComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="HitPoints.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Localization\English.gptext">
