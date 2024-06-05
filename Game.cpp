@@ -10,6 +10,7 @@
 #include "StationaryActor.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
+#include "DoorActor.h"
 #include "PauseScreen.h"
 #include "HitPoints.h"
 #include <algorithm>
@@ -111,6 +112,12 @@ void Game::load()
 			}
 			else if (invertMap[y] == 3) {
 				fps->setObjectivePos(Vector3(500 * i,500 * y, 0));
+			}
+			else if (invertMap[y] == 4) {
+				Actor* cube = new DoorActor();
+				cube->setScale(Vector3(500, 500, 500));
+				cube->setPosition(Vector3(500 * i, 500 * y, 150));
+				cube->setRotation(q);
 			}
 		}
 	}

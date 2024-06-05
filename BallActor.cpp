@@ -8,7 +8,7 @@ BallActor::BallActor() : Actor(), lifetimeSpan(2.0f), ballMove(nullptr)
 	MeshComponent* mc = new MeshComponent(this);
 	mc->setMesh(Assets::getMesh("Mesh_Sphere"));
 	ballMove = new BallMoveComponent(this);
-	ballMove->setForwardSpeed(1500.0f);
+	ballMove->setForwardSpeed(3000.0f);
 }
 
 void BallActor::updateActor(float dt)

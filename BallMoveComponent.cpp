@@ -6,6 +6,7 @@
 #include "PhysicsSystem.h"
 #include "BallActor.h"
 #include "TargetActor.h"
+#include "DoorActor.h"
 #include "Game.h"
 
 BallMoveComponent::BallMoveComponent(Actor* ownerP) : MoveComponent(ownerP), player(nullptr)
@@ -42,6 +43,13 @@ void BallMoveComponent::update(float dt)
 		{
 			static_cast<BallActor*>(&owner)->hitTarget();
 		}
+
+		DoorActor* door = dynamic_cast<DoorActor*>(info.actor);
+		if (door)
+		{
+			door->onHit();
+		}
+
 	}
 
 	// Base class update moves based on forward speed

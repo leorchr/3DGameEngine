@@ -188,6 +188,9 @@
     <ClCompile Include="GameOverScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="DoorActor.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -387,6 +390,9 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="GameOverScreen.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorActor.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
