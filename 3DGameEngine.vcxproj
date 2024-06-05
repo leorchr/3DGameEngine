@@ -173,8 +173,11 @@
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="KeyActor.cpp" />
+    <ClCompile Include="KeyActor.h" />
     <ClCompile Include="KeyboardState.cpp" />
     <ClCompile Include="LineSegment.cpp" />
+    <ClCompile Include="LockedDoorActor.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix4.cpp" />
@@ -248,6 +251,7 @@
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="LineSegment.h" />
+    <ClInclude Include="LockedDoorActor.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Matrix4.h" />
@@ -292,6 +296,7 @@
     <None Include="Res\Localization\Russian.gptext" />
     <None Include="Res\Maps\map.json" />
     <None Include="Res\Meshes\Cube.gpmesh" />
+    <None Include="Res\Meshes\Key.gpmesh" />
     <None Include="Res\Meshes\Plane.gpmesh" />
     <None Include="Res\Meshes\RacingCar.gpmesh" />
     <None Include="Res\Meshes\Rifle.gpmesh" />

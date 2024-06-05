@@ -5,7 +5,6 @@
 
 CubeActor::CubeActor()
 {
-
 	Mesh* mesh = &Assets::getMesh("Mesh_Cube");
 	mc = new MeshComponent(this);
 	mc->setMesh(*mesh);

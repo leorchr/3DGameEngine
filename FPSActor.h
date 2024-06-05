@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "Vector3.h"
+#include <unordered_map>
 
 class FPSActor : public Actor
 {
@@ -22,6 +23,7 @@ private:
 	class Actor* FPSModel;
 	class BoxComponent* boxComponent;
 	Vector3 objectivePos;
+	std::unordered_map<int, int> keys;
 };
 
 const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);

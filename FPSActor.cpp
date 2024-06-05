@@ -18,6 +18,7 @@ FPSActor::FPSActor() :
 	cameraComponent(nullptr),
 	boxComponent(nullptr)
 {
+	keys = {{0, 0},{1, 0}};
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FPSCameraComponent(this);
 

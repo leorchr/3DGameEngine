@@ -191,6 +191,15 @@
     <ClCompile Include="DoorActor.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="LockedDoorActor.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyActor.h">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyActor.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -394,6 +403,9 @@
     <ClInclude Include="DoorActor.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
+    <ClInclude Include="LockedDoorActor.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Localization\English.gptext">
@@ -440,6 +452,9 @@
     </None>
     <None Include="Res\Maps\map.json">
       <Filter>Maps</Filter>
+    </None>
+    <None Include="Res\Meshes\Key.gpmesh">
+      <Filter>Meshes</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

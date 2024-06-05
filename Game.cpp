@@ -11,8 +11,10 @@
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include "DoorActor.h"
+#include "LockedDoorActor.h"
 #include "PauseScreen.h"
 #include "HitPoints.h"
+#include "KeyActor.h"
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -64,6 +66,7 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\Rifle.gpmesh", "Mesh_Rifle");
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
+	Assets::loadMesh("Res\\Meshes\\Key.gpmesh", "Mesh_Key");
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
@@ -117,6 +120,28 @@ void Game::load()
 				Actor* cube = new DoorActor();
 				cube->setScale(Vector3(500, 500, 500));
 				cube->setPosition(Vector3(500 * i, 500 * y, 150));
+				cube->setRotation(q);
+			}
+			else if (invertMap[y] == 5) {
+				Actor* cube = new LockedDoorActor();
+				cube->setScale(Vector3(500, 500, 500));
+				cube->setPosition(Vector3(500 * i, 500 * y, 150));
+				cube->setRotation(q);
+			}
+			else if (invertMap[y] == 6) {
+				Actor* cube = new KeyActor();
+				KeyActor* key = dynamic_cast<KeyActor*>(cube);
+				key->setKey(0);
+				cube->setScale(Vector3(30, 30, 30));
+				cube->setPosition(Vector3(500 * i, 500 * y, -50));
+				cube->setRotation(q);
+			}
+			else if (invertMap[y] == 7) {
+				Actor* cube = new KeyActor();
+				KeyActor* key = dynamic_cast<KeyActor*>(cube);
+				key->setKey(1);
+				cube->setScale(Vector3(30, 30, 30));
+				cube->setPosition(Vector3(500 * i, 500 * y, -50));
 				cube->setRotation(q);
 			}
 		}
