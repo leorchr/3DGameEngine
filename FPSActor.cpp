@@ -8,6 +8,7 @@
 #include "MeshComponent.h"
 #include "BallActor.h"
 #include "BoxComponent.h"
+#include "KeyActor.h"
 #include "Collisions.h"
 #include <iostream>
 
@@ -18,7 +19,7 @@ FPSActor::FPSActor() :
 	cameraComponent(nullptr),
 	boxComponent(nullptr)
 {
-	keys = {{0, 0},{1, 0}};
+	keys = {{0, false},{1, false}};
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FPSCameraComponent(this);
 
@@ -133,6 +134,16 @@ void FPSActor::setVisible(bool isVisible)
 	meshComponent->setVisible(isVisible);
 }
 
+void FPSActor::addKey(int key)
+{
+	keys[key] = true;
+}
+
+bool FPSActor::haveKey(int key)
+{
+	return keys[key];
+}
+
 void FPSActor::fixCollisions()
 {
 	// Need to recompute world transform to update world box
@@ -222,6 +233,12 @@ void FPSActor::fixCollisions()
 			// Need to set position and update box component
 			setPosition(pos);
 			boxComponent->onUpdateWorldTransform();
+
+			KeyActor* key = dynamic_cast<KeyActor*>(ca);
+			if (key)
+			{
+				key->onHit();
+			}
 		}
 	}
 }

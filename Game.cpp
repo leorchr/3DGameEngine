@@ -59,6 +59,8 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
 	Assets::loadTexture(renderer, "Res\\Textures\\RadarArrow.png", "RadarArrow");
 	Assets::loadTexture(renderer, "Res\\Textures\\Blackbg.jpg", "Blackbg");
+	Assets::loadTexture(renderer, "Res\\Textures\\Jaune.jpg", "Jaune");
+	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Rouge");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -67,6 +69,7 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 	Assets::loadMesh("Res\\Meshes\\Key.gpmesh", "Mesh_Key");
+	Assets::loadMesh("Res\\Meshes\\LockedDoor.gpmesh", "Mesh_LockedDoor");
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
@@ -129,6 +132,14 @@ void Game::load()
 				cube->setRotation(q);
 			}
 			else if (invertMap[y] == 6) {
+				Actor* cube = new LockedDoorActor();
+				LockedDoorActor* lockedDoor = dynamic_cast<LockedDoorActor*>(cube);
+				lockedDoor->setKey(1);
+				cube->setScale(Vector3(500, 500, 500));
+				cube->setPosition(Vector3(500 * i, 500 * y, 150));
+				cube->setRotation(q);
+			}
+			else if (invertMap[y] == 7) {
 				Actor* cube = new KeyActor();
 				KeyActor* key = dynamic_cast<KeyActor*>(cube);
 				key->setKey(0);
@@ -136,7 +147,7 @@ void Game::load()
 				cube->setPosition(Vector3(500 * i, 500 * y, -50));
 				cube->setRotation(q);
 			}
-			else if (invertMap[y] == 7) {
+			else if (invertMap[y] == 8) {
 				Actor* cube = new KeyActor();
 				KeyActor* key = dynamic_cast<KeyActor*>(cube);
 				key->setKey(1);

@@ -1,5 +1,4 @@
 #include "DoorActor.h"
-#include <iostream>
 
 const float DoorActor::timeUp = 3.0f;
 
@@ -14,7 +13,6 @@ void DoorActor::updateActor(float dt)
 {
 	if(isHit) {
 		timeLeft -= dt;
-		std::cout << timeLeft << std::endl;
 		if (timeLeft <= 0) {
 			Vector3 position = getPosition();
 			position.z -= 500;

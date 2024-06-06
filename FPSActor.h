@@ -13,6 +13,8 @@ public:
 	void shoot();
 
 	void setVisible(bool isVisible);
+	void addKey(int key);
+	bool haveKey(int key);
 	void fixCollisions();
 	void setObjectivePos(Vector3 objectivePos);
 
@@ -23,7 +25,7 @@ private:
 	class Actor* FPSModel;
 	class BoxComponent* boxComponent;
 	Vector3 objectivePos;
-	std::unordered_map<int, int> keys;
+	std::unordered_map<int, bool> keys;
 };
 
 const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);

@@ -456,6 +456,9 @@
     <None Include="Res\Meshes\Key.gpmesh">
       <Filter>Meshes</Filter>
     </None>
+    <None Include="Res\Meshes\LockedDoor.gpmesh">
+      <Filter>Meshes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

@@ -10,6 +10,7 @@
 #include "PlaneActor.h"
 #include "CubeActor.h"
 #include "HUD.h"
+#include "FPSActor.h"
 
 using std::vector;
 

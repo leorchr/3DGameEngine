@@ -7,6 +7,7 @@
 #include "BallActor.h"
 #include "TargetActor.h"
 #include "DoorActor.h"
+#include "LockedDoorActor.h";
 #include "Game.h"
 
 BallMoveComponent::BallMoveComponent(Actor* ownerP) : MoveComponent(ownerP), player(nullptr)
@@ -48,6 +49,12 @@ void BallMoveComponent::update(float dt)
 		if (door)
 		{
 			door->onHit();
+		}
+
+		LockedDoorActor* doorKey = dynamic_cast<LockedDoorActor*>(info.actor);
+		if (doorKey)
+		{
+			doorKey->onHit();
 		}
 
 	}

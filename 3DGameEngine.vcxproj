@@ -297,6 +297,7 @@
     <None Include="Res\Maps\map.json" />
     <None Include="Res\Meshes\Cube.gpmesh" />
     <None Include="Res\Meshes\Key.gpmesh" />
+    <None Include="Res\Meshes\LockedDoor.gpmesh" />
     <None Include="Res\Meshes\Plane.gpmesh" />
     <None Include="Res\Meshes\RacingCar.gpmesh" />
     <None Include="Res\Meshes\Rifle.gpmesh" />
