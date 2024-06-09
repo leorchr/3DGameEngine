@@ -158,30 +158,34 @@ void Game::load()
 				p->setPosition(Vector3(500 * i, 500 * y, -101.0f));
 			}
 			else {
+
+				Quaternion q2(Vector3::unitY, Maths::piOver2);
+				q2 = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
+
 				auto p = new PlaneActor();
 				p->getMesh()->setTextureIndex(2);
 				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p->setRotation(q);
+				p->setRotation(q2);
 				p->setPosition(Vector3(500 * i - 250, 500 * y, -351.0f));
 
 				auto p2 = new PlaneActor();
 				p2->getMesh()->setTextureIndex(2);
 				p2->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p2->setRotation(q);
+				p2->setRotation(q2);
 				p2->setPosition(Vector3(500 * i + 250, 500 * y, -351.0f));
 
-				q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::piOver2));
+				q2 = Quaternion::concatenate(q2, Quaternion(Vector3::unitZ, Maths::piOver2));
 
 				auto p3 = new PlaneActor();
 				p3->getMesh()->setTextureIndex(2);
 				p3->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p3->setRotation(q);
+				p3->setRotation(q2);
 				p3->setPosition(Vector3(500 * i, 500 * y - 250, -351.0f));
 
 				auto p4 = new PlaneActor();
 				p4->getMesh()->setTextureIndex(2);
 				p4->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p4->setRotation(q);
+				p4->setRotation(q2);
 				p4->setPosition(Vector3(500 * i, 500 * y + 250, -351.0f));
 
 				auto p5 = new PlaneActor();
