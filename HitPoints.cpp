@@ -10,7 +10,7 @@ HitPoints::HitPoints() : UIScreen(),
 {
 	setTitle("LifePoints");
 	titlePosition = Vector2(-890.0f, -450.0f);
-	text = new Text("///", Vector2(-760.0f, -450.0f));
+	text = new Text("100 / 100", Vector2(-760.0f, -450.0f));
 	background = &Assets::getTexture("ButtonYellow");
 	backgroundPosition = Vector2(-760.0f, -448.0f);
 }

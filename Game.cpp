@@ -39,25 +39,17 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\Phong.vert", "Res\\Shaders\\Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
 
-	Assets::loadTexture(renderer, "Res\\Textures\\Default.png", "Default");
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Cube");
-	Assets::loadTexture(renderer, "Res\\Textures\\HealthBar.png", "HealthBar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Sphere");
 	Assets::loadTexture(renderer, "Res\\Textures\\Crosshair.png", "Crosshair");
-	Assets::loadTexture(renderer, "Res\\Textures\\RacingCar.png", "RacingCar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Rifle.png", "Rifle");
-	Assets::loadTexture(renderer, "Res\\Textures\\Target.png", "Target");
 	Assets::loadTexture(renderer, "Res\\Textures\\Ground.jpg", "Ground");
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Wall");
 	Assets::loadTexture(renderer, "Res\\Textures\\WallIco.png", "WallIco");
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonBlue.png", "ButtonBlue");
-	Assets::loadTexture(renderer, "Res\\Textures\\DialogBG.png", "DialogBG");
-	Assets::loadTexture(renderer, "Res\\Textures\\CrosshairRed.png", "CrosshairRed");
-	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
-	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
 	Assets::loadTexture(renderer, "Res\\Textures\\RadarArrow.png", "RadarArrow");
 	Assets::loadTexture(renderer, "Res\\Textures\\Blackbg.jpg", "Blackbg");
 	Assets::loadTexture(renderer, "Res\\Textures\\Jaune.jpg", "Jaune");
@@ -68,8 +60,6 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
 	Assets::loadMesh("Res\\Meshes\\Sphere.gpmesh", "Mesh_Sphere");
 	Assets::loadMesh("Res\\Meshes\\Rifle.gpmesh", "Mesh_Rifle");
-	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
-	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 	Assets::loadMesh("Res\\Meshes\\Key.gpmesh", "Mesh_Key");
 	Assets::loadMesh("Res\\Meshes\\LockedDoor.gpmesh", "Mesh_LockedDoor");
 
