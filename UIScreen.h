@@ -19,7 +19,7 @@ public:
 	UIScreen();
 	virtual ~UIScreen();
 
-		UIState getState() const { return state; }
+ 		UIState getState() const { return state; }
 	void setTitle(const string& titleP, const Vector3& color = Color::white, int pointSize = 40);
 	virtual void update(float dt);
 	virtual void draw(class Shader& shader);

@@ -5,7 +5,8 @@
 	"textures":[
 		"Plane",
 		"Ground",
-		"Wall"
+		"Wall",
+		"Spikes"
 	],
 	"specularPower":100.0,
 	"vertices":[

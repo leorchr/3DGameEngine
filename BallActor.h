@@ -1,16 +1,18 @@
 #pragma once
 #include "Actor.h"
-class BallActor : public Actor
+
+class BallActor final: public Actor
 {
 public:
 	BallActor();
 
-	void updateActor(float dt) override;
-	void setPlayer(Actor* player);
+	void updateActor(const float dt) override;
+	void setPlayer(Actor* player) const;
 	void hitTarget();
 
 
 private:
 	class BallMoveComponent* ballMove;
-	float lifetimeSpan;
+	float timeLeft;
+	static const float lifetimeSpan;
 };

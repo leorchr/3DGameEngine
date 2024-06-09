@@ -12,13 +12,16 @@ public:
 	float getForwardSpeed() const { return forwardSpeed; }
 	float getAngularSpeed() const { return angularSpeed; }
 	float getStrafeSpeed() const { return strafeSpeed; }
+	float getGravitySpeed() const { return gravitySpeed; }
 	Vector3 getVelocity() const { return velocity; }
 
 	void setForwardSpeed(float forwardSpeedP);
 	void setAngularSpeed(float angularSpeedP);
 	void setStrafeSpeed(float strafeSpeedP);
+	void setGravitySpeed(float gravitySpeedP);
 	void setVelocity(Vector3 velocityP);
 	void addForce(Vector3 force);
+	void setEnableGravity(bool enableGravityP) { enableGravity = enableGravityP; }
 
 	void update(float dt) override;
 
@@ -28,6 +31,8 @@ private:
 	float forwardSpeed;
 	float angularSpeed;
 	float strafeSpeed;
+	float gravitySpeed;
 	const float friction = 0.995f;
 	Vector3 velocity;
+	bool enableGravity;
 };

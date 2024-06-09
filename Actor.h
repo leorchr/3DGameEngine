@@ -38,6 +38,7 @@ public:
 	void rotate(const Vector3& axis, float angle);
 	Vector3 getForward() const;
 	Vector3 getRight() const;
+	Vector3 getUp() const;
 	void computeWorldTransform();
 	void rotateToNewForward(const Vector3& newForward);
 

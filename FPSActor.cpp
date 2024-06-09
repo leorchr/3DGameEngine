@@ -10,7 +10,9 @@
 #include "BoxComponent.h"
 #include "KeyActor.h"
 #include "Collisions.h"
+#include "HitPoints.h"
 #include <iostream>
+#include <vector>
 
 FPSActor::FPSActor() :
 	Actor(),
@@ -21,6 +23,8 @@ FPSActor::FPSActor() :
 {
 	keys = {{0, false},{1, false}};
 	moveComponent = new MoveComponent(this);
+	moveComponent->setGravitySpeed(-100.0f);
+	moveComponent->setEnableGravity(true);
 	cameraComponent = new FPSCameraComponent(this);
 
 	FPSModel = new Actor();
@@ -55,6 +59,26 @@ void FPSActor::updateActor(float dt)
 	if (sqDist < 30000) {
 		Game::instance().setState(GameState::Quit);
 	}
+
+
+	if (getPosition().z < -510.0f) {
+		HitPoints::instance().setHP(HitPoints::instance().getHP() - 50);
+
+		std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
+
+		for (int i = 0; i < map.size(); i++)
+		{
+			std::vector<int> invertMap = map[i];
+			std::reverse(invertMap.begin(), invertMap.end());
+			for (int y = 0; y < map[i].size(); y++)
+			{
+				if (invertMap[y] == 2) {
+					setPosition(Vector3(500 * i, 500 * y, 0));
+				}
+			}
+		}
+	}
+	std::cout << "HP: " << HitPoints::instance().getHP() << std::endl;
 }
 
 void FPSActor::actorInput(const InputState& inputState)

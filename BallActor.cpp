@@ -1,28 +1,30 @@
-#include "BallActor.h"
-#include "MeshComponent.h"
 #include "Assets.h"
+#include "BallActor.h"
 #include "BallMoveComponent.h"
+#include "MeshComponent.h"
 
-BallActor::BallActor() : Actor(), lifetimeSpan(2.0f), ballMove(nullptr)
+const float BallActor::lifetimeSpan = 3.0f;
+
+BallActor::BallActor() : Actor(), ballMove(nullptr), timeLeft(lifetimeSpan)
 {
-	MeshComponent* mc = new MeshComponent(this);
+	auto const mc = new MeshComponent(this);
 	mc->setMesh(Assets::getMesh("Mesh_Sphere"));
 	ballMove = new BallMoveComponent(this);
 	ballMove->setForwardSpeed(1000.0f);
 }
 
-void BallActor::updateActor(float dt)
+void BallActor::updateActor(const float dt)
 {
 	Actor::updateActor(dt);
 
-	lifetimeSpan -= dt;
-	if (lifetimeSpan < 0.0f)
+	timeLeft -= dt;
+	if (timeLeft < 0.0f)
 	{
 		setState(ActorState::Dead);
 	}
 }
 
-void BallActor::setPlayer(Actor* player)
+void BallActor::setPlayer(Actor* player) const
 {
 	ballMove->setPlayer(player);
 }

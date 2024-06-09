@@ -1,12 +1,11 @@
 #include "Assets.h"
 #include "HitPoints.h"
-#include "Game.h"
 #include "DialogBox.h"
 #include "GameOverScreen.h"
 #include <string>
 
 HitPoints::HitPoints() : UIScreen(),
-	hp(2000),
+	hp(100),
 	onlyOnce(false)
 {
 	setTitle("LifePoints");
@@ -33,12 +32,15 @@ void HitPoints::draw(Shader& shader)
 
 void HitPoints::update(float dt) {
 	UIScreen::update(dt);
+}
+
+void HitPoints::setHP(int hpP)
+{
 	if (text != nullptr) {
-		hp--;
+		hp = hpP;
 		text->setContent(std::to_string(hp) + " / 100");
-		if (hp <= 0 && !onlyOnce) {
+		if (hp <= 0) {
 			new GameOverScreen();
-			onlyOnce = true;
 		}
 	}
 }

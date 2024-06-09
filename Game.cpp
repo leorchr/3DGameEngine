@@ -13,8 +13,8 @@
 #include "DoorActor.h"
 #include "LockedDoorActor.h"
 #include "PauseScreen.h"
-#include "HitPoints.h"
 #include "KeyActor.h"
+#include "HitPoints.h"
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -43,7 +43,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\HealthBar.png", "HealthBar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
-	Assets::loadTexture(renderer, "Res\\Textures\\Ball.png", "Sphere");
+	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Sphere");
 	Assets::loadTexture(renderer, "Res\\Textures\\Crosshair.png", "Crosshair");
 	Assets::loadTexture(renderer, "Res\\Textures\\RacingCar.png", "RacingCar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Rifle.png", "Rifle");
@@ -61,6 +61,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Blackbg.jpg", "Blackbg");
 	Assets::loadTexture(renderer, "Res\\Textures\\Jaune.jpg", "Jaune");
 	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Rouge");
+	Assets::loadTexture(renderer, "Res\\Textures\\spikeTrap.png", "Spikes");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -84,20 +85,6 @@ void Game::load()
 
 	Quaternion q(Vector3::unitY, Maths::piOver2);
 	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
-
-	// Setup floor
-	const float start = -2000.0f;
-	const float start2 = -3000.0f;
-	const float sizePlane = 100.0f;
-	for (int i = 0; i < 33; i++)
-	{
-		for (int j = 0; j < 50; j++)
-		{
-			PlaneActor* p = new PlaneActor();
-			p->getMesh()->setTextureIndex(1);
-			p->setPosition(Vector3(start + i * sizePlane * p->getScale().x, start2 + j * sizePlane * 2, -101.0f));
-		}
-	}
 
 	std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
 
@@ -158,27 +145,59 @@ void Game::load()
 		}
 	}
 
+	for (int i = 0; i < map.size(); i++)
+	{
+		std::vector<int> invertMap = map[i];
+		std::reverse(invertMap.begin(), invertMap.end());
+		for (int y = 0; y < map[i].size(); y++)
+		{
+			if (invertMap[y] <= 8) {
+				auto p = new PlaneActor();
+				p->getMesh()->setTextureIndex(1);
+				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p->setPosition(Vector3(500 * i, 500 * y, -101.0f));
+			}
+			else {
+				auto p = new PlaneActor();
+				p->getMesh()->setTextureIndex(2);
+				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p->setRotation(q);
+				p->setPosition(Vector3(500 * i - 250, 500 * y, -351.0f));
+
+				auto p2 = new PlaneActor();
+				p2->getMesh()->setTextureIndex(2);
+				p2->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p2->setRotation(q);
+				p2->setPosition(Vector3(500 * i + 250, 500 * y, -351.0f));
+
+				q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::piOver2));
+
+				auto p3 = new PlaneActor();
+				p3->getMesh()->setTextureIndex(2);
+				p3->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p3->setRotation(q);
+				p3->setPosition(Vector3(500 * i, 500 * y - 250, -351.0f));
+
+				auto p4 = new PlaneActor();
+				p4->getMesh()->setTextureIndex(2);
+				p4->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p4->setRotation(q);
+				p4->setPosition(Vector3(500 * i, 500 * y + 250, -351.0f));
+
+				auto p5 = new PlaneActor();
+				p5->getMesh()->setTextureIndex(3);
+				p5->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p5->setPosition(Vector3(500 * i, 500 * y, -601.0f));
+			}
+		}
+	}
+
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
 	DirectionalLight& dir = renderer.getDirectionalLight();
 	dir.direction = Vector3(0.5f, 0.2f, -0.7f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-
-	Quaternion q2(Vector3::unitZ, Maths::pi);
-
-	TargetActor* t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 2000.0f, 100.0f));
-	t->setRotation(q2);
-	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 2000.0f, 400.0f));
-	t->setRotation(q2);
-	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 1500.0f, 200.0f));
-	t->setRotation(q2);
-	t = new TargetActor();
-	t->setPosition(Vector3(1450.0f, 2500.0f, 200.0f));
-	t->setRotation(q2);
 	}
 }
 
@@ -400,8 +419,6 @@ void Game::removeCube(CubeActor* cube)
 }
 
 void Game::gameOver() {
-	hitPoints->close();
-
 	std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
 
 	for (int i = 0; i < map.size(); i++)
@@ -415,5 +432,5 @@ void Game::gameOver() {
 			}
 		}
 	}
-	hitPoints = new HitPoints();
+	HitPoints::instance().setHP(100);
 }
