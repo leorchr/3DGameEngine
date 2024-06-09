@@ -9,7 +9,7 @@ public:
 	class MeshComponent* getMesh() { return mc; }
 
 
-private:
+protected:
 	class BoxComponent* box;
 	class MeshComponent* mc;
 };

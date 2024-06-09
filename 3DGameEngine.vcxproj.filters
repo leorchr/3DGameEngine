@@ -200,6 +200,9 @@
     <ClCompile Include="KeyActor.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="MovingPlatformActor.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -404,6 +407,9 @@
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="LockedDoorActor.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingPlatformActor.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>

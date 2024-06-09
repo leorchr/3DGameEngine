@@ -185,6 +185,7 @@
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="MouseState.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="MovingPlatformActor.cpp" />
     <ClCompile Include="OrbitActor.cpp" />
     <ClCompile Include="OrbitCameraComponent.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MouseState.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="MovingPlatformActor.h" />
     <ClInclude Include="OrbitActor.h" />
     <ClInclude Include="OrbitCameraComponent.h" />
     <ClInclude Include="PauseScreen.h" />

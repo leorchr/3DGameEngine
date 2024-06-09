@@ -14,6 +14,7 @@
 #include "LockedDoorActor.h"
 #include "PauseScreen.h"
 #include "KeyActor.h"
+#include "MovingPlatformActor.h"
 #include "HitPoints.h"
 #include <algorithm>
 #include <iostream>
@@ -142,22 +143,15 @@ void Game::load()
 				cube->setPosition(Vector3(500 * i, 500 * y, -50));
 				cube->setRotation(q);
 			}
-		}
-	}
-
-	for (int i = 0; i < map.size(); i++)
-	{
-		std::vector<int> invertMap = map[i];
-		std::reverse(invertMap.begin(), invertMap.end());
-		for (int y = 0; y < map[i].size(); y++)
-		{
-			if (invertMap[y] <= 8) {
-				auto p = new PlaneActor();
-				p->getMesh()->setTextureIndex(1);
-				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p->setPosition(Vector3(500 * i, 500 * y, -101.0f));
+			else if (invertMap[y] == 9) {
+				auto mp = new MovingPlatformActor(false);
+				mp->setStart(Vector3(500 * i, 500 * y, -101));
 			}
-			else {
+			else if (invertMap[y] == 10) {
+				auto mp = new MovingPlatformActor(true);
+				mp->setStart(Vector3(500 * i, 500 * y, -101));
+			}
+			else if (invertMap[y] == 11) {
 
 				Quaternion q2(Vector3::unitY, Maths::piOver2);
 				q2 = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
@@ -192,6 +186,21 @@ void Game::load()
 				p5->getMesh()->setTextureIndex(3);
 				p5->setScale(Vector3(5.0f, 5.0f, 5.0f));
 				p5->setPosition(Vector3(500 * i, 500 * y, -601.0f));
+			}
+		}
+	}
+
+	for (int i = 0; i < map.size(); i++)
+	{
+		std::vector<int> invertMap = map[i];
+		std::reverse(invertMap.begin(), invertMap.end());
+		for (int y = 0; y < map[i].size(); y++)
+		{
+			if (invertMap[y] <= 8) {
+				auto p = new PlaneActor();
+				p->getMesh()->setTextureIndex(1);
+				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
+				p->setPosition(Vector3(500 * i, 500 * y, -101.0f));
 			}
 		}
 	}

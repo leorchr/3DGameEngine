@@ -78,7 +78,6 @@ void FPSActor::updateActor(float dt)
 			}
 		}
 	}
-	std::cout << "HP: " << HitPoints::instance().getHP() << std::endl;
 }
 
 void FPSActor::actorInput(const InputState& inputState)
