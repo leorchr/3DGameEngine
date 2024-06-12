@@ -36,7 +36,7 @@ FPSActor::FPSActor() :
 	AABB collision(Vector3(-25.0f, -25.0f, -87.5f), Vector3(25.0f, 25.0f, 87.5f));
 	boxComponent->setObjectBox(collision);
 	boxComponent->setShouldRotate(false);
-	objectivePos = Vector3(Maths::infinity, 0, 0);
+	objectivePos = Vector3(Maths::infinity, 0.0f, 0.0f);
 }
 
 void FPSActor::updateActor(float dt)
@@ -57,7 +57,7 @@ void FPSActor::updateActor(float dt)
 
 	float sqDist = Maths::pow(objectivePos.x - getPosition().x) + Maths::pow(objectivePos.y - getPosition().y);
 	if (sqDist < 30000) {
-		Game::instance().setState(GameState::Quit);
+		//Game::instance().setState(GameState::Quit);
 	}
 
 

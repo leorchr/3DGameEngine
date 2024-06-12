@@ -8,6 +8,7 @@
 #include "PlaneActor.h"
 #include "FPSActor.h"
 #include "StationaryActor.h"
+#include "Map.h"
 #include "SplineActor.h"
 #include "TargetActor.h"
 #include "DoorActor.h"
@@ -55,6 +56,8 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Jaune.jpg", "Jaune");
 	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Rouge");
 	Assets::loadTexture(renderer, "Res\\Textures\\spikeTrap.png", "Spikes");
+	Assets::loadTexture(renderer, "Res\\Textures\\CrosshairRed.png", "CrosshairRed");
+	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -66,142 +69,22 @@ void Game::load()
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 
-	Assets::loadMap("Res\\Maps\\map.json", "BaseMap");
-
 	fps = new FPSActor();
 	hud = new HUD();
 	hitPoints = new HitPoints();
 
-	{
-
-	Quaternion q(Vector3::unitY, Maths::piOver2);
-	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
-
-	std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
-
-	for (int i = 0; i < map.size(); i++)
-	{
-		std::vector<int> invertMap = map[i];
-		std::reverse(invertMap.begin(), invertMap.end());
-		for (int y = 0; y < map[i].size(); y++)
-		{
-			if (invertMap[y] == 1) {
-				Actor* cube = new CubeActor();
-				cube->setScale(Vector3(500, 500, 500));
-				cube->setPosition(Vector3(500 * i, 500 * y, 150));
-				cube->setRotation(q);
-			}
-			else if (invertMap[y] == 2) {
-				fps->setPosition(Vector3(500 * i,500 * y, 0));
-			}
-			else if (invertMap[y] == 3) {
-				fps->setObjectivePos(Vector3(500 * i,500 * y, 0));
-			}
-			else if (invertMap[y] == 4) {
-				Actor* cube = new DoorActor();
-				cube->setScale(Vector3(500, 500, 500));
-				cube->setPosition(Vector3(500 * i, 500 * y, 150));
-				cube->setRotation(q);
-			}
-			else if (invertMap[y] == 5) {
-				Actor* cube = new LockedDoorActor();
-				cube->setScale(Vector3(500, 500, 500));
-				cube->setPosition(Vector3(500 * i, 500 * y, 150));
-				cube->setRotation(q);
-			}
-			else if (invertMap[y] == 6) {
-				Actor* cube = new LockedDoorActor();
-				LockedDoorActor* lockedDoor = dynamic_cast<LockedDoorActor*>(cube);
-				lockedDoor->setKey(1);
-				cube->setScale(Vector3(500, 500, 500));
-				cube->setPosition(Vector3(500 * i, 500 * y, 150));
-				cube->setRotation(q);
-			}
-			else if (invertMap[y] == 7) {
-				Actor* cube = new KeyActor();
-				KeyActor* key = dynamic_cast<KeyActor*>(cube);
-				key->setKey(0);
-				cube->setScale(Vector3(30, 30, 30));
-				cube->setPosition(Vector3(500 * i, 500 * y, -50));
-				cube->setRotation(q);
-			}
-			else if (invertMap[y] == 8) {
-				Actor* cube = new KeyActor();
-				KeyActor* key = dynamic_cast<KeyActor*>(cube);
-				key->setKey(1);
-				cube->setScale(Vector3(30, 30, 30));
-				cube->setPosition(Vector3(500 * i, 500 * y, -50));
-				cube->setRotation(q);
-			}
-			else if (invertMap[y] == 9) {
-				auto mp = new MovingPlatformActor(false);
-				mp->setStart(Vector3(500 * i, 500 * y, -101));
-			}
-			else if (invertMap[y] == 10) {
-				auto mp = new MovingPlatformActor(true);
-				mp->setStart(Vector3(500 * i, 500 * y, -101));
-			}
-			else if (invertMap[y] == 11) {
-
-				Quaternion q2(Vector3::unitY, Maths::piOver2);
-				q2 = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi * 2));
-
-				auto p = new PlaneActor();
-				p->getMesh()->setTextureIndex(2);
-				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p->setRotation(q2);
-				p->setPosition(Vector3(500 * i - 250, 500 * y, -351.0f));
-
-				auto p2 = new PlaneActor();
-				p2->getMesh()->setTextureIndex(2);
-				p2->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p2->setRotation(q2);
-				p2->setPosition(Vector3(500 * i + 250, 500 * y, -351.0f));
-
-				q2 = Quaternion::concatenate(q2, Quaternion(Vector3::unitZ, Maths::piOver2));
-
-				auto p3 = new PlaneActor();
-				p3->getMesh()->setTextureIndex(2);
-				p3->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p3->setRotation(q2);
-				p3->setPosition(Vector3(500 * i, 500 * y - 250, -351.0f));
-
-				auto p4 = new PlaneActor();
-				p4->getMesh()->setTextureIndex(2);
-				p4->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p4->setRotation(q2);
-				p4->setPosition(Vector3(500 * i, 500 * y + 250, -351.0f));
-
-				auto p5 = new PlaneActor();
-				p5->getMesh()->setTextureIndex(3);
-				p5->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p5->setPosition(Vector3(500 * i, 500 * y, -601.0f));
-			}
-		}
-	}
-
-	for (int i = 0; i < map.size(); i++)
-	{
-		std::vector<int> invertMap = map[i];
-		std::reverse(invertMap.begin(), invertMap.end());
-		for (int y = 0; y < map[i].size(); y++)
-		{
-			if (invertMap[y] <= 8) {
-				auto p = new PlaneActor();
-				p->getMesh()->setTextureIndex(1);
-				p->setScale(Vector3(5.0f, 5.0f, 5.0f));
-				p->setPosition(Vector3(500 * i, 500 * y, -101.0f));
-			}
-		}
-	}
-
+	// Setup Map
+	Assets::loadMap("Res\\Maps\\map.json", "BaseMap");
+	const Map* map = new Map(Assets::getMap("BaseMap"));
+	map->initializeMap();
+	
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
 	DirectionalLight& dir = renderer.getDirectionalLight();
 	dir.direction = Vector3(0.5f, 0.2f, -0.7f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-	}
+
 }
 
 void Game::processInput()

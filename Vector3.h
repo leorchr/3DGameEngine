@@ -13,6 +13,9 @@ public:
 	explicit Vector3(float xP, float yP, float zP)
 		:x(xP), y(yP), z(zP) {}
 
+	explicit Vector3(int x, int y, int z)
+		: x(static_cast<float>(x)), y(static_cast<float>(y)), z(static_cast<float>(z)) {}
+
 	void set(float xP, float yP, float zP);
 	float lengthSq() const;
 	float length() const;

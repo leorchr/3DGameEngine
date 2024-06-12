@@ -180,6 +180,7 @@
     <ClCompile Include="LockedDoorActor.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="LineSegment.h" />
     <ClInclude Include="LockedDoorActor.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Mesh.h" />
