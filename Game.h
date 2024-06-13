@@ -1,16 +1,16 @@
 #pragma once
-#include <vector>
 #include "Actor.h"
-#include "SpriteComponent.h"
-#include "Window.h"
-#include "Vector2.h"
-#include "RendererOGL.h"
+#include "CubeActor.h"
+#include "FPSActor.h"
+#include "HUD.h"
 #include "InputSystem.h"
+#include "Map.h"
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
-#include "CubeActor.h"
-#include "HUD.h"
-#include "FPSActor.h"
+#include "RendererOGL.h"
+#include "SpriteComponent.h"
+#include "Window.h"
+#include <vector>
 
 using std::vector;
 
@@ -56,6 +56,7 @@ public:
 	HUD* getHUD() { return hud; }
 
 	// Game-specific
+	Map* getMap() { return map; }
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	vector<PlaneActor*>& getPlanes() { return planes; }
@@ -85,6 +86,7 @@ private:
 	vector<Actor*> pendingActors;
 
 	// Game specific
+	Map* map;
 	class FPSActor* fps;
 	class SpriteComponent* crosshair;
 	class HitPoints* hitPoints;

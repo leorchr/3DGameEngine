@@ -1,9 +1,8 @@
 #include "KeyActor.h"
-#include "Vector3.h"
-#include "Mesh.h"
 #include "Assets.h"
-#include "Game.h"
 #include "FPSActor.h"
+#include "Game.h"
+#include "Map.h"
 
 KeyActor::KeyActor() :
 	keyCode(0)
@@ -11,10 +10,6 @@ KeyActor::KeyActor() :
 	Mesh* mesh = &Assets::getMesh("Mesh_Key");
 	mc->setMesh(*mesh);
 	mc->setTextureIndex(keyCode);
-}
-
-KeyActor::~KeyActor()
-{
 }
 
 void KeyActor::setKey(int keyCode)

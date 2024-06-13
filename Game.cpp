@@ -1,33 +1,17 @@
 #include "Game.h"
-#include "Actor.h"
-#include "Timer.h"
 #include "Assets.h"
-#include "MeshComponent.h"
-#include "CubeActor.h"
-#include "SphereActor.h"
-#include "PlaneActor.h"
-#include "FPSActor.h"
-#include "StationaryActor.h"
-#include "Map.h"
-#include "SplineActor.h"
-#include "TargetActor.h"
-#include "DoorActor.h"
-#include "LockedDoorActor.h"
-#include "PauseScreen.h"
-#include "KeyActor.h"
-#include "MovingPlatformActor.h"
 #include "HitPoints.h"
+#include "PauseScreen.h"
+#include "Timer.h"
 #include <algorithm>
-#include <iostream>
 #include <vector>
-using namespace std;
 
 bool Game::initialize()
 {
-	bool isWindowInit = window.initialize();
-	bool isRendererInit = renderer.initialize(window);
-	bool isInputInit = inputSystem.initialize();
-	bool isFontInit = Font::initialize();
+	const bool isWindowInit = window.initialize();
+	const bool isRendererInit = renderer.initialize(window);
+	const bool isInputInit = inputSystem.initialize();
+	const bool isFontInit = Font::initialize();
 
 	return isWindowInit && isRendererInit && isInputInit && isFontInit; // Return bool && bool && bool ...to detect error
 }
@@ -75,7 +59,7 @@ void Game::load()
 
 	// Setup Map
 	Assets::loadMap("Res\\Maps\\map.json", "BaseMap");
-	const Map* map = new Map(Assets::getMap("BaseMap"));
+	map = new Map(Assets::getMap("BaseMap"));
 	map->initializeMap();
 	
 	// Setup lights

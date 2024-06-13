@@ -20,10 +20,17 @@ Map::Map(const std::vector<std::vector<int>>& map) :
 	q2 = Quaternion::concatenate(q2, Quaternion(Vector3::unitZ, Maths::piOver2));
 }
 
-void Map::initializeMap() const
+Map::~Map()
+{
+	for (auto a : actors)
+	{
+		a->setState(Actor::ActorState::Dead);
+	}
+}
+
+void Map::initializeMap()
 {
 	// Place all actors depending on the index of the map
-	
 	for (size_t i = 0; i < map.size(); i++)
 	{
 		const int iPos = static_cast<size_t>(i);
@@ -38,6 +45,7 @@ void Map::initializeMap() const
 				wall->setScale(Vector3(sizeActors, sizeActors, sizeActors));
 				wall->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, wallHeight));
 				wall->setRotation(q);
+				actors.push_back(wall);
 			}
 			else if (invertMap[y] == 2) {                                   // Player start position
 				Game::instance().getPlayer()->setPosition(Vector3(sizeActors * iPos,sizeActors * yPos, 0));
@@ -50,6 +58,7 @@ void Map::initializeMap() const
 				door->setScale(Vector3(sizeActors, sizeActors, sizeActors));
 				door->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, wallHeight));
 				door->setRotation(q);
+				actors.push_back(door);
 			}
 			else if (invertMap[y] == 5) {                                   // Yellow locked door
 				const auto lockedDoor = new LockedDoorActor();
@@ -57,6 +66,7 @@ void Map::initializeMap() const
 				lockedDoor->setScale(Vector3(sizeActors, sizeActors, sizeActors));
 				lockedDoor->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, wallHeight));
 				lockedDoor->setRotation(q);
+				actors.push_back(lockedDoor);
 			}
 			else if (invertMap[y] == 6) {                                   // Red locked door
 				const auto lockedDoor = new LockedDoorActor();
@@ -64,6 +74,7 @@ void Map::initializeMap() const
 				lockedDoor->setScale(Vector3(sizeActors, sizeActors, sizeActors));
 				lockedDoor->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, wallHeight));
 				lockedDoor->setRotation(q);
+				actors.push_back(lockedDoor);
 			}
 			else if (invertMap[y] == 7) {                                   // Yellow key
 				const auto key = new KeyActor();
@@ -71,6 +82,7 @@ void Map::initializeMap() const
 				key->setScale(Vector3(30, 30, 30));
 				key->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, -50));
 				key->setRotation(q);
+				actors.push_back(key);
 			}
 			else if (invertMap[y] == 8) {                                   // Red key
 				const auto key = new KeyActor();
@@ -78,14 +90,17 @@ void Map::initializeMap() const
 				key->setScale(Vector3(30, 30, 30));
 				key->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, -50));
 				key->setRotation(q);
+				actors.push_back(key);
 			}
 			else if (invertMap[y] == 9) {                                   // Moving platform x-axis
 				const auto mp = new MovingPlatformActor(false);
 				mp->setStart(Vector3(sizeActors * iPos, sizeActors * yPos, -101));
+				actors.push_back(mp);
 			}
 			else if (invertMap[y] == 10) {                                  // Moving platform y-axis
 				const auto mp = new MovingPlatformActor(true);
 				mp->setStart(Vector3(sizeActors * iPos, sizeActors * yPos, -101));
+				actors.push_back(mp);
 			}
 			else if (invertMap[y] == 11) {                                  // Traps
 				const auto wall = new PlaneActor();
@@ -116,13 +131,19 @@ void Map::initializeMap() const
 				trap->getMesh()->setTextureIndex(3);
 				trap->setScale(Vector3(5.0f, 5.0f, 5.0f));
 				trap->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, -601));
-			}
 
+				actors.push_back(wall);
+				actors.push_back(wall2);
+				actors.push_back(wall3);
+				actors.push_back(wall4);
+				actors.push_back(trap);
+			}
 			if (invertMap[y] <= 8) {										// Place plane grounds everywhere except traps and moving platforms
 				const auto ground = new PlaneActor();
 				ground->getMesh()->setTextureIndex(1);
 				ground->setScale(Vector3(5.0f, 5.0f, 5.0f));
 				ground->setPosition(Vector3(sizeActors * iPos, sizeActors * yPos, -101));
+				actors.push_back(ground);
 			}
 		}
 	}
