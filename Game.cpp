@@ -1,10 +1,11 @@
 #include "Game.h"
 #include "Assets.h"
-#include "HitPoints.h"
 #include "PauseScreen.h"
 #include "Timer.h"
 #include <algorithm>
 #include <vector>
+
+#include "FollowActor.h"
 
 bool Game::initialize()
 {
@@ -53,14 +54,18 @@ void Game::load()
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 
-	fps = new FPSActor();
-	hud = new HUD();
-	hitPoints = new HitPoints();
+	player = new FollowActor();
+	player->setPosition(Vector3(0,0,20));
 
-	// Setup Map
-	Assets::loadMap("Res\\Maps\\map.json", "BaseMap");
-	map = new Map(Assets::getMap("BaseMap"));
-	map->initializeMap();
+	auto car = new Actor();
+	auto compo = new MeshComponent(car);
+	compo->setMesh(Assets::getMesh("Mesh_Rifle"));
+	car->addComponent(compo);
+	
+	auto plane = new PlaneActor();
+	plane->setScale(Vector3(10,10,10));
+	Vector3 pos = Vector3(plane->getPosition().x, plane-> getPosition().y, 0.0f);
+	plane->setPosition(pos);
 	
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
@@ -286,21 +291,4 @@ void Game::removeCube(CubeActor* cube)
 {
 	auto iter = std::find(begin(cubes), end(cubes), cube);
 	cubes.erase(iter);
-}
-
-void Game::gameOver() {
-	std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
-
-	for (int i = 0; i < map.size(); i++)
-	{
-		std::vector<int> invertMap = map[i];
-		std::reverse(invertMap.begin(), invertMap.end());
-		for (int y = 0; y < map[i].size(); y++)
-		{
-			if (invertMap[y] == 2) {
-				fps->setPosition(Vector3(500 * i, 500 * y, 0));
-			}
-		}
-	}
-	HitPoints::instance().setHP(100);
 }

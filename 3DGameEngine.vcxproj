@@ -149,15 +149,12 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimSpriteComponent.cpp" />
     <ClCompile Include="BackgroundSpriteComponent.cpp" />
-    <ClCompile Include="BallActor.cpp" />
-    <ClCompile Include="BallMoveComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="CubeActor.cpp" />
     <ClCompile Include="DialogBox.cpp" />
-    <ClCompile Include="DoorActor.cpp" />
     <ClCompile Include="FollowActor.cpp" />
     <ClCompile Include="FollowCameraComponent.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -169,24 +166,17 @@
     <ClCompile Include="FPSActor.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
-    <ClCompile Include="HitPoints.cpp" />
-    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputSystem.cpp" />
-    <ClCompile Include="KeyActor.cpp" />
-    <ClCompile Include="KeyActor.h" />
     <ClCompile Include="KeyboardState.cpp" />
     <ClCompile Include="LineSegment.cpp" />
-    <ClCompile Include="LockedDoorActor.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="MouseState.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
-    <ClCompile Include="MovingPlatformActor.cpp" />
     <ClCompile Include="OrbitActor.cpp" />
     <ClCompile Include="OrbitCameraComponent.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
@@ -207,8 +197,6 @@
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="StationaryActor.cpp" />
     <ClCompile Include="StationaryCameraComponent.cpp" />
-    <ClCompile Include="TargetActor.cpp" />
-    <ClCompile Include="TargetComponent.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -216,7 +204,6 @@
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="VertexArray.cpp" />
-    <ClCompile Include="WallComponent.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -224,8 +211,6 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimSpriteComponent.h" />
     <ClInclude Include="BackgroundSpriteComponent.h" />
-    <ClInclude Include="BallActor.h" />
-    <ClInclude Include="BallMoveComponent.h" />
     <ClInclude Include="BoxComponent.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CameraComponent.h" />
@@ -233,7 +218,6 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="CubeActor.h" />
     <ClInclude Include="DialogBox.h" />
-    <ClInclude Include="DoorActor.h" />
     <ClInclude Include="FollowActor.h" />
     <ClInclude Include="FollowCameraComponent.h" />
     <ClInclude Include="Font.h" />
@@ -247,22 +231,18 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="HitPoints.h" />
-    <ClInclude Include="HUD.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="LineSegment.h" />
-    <ClInclude Include="LockedDoorActor.h" />
     <ClInclude Include="Log.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MouseState.h" />
     <ClInclude Include="MoveComponent.h" />
-    <ClInclude Include="MovingPlatformActor.h" />
     <ClInclude Include="OrbitActor.h" />
     <ClInclude Include="OrbitCameraComponent.h" />
     <ClInclude Include="PauseScreen.h" />
@@ -283,8 +263,6 @@
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="StationaryActor.h" />
     <ClInclude Include="StationaryCameraComponent.h" />
-    <ClInclude Include="TargetActor.h" />
-    <ClInclude Include="TargetComponent.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
@@ -292,13 +270,11 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="VertexArray.h" />
-    <ClInclude Include="WallComponent.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Localization\English.gptext" />
     <None Include="Res\Localization\Russian.gptext" />
-    <None Include="Res\Maps\map.json" />
     <None Include="Res\Meshes\Cube.gpmesh" />
     <None Include="Res\Meshes\Key.gpmesh" />
     <None Include="Res\Meshes\LockedDoor.gpmesh" />

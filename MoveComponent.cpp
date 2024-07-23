@@ -4,7 +4,7 @@
 #include "Window.h"
 
 MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), angularSpeed(0.0f), strafeSpeed(0.0f), gravitySpeed(0.0f), enableGravity(false)
+	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), angularSpeed(0.0f), strafeSpeed(0.0f)
 {
 	velocity = Vector3(0, 0, 0);
 }
@@ -22,11 +22,6 @@ void MoveComponent::setAngularSpeed(float angularSpeedP)
 void MoveComponent::setStrafeSpeed(float strafeSpeedP)
 {
 	strafeSpeed = strafeSpeedP;
-}
-
-void MoveComponent::setGravitySpeed(float gravitySpeedP)
-{
-	gravitySpeed = gravitySpeedP;
 }
 
 void MoveComponent::setVelocity(Vector3 velocityP)
@@ -56,19 +51,6 @@ void MoveComponent::update(float dt)
 		Vector3 newPosition = owner.getPosition();
 		newPosition += owner.getForward() * forwardSpeed * dt;
 		newPosition += owner.getRight() * strafeSpeed * dt;
-		owner.setPosition(newPosition);
-	}
-
-	if (!Maths::nearZero(velocity.x) || !Maths::nearZero(velocity.y))
-	{
-		Vector3 newPosition = owner.getPosition();
-		newPosition += velocity * dt;
-		owner.setPosition(newPosition);
-	}
-	if(enableGravity)
-	{
-		Vector3 newPosition = owner.getPosition();
-		newPosition += owner.getUp() * gravitySpeed * dt;
 		owner.setPosition(newPosition);
 	}
 }

@@ -1,10 +1,8 @@
 #pragma once
 #include "Actor.h"
 #include "CubeActor.h"
-#include "FPSActor.h"
-#include "HUD.h"
+#include "FollowActor.h"
 #include "InputSystem.h"
-#include "Map.h"
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
 #include "RendererOGL.h"
@@ -34,7 +32,7 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : state(GameState::Gameplay), isUpdatingActors(false), fps(nullptr), crosshair(nullptr) {}
+	Game() : state(GameState::Gameplay), isUpdatingActors(false), player(nullptr) {}
 
 public:
 	bool initialize();
@@ -53,10 +51,8 @@ public:
 	InputSystem& getInputSystem() { return inputSystem; }
 	const vector<class UIScreen*>& getUIStack() { return UIStack; }
 	void pushUI(class UIScreen* screen);
-	HUD* getHUD() { return hud; }
 
 	// Game-specific
-	Map* getMap() { return map; }
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	vector<PlaneActor*>& getPlanes() { return planes; }
@@ -64,9 +60,7 @@ public:
 	void addCube(class CubeActor* cube);
 	void removeCube(class CubeActor* cube);
 	vector<CubeActor*>& getCubes() { return cubes; }
-	class FPSActor* getPlayer() { return fps; }
-
-	void gameOver();
+	class FollowActor* getPlayer() { return player; }
 
 private:
 	void processInput();
@@ -79,17 +73,13 @@ private:
 	InputSystem inputSystem;
 	PhysicsSystem physicsSystem;
 	vector<class UIScreen*> UIStack;
-	HUD* hud;
 
 	bool isUpdatingActors;
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
 
 	// Game specific
-	Map* map;
-	class FPSActor* fps;
-	class SpriteComponent* crosshair;
-	class HitPoints* hitPoints;
+	class FollowActor* player;
 	vector<PlaneActor*> planes;
 	vector<CubeActor*> cubes;
 };

@@ -31,6 +31,5 @@ void GameOverScreen::processInput(const InputState& inputState)
 {
 	if (inputState.keyboard.getKeyState(SDL_SCANCODE_SPACE) == ButtonState::Pressed) {
 		state = UIState::Closing;
-		Game::instance().gameOver();
 	}
 }

@@ -6,11 +6,8 @@
 #include "Assets.h"
 #include "FPSCameraComponent.h"
 #include "MeshComponent.h"
-#include "BallActor.h"
 #include "BoxComponent.h"
-#include "KeyActor.h"
 #include "Collisions.h"
-#include "HitPoints.h"
 #include <iostream>
 #include <vector>
 
@@ -21,10 +18,7 @@ FPSActor::FPSActor() :
 	cameraComponent(nullptr),
 	boxComponent(nullptr)
 {
-	keys = {{0, false},{1, false}};
 	moveComponent = new MoveComponent(this);
-	moveComponent->setGravitySpeed(-100.0f);
-	moveComponent->setEnableGravity(true);
 	cameraComponent = new FPSCameraComponent(this);
 
 	FPSModel = new Actor();
@@ -36,7 +30,6 @@ FPSActor::FPSActor() :
 	AABB collision(Vector3(-25.0f, -25.0f, -87.5f), Vector3(25.0f, 25.0f, 87.5f));
 	boxComponent->setObjectBox(collision);
 	boxComponent->setShouldRotate(false);
-	objectivePos = Vector3(Maths::infinity, 0.0f, 0.0f);
 }
 
 void FPSActor::updateActor(float dt)
@@ -54,30 +47,6 @@ void FPSActor::updateActor(float dt)
 	FPSModel->setRotation(q);
 
 	fixCollisions();
-
-	float sqDist = Maths::pow(objectivePos.x - getPosition().x) + Maths::pow(objectivePos.y - getPosition().y);
-	if (sqDist < 30000) {
-		//Game::instance().setState(GameState::Quit);
-	}
-
-
-	if (getPosition().z < -510.0f) {
-		HitPoints::instance().setHP(HitPoints::instance().getHP() - 50);
-
-		std::vector<std::vector<int>> map = Assets::getMap("BaseMap");
-
-		for (int i = 0; i < map.size(); i++)
-		{
-			std::vector<int> invertMap = map[i];
-			std::reverse(invertMap.begin(), invertMap.end());
-			for (int y = 0; y < map[i].size(); y++)
-			{
-				if (invertMap[y] == 2) {
-					setPosition(Vector3(500 * i, 500 * y, 0));
-				}
-			}
-		}
-	}
 }
 
 void FPSActor::actorInput(const InputState& inputState)
@@ -124,47 +93,11 @@ void FPSActor::actorInput(const InputState& inputState)
 		pitchSpeed *= maxPitchSpeed;
 	}
 	cameraComponent->setPitchSpeed(pitchSpeed);
-
-	// Shoot
-	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
-	{
-		shoot();
-	}
 }
-
-void FPSActor::shoot()
-{
-	// Get start point (in center of screen on near plane)
-	Vector3 screenPoint(0.0f, 0.0f, 0.0f);
-	Vector3 start = getGame().getRenderer().unproject(screenPoint);
-	// Get end point (in center of screen, between near and far)
-	screenPoint.z = 0.9f;
-	Vector3 end = getGame().getRenderer().unproject(screenPoint);
-	// Get direction vector
-	Vector3 dir = end - start;
-	dir.normalize();
-	// Spawn a ball
-	BallActor* ball = new BallActor();
-	ball->setPlayer(this);
-	ball->setPosition(start + dir * 20.0f);
-	// Rotate the ball to face new direction
-	ball->rotateToNewForward(dir);
-}
-
 
 void FPSActor::setVisible(bool isVisible)
 {
 	meshComponent->setVisible(isVisible);
-}
-
-void FPSActor::addKey(int key)
-{
-	keys[key] = true;
-}
-
-bool FPSActor::haveKey(int key)
-{
-	return keys[key];
 }
 
 void FPSActor::fixCollisions()
@@ -256,17 +189,6 @@ void FPSActor::fixCollisions()
 			// Need to set position and update box component
 			setPosition(pos);
 			boxComponent->onUpdateWorldTransform();
-
-			KeyActor* key = dynamic_cast<KeyActor*>(ca);
-			if (key)
-			{
-				key->onHit();
-			}
 		}
 	}
-}
-
-void FPSActor::setObjectivePos(Vector3 objectivePos)
-{
-	this->objectivePos = objectivePos;
 }

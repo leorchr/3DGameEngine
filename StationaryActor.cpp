@@ -3,9 +3,6 @@
 #include "Game.h"
 #include "MeshComponent.h"
 #include "Assets.h"
-#include "BoxComponent.h"
-#include "BallActor.h"
-#include "Collisions.h"
 
 StationaryActor::StationaryActor(float pitchP, float yawP) :
 	Actor(),

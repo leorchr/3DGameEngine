@@ -10,13 +10,9 @@ public:
 
 	void updateActor(float dt) override;
 	void actorInput(const struct InputState& inputState) override;
-	void shoot();
-
+	
 	void setVisible(bool isVisible);
-	void addKey(int key);
-	bool haveKey(int key);
 	void fixCollisions();
-	void setObjectivePos(Vector3 objectivePos);
 
 private:
 	class MoveComponent* moveComponent;
@@ -24,8 +20,6 @@ private:
 	class FPSCameraComponent* cameraComponent;
 	class Actor* FPSModel;
 	class BoxComponent* boxComponent;
-	Vector3 objectivePos;
-	std::unordered_map<int, bool> keys;
 };
 
 const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);
