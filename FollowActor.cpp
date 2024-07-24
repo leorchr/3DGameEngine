@@ -12,12 +12,12 @@ FollowActor::FollowActor() :
 	meshComponent(nullptr)
 {
 	meshComponent = new MeshComponent(this);
-	meshComponent->setMesh(Assets::getMesh("Mesh_Rifle"));
+	meshComponent->setMesh(Assets::getMesh("Mesh_RacingCar"));
 	setPosition(Vector3(0.0f, 0.0f, -100.0f));
 
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FollowCameraComponent(this);
-	cameraComponent->snapToIdeal();
+	//cameraComponent->snapToIdeal();
 }
 
 void FollowActor::actorInput(const InputState& inputState)
@@ -27,19 +27,23 @@ void FollowActor::actorInput(const InputState& inputState)
 	// wasd movement
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_W))
 	{
-		forwardSpeed += 400.0f;
+		forwardSpeed += 600.0f;
+	}
+	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_W) && inputState.keyboard.getKeyValue(SDL_SCANCODE_LSHIFT))
+	{
+		forwardSpeed += 800.0f;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_S))
 	{
-		forwardSpeed -= 400.0f;
+		forwardSpeed -= 600.0f;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
 	{
-		angularSpeed -= Maths::pi;
+		angularSpeed -= Maths::pi/2;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
 	{
-		angularSpeed += Maths::pi;
+		angularSpeed += Maths::pi/2;
 	}
 
 	moveComponent->setForwardSpeed(forwardSpeed);
@@ -48,11 +52,11 @@ void FollowActor::actorInput(const InputState& inputState)
 	// Adjust horizontal distance of camera based on speed
 	if (!Maths::nearZero(forwardSpeed))
 	{
-		cameraComponent->setHorizontalDistance(500.0f);
+		cameraComponent->setHorizontalDistance(600.0f);
 	}
 	else
 	{
-		cameraComponent->setHorizontalDistance(350.0f);
+		cameraComponent->setHorizontalDistance(500.0f);
 	}
 }
 

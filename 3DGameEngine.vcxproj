@@ -230,7 +230,6 @@
     <ClInclude Include="FPSActor.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOverScreen.h" />
-    <ClInclude Include="HitPoints.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="IRenderer.h" />

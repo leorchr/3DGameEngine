@@ -43,6 +43,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\spikeTrap.png", "Spikes");
 	Assets::loadTexture(renderer, "Res\\Textures\\CrosshairRed.png", "CrosshairRed");
 	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
+	Assets::loadTexture(renderer, "Res\\Textures\\RacingCar.png", "RacingCar");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -50,6 +51,7 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\Rifle.gpmesh", "Mesh_Rifle");
 	Assets::loadMesh("Res\\Meshes\\Key.gpmesh", "Mesh_Key");
 	Assets::loadMesh("Res\\Meshes\\LockedDoor.gpmesh", "Mesh_LockedDoor");
+	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
@@ -57,15 +59,17 @@ void Game::load()
 	player = new FollowActor();
 	player->setPosition(Vector3(0,0,20));
 
-	auto car = new Actor();
-	auto compo = new MeshComponent(car);
-	compo->setMesh(Assets::getMesh("Mesh_Rifle"));
-	car->addComponent(compo);
-	
-	auto plane = new PlaneActor();
-	plane->setScale(Vector3(10,10,10));
-	Vector3 pos = Vector3(plane->getPosition().x, plane-> getPosition().y, 0.0f);
-	plane->setPosition(pos);
+	for(int i = 0; i < 5; i++)
+	{
+		for(int y = 0; y < 5; y++)
+		{
+			auto plane = new PlaneActor();
+			plane->getMesh()->setTextureIndex(1);
+			plane->setScale(Vector3(10,10,10));
+			Vector3 pos = Vector3(plane->getPosition().x + i * 1000, plane-> getPosition().y + y * 1000, 0.0f);
+			plane->setPosition(pos);
+		}
+	}
 	
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
