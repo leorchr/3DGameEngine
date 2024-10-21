@@ -2,10 +2,9 @@
 #include "Assets.h"
 #include "PauseScreen.h"
 #include "Timer.h"
+#include "TPActor.h"
 #include <algorithm>
 #include <vector>
-
-#include "FollowActor.h"
 
 bool Game::initialize()
 {
@@ -56,8 +55,7 @@ void Game::load()
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 
-	player = new FollowActor();
-	player->setPosition(Vector3(0,0,20));
+	player = new TPActor();
 
 	for(int i = 0; i < 5; i++)
 	{

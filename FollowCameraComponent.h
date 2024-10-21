@@ -27,5 +27,5 @@ private:
 
 constexpr float FOLLOW_HORIZONTAL_DISTANCE = 350.0f;
 constexpr float FOLLOW_VERTICAL_DISTANCE = 750.0f;
-constexpr float FOLLOW_TARGET_DISTANCE = -200.0f;
+constexpr float FOLLOW_TARGET_DISTANCE = 0.0f;
 constexpr float FOLLOW_SPRING_CONSTANT = 64.0f;

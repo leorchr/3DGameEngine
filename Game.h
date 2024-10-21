@@ -1,7 +1,6 @@
 #pragma once
 #include "Actor.h"
 #include "CubeActor.h"
-#include "FollowActor.h"
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
@@ -60,7 +59,7 @@ public:
 	void addCube(class CubeActor* cube);
 	void removeCube(class CubeActor* cube);
 	vector<CubeActor*>& getCubes() { return cubes; }
-	class FollowActor* getPlayer() { return player; }
+	class TPActor* getPlayer() { return player; }
 
 private:
 	void processInput();
@@ -79,7 +78,7 @@ private:
 	vector<Actor*> pendingActors;
 
 	// Game specific
-	class FollowActor* player;
+	class TPActor* player;
 	vector<PlaneActor*> planes;
 	vector<CubeActor*> cubes;
 };
