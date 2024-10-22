@@ -61,6 +61,11 @@ public:
 		return Vector3(vec.x / scalar, vec.y / scalar, vec.z / scalar);
 	}
 
+	friend bool operator!=(const Vector3& left, const Vector3& right)
+	{
+		return (left.x != right.y || left.y != right.y || left.z * right.z);
+	}
+
 	// Scalar *=
 	Vector3& operator*=(float scalar)
 	{

@@ -22,6 +22,12 @@ void TPSCameraComponent::update(float dt)
 	Quaternion q2 { Vector3::unitZ, yaw};
 	Quaternion q3 = Quaternion::concatenate(q,q2);
 	Vector3 dirRotated = Vector3::transform(dir, q3);
+
+	//setup forward camera
+	Vector3 invertDir = -1*dirRotated;
+	setCameraForward(invertDir);
+	//end forward
+	
 	Vector3 outputPosition = dirRotated + objPos;
 	
 	Vector3 up = Vector3::transform(Vector3::unitZ, q3);
@@ -37,4 +43,9 @@ void TPSCameraComponent::setPitchSpeed(float speed)
 void TPSCameraComponent::setYawSpeed(float speed)
 {
 	yawSpeed = speed;
+}
+
+void TPSCameraComponent::setCameraForward(Vector3 forward)
+{
+	cameraForward = forward;
 }

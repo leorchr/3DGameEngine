@@ -39,3 +39,14 @@ void Quaternion::normalize()
 	z /= len;
 	w /= len;
 }
+
+Quaternion Quaternion::operator*(const Quaternion& q) const
+{
+	Vector3 axis = Vector3(x,y,z);
+	Vector3 axisQ = Vector3(q.x,q.y,q.z);
+	float scalar= w*q.w - Vector3::dot(axis, axisQ);
+
+	Vector3 imaginary=axisQ*w + axis*q.w + Vector3::cross(axis,axisQ);
+
+	return Quaternion(imaginary,scalar);
+}

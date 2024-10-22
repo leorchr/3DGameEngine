@@ -22,6 +22,8 @@ public:
 	// and the angle is in radians
 	explicit Quaternion(const Vector3& axis, float angle);
 
+
+	Quaternion operator*(const Quaternion& q) const;
 	void set(float inX, float inY, float inZ, float inW);
 	void conjugate();
 	void normalize();

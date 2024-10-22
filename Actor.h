@@ -40,7 +40,7 @@ public:
 	Vector3 getRight() const;
 	Vector3 getUp() const;
 	void computeWorldTransform();
-	void rotateToNewForward(const Vector3& newForward);
+	void rotateToNewForward(const Vector3& newForward, const Quaternion& baseRotation, float lerpValue);
 
 	void processInput(const struct InputState& inputState);
 	virtual void actorInput(const struct InputState& inputState);

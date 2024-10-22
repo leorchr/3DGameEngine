@@ -56,6 +56,8 @@ void Game::load()
 	Assets::loadText("Res\\Localization\\English.gptext");
 
 	player = new TPActor();
+	player->setScale(player->getScale()*10);
+	player->setPosition(player->getPosition() + Vector3(0.0f,0.0f,10.0f));
 
 	for(int i = 0; i < 5; i++)
 	{
