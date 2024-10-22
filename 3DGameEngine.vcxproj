@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</ExternalIncludePath>
   </PropertyGroup>
@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -154,6 +154,7 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimSpriteComponent.cpp" />
     <ClCompile Include="BackgroundSpriteComponent.cpp" />
+    <ClCompile Include="BasicMesh.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimSpriteComponent.h" />
     <ClInclude Include="BackgroundSpriteComponent.h" />
+    <ClInclude Include="BasicMesh.h" />
     <ClInclude Include="BoxComponent.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CameraComponent.h" />
