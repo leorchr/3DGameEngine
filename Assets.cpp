@@ -4,8 +4,8 @@
 #include <fstream>
 #include "Log.h"
 #include "RendererOGL.h"
-#include <rapidjson/document.h>
-#include <rapidjson/istreamwrapper.h>
+#include <document.h>
+#include <istreamwrapper.h>
 
 std::map<string, Texture> Assets::textures;
 std::map<string, Shader> Assets::shaders;

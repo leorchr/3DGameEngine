@@ -72,17 +72,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\External\SDL2-2.0.12\include;$(SolutionDir)\External\SDL2_image-2.0.5\include;$(SolutionDir)\External\SDL2_ttf-2.0.15\include;$(SolutionDir)\External\SDL2_mixer-2.0.4\include;$(SolutionDir)\External\glew-2.1.0\include;$(SolutionDir)\External\rapidjson\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\External\SDL2-2.0.12\lib\x64;$(SolutionDir)\External\SDL2_image-2.0.5\lib\x64;$(SolutionDir)\External\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)\External\SDL2_mixer-2.0.4\lib\x64;$(SolutionDir)\External\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,6 +111,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)Res" "$(TargetDir)Res" /e /y /i /r</Command>

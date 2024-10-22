@@ -16,9 +16,6 @@
     <ClCompile Include="BackgroundSpriteComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="BallMoveComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="BoxComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="SplineCameraComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="TargetComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
@@ -90,12 +84,6 @@
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
       <Filter>Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="TargetActor.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="BallActor.cpp">
-      <Filter>Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="CubeActor.cpp">
       <Filter>Prefabs\Geometry</Filter>
@@ -157,9 +145,6 @@
     <ClCompile Include="Font.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="HUD.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -178,31 +163,12 @@
     <ClCompile Include="StationaryActor.cpp">
       <Filter>Prefabs\Views</Filter>
     </ClCompile>
-    <ClCompile Include="WallComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="HitPoints.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="GameOverScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="DoorActor.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="LockedDoorActor.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyActor.h">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyActor.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingPlatformActor.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
+    <ClCompile Include="TPActor.cpp" />
+    <ClCompile Include="TPSCameraComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -217,9 +183,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundSpriteComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="BallMoveComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="BoxComponent.h">
@@ -253,9 +216,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SplineCameraComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="TargetComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="DirectionalLight.h">
@@ -302,12 +262,6 @@
     </ClInclude>
     <ClInclude Include="Vector3.h">
       <Filter>Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="TargetActor.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="BallActor.h">
-      <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="CubeActor.h">
       <Filter>Prefabs\Geometry</Filter>
@@ -372,9 +326,6 @@
     <ClInclude Include="Font.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="HUD.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="PauseScreen.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -393,25 +344,12 @@
     <ClInclude Include="StationaryActor.h">
       <Filter>Prefabs\Views</Filter>
     </ClInclude>
-    <ClInclude Include="WallComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="HitPoints.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Text.h" />
     <ClInclude Include="GameOverScreen.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="DoorActor.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="LockedDoorActor.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingPlatformActor.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
+    <ClInclude Include="TPActor.h" />
+    <ClInclude Include="TPSCameraComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Localization\English.gptext">
@@ -455,9 +393,6 @@
     </None>
     <None Include="Res\Shaders\Sprite.frag">
       <Filter>Shaders</Filter>
-    </None>
-    <None Include="Res\Maps\map.json">
-      <Filter>Maps</Filter>
     </None>
     <None Include="Res\Meshes\Key.gpmesh">
       <Filter>Meshes</Filter>
