@@ -20,23 +20,9 @@ void MeshComponent::setVisible(bool isVisibleP)
 
 void MeshComponent::draw(Shader& shader)
 {
-	if (mesh)
-	{
-		Matrix4 wt = owner.getWorldTransform();
-		shader.setMatrix4("uWorldTransform", wt);
-		shader.setFloat("uSpecPower", mesh->getSpecularPower());
-		Texture* t = mesh->getTexture(textureIndex);
-		if (t)
-		{
-			t->setActive();
-		}
-		VertexArray* va = mesh->getVertexArray();
-		va->setActive();
-		glDrawElements(GL_TRIANGLES, va->getNbIndices(), GL_UNSIGNED_INT, nullptr);
-	}
 }
 
-void MeshComponent::setMesh(Mesh& meshP)
+void MeshComponent::setMesh(BasicMesh& meshP)
 {
 	mesh = &meshP;
 }

@@ -23,6 +23,7 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\Sprite.vert", "Res\\Shaders\\Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Res\\Shaders\\Phong.vert", "Res\\Shaders\\Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
+	Assets::loadShader("Res\\Shaders\\Mesh.vert", "Res\\Shaders\\Mesh.frag", "", "", "", "Mesh");
 
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
@@ -43,21 +44,20 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\CrosshairRed.png", "CrosshairRed");
 	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
 	Assets::loadTexture(renderer, "Res\\Textures\\RacingCar.png", "RacingCar");
-
-	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
-	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
-	Assets::loadMesh("Res\\Meshes\\Sphere.gpmesh", "Mesh_Sphere");
-	Assets::loadMesh("Res\\Meshes\\Rifle.gpmesh", "Mesh_Rifle");
-	Assets::loadMesh("Res\\Meshes\\Key.gpmesh", "Mesh_Key");
-	Assets::loadMesh("Res\\Meshes\\LockedDoor.gpmesh", "Mesh_LockedDoor");
-	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
+	
+	Assets::loadMesh("Res\\Meshes\\monkey.fbx", "Mesh_Monkey");
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 
+	monk = Assets::getMesh("Mesh_Monkey");
+	
 	player = new TPActor();
 	player->setScale(player->getScale()*10);
 	player->setPosition(player->getPosition() + Vector3(0.0f,0.0f,10.0f));
+	actor = new Actor();
+	actor->setPosition(Vector3(0.0f,0.0f,0.0f));
+	actor->setScale(Vector3(1.0f,1.0f,1.0f));
 
 	for(int i = 0; i < 5; i++)
 	{
@@ -196,6 +196,8 @@ void Game::render()
 {
 	renderer.beginDraw();
 	renderer.draw();
+	renderer.setupNewMeshShader();
+	monk.Render();
 	renderer.endDraw();
 }
 

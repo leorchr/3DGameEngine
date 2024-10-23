@@ -1,4 +1,5 @@
 #include "Assets.h"
+#include "AABB.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -7,9 +8,11 @@
 #include <document.h>
 #include <istreamwrapper.h>
 
+using namespace std;
+
 std::map<string, Texture> Assets::textures;
 std::map<string, Shader> Assets::shaders;
-std::map<string, Mesh> Assets::meshes;
+std::map<string, BasicMesh> Assets::meshes;
 std::map<string, Font> Assets::fonts;
 std::map<string, string> Assets::texts;
 std::map<string, std::vector<std::vector<int>>> Assets::maps;
@@ -48,13 +51,13 @@ Shader& Assets::getShader(const std::string& name)
     return shaders[name];
 }
 
-Mesh Assets::loadMesh(const string& filename, const string& name)
+BasicMesh Assets::loadMesh(const string& filename, const string& name)
 {
     meshes[name] = loadMeshFromFile(filename);
     return meshes[name];
 }
 
-Mesh& Assets::getMesh(const std::string& name)
+BasicMesh& Assets::getMesh(const std::string& name)
 {
     if (meshes.find(name) == end(meshes))
     {
@@ -143,7 +146,7 @@ std::vector<std::vector<int>> Assets::loadMap(const string& filename, const stri
 }
 
 // Retrieves a stored font
-std::vector<vector<int>> Assets::getMap(const std::string& name) {
+std::vector<std::vector<int>> Assets::getMap(const std::string& name) {
     if (maps.find(name) == end(maps))
     {
         std::ostringstream loadError;
@@ -163,10 +166,6 @@ void Assets::clear()
     for (auto iter : shaders)
         iter.second.unload();
     shaders.clear();
-    // Delete all meshes
-    for (auto iter : meshes)
-        iter.second.unload();
-    meshes.clear();
     // Delete all fonts
     for (auto iter : fonts)
         iter.second.unload();
@@ -187,7 +186,7 @@ Texture Assets::loadTextureFromFile(IRenderer& renderer, const string& filename)
     }
     else if (renderer.type() == IRenderer::Type::OGL)
     {
-        texture.loadOGL(dynamic_cast<RendererOGL&>(renderer), filename);
+        texture.loadOGL(dynamic_cast<RendererOGL&>(renderer));
     }
     return texture;
 }
@@ -265,124 +264,10 @@ Shader Assets::loadShaderFromFile(const std::string& vShaderFile, const std::str
     return shader;
 }
 
-Mesh Assets::loadMeshFromFile(const string& filename)
+BasicMesh Assets::loadMeshFromFile(const string& filename)
 {
-    Mesh mesh;
-
-    std::ifstream file(filename);
-    if (!file.is_open())
-    {
-        Log::error(LogCategory::Application, "File not found: Mesh " + filename);
-    }
-
-    std::stringstream fileStream;
-    fileStream << file.rdbuf();
-    std::string contents = fileStream.str();
-    rapidjson::StringStream jsonStr(contents.c_str());
-    rapidjson::Document doc;
-    doc.ParseStream(jsonStr);
-
-    if (!doc.IsObject())
-    {
-        std::ostringstream s;
-        s << "Mesh " << filename << " is not valid json";
-        Log::error(LogCategory::Application, s.str());
-    }
-
-    mesh.setShaderName(doc["shader"].GetString());
-
-    // Skip the vertex format/shader for now
-    // (This is changed in a later chapter's code)
-    size_t vertSize = 8;
-
-    // Load textures
-    const rapidjson::Value& textures = doc["textures"];
-    if (!textures.IsArray() || textures.Size() < 1)
-    {
-        std::ostringstream s;
-        s << "Mesh " << filename << " has no textures, there should be at least one";
-        Log::error(LogCategory::Application, s.str());
-    }
-
-    mesh.setSpecularPower(static_cast<float>(doc["specularPower"].GetDouble()));
-
-    for (rapidjson::SizeType i = 0; i < textures.Size(); i++)
-    {
-        std::string texName = textures[i].GetString();
-        Texture& t = getTexture(texName);
-        mesh.addTexture(&t);
-    }
-
-    // Load in the vertices
-    const rapidjson::Value& vertsJson = doc["vertices"];
-    if (!vertsJson.IsArray() || vertsJson.Size() < 1)
-    {
-        std::ostringstream s;
-        s << "Mesh " << filename << " has no vertices";
-        Log::error(LogCategory::Application, s.str());
-    }
-
-    std::vector<float> vertices;
-    vertices.reserve(vertsJson.Size() * vertSize);
-    float radius = 0.0f;
-    AABB box = AABB(Vector3::infinity, Vector3::negInfinity);
-    for (rapidjson::SizeType i = 0; i < vertsJson.Size(); i++)
-    {
-        // For now, just assume we have 8 elements
-        const rapidjson::Value& vert = vertsJson[i];
-        if (!vert.IsArray() || vert.Size() != 8)
-        {
-            std::ostringstream s;
-            s << "Unexpected vertex format for " << filename;
-            Log::error(LogCategory::Application, s.str());
-        }
-
-        Vector3 pos(static_cast<float>(vert[0].GetDouble()), static_cast<float>(vert[1].GetDouble()), static_cast<float>(vert[2].GetDouble()));
-        radius = Maths::max(radius, pos.lengthSq());
-        box.updateMinMax(pos);
-
-        // Add the floats
-        for (rapidjson::SizeType i = 0; i < vert.Size(); i++)
-        {
-            vertices.emplace_back(static_cast<float>(vert[i].GetDouble()));
-        }
-    }
-
-    // We were computing length squared earlier
-    mesh.setRadius(Maths::sqrt(radius));
-    mesh.setBox(box);
-
-    // Load in the indices
-    const rapidjson::Value& indJson = doc["indices"];
-    if (!indJson.IsArray() || indJson.Size() < 1)
-    {
-        std::ostringstream s;
-        s << "Mesh " << filename << " has no indices";
-        Log::error(LogCategory::Application, s.str());
-    }
-
-    std::vector<unsigned int> indices;
-    indices.reserve(indJson.Size() * 3.0);
-    for (rapidjson::SizeType i = 0; i < indJson.Size(); i++)
-    {
-        const rapidjson::Value& ind = indJson[i];
-        if (!ind.IsArray() || ind.Size() != 3)
-        {
-            std::ostringstream s;
-            s << "Invalid indices for " << filename;
-            Log::error(LogCategory::Application, s.str());
-        }
-
-        indices.emplace_back(ind[0].GetUint());
-        indices.emplace_back(ind[1].GetUint());
-        indices.emplace_back(ind[2].GetUint());
-    }
-
-    // Now create a vertex array
-    mesh.setVertexArray(new VertexArray(vertices.data(), static_cast<unsigned int>(vertices.size()) / vertSize, indices.data(), static_cast<unsigned int>(indices.size())));
-
-    Log::info("Loaded mesh " + filename);
-
+    BasicMesh mesh;
+    mesh.LoadMesh(filename);
     return mesh;
 }
 

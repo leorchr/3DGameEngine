@@ -3,7 +3,7 @@
 #include <string>
 #include "Texture.h"
 #include "Shader.h"
-#include "Mesh.h"
+#include "BasicMesh.h"
 #include "Font.h"
 #include <vector>
 using std::map;
@@ -18,7 +18,7 @@ class Assets
 public:
     static std::map<string, Texture> textures;
     static std::map<string, Shader> shaders;
-    static std::map<string, Mesh> meshes;
+    static std::map<string, BasicMesh> meshes;
     static std::map<string, Font> fonts;
     static std::map<string, string> texts;
     static std::map<string, std::vector<std::vector<int>>> maps;
@@ -40,10 +40,10 @@ public:
     static Shader& getShader(const std::string& name);
 
     // Loads a mesh from file
-    static Mesh loadMesh(const string& filename, const string& name);
+    static BasicMesh loadMesh(const string& filename, const string& name);
 
     // Retrieves a stored mesh
-    static Mesh& getMesh(const std::string& name);
+    static BasicMesh& getMesh(const std::string& name);
 
     // Loads a font from file
     static Font loadFont(const string& filename, const string& name);
@@ -61,7 +61,7 @@ public:
     static std::vector<std::vector<int>> loadMap(const string& filename, const string& name);
 
     // Retrieves a stored font
-    static std::vector<vector<int>> getMap(const std::string& name);
+    static std::vector<std::vector<int>> getMap(const std::string& name);
 
     // Properly de-allocates all loaded resources
     static void clear();
@@ -77,9 +77,9 @@ private:
         const std::string& tcShaderFile = "", const std::string& teShaderFile = "",
         const std::string& gShaderFile = "");
 
-    static Mesh loadMeshFromFile(const string& filename);
+    static BasicMesh loadMeshFromFile(const string& filename);
 
     static Font loadFontFromFile(const string& filename);
 
-    static std::vector<vector<int>> loadMapFromFile(const string& filename);
+    static std::vector<std::vector<int>> loadMapFromFile(const string& filename);
 };

@@ -8,6 +8,7 @@
 #include "SpriteComponent.h"
 #include "Window.h"
 #include <vector>
+#include "BasicMesh.h"
 
 using std::vector;
 
@@ -60,6 +61,7 @@ public:
 	void removeCube(class CubeActor* cube);
 	vector<CubeActor*>& getCubes() { return cubes; }
 	class TPActor* getPlayer() { return player; }
+	class Actor* getActor() { return actor; }
 
 private:
 	void processInput();
@@ -81,4 +83,7 @@ private:
 	class TPActor* player;
 	vector<PlaneActor*> planes;
 	vector<CubeActor*> cubes;
+
+	BasicMesh monk;
+	Actor* actor;
 };

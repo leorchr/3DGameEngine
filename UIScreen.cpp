@@ -109,7 +109,7 @@ void UIScreen::drawTexture(Shader& shader, Texture* texture, const Vector2& offs
 	Matrix4 transMat = Matrix4::createTranslation(Vector3(offset.x, offset.y, 0.0f));
 	Matrix4 world = scaleMat * transMat;
 	shader.setMatrix4("uWorldTransform", world);
-	texture->setActive();
+	texture->bind(GL_TEXTURE0);
 	// Draw quad
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }

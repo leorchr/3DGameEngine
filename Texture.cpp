@@ -3,9 +3,13 @@
 #include <SDL_image.h>
 #include <sstream>
 
-Texture::Texture(): textureID(0), filename(""), width(0), height(0), SDLTexture(nullptr)
+Texture::Texture(GLenum textureTarget, const std::string& fileName) : textureObj(0), fileName(""), width(0), height(0), SDLTexture(nullptr)
 {
+	this->textureTarget = textureTarget;
+	this->fileName      = fileName;
 }
+
+Texture::Texture() : width(0), height(0), fileName(""), textureTarget(GL_TEXTURE_2D), textureObj(0) {}
 
 Texture::~Texture()
 {
@@ -19,7 +23,7 @@ void Texture::unload()
 	}
 	else
 	{
-		glDeleteTextures(1, &textureID);
+		glDeleteTextures(1, &textureObj);
 	}
 }
 
@@ -50,14 +54,13 @@ bool Texture::loadSDL(RendererSDL& renderer, const string& filenameP)
 }
 */
 
-bool Texture::loadOGL(RendererOGL& renderer, const string& filenameP)
+bool Texture::loadOGL(RendererOGL& renderer)
 {
-	filename = filenameP;
 	// Load from file
-	SDL_Surface* surf = IMG_Load(filename.c_str());
+	SDL_Surface* surf = IMG_Load(fileName.c_str());
 	if (!surf)
 	{
-		Log::error(LogCategory::Application, "Failed to load texture file " + filename);
+		Log::error(LogCategory::Application, "Failed to load texture file " + fileName);
 		return false;
 	}
 	width = surf->w;
@@ -71,13 +74,13 @@ bool Texture::loadOGL(RendererOGL& renderer, const string& filenameP)
 	{
 		format = GL_RGBA;
 	}
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
+	glGenTextures(1, &textureObj);
+	glBindTexture(GL_TEXTURE_2D, textureObj);
 	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, surf->pixels);
 	SDL_FreeSurface(surf);
 
 
-	Log::info("Loaded texture " + filename);
+	Log::info("Loaded texture " + fileName);
 	// Enable bilinear filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -91,20 +94,21 @@ void Texture::updateInfo(int& widthOut, int& heightOut)
 	heightOut = height;
 }
 
-void Texture::setActive() const
-{
-	glBindTexture(GL_TEXTURE_2D, textureID);
-}
-
 void Texture::createFromSurface(SDL_Surface* surface)
 {
 	width = surface->w;
 	height = surface->h;
 
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
+	glGenTextures(1, &textureObj);
+	glBindTexture(GL_TEXTURE_2D, textureObj);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
+void Texture::bind(GLenum TextureUnit) const
+{
+	glActiveTexture(TextureUnit);
+	glBindTexture(textureTarget, textureObj);
 }

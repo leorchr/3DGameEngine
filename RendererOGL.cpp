@@ -144,6 +144,20 @@ void RendererOGL::drawMeshes()
 	}
 }
 
+void RendererOGL::setupNewMeshShader()
+{
+	// Enable depth buffering/disable alpha blend
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	Shader& shader = Assets::getShader("Mesh");
+	shader.setMatrix4("uViewProjection", view * projection);
+	shader.setMatrix4("uWorldTransform",Game::instance().getActor()->getWorldTransform());
+	shader.use();
+	// Update view-projection matrix
+	// Lights
+	//setLightUniforms(shader);
+}
+
 void RendererOGL::addSprite(SpriteComponent* sprite)
 {
 	// Insert the sprite at the right place in function of drawOrder
@@ -199,7 +213,7 @@ void RendererOGL::drawSprite(const Actor& actor, const Texture& tex, Rectangle s
 	Matrix4 scaleMat = Matrix4::createScale((float)tex.getWidth(), (float)tex.getHeight(), 1.0f);
 	Matrix4 world = scaleMat * actor.getWorldTransform();
 	Assets::getShader("Sprite").setMatrix4("uWorldTransform", world);
-	tex.setActive();
+	tex.bind(GL_TEXTURE0);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
