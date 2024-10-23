@@ -44,11 +44,7 @@ public:
 	void setVector2f(const GLchar* name, const Vector2& value);
 	void setVector3f(const GLchar* name, GLfloat x, GLfloat y, GLfloat z);
 	void setVector3f(const GLchar* name, const Vector3& value);
-	/*
-	void setVector4f(const GLchar* name, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
-	void setVector4f(const GLchar* name, const Vector4& value);
-	*/
-	void setMatrix4(const GLchar* name, const Matrix4& matrix);
+	void setMatrix4(const GLchar* name, const Matrix4& matrix,const bool transpose);
 
 private:
 	GLuint vs;

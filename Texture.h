@@ -6,13 +6,12 @@ using std::string;
 class Texture
 {
 public:
-	Texture(GLenum textureTarget, const std::string& fileName);
 	Texture();
 	~Texture();
 
 	void unload();
 	//bool loadSDL(RendererSDL& rendererP, const string& filenameP);
-	bool loadOGL(RendererOGL& rendererP);
+	bool loadOGL(RendererOGL& rendererP, std::string fileName);
 	
 
 	inline SDL_Texture* toSDLTexture() const { return SDLTexture; }
@@ -27,8 +26,6 @@ private:
 	int width;
 	int height;
 	SDL_Texture* SDLTexture = nullptr;
-
-	std::string fileName;
 	GLenum textureTarget;
 	GLuint textureObj;
 };

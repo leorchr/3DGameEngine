@@ -24,7 +24,7 @@ void MeshComponent::setVisible(bool isVisibleP)
 void MeshComponent::draw(Shader& shader)
 {
 	Matrix4 worldTransform = owner.getWorldTransform();
-	glUniformMatrix4fv(glGetUniformLocation(shader.id, "uWorldTransform"), 1, GL_FALSE, worldTransform.getAsFloatPtr());
+	shader.setMatrix4("uWorldTransform", worldTransform, false);
 
 	std::vector<BasicMeshEntry> meshes = *mesh->getMeshes();
 	std::vector<Texture*> textures = *mesh->getTextures();

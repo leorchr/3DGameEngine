@@ -112,10 +112,10 @@ void BasicMesh::InitSingleMesh(const aiMesh* paiMesh)
 	}
 }
 
-bool BasicMesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
+bool BasicMesh::InitMaterials(const aiScene* pScene, const std::string& fileName)
 {
 	// Extract the directory part from the file name
-	string::size_type SlashIndex = Filename.find_last_of("/");
+	string::size_type SlashIndex = fileName.find_last_of("/");
 	string Dir;
 
 	if (SlashIndex == string::npos) {
@@ -125,7 +125,7 @@ bool BasicMesh::InitMaterials(const aiScene* pScene, const std::string& Filename
 		Dir = "/";
 	}
 	else {
-		Dir = Filename.substr(0, SlashIndex);
+		Dir = fileName.substr(0, SlashIndex);
 	}
 
 	bool Ret = true;
@@ -146,9 +146,9 @@ bool BasicMesh::InitMaterials(const aiScene* pScene, const std::string& Filename
 					p = p.substr(2, p.size() - 2);
 				}
 
-				string FullPath = Dir + "/" + p;
-				m_Textures[i] = new Texture(GL_TEXTURE_2D, Filename);
-				if (!m_Textures[i]->loadOGL(dynamic_cast<RendererOGL&>(Game::instance().getRenderer()))) {
+				string FullPath = "Res/Textures/" + p;
+				m_Textures[i] = new Texture();
+				if (!m_Textures[i]->loadOGL(dynamic_cast<RendererOGL&>(Game::instance().getRenderer()), FullPath.c_str())) {
 					printf("Error loading texture '%s'\n", FullPath.c_str());
 					delete m_Textures[i];
 					m_Textures[i] = NULL;

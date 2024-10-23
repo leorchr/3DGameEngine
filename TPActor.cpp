@@ -18,7 +18,7 @@ cameraLock(false)
 	moveComponent = new MoveComponent(this);
 	meshComponent = new MeshComponent(this);
 	cameraComponent = new TPSCameraComponent(this);
-	meshComponent->setMesh(Assets::getMesh("Mesh_Cube"));
+	meshComponent->setMesh(Assets::getMesh("Mesh_Monkey"));
 	baseRotation = getRotation();
 	moveComponent->setForwardSpeed(baseSpeed);
 }
@@ -45,7 +45,7 @@ void TPActor::updateActor(float dt)
 		Vector3 cameraForward = cameraForwardRaw;
 		cameraForward.z = 0.0f;
 		cameraForward.normalize();
-
+	
 		if(lerpValue<1.0f)
 		{
 			lerpValue += dt * rotationSpeed;

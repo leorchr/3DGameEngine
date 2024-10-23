@@ -32,7 +32,7 @@ private:
 	void ReserveSpace(unsigned int NumVertices, unsigned int NumIndices);
 	void InitAllMeshes(const aiScene* pScene);
 	void InitSingleMesh(const aiMesh* paiMesh);
-	bool InitMaterials(const aiScene* pScene, const std::string& Filename);
+	bool InitMaterials(const aiScene* pScene, const std::string& fileName);
 	void PopulateBuffers();
 
 #define INVALID_MATERIAL 0xFFFFFFFF

@@ -25,27 +25,12 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
 	Assets::loadShader("Res\\Shaders\\Mesh.vert", "Res\\Shaders\\Mesh.frag", "", "", "", "Mesh");
 	
-	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Cube");
-	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
-	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
-	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Sphere");
-	Assets::loadTexture(renderer, "Res\\Textures\\Crosshair.png", "Crosshair");
-	Assets::loadTexture(renderer, "Res\\Textures\\Rifle.png", "Rifle");
-	Assets::loadTexture(renderer, "Res\\Textures\\Ground.jpg", "Ground");
-	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Wall");
-	Assets::loadTexture(renderer, "Res\\Textures\\WallIco.png", "WallIco");
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonBlue.png", "ButtonBlue");
-	Assets::loadTexture(renderer, "Res\\Textures\\RadarArrow.png", "RadarArrow");
-	Assets::loadTexture(renderer, "Res\\Textures\\Blackbg.jpg", "Blackbg");
-	Assets::loadTexture(renderer, "Res\\Textures\\Jaune.jpg", "Jaune");
-	Assets::loadTexture(renderer, "Res\\Textures\\Rouge.jpg", "Rouge");
-	Assets::loadTexture(renderer, "Res\\Textures\\spikeTrap.png", "Spikes");
-	Assets::loadTexture(renderer, "Res\\Textures\\CrosshairRed.png", "CrosshairRed");
-	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
-	Assets::loadTexture(renderer, "Res\\Textures\\RacingCar.png", "RacingCar");
+	Assets::loadTexture(renderer, "Res\\Textures\\DialogBG.png", "DialogBG");
 	
 	Assets::loadMesh("Res\\Meshes\\monkey.fbx", "Mesh_Monkey");
+	Assets::loadMesh("Res\\Meshes\\spider.obj", "Mesh_Spider");
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
@@ -53,9 +38,9 @@ void Game::load()
 	player = new FPSActor();
 	actor = new Actor();
 	actor->setPosition(Vector3(0.0f,0.0f,-5.0f));
-	actor->setScale(Vector3(10.0f,10.0f,10.0f));
+	actor->setScale(Vector3(1.0f,1.0f,1.0f));
 	MeshComponent* mc = new MeshComponent(actor);
-	mc->setMesh(Assets::getMesh("Mesh_Monkey"));
+	mc->setMesh(Assets::getMesh("Mesh_Spider"));
 
 	for(int i = 0; i < 5; i++)
 	{

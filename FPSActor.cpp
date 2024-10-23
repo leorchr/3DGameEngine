@@ -24,7 +24,7 @@ FPSActor::FPSActor() :
 	FPSModel = new Actor();
 	FPSModel->setScale(Vector3(0.75f,0.75f,0.75f));
 	meshComponent = new MeshComponent(FPSModel);
-	meshComponent->setMesh(Assets::getMesh("Mesh_Rifle"));
+	meshComponent->setMesh(Assets::getMesh("Mesh_Monkey"));
 
 	boxComponent = new BoxComponent(this);
 	AABB collision(Vector3(-25.0f, -25.0f, -87.5f), Vector3(25.0f, 25.0f, 87.5f));

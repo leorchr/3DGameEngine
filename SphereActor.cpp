@@ -5,5 +5,5 @@
 SphereActor::SphereActor() : Actor()
 {
 	MeshComponent* mc = new MeshComponent(this);
-	mc->setMesh(Assets::getMesh("Mesh_Sphere"));
+	mc->setMesh(Assets::getMesh("Mesh_Monkey"));
 }

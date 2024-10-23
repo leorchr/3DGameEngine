@@ -133,7 +133,7 @@ void RendererOGL::drawMeshes()
 	shader.use();
 	// Update view-projection matrix
 	Matrix4 viewProj = view * projection;
-	glUniformMatrix4fv(glGetUniformLocation(shader.id, "uViewProjection"), 1, GL_FALSE, viewProj.getAsFloatPtr());
+	shader.setMatrix4("uViewProjection", viewProj, false);
 	// Lights
 	setLightUniforms(shader);
 	// Draw
@@ -176,7 +176,7 @@ void RendererOGL::drawSprites()
 	// Active shader and vertex array
 	Shader& spriteShader = Assets::getShader("Sprite");
 	spriteShader.use();
-	spriteShader.setMatrix4("uViewProj", spriteViewProj);
+	spriteShader.setMatrix4("uViewProj", spriteViewProj, true);
 	spriteVertexArray->setActive();
 
 	for (auto sprite : sprites)
@@ -200,7 +200,7 @@ void RendererOGL::drawSprite(const Actor& actor, const Texture& tex, Rectangle s
 {
 	Matrix4 scaleMat = Matrix4::createScale((float)tex.getWidth(), (float)tex.getHeight(), 1.0f);
 	Matrix4 world = scaleMat * actor.getWorldTransform();
-	Assets::getShader("Sprite").setMatrix4("uWorldTransform", world);
+	Assets::getShader("Sprite").setMatrix4("uWorldTransform", world, true);
 	tex.bind(GL_TEXTURE0);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
