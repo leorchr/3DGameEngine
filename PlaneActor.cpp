@@ -10,7 +10,6 @@ PlaneActor::PlaneActor() : Actor()
 	mc = new MeshComponent(this);
 	BasicMesh* mesh = &Assets::getMesh("Mesh_Plane");
 	mc->setMesh(*mesh);
-	mc->setTextureIndex(0);
 	box = new BoxComponent(this);
 
 	getGame().addPlane(this);

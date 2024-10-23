@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "BasicMesh.h"
 #include "CubeActor.h"
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
@@ -8,7 +9,6 @@
 #include "SpriteComponent.h"
 #include "Window.h"
 #include <vector>
-#include "BasicMesh.h"
 
 using std::vector;
 

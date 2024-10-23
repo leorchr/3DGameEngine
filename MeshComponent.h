@@ -14,12 +14,10 @@ public:
 
 	virtual void draw(class Shader& shader);
 	virtual void setMesh(class BasicMesh& meshP);
-	void setTextureIndex(size_t textureIndexP);
 
 
 protected:
 	BasicMesh* mesh;
-	size_t textureIndex;
 	bool isVisible;
 };
 

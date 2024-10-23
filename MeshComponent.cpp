@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Mesh.h"
 
-MeshComponent::MeshComponent(Actor* owner) : Component(owner), mesh(nullptr), textureIndex(0), isVisible(true)
+MeshComponent::MeshComponent(Actor* owner) : Component(owner), mesh(nullptr), isVisible(true)
 {
 	owner->getGame().getRenderer().addMesh(this);
 }
@@ -20,14 +20,12 @@ void MeshComponent::setVisible(bool isVisibleP)
 
 void MeshComponent::draw(Shader& shader)
 {
+	Matrix4 worldTransform = owner.getWorldTransform();
+	glUniformMatrix4fv(glGetUniformLocation(shader.id, "uWorldTransform"), 1, GL_FALSE, worldTransform.getAsFloatPtr());
+	mesh->Render();
 }
 
 void MeshComponent::setMesh(BasicMesh& meshP)
 {
 	mesh = &meshP;
-}
-
-void MeshComponent::setTextureIndex(size_t textureIndexP)
-{
-	textureIndex = textureIndexP;
 }

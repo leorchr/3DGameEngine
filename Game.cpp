@@ -5,8 +5,6 @@
 #include "FPSActor.h"
 #include <algorithm>
 #include <vector>
-#include "Shader.h"
-#include <iostream>
 
 bool Game::initialize()
 {
@@ -25,7 +23,7 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\Sprite.vert", "Res\\Shaders\\Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Res\\Shaders\\Phong.vert", "Res\\Shaders\\Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
-	Shader shader = Assets::loadShader("Res\\Shaders\\Mesh.vert", "Res\\Shaders\\Mesh.frag", "", "", "", "Mesh");
+	Assets::loadShader("Res\\Shaders\\Mesh.vert", "Res\\Shaders\\Mesh.frag", "", "", "", "Mesh");
 	
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
@@ -53,18 +51,18 @@ void Game::load()
 	Assets::loadText("Res\\Localization\\English.gptext");
 
 	monk = Assets::getMesh("Mesh_Monkey");
-	
 	player = new FPSActor();
 	actor = new Actor();
 	actor->setPosition(Vector3(0.0f,0.0f,-5.0f));
 	actor->setScale(Vector3(10.0f,10.0f,10.0f));
+	MeshComponent* mc = new MeshComponent(actor);
+	mc->setMesh(Assets::getMesh("Mesh_Monkey"));
 
 	for(int i = 0; i < 5; i++)
 	{
 		for(int y = 0; y < 5; y++)
 		{
 			auto plane = new PlaneActor();
-			plane->getMesh()->setTextureIndex(1);
 			plane->setScale(Vector3(10,10,10));
 			Vector3 pos = Vector3(plane->getPosition().x + i * 1000, plane-> getPosition().y + y * 1000, 0.0f);
 			plane->setPosition(pos);
@@ -196,8 +194,6 @@ void Game::render()
 {
 	renderer.beginDraw();
 	renderer.draw();
-	renderer.setupNewMeshShader();
-	monk.Render();
 	renderer.endDraw();
 }
 
