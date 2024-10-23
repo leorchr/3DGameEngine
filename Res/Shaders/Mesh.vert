@@ -10,6 +10,6 @@ out vec2 TexCoord0;
 
 void main()
 {
-    gl_Position = vec4(Position, 1.0);
+    gl_Position = uViewProjection * uWorldTransform * vec4(Position, 1.0);
     TexCoord0 = TexCoord;
 }

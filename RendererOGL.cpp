@@ -7,7 +7,8 @@
 #include "Log.h"
 #include "Game.h"
 #include "UIScreen.h"
-
+#include <complex>
+#include <iostream>
 #include <GL/glew.h>
 #include <SDL_image.h>
 
@@ -150,9 +151,31 @@ void RendererOGL::setupNewMeshShader()
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	Shader& shader = Assets::getShader("Mesh");
-	shader.setMatrix4("uViewProjection", view * projection);
-	shader.setMatrix4("uWorldTransform",Game::instance().getActor()->getWorldTransform());
 	shader.use();
+	//shader.setMatrix4("uViewProjection", viewProj);
+	//shader.setMatrix4("uWorldTransform",Game::instance().getActor()->getWorldTransform());
+
+	float mat[4][4] = {{ 0.0, 0.0, 1.001001, 1.0 },
+			{ 0.803333163, 0.0, 0.0, 0.0 },
+			{ 0.0, 1.42814779, 0.0, 0.0 },
+			{ 0.0, 0.0, 20.0200195, 30.0 }};
+	
+	Matrix4 viewProj = Matrix4(mat);
+	Matrix4 viewProj2 = view * projection;
+
+	float mat2[4][4] = {{ 10.0, 0.0, 0.0, 0.0 },
+			{ 0.0, 10.0, 0.0, 0.0 },
+			{ 0.0, 0.0, 10.0, 0.0 },
+			{ 0.0, 0.0, 0.0, 1.0 }};
+
+	Matrix4 worldTrans = Game::instance().getActor()->getWorldTransform();
+	
+	GLint location = glGetUniformLocation(shader.id, "uViewProjection");
+	GLint location2 = glGetUniformLocation(shader.id, "uWorldTransform");
+	glUniformMatrix4fv(location, 1, GL_FALSE, viewProj2.getAsFloatPtr());
+	glUniformMatrix4fv(location2, 1, GL_FALSE, worldTrans.getAsFloatPtr());
+	std::cout <<location << std::endl;
+	std::cout <<location2 << std::endl;
 	// Update view-projection matrix
 	// Lights
 	//setLightUniforms(shader);

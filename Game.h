@@ -60,7 +60,7 @@ public:
 	void addCube(class CubeActor* cube);
 	void removeCube(class CubeActor* cube);
 	vector<CubeActor*>& getCubes() { return cubes; }
-	class TPActor* getPlayer() { return player; }
+	class FPSActor* getPlayer() { return player; }
 	class Actor* getActor() { return actor; }
 
 private:
@@ -80,7 +80,7 @@ private:
 	vector<Actor*> pendingActors;
 
 	// Game specific
-	class TPActor* player;
+	class FPSActor* player;
 	vector<PlaneActor*> planes;
 	vector<CubeActor*> cubes;
 

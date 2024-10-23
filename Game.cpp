@@ -2,9 +2,11 @@
 #include "Assets.h"
 #include "PauseScreen.h"
 #include "Timer.h"
-#include "TPActor.h"
+#include "FPSActor.h"
 #include <algorithm>
 #include <vector>
+#include "Shader.h"
+#include <iostream>
 
 bool Game::initialize()
 {
@@ -23,8 +25,8 @@ void Game::load()
 	Assets::loadShader("Res\\Shaders\\Sprite.vert", "Res\\Shaders\\Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Res\\Shaders\\Phong.vert", "Res\\Shaders\\Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Res\\Shaders\\BasicMesh.vert", "Res\\Shaders\\BasicMesh.frag", "", "", "", "BasicMesh");
-	Assets::loadShader("Res\\Shaders\\Mesh.vert", "Res\\Shaders\\Mesh.frag", "", "", "", "Mesh");
-
+	Shader shader = Assets::loadShader("Res\\Shaders\\Mesh.vert", "Res\\Shaders\\Mesh.frag", "", "", "", "Mesh");
+	
 	Assets::loadTexture(renderer, "Res\\Textures\\Wall.jpg", "Cube");
 	Assets::loadTexture(renderer, "Res\\Textures\\Planch.png", "Plane");
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
@@ -52,12 +54,10 @@ void Game::load()
 
 	monk = Assets::getMesh("Mesh_Monkey");
 	
-	player = new TPActor();
-	player->setScale(player->getScale()*10);
-	player->setPosition(player->getPosition() + Vector3(0.0f,0.0f,10.0f));
+	player = new FPSActor();
 	actor = new Actor();
-	actor->setPosition(Vector3(0.0f,0.0f,0.0f));
-	actor->setScale(Vector3(1.0f,1.0f,1.0f));
+	actor->setPosition(Vector3(0.0f,0.0f,-5.0f));
+	actor->setScale(Vector3(10.0f,10.0f,10.0f));
 
 	for(int i = 0; i < 5; i++)
 	{
