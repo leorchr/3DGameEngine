@@ -49,8 +49,7 @@ void Game::load()
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
-
-	monk = Assets::getMesh("Mesh_Monkey");
+	
 	player = new FPSActor();
 	actor = new Actor();
 	actor->setPosition(Vector3(0.0f,0.0f,-5.0f));

@@ -35,60 +35,6 @@ bool BasicMesh::LoadMesh(const std::string& Filename)
 	return Ret;
 }
 
-void BasicMesh::Render()
-{
-	glBindVertexArray(m_VAO);
-
-	for (unsigned int i = 0 ; i < m_Meshes.size() ; i++) {
-		unsigned int MaterialIndex = m_Meshes[i].MaterialIndex;
-
-		assert(MaterialIndex < m_Textures.size());
-
-		if (m_Textures[MaterialIndex]) {
-			m_Textures[MaterialIndex]->bind(GL_TEXTURE0);
-		}
-
-		glDrawElementsBaseVertex(GL_TRIANGLES,
-								 m_Meshes[i].NumIndices,
-								 GL_UNSIGNED_INT,
-								 (void*)(sizeof(unsigned int) * m_Meshes[i].BaseIndex),
-								 m_Meshes[i].BaseVertex);
-	}
-	// Make sure the VAO is not changed from the outside
-	glBindVertexArray(0);
-}
-
-void BasicMesh::Render(unsigned int NumInstances, const Matrix4* WVPMats, const Matrix4* WorldMats)
-{
-	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WVP_MAT_VB]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Matrix4) * NumInstances, WVPMats, GL_DYNAMIC_DRAW);
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[WORLD_MAT_VB]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Matrix4) * NumInstances, WorldMats, GL_DYNAMIC_DRAW);
-
-	glBindVertexArray(m_VAO);
-
-	for (unsigned int i = 0 ; i < m_Meshes.size() ; i++) {
-		const unsigned int MaterialIndex = m_Meshes[i].MaterialIndex;
-
-		assert(MaterialIndex < m_Textures.size());
-
-		if (m_Textures[MaterialIndex]) {
-			m_Textures[MaterialIndex]->bind(GL_TEXTURE0);
-		}
-
-		glDrawElementsInstancedBaseVertex(GL_TRIANGLES,
-										  m_Meshes[i].NumIndices,
-										  GL_UNSIGNED_INT,
-										  (void*)(sizeof(unsigned int) * m_Meshes[i].BaseIndex),
-										  NumInstances,
-										  m_Meshes[i].BaseVertex);
-	}
-
-	// Make sure the VAO is not changed from the outside
-	glBindVertexArray(0);
-}
-
 bool BasicMesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 {
 	m_Meshes.resize(pScene->mNumMeshes);

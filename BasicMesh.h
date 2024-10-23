@@ -13,29 +13,26 @@
 #define GLCheckError() (glGetError() == GL_NO_ERROR)
 #define ASSIMP_LOAD_FLAGS (aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_JoinIdenticalVertices)
 
+struct BasicMeshEntry;
+
 class BasicMesh
 {
 public:
 	BasicMesh(){}
 	~BasicMesh(){}
 	bool LoadMesh(const std::string& Filename);
-	void Render();
-	void Render(unsigned int NumInstances, const Matrix4* WVPMats, const Matrix4* WorldMats);
 
+	std::vector<BasicMeshEntry>* getMeshes() {return &m_Meshes; }
+	std::vector<Texture*>* getTextures() {return &m_Textures; }
+	GLuint getVAO() const { return m_VAO; }
 private:
 
 	bool InitFromScene(const aiScene* pScene, const std::string& Filename);
-	
 	void CountVerticesAndIndices(const aiScene* pScene, unsigned int& NumVertices, unsigned int& NumIndices);
-
 	void ReserveSpace(unsigned int NumVertices, unsigned int NumIndices);
-
 	void InitAllMeshes(const aiScene* pScene);
-
 	void InitSingleMesh(const aiMesh* paiMesh);
-
 	bool InitMaterials(const aiScene* pScene, const std::string& Filename);
-
 	void PopulateBuffers();
 
 #define INVALID_MATERIAL 0xFFFFFFFF
@@ -52,22 +49,7 @@ private:
 	
 	GLuint m_VAO = 0;
 	GLuint m_Buffers[NUM_BUFFERS] = { 0 };
-
-	struct BasicMeshEntry {
-		BasicMeshEntry()
-		{
-			NumIndices = 0;
-			BaseVertex = 0;
-			BaseIndex = 0;
-			MaterialIndex = INVALID_MATERIAL;
-		}
-
-		unsigned int NumIndices;
-		unsigned int BaseVertex;
-		unsigned int BaseIndex;
-		unsigned int MaterialIndex;
-	};
-
+	
 	std::vector<BasicMeshEntry> m_Meshes;
 	std::vector<Texture*> m_Textures;
 
@@ -76,4 +58,19 @@ private:
 	std::vector<Vector3> m_Normals;
 	std::vector<Vector2> m_TexCoords;
 	std::vector<unsigned int> m_Indices;
+};
+
+struct BasicMeshEntry {
+	BasicMeshEntry()
+	{
+		NumIndices = 0;
+		BaseVertex = 0;
+		BaseIndex = 0;
+		MaterialIndex = INVALID_MATERIAL;
+	}
+
+	unsigned int NumIndices;
+	unsigned int BaseVertex;
+	unsigned int BaseIndex;
+	unsigned int MaterialIndex;
 };

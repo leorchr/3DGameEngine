@@ -1,6 +1,5 @@
 #pragma once
 #include "Actor.h"
-#include "BasicMesh.h"
 #include "CubeActor.h"
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
@@ -83,7 +82,5 @@ private:
 	class FPSActor* player;
 	vector<PlaneActor*> planes;
 	vector<CubeActor*> cubes;
-
-	BasicMesh monk;
 	Actor* actor;
 };

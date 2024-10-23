@@ -267,7 +267,7 @@ Shader Assets::loadShaderFromFile(const std::string& vShaderFile, const std::str
 BasicMesh Assets::loadMeshFromFile(const string& filename)
 {
     BasicMesh mesh;
-    mesh.LoadMesh(filename);
+    if(mesh.LoadMesh(filename)) Log::info("Loaded mesh " + filename);
     return mesh;
 }
 
