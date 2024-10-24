@@ -12,7 +12,7 @@ using namespace std;
 
 std::map<string, Texture> Assets::textures;
 std::map<string, Shader> Assets::shaders;
-std::map<string, BasicMesh> Assets::meshes;
+std::map<string, Mesh> Assets::meshes;
 std::map<string, Font> Assets::fonts;
 std::map<string, string> Assets::texts;
 std::map<string, std::vector<std::vector<int>>> Assets::maps;
@@ -51,13 +51,13 @@ Shader& Assets::getShader(const std::string& name)
     return shaders[name];
 }
 
-BasicMesh Assets::loadMesh(const string& filename, const string& name)
+Mesh Assets::loadMesh(const string& filename, const string& name)
 {
     meshes[name] = loadMeshFromFile(filename);
     return meshes[name];
 }
 
-BasicMesh& Assets::getMesh(const std::string& name)
+Mesh& Assets::getMesh(const std::string& name)
 {
     if (meshes.find(name) == end(meshes))
     {
@@ -264,9 +264,9 @@ Shader Assets::loadShaderFromFile(const std::string& vShaderFile, const std::str
     return shader;
 }
 
-BasicMesh Assets::loadMeshFromFile(const string& filename)
+Mesh Assets::loadMeshFromFile(const string& filename)
 {
-    BasicMesh mesh;
+    Mesh mesh;
     if(mesh.LoadMesh(filename)) Log::info("Loaded mesh " + filename);
     else Log::error(LogCategory::Application, "Failed to load mesh " + filename);
     return mesh;

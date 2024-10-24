@@ -30,7 +30,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res/Textures/DialogBG.png", "DialogBG");
 	
 	Assets::loadMesh("Res/Meshes/plane.fbx", "Mesh_Plane");
-	Assets::loadMesh("Res/Meshes/cufbe.fbx", "Mesh_Cube");
+	Assets::loadMesh("Res/Meshes/cube.fbx", "Mesh_Cube");
 
 	Assets::loadFont("Res/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res/Localization/English.gptext");

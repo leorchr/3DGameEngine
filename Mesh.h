@@ -1,41 +1,74 @@
-#pragma once
-#include <string>
+﻿#pragma once
+#include <GL/glew.h>
 #include <vector>
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>			// Output data structure
+#include <assimp/postprocess.h>		// Post processing flags
+#include "Vector3.h"
+#include "Vector2.h"
 #include "Texture.h"
-#include "AABB.h"
 
-using std::string;
-using std::vector;
+#define GLCheckError() (glGetError() == GL_NO_ERROR)
+#define ASSIMP_LOAD_FLAGS (aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_JoinIdenticalVertices)
+
+struct MeshEntry;
 
 class Mesh
 {
 public:
-	Mesh();
-	~Mesh();
+	Mesh(){}
+	~Mesh(){}
+	bool LoadMesh(const std::string& Filename);
 
-	void unload();
-
-	class VertexArray* getVertexArray() { return vertexArray; }
-	const string& getShaderName() const { return shaderName; }
-	float getRadius() const { return radius; }
-	float getSpecularPower() const { return specularPower; }
-	const AABB& getBox() const { return box; }
-
-	void addTexture(Texture* texture);
-	Texture* getTexture(int index);
-
-	void setVertexArray(VertexArray* vertexArrayP);
-	void setShaderName(const string& shaderNameP);
-	void setRadius(float radiusP);
-	void setSpecularPower(float specularPowerP);
-	void setBox(const AABB& boxP);
-
+	std::vector<MeshEntry>* getMeshes() {return &m_Meshes; }
+	std::vector<Texture*>* getTextures() {return &m_Textures; }
+	GLuint getVAO() const { return m_VAO; }
 private:
-	vector<Texture*> textures;
-	class VertexArray* vertexArray;
-	string shaderName;
-	float radius; // Bounding sphere radius
-	float specularPower;
-	AABB box;
+
+	bool InitFromScene(const aiScene* pScene, const std::string& Filename);
+	void CountVerticesAndIndices(const aiScene* pScene, unsigned int& NumVertices, unsigned int& NumIndices);
+	void ReserveSpace(unsigned int NumVertices, unsigned int NumIndices);
+	void InitAllMeshes(const aiScene* pScene);
+	void InitSingleMesh(const aiMesh* paiMesh);
+	bool InitMaterials(const aiScene* pScene, const std::string& fileName);
+	void PopulateBuffers();
+
+#define INVALID_MATERIAL 0xFFFFFFFF
+	
+	enum BUFFER_TYPE {
+		INDEX_BUFFER = 0,
+		POS_VB       = 1,
+		TEXCOORD_VB  = 2,
+		NORMAL_VB    = 3,
+		WVP_MAT_VB   = 4,
+		WORLD_MAT_VB = 5,
+		NUM_BUFFERS  = 6
+	};
+	
+	GLuint m_VAO = 0;
+	GLuint m_Buffers[NUM_BUFFERS] = { 0 };
+	
+	std::vector<MeshEntry> m_Meshes;
+	std::vector<Texture*> m_Textures;
+
+	// Temporary space for vertex stuff before we load them into the GPU
+	std::vector<Vector3> m_Positions;
+	std::vector<Vector3> m_Normals;
+	std::vector<Vector2> m_TexCoords;
+	std::vector<unsigned int> m_Indices;
 };
 
+struct MeshEntry {
+	MeshEntry()
+	{
+		NumIndices = 0;
+		BaseVertex = 0;
+		BaseIndex = 0;
+		MaterialIndex = INVALID_MATERIAL;
+	}
+
+	unsigned int NumIndices;
+	unsigned int BaseVertex;
+	unsigned int BaseIndex;
+	unsigned int MaterialIndex;
+};

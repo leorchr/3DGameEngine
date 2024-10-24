@@ -1,5 +1,5 @@
 #include "MeshComponent.h"
-#include "BasicMesh.h"
+#include "Mesh.h"
 #include "Actor.h"
 #include "Game.h"
 #include "Texture.h"
@@ -26,7 +26,7 @@ void MeshComponent::draw(Shader& shader)
 	Matrix4 worldTransform = owner.getWorldTransform();
 	shader.setMatrix4("uWorldTransform", worldTransform, false);
 
-	std::vector<BasicMeshEntry> meshes = *mesh->getMeshes();
+	std::vector<MeshEntry> meshes = *mesh->getMeshes();
 	std::vector<Texture*> textures = *mesh->getTextures();
 	
 	glBindVertexArray(mesh->getVAO());
@@ -50,7 +50,7 @@ void MeshComponent::draw(Shader& shader)
 	glBindVertexArray(0);
 }
 
-void MeshComponent::setMesh(BasicMesh& meshP)
+void MeshComponent::setMesh(Mesh& meshP)
 {
 	mesh = &meshP;
 }

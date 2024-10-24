@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 
-class BasicMesh;
+class Mesh;
 
 class MeshComponent : public Component
 {
@@ -13,11 +13,11 @@ public:
 	void setVisible(bool isVisibleP);
 
 	virtual void draw(class Shader& shader);
-	virtual void setMesh(class BasicMesh& meshP);
+	virtual void setMesh(class Mesh& meshP);
 
 
 protected:
-	BasicMesh* mesh;
+	Mesh* mesh;
 	bool isVisible;
 };
 
