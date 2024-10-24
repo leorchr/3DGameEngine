@@ -4,6 +4,8 @@
 #include "FPSCameraComponent.h"
 #include "MeshComponent.h"
 #include "Assets.h"
+#include "PlaneActor.h"
+#include "CubeActor.h"
 #include "FPSCameraComponent.h"
 #include "MeshComponent.h"
 #include "BoxComponent.h"

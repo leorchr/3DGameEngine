@@ -2,7 +2,9 @@
 #include "Assets.h"
 #include "FPSActor.h"
 #include "PauseScreen.h"
+#include "PlaneActor.h"
 #include "Timer.h"
+#include "MeshComponent.h"
 #include <algorithm>
 #include <vector>
 
@@ -38,7 +40,7 @@ void Game::load()
 	player = new FPSActor();
 	player->setPosition(Vector3(0.0f,0.0f,100.0f));
 	
-	actor = new Actor();
+	Actor* actor = new Actor();
 	actor->setPosition(Vector3(200.0f,0.0f,50.0f));
 	actor->setScale(Vector3(50.0f,50.0f,50.0f));
 	MeshComponent* mc = new MeshComponent(actor);

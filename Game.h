@@ -1,11 +1,8 @@
 #pragma once
 #include "Actor.h"
-#include "CubeActor.h"
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
-#include "PlaneActor.h"
 #include "RendererOGL.h"
-#include "SpriteComponent.h"
 #include "Window.h"
 #include <vector>
 
@@ -54,13 +51,12 @@ public:
 	// Game-specific
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
-	vector<PlaneActor*>& getPlanes() { return planes; }
+	vector<class PlaneActor*>& getPlanes() { return planes; }
 
 	void addCube(class CubeActor* cube);
 	void removeCube(class CubeActor* cube);
-	vector<CubeActor*>& getCubes() { return cubes; }
+	vector<class CubeActor*>& getCubes() { return cubes; }
 	class FPSActor* getPlayer() { return player; }
-	class Actor* getActor() { return actor; }
 
 private:
 	void processInput();
@@ -80,7 +76,6 @@ private:
 
 	// Game specific
 	class FPSActor* player;
-	vector<PlaneActor*> planes;
-	vector<CubeActor*> cubes;
-	Actor* actor;
+	vector<class PlaneActor*> planes;
+	vector<class CubeActor*> cubes;
 };
