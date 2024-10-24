@@ -268,6 +268,7 @@ BasicMesh Assets::loadMeshFromFile(const string& filename)
 {
     BasicMesh mesh;
     if(mesh.LoadMesh(filename)) Log::info("Loaded mesh " + filename);
+    else Log::error(LogCategory::Application, "Failed to load mesh " + filename);
     return mesh;
 }
 

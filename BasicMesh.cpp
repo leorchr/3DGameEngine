@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "Game.h"
 #include "RendererOGL.h"
+#include "Log.h"
 
 #define POSITION_LOCATION    0
 #define TEX_COORD_LOCATION   1
@@ -26,7 +27,7 @@ bool BasicMesh::LoadMesh(const std::string& Filename)
 		Ret = InitFromScene(pScene, Filename);
 	}
 	else {
-		printf("Error parsing '%s': '%s'\n", Filename.c_str(), Importer.GetErrorString());
+		Log::error(LogCategory::Application, "Failed to parse " + Filename);
 	}
 
 	// Make sure the VAO is not changed from the outside
@@ -149,13 +150,9 @@ bool BasicMesh::InitMaterials(const aiScene* pScene, const std::string& fileName
 				string FullPath = "Res/Textures/" + p;
 				m_Textures[i] = new Texture();
 				if (!m_Textures[i]->loadOGL(dynamic_cast<RendererOGL&>(Game::instance().getRenderer()), FullPath.c_str())) {
-					printf("Error loading texture '%s'\n", FullPath.c_str());
 					delete m_Textures[i];
 					m_Textures[i] = NULL;
 					Ret = false;
-				}
-				else {
-					printf("Loaded texture '%s'\n", FullPath.c_str());
 				}
 			}
 		}
