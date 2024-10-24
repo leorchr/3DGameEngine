@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "RendererOGL.h"
 #include "Log.h"
+#include "Texture.h"
 
 #define POSITION_LOCATION    0
 #define TEX_COORD_LOCATION   1

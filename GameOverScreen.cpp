@@ -2,8 +2,8 @@
 #include "GameOverScreen.h"
 #include "Game.h"
 #include "DialogBox.h"
+#include "Texture.h"
 #include <string>
-#include <iostream>
 
 GameOverScreen::GameOverScreen() : UIScreen()
 {

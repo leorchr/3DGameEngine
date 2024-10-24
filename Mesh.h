@@ -4,14 +4,14 @@
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>			// Output data structure
 #include <assimp/postprocess.h>		// Post processing flags
-#include "Vector3.h"
-#include "Vector2.h"
-#include "Texture.h"
 
 #define GLCheckError() (glGetError() == GL_NO_ERROR)
 #define ASSIMP_LOAD_FLAGS (aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_JoinIdenticalVertices)
 
 struct MeshEntry;
+struct Vector2;
+struct Vector3;
+class Texture;
 
 class Mesh
 {

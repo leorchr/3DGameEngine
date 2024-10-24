@@ -1,6 +1,7 @@
 #include "Text.h"
 #include "Texture.h"
 #include "Assets.h"
+#include "Font.h"
 
 Text::Text(std::string content, Vector2 position) :
 	text(content),

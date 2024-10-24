@@ -1,11 +1,12 @@
-#include "Game.h"
 #include "Assets.h"
+#include "Font.h"
 #include "FPSActor.h"
+#include "Game.h"
+#include "MeshComponent.h"
 #include "PauseScreen.h"
 #include "PlaneActor.h"
+#include "Texture.h"
 #include "Timer.h"
-#include "MeshComponent.h"
-#include <algorithm>
 #include <vector>
 
 bool Game::initialize()
