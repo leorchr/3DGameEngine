@@ -18,7 +18,7 @@ cameraLock(false)
 	moveComponent = new MoveComponent(this);
 	meshComponent = new MeshComponent(this);
 	cameraComponent = new TPSCameraComponent(this);
-	meshComponent->setMesh(Assets::getMesh("Mesh_Monkey"));
+	meshComponent->setMesh(Assets::getMesh("Mesh_Cube"));
 	baseRotation = getRotation();
 	moveComponent->setForwardSpeed(baseSpeed);
 }

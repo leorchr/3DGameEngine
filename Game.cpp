@@ -1,8 +1,8 @@
 #include "Game.h"
 #include "Assets.h"
+#include "FPSActor.h"
 #include "PauseScreen.h"
 #include "Timer.h"
-#include "FPSActor.h"
 #include <algorithm>
 #include <vector>
 
@@ -29,30 +29,32 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Res\\Textures\\DialogBG.png", "DialogBG");
 	
-	Assets::loadMesh("Res\\Meshes\\monkey.fbx", "Mesh_Monkey");
-	Assets::loadMesh("Res\\Meshes\\spider.obj", "Mesh_Spider");
+	Assets::loadMesh("Res\\Meshes\\plane.fbx", "Mesh_Plane");
+	Assets::loadMesh("Res\\Meshes\\cube.fbx", "Mesh_Cube");
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 	
 	player = new FPSActor();
+	player->setPosition(Vector3(0.0f,0.0f,100.0f));
+	
 	actor = new Actor();
-	actor->setPosition(Vector3(0.0f,0.0f,-5.0f));
-	actor->setScale(Vector3(1.0f,1.0f,1.0f));
+	actor->setPosition(Vector3(200.0f,0.0f,50.0f));
+	actor->setScale(Vector3(50.0f,50.0f,50.0f));
 	MeshComponent* mc = new MeshComponent(actor);
-	mc->setMesh(Assets::getMesh("Mesh_Spider"));
+	mc->setMesh(Assets::getMesh("Mesh_Cube"));
 
 	for(int i = 0; i < 5; i++)
 	{
 		for(int y = 0; y < 5; y++)
 		{
 			auto plane = new PlaneActor();
-			plane->setScale(Vector3(10,10,10));
+			plane->setScale(Vector3(500,500,1));
 			Vector3 pos = Vector3(plane->getPosition().x + i * 1000, plane-> getPosition().y + y * 1000, 0.0f);
 			plane->setPosition(pos);
 		}
 	}
-	
+
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
 	DirectionalLight& dir = renderer.getDirectionalLight();

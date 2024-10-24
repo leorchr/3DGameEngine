@@ -6,9 +6,9 @@
 
 PlaneActor::PlaneActor() : Actor()
 {
-	setScale(Vector3(2.0f,2.0f,2.0f));
+	setScale(Vector3(1.0f,1.0f,1.0f));
 	mc = new MeshComponent(this);
-	BasicMesh* mesh = &Assets::getMesh("Mesh_Monkey");
+	BasicMesh* mesh = &Assets::getMesh("Mesh_Plane");
 	mc->setMesh(*mesh);
 	box = new BoxComponent(this);
 

@@ -5,7 +5,7 @@
 
 #define POSITION_LOCATION    0
 #define TEX_COORD_LOCATION   1
-#define NORMAL_LOCATION   1
+#define NORMAL_LOCATION   2
 
 bool BasicMesh::LoadMesh(const std::string& Filename)
 {
