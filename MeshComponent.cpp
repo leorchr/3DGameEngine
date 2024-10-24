@@ -33,7 +33,7 @@ void MeshComponent::draw(Shader& shader)
 
 	for (unsigned int i = 0 ; i < meshes.size() ; i++) {
 		unsigned int MaterialIndex = meshes[i].MaterialIndex;
-
+		if(textures[MaterialIndex] == nullptr) continue;
 		assert(MaterialIndex < textures.size());
 
 		if (textures[MaterialIndex]) {
