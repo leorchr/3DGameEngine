@@ -117,7 +117,8 @@
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Ressources" mkdir "$(TargetDir)Ressources"
-xcopy "$(ProjectDir)Ressources" "$(TargetDir)Ressources" /e /y /i /r</Command>
+xcopy "$(ProjectDir)Ressources" "$(TargetDir)Ressources" /e /y /i /r
+xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
