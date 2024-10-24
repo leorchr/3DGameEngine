@@ -20,20 +20,20 @@ void Game::load()
 {
 	inputSystem.setMouseRelativeMode(true);
 
-	Assets::loadShader("Res/Shaders/Sprite.vert", "Res/Shaders/Sprite.frag", "", "", "", "Sprite");
-	Assets::loadShader("Res/Shaders/Phong.vert", "Res/Shaders/Phong.frag", "", "", "", "Phong");
-	Assets::loadShader("Res/Shaders/BasicMesh.vert", "Res/Shaders/BasicMesh.frag", "", "", "", "BasicMesh");
-	Assets::loadShader("Res/Shaders/Mesh.vert", "Res/Shaders/Mesh.frag", "", "", "", "Mesh");
+	Assets::loadShader("Ressources/Shaders/Sprite.vert", "Ressources/Shaders/Sprite.frag", "", "", "", "Sprite");
+	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
+	Assets::loadShader("Ressources/Shaders/BasicMesh.vert", "Ressources/Shaders/BasicMesh.frag", "", "", "", "BasicMesh");
+	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
 	
-	Assets::loadTexture(renderer, "Res/Textures/ButtonYellow.png", "ButtonYellow");
-	Assets::loadTexture(renderer, "Res/Textures/ButtonBlue.png", "ButtonBlue");
-	Assets::loadTexture(renderer, "Res/Textures/DialogBG.png", "DialogBG");
+	Assets::loadTexture(renderer, "Ressources/Textures/ButtonYellow.png", "ButtonYellow");
+	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
+	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	
-	Assets::loadMesh("Res/Meshes/plane.fbx", "Mesh_Plane");
-	Assets::loadMesh("Res/Meshes/cube.fbx", "Mesh_Cube");
+	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Mesh_Plane");
+	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Mesh_Cube");
 
-	Assets::loadFont("Res/Fonts/Carlito-Regular.ttf", "Carlito");
-	Assets::loadText("Res/Localization/English.gptext");
+	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
+	Assets::loadText("Ressources/Localization/English.gptext");
 	
 	player = new FPSActor();
 	player->setPosition(Vector3(0.0f,0.0f,100.0f));

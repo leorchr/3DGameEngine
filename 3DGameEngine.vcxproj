@@ -116,7 +116,8 @@
       </AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)Res" "$(TargetDir)Res" /e /y /i /r</Command>
+      <Command>if not exist "$(TargetDir)Ressources" mkdir "$(TargetDir)Ressources"
+xcopy "$(ProjectDir)Ressources" "$(TargetDir)Ressources" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -283,26 +284,14 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\Localization\English.gptext" />
-    <None Include="Res\Localization\Russian.gptext" />
-    <None Include="Res\Meshes\Cube.gpmesh" />
-    <None Include="Res\Meshes\Key.gpmesh" />
-    <None Include="Res\Meshes\LockedDoor.gpmesh" />
-    <None Include="Res\Meshes\Plane.gpmesh" />
-    <None Include="Res\Meshes\RacingCar.gpmesh" />
-    <None Include="Res\Meshes\Rifle.gpmesh" />
-    <None Include="Res\Meshes\Sphere.gpmesh" />
-    <None Include="Res\Meshes\Target.gpmesh" />
-    <None Include="Res\Shaders\BasicMesh.frag" />
-    <None Include="Res\Shaders\BasicMesh.vert" />
-    <None Include="Res\Shaders\Phong.frag" />
-    <None Include="Res\Shaders\Phong.vert" />
-    <None Include="Res\Shaders\Sprite.frag" />
-    <None Include="Res\Shaders\Sprite.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Res\Shaders\Mesh.frag" />
-    <Content Include="Res\Shaders\Mesh.vert" />
+    <None Include="Ressources\Meshes\cube.fbx" />
+    <None Include="Ressources\Meshes\plane.fbx" />
+    <None Include="Ressources\Shaders\Mesh.frag" />
+    <None Include="Ressources\Shaders\Mesh.vert" />
+    <None Include="Ressources\Shaders\Phong.frag" />
+    <None Include="Ressources\Shaders\Phong.vert" />
+    <None Include="Ressources\Shaders\Sprite.frag" />
+    <None Include="Ressources\Shaders\Sprite.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

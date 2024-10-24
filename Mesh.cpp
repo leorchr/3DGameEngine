@@ -147,7 +147,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& fileName)
 					p = p.substr(2, p.size() - 2);
 				}
 
-				string FullPath = "Res/Textures/" + p;
+				string FullPath = "Ressources/Textures/" + p;
 				m_Textures[i] = new Texture();
 				if (!m_Textures[i]->loadOGL(dynamic_cast<RendererOGL&>(Game::instance().getRenderer()), FullPath.c_str())) {
 					delete m_Textures[i];
