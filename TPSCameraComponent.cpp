@@ -1,7 +1,8 @@
 ﻿#include "TPSCameraComponent.h"
 #include "Actor.h"
 
-TPSCameraComponent::TPSCameraComponent(Actor* ownerP) : CameraComponent(ownerP), pitch(.0f), pitchSpeed(.0f), yaw(.0f), yawSpeed(.0f)
+TPSCameraComponent::TPSCameraComponent(Actor* ownerP) : CameraComponent(ownerP), pitch(.0f), pitchSpeed(.0f), yaw(.0f),
+                                                        yawSpeed(.0f), cameraForward(Vector3::zero)
 {
 }
 

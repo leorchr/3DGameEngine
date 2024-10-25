@@ -1,10 +1,9 @@
 ﻿#include "TPActor.h"
-#include "MoveComponent.h"
-#include "MeshComponent.h"
 #include "Assets.h"
-#include "TPSCameraComponent.h"
 #include "Game.h"
-#include <iostream>
+#include "MeshComponent.h"
+#include "MoveComponent.h"
+#include "TPSCameraComponent.h"
 
 TPActor::TPActor() :
 moveComponent(nullptr),
@@ -19,6 +18,7 @@ cameraLock(false)
 	meshComponent = new MeshComponent(this);
 	cameraComponent = new TPSCameraComponent(this);
 	meshComponent->setMesh(Assets::getMesh("Mesh_Cube"));
+	
 	baseRotation = getRotation();
 	moveComponent->setForwardSpeed(baseSpeed);
 }
@@ -51,7 +51,7 @@ void TPActor::updateActor(float dt)
 			lerpValue += dt * rotationSpeed;
 			if(lerpValue>1.0f) lerpValue=1.0f;
 		}
-		rotateToNewForward(cameraForward, baseRotation, lerpValue);
+ 		rotateToNewForward(cameraForward, baseRotation, lerpValue);
 	}
 }
 

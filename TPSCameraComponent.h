@@ -18,7 +18,7 @@ private:
 	float yaw;
 	float yawSpeed;
 	Vector3 cameraForward;
-	const Vector3 offset = Vector3(-50.0f,0.0f,0.0f);
+	const Vector3 offset = Vector3(-15.0f,0.0f,0.0f);
 	const Vector3 offsetView = Vector3(0.0f,0.0f,0.0f);
 };
 

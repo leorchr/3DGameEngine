@@ -1,12 +1,11 @@
+#include "Game.h"
 #include "Assets.h"
 #include "Font.h"
-#include "FPSActor.h"
-#include "Game.h"
-#include "MeshComponent.h"
 #include "PauseScreen.h"
 #include "PlaneActor.h"
 #include "Texture.h"
 #include "Timer.h"
+#include "TPActor.h"
 #include <vector>
 
 bool Game::initialize()
@@ -38,22 +37,16 @@ void Game::load()
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
 	
-	player = new FPSActor();
-	player->setPosition(Vector3(0.0f,0.0f,100.0f));
-	
-	Actor* actor = new Actor();
-	actor->setPosition(Vector3(200.0f,0.0f,50.0f));
-	actor->setScale(Vector3(50.0f,50.0f,50.0f));
-	MeshComponent* mc = new MeshComponent(actor);
-	mc->setMesh(Assets::getMesh("Mesh_Cube"));
+	player = new TPActor();
+	player->setPosition(Vector3(0.0f,0.0f,1.0f));
 
 	for(int i = 0; i < 5; i++)
 	{
 		for(int y = 0; y < 5; y++)
 		{
 			auto plane = new PlaneActor();
-			plane->setScale(Vector3(500,500,1));
-			Vector3 pos = Vector3(plane->getPosition().x + i * 1000, plane-> getPosition().y + y * 1000, 0.0f);
+			plane->setScale(Vector3(50,50,1));
+			Vector3 pos = Vector3(plane->getPosition().x + i * 100, plane-> getPosition().y + y * 100, 0.0f);
 			plane->setPosition(pos);
 		}
 	}

@@ -16,7 +16,7 @@ private:
 
 
 	const float rotationSpeed = 2.0f;
-	const float baseSpeed = 400.0f;
+	const float baseSpeed = 40.0f;
 	float lerpValue;
 	Vector3 cameraForwardRaw;
 	Quaternion baseRotation;
