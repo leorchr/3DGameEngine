@@ -33,6 +33,7 @@ void Game::load()
 	
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Mesh_Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Mesh_Cube");
+	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Mesh_Moto");
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
