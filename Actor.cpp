@@ -100,17 +100,7 @@ void Actor::rotateToNewForward(const Vector3& newForward, const Quaternion& base
 	float dot = Vector3::dot(Vector3::unitX, newForward);
 	float angle = Maths::acos(dot);
 
-
-	if (dot > 0.9999f)
-	{
-		setRotation(Quaternion::identity);
-	}
-	// Facing down -X
-	else if (dot < -0.9999f)
-	{
-		setRotation(Quaternion(Vector3::unitZ, Maths::pi));
-	}
-	else
+	if (dot < 0.9999f && dot > -0.9999f)
 	{
 		// Rotate about axis from cross product
 		Vector3 axis = Vector3::cross(Vector3::unitX, newForward);
