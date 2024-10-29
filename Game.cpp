@@ -6,7 +6,11 @@
 #include "Texture.h"
 #include "Timer.h"
 #include "TPActor.h"
+#include "FPSActor.h"
 #include <vector>
+
+#include "FPSActor.h"
+#include "MeshComponent.h"
 
 bool Game::initialize()
 {
@@ -34,12 +38,25 @@ void Game::load()
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Mesh_Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Mesh_Cube");
 	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Mesh_Moto");
+	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Mesh_Sphere");
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
 	
 	player = new TPActor();
 	player->setPosition(Vector3(0.0f,0.0f,1.0f));
+
+	//FPSActor* fps = new FPSActor();
+	//fps->setPosition(Vector3(0.0f,0.0f,11.0f));
+
+
+	Actor* sphere = new Actor();
+	MeshComponent* sphereMesh = new MeshComponent(sphere);
+	sphereMesh->setMesh(Assets::getMesh("Mesh_Sphere"));
+	sphere->setPosition(Vector3(0.0f,0.0f,15.0f));
+	sphere->setScale(Vector3(10.0f,10.0f,10.0f));
+	
+	
 
 	for(int i = 0; i < 5; i++)
 	{
@@ -53,11 +70,11 @@ void Game::load()
 	}
 
 	// Setup lights
-	renderer.setAmbientLight(Vector3(0.4f, 0.4f, 0.4f));
+	renderer.setAmbientLight(Vector3(0.1f, 0.1f, 0.1f));
 	DirectionalLight& dir = renderer.getDirectionalLight();
-	dir.direction = Vector3(0.5f, 0.2f, -0.7f);
-	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
-	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
+	dir.diffuseColor = Vector3(0.9f,0.9f,0.9f);
+	dir.direction = Vector3(-1.0f,-1.0f,-1.0f);
+	dir.specColor = Vector3(1.0f,1.0f,1.0f);
 
 }
 

@@ -24,6 +24,7 @@ void MeshComponent::setVisible(bool isVisibleP)
 void MeshComponent::draw(Shader& shader)
 {
 	Matrix4 worldTransform = owner.getWorldTransform();
+	shader.setFloat("uSpecPower", 32.0f);
 	shader.setMatrix4("uWorldTransform", worldTransform, false);
 
 	std::vector<MeshEntry> meshes = *mesh->getMeshes();
