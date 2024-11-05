@@ -181,6 +181,9 @@
     <ClCompile Include="Log.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="ComputeShader.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -374,6 +377,10 @@
     <ClInclude Include="Log.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="ComputeShader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Meshes\cube.fbx">
@@ -398,6 +405,9 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Ressources\Shaders\Sprite.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Filter.shader">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
@@ -444,5 +454,8 @@
     <Filter Include="UI">
       <UniqueIdentifier>{439b6b67-415d-48a9-a248-531cf0e34242}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="3DGameEngine.rc" />
   </ItemGroup>
 </Project>

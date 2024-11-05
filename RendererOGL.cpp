@@ -11,6 +11,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <SDL_image.h>
+#include "ComputeShader.h"
 
 RendererOGL::RendererOGL() :
 	window(nullptr),
@@ -50,7 +51,7 @@ bool RendererOGL::initialize(Window& windowP)
 
 	// OpenGL Context
 	context = SDL_GL_CreateContext(windowP.getSDLWindow());
-	SDL_SetWindowFullscreen(windowP.getSDLWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
+	//SDL_SetWindowFullscreen(windowP.getSDLWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	// GLEW
 	glewExperimental = GL_TRUE;
@@ -85,6 +86,12 @@ void RendererOGL::draw()
 	drawMeshes();
 	drawSprites();
 	drawUI();
+
+	
+	ComputeShader& computeShader = Assets::getComputeShader("Filter");
+	computeShader.use();
+	glDispatchCompute(1, 1, 1);
+	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 
 void RendererOGL::endDraw()

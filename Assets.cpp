@@ -1,4 +1,5 @@
 #include "Assets.h"
+#include "ComputeShader.h"
 #include "Font.h"
 #include "Log.h"
 #include "RendererOGL.h"
@@ -16,6 +17,7 @@ std::map<string, Mesh> Assets::meshes;
 std::map<string, Font> Assets::fonts;
 std::map<string, string> Assets::texts;
 std::map<string, std::vector<std::vector<int>>> Assets::maps;
+std::map<std::string, ComputeShader> Assets::computeShaders;
 
 Texture Assets::loadTexture(IRenderer& renderer, const string& filename, const string& name)
 {
@@ -154,6 +156,23 @@ std::vector<std::vector<int>> Assets::getMap(const std::string& name) {
         Log::error(LogCategory::Application, loadError.str());
     }
     return maps[name];
+}
+
+ComputeShader Assets::loadComputeShader(const std::string& cShaderFile, const std::string& name)
+{
+    computeShaders[name] = loadComputeShaderFromFile(cShaderFile);
+    return computeShaders[name];
+}
+
+ComputeShader& Assets::getComputeShader(const std::string& name)
+{
+    if (computeShaders.find(name) == end(computeShaders))
+    {
+        std::ostringstream loadError;
+        loadError << "Shader " << name << " does not exist in assets manager.";
+        Log::error(LogCategory::Application, loadError.str());
+    }
+    return computeShaders[name];
 }
 
 void Assets::clear()
@@ -342,4 +361,23 @@ std::vector<vector<int>> Assets::loadMapFromFile(const string& filename)
         positions.push_back(inner_vec);
     }
     return positions;
+}
+
+ComputeShader Assets::loadComputeShaderFromFile(const std::string& cShaderFile)
+{
+    std::string computeCode;
+    
+    std::ifstream computeShaderFile(cShaderFile);
+    std::stringstream cShaderStream;
+    cShaderStream << computeShaderFile.rdbuf();
+    computeShaderFile.close();
+
+    computeCode = cShaderStream.str();
+
+    const GLchar* cShaderCode = computeCode.c_str();
+
+    //Create the compute shader
+    ComputeShader cShader;
+    cShader.compile(cShaderCode);
+    return cShader;
 }

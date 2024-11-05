@@ -10,6 +10,7 @@ class IRenderer;
 class Texture;
 class Shader;
 class Font;
+class ComputeShader;
 
 class Assets
 {
@@ -20,6 +21,7 @@ public:
     static std::map<string, Font> fonts;
     static std::map<string, string> texts;
     static std::map<string, std::vector<std::vector<int>>> maps;
+    static std::map<string, ComputeShader> computeShaders;
 
     // Loads a texture from file
     static Texture loadTexture(IRenderer& renderer, const string& filename, const string& name);
@@ -61,6 +63,12 @@ public:
     // Retrieves a stored font
     static std::vector<std::vector<int>> getMap(const std::string& name);
 
+    // Loads (and generates) a shader program from a compute shader source file
+    static ComputeShader loadComputeShader(const std::string &cShaderFile, const std::string &name);
+
+    // Retrieves a stored shader
+    static ComputeShader &getComputeShader(const std::string &name);
+
     // Properly de-allocates all loaded resources
     static void clear();
 
@@ -80,4 +88,6 @@ private:
     static Font loadFontFromFile(const string& filename);
 
     static std::vector<std::vector<int>> loadMapFromFile(const string& filename);
+
+    static ComputeShader loadComputeShaderFromFile(const std::string &cShaderFile);
 };

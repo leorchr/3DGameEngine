@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimSpriteComponent.cpp" />
     <ClCompile Include="BackgroundSpriteComponent.cpp" />
+    <ClCompile Include="ComputeShader.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -222,6 +223,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimSpriteComponent.h" />
     <ClInclude Include="BackgroundSpriteComponent.h" />
+    <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="BoxComponent.h" />
     <ClInclude Include="Button.h" />
@@ -264,6 +266,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RendererOGL.h" />
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SphereActor.h" />
@@ -285,6 +288,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Filter.shader" />
     <None Include="Ressources\Meshes\cube.fbx" />
     <None Include="Ressources\Meshes\plane.fbx" />
     <None Include="Ressources\Shaders\Mesh.frag" />
