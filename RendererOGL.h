@@ -6,6 +6,7 @@
 
 #include <vector>
 #include "DirectionalLight.h"
+#include "PostProcessing.h"
 
 class RendererOGL : public IRenderer
 {
@@ -61,4 +62,6 @@ private:
 
 	Vector3 ambientLight;
 	DirectionalLight dirLight;
+
+	PostProcessing* postProcessing;
 };

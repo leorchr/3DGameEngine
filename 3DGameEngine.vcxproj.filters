@@ -184,6 +184,7 @@
     <ClCompile Include="ComputeShader.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="PostProcessing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -381,6 +382,7 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="PostProcessing.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Meshes\cube.fbx">
@@ -407,7 +409,13 @@
     <None Include="Ressources\Shaders\Sprite.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Filter.shader">
+    <None Include="Ressources\Shaders\Framebuffer.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Ressources\Shaders\Framebuffer.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Ressources\Shaders\Filter.shader">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
@@ -454,8 +462,5 @@
     <Filter Include="UI">
       <UniqueIdentifier>{439b6b67-415d-48a9-a248-531cf0e34242}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="3DGameEngine.rc" />
   </ItemGroup>
 </Project>

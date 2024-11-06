@@ -48,8 +48,8 @@ void Game::load()
 	player = new TPActor();
 	player->setPosition(Vector3(0.0f,0.0f,1.0f));
 
-	FPSActor* fps = new FPSActor();
-	fps->setPosition(Vector3(0.0f,0.0f,11.0f));
+	//FPSActor* fps = new FPSActor();
+	//fps->setPosition(Vector3(0.0f,0.0f,11.0f));
 
 
 	Actor* sphere = new Actor();
@@ -131,8 +131,7 @@ void Game::processInput()
 }
 
 void Game::update(float dt)
-{
-
+{	
 	if (state == GameState::Gameplay)
 	{
 		// Update actors 

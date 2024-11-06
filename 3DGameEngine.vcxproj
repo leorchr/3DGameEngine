@@ -193,6 +193,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PlaneActor.cpp" />
+    <ClCompile Include="PostProcessing.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rectangle.cpp" />
@@ -261,6 +262,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PlaneActor.h" />
+    <ClInclude Include="PostProcessing.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rectangle.h" />
@@ -288,9 +290,11 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Filter.shader" />
+    <None Include="Ressources\Shaders\Framebuffer.frag" />
+    <None Include="Ressources\Shaders\Framebuffer.vert" />
     <None Include="Ressources\Meshes\cube.fbx" />
     <None Include="Ressources\Meshes\plane.fbx" />
+    <None Include="Ressources\Shaders\Filter.shader" />
     <None Include="Ressources\Shaders\Mesh.frag" />
     <None Include="Ressources\Shaders\Mesh.vert" />
     <None Include="Ressources\Shaders\Phong.frag" />

@@ -21,7 +21,8 @@ RendererOGL::RendererOGL() :
 	view(Matrix4::createLookAt(Vector3::zero, Vector3::unitX, Vector3::unitZ)),
 	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(70.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 1000.0f)),
 	ambientLight(Vector3(1.0f, 1.0f, 1.0f)),
-	dirLight({ Vector3::zero, Vector3::zero, Vector3::zero })
+	dirLight({ Vector3::zero, Vector3::zero, Vector3::zero }),
+	postProcessing(nullptr)
 {
 }
 
@@ -71,14 +72,18 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	spriteVertexArray = new VertexArray(spriteVertices, 4, indices, 6);
+	postProcessing = new PostProcessing();
+	postProcessing->initialize();
 	return true;
 }
 
 void RendererOGL::beginDraw()
 {
+	postProcessing->startDrawing();
 	glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
-	// Clear the color and depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+
 }
 
 void RendererOGL::draw()
@@ -86,16 +91,11 @@ void RendererOGL::draw()
 	drawMeshes();
 	drawSprites();
 	drawUI();
-
-	
-	ComputeShader& computeShader = Assets::getComputeShader("Filter");
-	computeShader.use();
-	glDispatchCompute(1, 1, 1);
-	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 
 void RendererOGL::endDraw()
 {
+	postProcessing->displayFrameBuffer();
 	SDL_GL_SwapWindow(window->getSDLWindow());
 }
 
@@ -133,8 +133,7 @@ void RendererOGL::getScreenDirection(Vector3& outStart, Vector3& outDir) const
 
 void RendererOGL::drawMeshes()
 {
-	// Enable depth buffering/disable alpha blend
-	glEnable(GL_DEPTH_TEST);
+	// Disable alpha blend
 	glDisable(GL_BLEND);
 	Shader& shader = Assets::getShader("Mesh");
 	shader.use();
