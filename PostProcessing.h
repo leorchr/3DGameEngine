@@ -1,4 +1,5 @@
 #pragma once
+class ComputeShader;
 class Shader;
 class PostProcessing
 {
@@ -14,6 +15,7 @@ private:
 	unsigned int RBO;
 	unsigned int frameBufferTexture;
 	Shader* shader;
+	ComputeShader* computeShader;
 	
 	const float rectangleVertices[24] = {
 		// Coords    // texCoords

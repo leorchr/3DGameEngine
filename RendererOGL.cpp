@@ -8,7 +8,6 @@
 #include "Game.h"
 #include "UIScreen.h"
 #include <complex>
-#include <iostream>
 #include <GL/glew.h>
 #include <SDL_image.h>
 #include "ComputeShader.h"
@@ -36,7 +35,7 @@ bool RendererOGL::initialize(Window& windowP)
 
 	// Set OpenGL attributes
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 	// Request a color buffer with 8-bits per RGBA channel
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);

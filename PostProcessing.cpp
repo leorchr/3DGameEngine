@@ -1,18 +1,24 @@
 #include "PostProcessing.h"
 #include "Assets.h"
 #include "Shader.h"
+#include "ComputeShader.h"
 #include <GL/glew.h>
 #include "Window.h"
 #include <iostream>
 
-PostProcessing::PostProcessing() : FBO(0), rectVAO(0), rectVBO(0), frameBufferTexture(0), shader(nullptr){}
+PostProcessing::PostProcessing() : FBO(0), rectVAO(0), rectVBO(0), frameBufferTexture(0), shader(nullptr), computeShader(nullptr){}
 
 bool PostProcessing::initialize()
 {
+	Assets::loadComputeShader("Ressources/Shaders/Filter.glsl", "Filter");
+	computeShader = &Assets::getComputeShader("Filter");
+	computeShader->use();
+	
 	Assets::loadShader("Ressources/Shaders/Framebuffer.vert", "Ressources/Shaders/Framebuffer.frag", "", "", "", "FrameBuffer");
 	shader = &Assets::getShader("FrameBuffer");
 	shader->use();
 	shader->setInteger("screenTexture", 0);
+
 
 	// Prepare framebuffer rectangle VBO and VAO
 	glGenVertexArrays(1, &rectVAO);
@@ -65,14 +71,22 @@ void PostProcessing::startDrawing() const
 
 void PostProcessing::displayFrameBuffer() const
 {
-	// Bind the default framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	// Draw the framebuffer rectangle
+	computeShader->use();
+
+	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
+	glBindImageTexture(1, frameBufferTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
+
+	// Exécute le compute shader
+	int workgroupSizeX = 16;
+	int workgroupSizeY = 16;
+	glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
+	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+	
 	shader->use();
 	glBindVertexArray(rectVAO);
 	glActiveTexture(GL_TEXTURE0);
 	shader->setInteger("screenTexture", 0);
-	
 	glDisable(GL_DEPTH_TEST); // prevents framebuffer rectangle from being discarded
 	glBindTexture(GL_TEXTURE_2D, frameBufferTexture);
 	glDrawArrays(GL_TRIANGLES, 0, 6);

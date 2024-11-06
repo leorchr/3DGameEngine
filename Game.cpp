@@ -31,8 +31,6 @@ void Game::load()
 	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Ressources/Shaders/BasicMesh.vert", "Ressources/Shaders/BasicMesh.frag", "", "", "", "BasicMesh");
 	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
-	Assets::loadComputeShader("Ressources/Shaders/Filter.glsl", "Filter");
-	
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
