@@ -9,17 +9,16 @@
 #include "FPSActor.h"
 #include "ComputeShader.h"
 #include <vector>
-
 #include "FPSActor.h"
 #include "MeshComponent.h"
 
 bool Game::initialize()
 {
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
 	const bool isWindowInit = window.initialize();
 	const bool isRendererInit = renderer.initialize(window);
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
-
 	return isWindowInit && isRendererInit && isInputInit && isFontInit; // Return bool && bool && bool ...to detect error
 }
 
@@ -29,7 +28,6 @@ void Game::load()
 
 	Assets::loadShader("Ressources/Shaders/Sprite.vert", "Ressources/Shaders/Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
-	Assets::loadShader("Ressources/Shaders/BasicMesh.vert", "Ressources/Shaders/BasicMesh.frag", "", "", "", "BasicMesh");
 	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");

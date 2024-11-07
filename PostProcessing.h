@@ -6,14 +6,15 @@ class PostProcessing
 public:
 	PostProcessing();
 	bool initialize();
-	void startDrawing() const;
-	void displayFrameBuffer() const;
+	void startDrawing();
+	void displayFrameBuffer();
 
 private:
 	unsigned int FBO;
 	unsigned int rectVAO, rectVBO;
 	unsigned int RBO;
 	unsigned int frameBufferTexture;
+	unsigned int frameBufferOutputTexture;
 	Shader* shader;
 	ComputeShader* computeShader;
 	

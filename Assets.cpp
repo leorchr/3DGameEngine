@@ -366,9 +366,11 @@ std::vector<vector<int>> Assets::loadMapFromFile(const string& filename)
 ComputeShader Assets::loadComputeShaderFromFile(const std::string& cShaderFile)
 {
     std::string computeCode;
-    
     std::ifstream computeShaderFile(cShaderFile);
     std::stringstream cShaderStream;
+    if (!computeShaderFile) {
+        std::cerr << "Erreur d'ouverture du fichier : " << cShaderFile << std::endl;
+    }
     cShaderStream << computeShaderFile.rdbuf();
     computeShaderFile.close();
 

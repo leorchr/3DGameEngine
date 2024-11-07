@@ -20,14 +20,10 @@ RendererOGL::RendererOGL() :
 	view(Matrix4::createLookAt(Vector3::zero, Vector3::unitX, Vector3::unitZ)),
 	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(70.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 1000.0f)),
 	ambientLight(Vector3(1.0f, 1.0f, 1.0f)),
-	dirLight({ Vector3::zero, Vector3::zero, Vector3::zero }),
-	postProcessing(nullptr)
-{
-}
+	dirLight({Vector3::zero, Vector3::zero, Vector3::zero}),
+	postProcessing(nullptr) {}
 
-RendererOGL::~RendererOGL()
-{
-}
+RendererOGL::~RendererOGL() {}
 
 bool RendererOGL::initialize(Window& windowP)
 {
@@ -55,7 +51,7 @@ bool RendererOGL::initialize(Window& windowP)
 
 	// GLEW
 	glewExperimental = GL_TRUE;
-	if (glewInit() != GLEW_OK)
+	if(glewInit() != GLEW_OK)
 	{
 		Log::error(LogCategory::Video, "Failed to initialize GLEW.");
 		return false;
@@ -64,7 +60,7 @@ bool RendererOGL::initialize(Window& windowP)
 	// On some platforms, GLEW will emit a benign error code, so clear it
 	glGetError();
 
-	if (IMG_Init(IMG_INIT_PNG) == 0)
+	if(IMG_Init(IMG_INIT_PNG) == 0)
 	{
 		Log::error(LogCategory::Video, "Unable to initialize SDL_image");
 		return false;
@@ -78,15 +74,22 @@ bool RendererOGL::initialize(Window& windowP)
 
 void RendererOGL::beginDraw()
 {
-	postProcessing->startDrawing();
+	//Nettoie base buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	if (status != GL_FRAMEBUFFER_COMPLETE) {
+		std::cerr << "Erreur de framebuffer : " << status << std::endl;
+	}
 	glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
 
+	//Nettoie et active custom buffer
+	postProcessing->startDrawing();
 }
 
 void RendererOGL::draw()
 {
+	//Draw on the custom buffer
 	drawMeshes();
 	drawSprites();
 	drawUI();
@@ -142,9 +145,9 @@ void RendererOGL::drawMeshes()
 	// Lights
 	setLightUniforms(shader);
 	// Draw
-	for (auto mc : meshes)
+	for(auto mc : meshes)
 	{
-		if (mc->getVisible())
+		if(mc->getVisible())
 		{
 			mc->draw(Assets::getShader("Mesh"));
 		}
@@ -156,9 +159,9 @@ void RendererOGL::addSprite(SpriteComponent* sprite)
 	// Insert the sprite at the right place in function of drawOrder
 	int spriteDrawOrder = sprite->getDrawOrder();
 	auto iter = begin(sprites);
-	for (; iter != end(sprites); ++iter)
+	for(; iter != end(sprites); ++iter)
 	{
-		if (spriteDrawOrder < (*iter)->getDrawOrder()) break;
+		if(spriteDrawOrder < (*iter)->getDrawOrder()) break;
 	}
 	sprites.insert(iter, sprite);
 }
@@ -184,9 +187,9 @@ void RendererOGL::drawSprites()
 	spriteShader.setMatrix4("uViewProj", spriteViewProj, true);
 	spriteVertexArray->setActive();
 
-	for (auto sprite : sprites)
+	for(auto sprite : sprites)
 	{
-		if (sprite->getVisible())
+		if(sprite->getVisible())
 		{
 			sprite->draw(*this);
 		}
@@ -195,7 +198,7 @@ void RendererOGL::drawSprites()
 
 void RendererOGL::drawUI()
 {
-	for (auto ui : Game::instance().getUIStack())
+	for(auto ui : Game::instance().getUIStack())
 	{
 		ui->draw(Assets::getShader("Sprite"));
 	}
@@ -238,7 +241,6 @@ void RendererOGL::setLightUniforms(Shader& shader)
 	shader.setVector3f("uDirLight.direction", dirLight.direction);
 	shader.setVector3f("uDirLight.diffuseColor", dirLight.diffuseColor);
 	shader.setVector3f("uDirLight.specColor", dirLight.specColor);
-
 }
 
 void RendererOGL::setAmbientLight(const Vector3& ambientP)
