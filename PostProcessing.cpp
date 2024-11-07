@@ -91,16 +91,17 @@ void PostProcessing::displayFrameBuffer()
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 	computeShader->use();
 	GLenum opengl = glGetError();
+	
+	// Exécute le compute shader
+	int workgroupSizeX = 16;
+	int workgroupSizeY = 16;
+	glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
+	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
+	
 	if(opengl != GL_NO_ERROR)
 	{
 		std::cout<<"ERROR" << opengl;
 	}
-	
-	// Exécute le compute shader
-	//int workgroupSizeX = 16;
-	//int workgroupSizeY = 16;
-	//glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
-	//glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	shader->use();
