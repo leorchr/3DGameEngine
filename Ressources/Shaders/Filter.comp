@@ -8,6 +8,6 @@ layout (binding = 1, rgba8) uniform image2D outputImage;
 void main()
 {
     ivec2 coords = ivec2(gl_GlobalInvocationID.xy);
-    vec4 color = vec4(1.0,0.0,0.0,1.0);
+    vec4 color = vec4(vec3(1.0) - imageLoad(inputImage, coords).xyz, 1.0);
     imageStore(outputImage, coords, color); // Écriture dans l'image de sortie
 }

@@ -10,7 +10,7 @@ PostProcessing::PostProcessing() : FBO(0), rectVAO(0), rectVBO(0), frameBufferTe
 
 bool PostProcessing::initialize()
 {
-	Assets::loadComputeShader("Ressources/Shaders/Filter.shader", "Filter");
+	Assets::loadComputeShader("Ressources/Shaders/Filter.comp", "Filter");
 	computeShader = &Assets::getComputeShader("Filter");
 	computeShader->use();
 	
@@ -87,7 +87,7 @@ void PostProcessing::startDrawing()
 void PostProcessing::displayFrameBuffer()
 {
 	
-	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
+	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 	computeShader->use();
 	GLenum opengl = glGetError();
@@ -109,6 +109,6 @@ void PostProcessing::displayFrameBuffer()
 	glBindVertexArray(rectVAO);
 	glActiveTexture(GL_TEXTURE0);
 	shader->setInteger("screenTexture", 0);
-	glBindTexture(GL_TEXTURE_2D, frameBufferTexture);
+	glBindTexture(GL_TEXTURE_2D, frameBufferOutputTexture);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

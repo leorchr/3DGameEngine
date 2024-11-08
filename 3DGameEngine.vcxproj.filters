@@ -415,7 +415,7 @@
     <None Include="Ressources\Shaders\Framebuffer.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Ressources\Shaders\Filter.shader">
+    <None Include="Ressources\Shaders\Filter.comp">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
