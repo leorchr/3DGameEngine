@@ -418,6 +418,9 @@
     <None Include="Ressources\Shaders\Filter.comp">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Ressources\Shaders\Blur.comp">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

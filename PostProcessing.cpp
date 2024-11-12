@@ -3,14 +3,15 @@
 #include "Shader.h"
 #include "ComputeShader.h"
 #include <GL/glew.h>
-#include "Window.h"
 #include <iostream>
 
 PostProcessing::PostProcessing() : FBO(0), rectVAO(0), rectVBO(0), frameBufferTexture(0), frameBufferOutputTexture(0), shader(nullptr), computeShader(nullptr){}
 
 bool PostProcessing::initialize()
 {
-	Assets::loadComputeShader("Ressources/Shaders/Filter.comp", "Filter");
+	glEnable(GL_DEBUG_OUTPUT);
+	glDebugMessageCallback(MyDebugCallback, nullptr);
+	Assets::loadComputeShader("Ressources/Shaders/Blur.comp", "Filter");
 	computeShader = &Assets::getComputeShader("Filter");
 	computeShader->use();
 	
@@ -90,18 +91,14 @@ void PostProcessing::displayFrameBuffer()
 	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 	computeShader->use();
-	GLenum opengl = glGetError();
+	computeShader->setVector2i("texelSize", texelSize);
+
 	
 	// Exécute le compute shader
 	int workgroupSizeX = 16;
 	int workgroupSizeY = 16;
 	glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
 	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
-	
-	if(opengl != GL_NO_ERROR)
-	{
-		std::cout<<"ERROR" << opengl;
-	}
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	shader->use();
@@ -111,4 +108,11 @@ void PostProcessing::displayFrameBuffer()
 	shader->setInteger("screenTexture", 0);
 	glBindTexture(GL_TEXTURE_2D, frameBufferOutputTexture);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+void MyDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+						 GLsizei length, const GLchar* message,
+						 const void* userParam)
+{
+	std::cout << "OpenGL Debug Message: " << message << std::endl;
 }

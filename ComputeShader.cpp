@@ -64,6 +64,15 @@ void ComputeShader::setVector3f(const GLchar *name, const Vector3 &value)
 	glUniform3f(glGetUniformLocation(id, name), value.x, value.y, value.z);
 }
 
+void ComputeShader::setVector2i(const GLchar *name, GLint x, GLint y, GLint z)
+{
+	glUniform2i(glGetUniformLocation(id, name), x, y);
+}
+void ComputeShader::setVector2i(const GLchar *name, const Vector2 &value)
+{
+	glUniform2i(glGetUniformLocation(id, name), value.x, value.y);
+}
+
 bool ComputeShader::isValid(GLuint id)
 {
 	glValidateProgram(id);

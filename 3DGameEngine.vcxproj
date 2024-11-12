@@ -290,6 +290,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Ressources\Shaders\Blur.comp" />
     <None Include="Ressources\Shaders\Filter.comp" />
     <None Include="Ressources\Shaders\Framebuffer.frag" />
     <None Include="Ressources\Shaders\Framebuffer.vert" />
@@ -301,6 +302,9 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <None Include="Ressources\Shaders\Phong.vert" />
     <None Include="Ressources\Shaders\Sprite.frag" />
     <None Include="Ressources\Shaders\Sprite.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ressources\Shaders\FramebufferBlur.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
