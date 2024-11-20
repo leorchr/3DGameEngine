@@ -20,6 +20,7 @@ public:
 	void setVector3f(const GLchar *name, const Vector3 &value);
 	void setVector2i(const GLchar* name, GLint x, GLint y, GLint z);
 	void setVector2i(const GLchar *name, const Vector2 &value);
+	void setVector2f(const GLchar* name, const Vector2& value);
 
 private:
 	GLuint computeShader;

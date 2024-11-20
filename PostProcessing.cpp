@@ -91,7 +91,7 @@ void PostProcessing::displayFrameBuffer()
 	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 	computeShader->use();
-	computeShader->setVector2i("texelSize", texelSize);
+	//computeShader->setVector2i("texelSize", texelSize);
 
 	
 	// Exécute le compute shader
@@ -106,6 +106,7 @@ void PostProcessing::displayFrameBuffer()
 	glBindVertexArray(rectVAO);
 	glActiveTexture(GL_TEXTURE0);
 	shader->setInteger("screenTexture", 0);
+	//shader->setVector2f("texelSize", texelSize);
 	glBindTexture(GL_TEXTURE_2D, frameBufferOutputTexture);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
