@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</ExternalIncludePath>
   </PropertyGroup>

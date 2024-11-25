@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Assets.h"
 #include "Font.h"
+#include "Log.h"
 #include "PauseScreen.h"
 #include "PlaneActor.h"
 #include "Texture.h"
@@ -15,11 +16,12 @@
 bool Game::initialize()
 {
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
+	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
 	const bool isRendererInit = renderer.initialize(window);
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
-	return isWindowInit && isRendererInit && isInputInit && isFontInit; // Return bool && bool && bool ...to detect error
+	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit; // Return bool && bool && bool ...to detect error
 }
 
 void Game::load()

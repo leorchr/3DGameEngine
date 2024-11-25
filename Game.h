@@ -6,8 +6,6 @@
 #include "Window.h"
 #include <vector>
 
-using std::vector;
-
 enum class GameState
 {
 	Gameplay, Pause, Quit
@@ -45,17 +43,17 @@ public:
 	RendererOGL& getRenderer() { return renderer; }
 	PhysicsSystem& getPhysicsSystem() { return physicsSystem; }
 	InputSystem& getInputSystem() { return inputSystem; }
-	const vector<class UIScreen*>& getUIStack() { return UIStack; }
+	const std::vector<class UIScreen*>& getUIStack() { return UIStack; }
 	void pushUI(class UIScreen* screen);
 
 	// Game-specific
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
-	vector<class PlaneActor*>& getPlanes() { return planes; }
+	std::vector<class PlaneActor*>& getPlanes() { return planes; }
 
 	void addCube(class CubeActor* cube);
 	void removeCube(class CubeActor* cube);
-	vector<class CubeActor*>& getCubes() { return cubes; }
+	std::vector<class CubeActor*>& getCubes() { return cubes; }
 	class TPActor* getPlayer() { return player; }
 
 private:
@@ -68,14 +66,14 @@ private:
 	RendererOGL renderer;
 	InputSystem inputSystem;
 	PhysicsSystem physicsSystem;
-	vector<class UIScreen*> UIStack;
+	std::vector<class UIScreen*> UIStack;
 
 	bool isUpdatingActors;
-	vector<Actor*> actors;
-	vector<Actor*> pendingActors;
+	std::vector<Actor*> actors;
+	std::vector<Actor*> pendingActors;
 
 	// Game specific
 	class TPActor* player;
-	vector<class PlaneActor*> planes;
-	vector<class CubeActor*> cubes;
+	std::vector<class PlaneActor*> planes;
+	std::vector<class CubeActor*> cubes;
 };

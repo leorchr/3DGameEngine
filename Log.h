@@ -22,6 +22,7 @@ public:
 	Log(const Log&) = delete;
 	Log& operator=(const Log&) = delete;
 
+	static bool initialize();
 	static void info(const string& message);
 	static void error(LogCategory category, const string& message);
 };
