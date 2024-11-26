@@ -1,6 +1,7 @@
 #include "Log.h"
 #include <SDL_log.h>
 #include <SDL_error.h>
+#include <iostream>
 
 void Log::info(const string& message)
 {
@@ -20,14 +21,15 @@ bool Log::initialize()
 
 void outputLogFunction(void* userdata, int category, SDL_LogPriority priority, const char* message)
 {
-	FILE* output = (priority >= SDL_LOG_PRIORITY_WARN) ? stderr : stdout;
-	fprintf(output, "[%s] %s\n", getPriorityName(priority), message);
+	// If you prefer file output
+	//FILE* output = (priority >= SDL_LOG_PRIORITY_WARN) ? stderr : stdout;
+	//fprintf(output, "[%s] %s\n", getPriorityName(priority), message);
 	
-	// if (priority >= SDL_LOG_PRIORITY_WARN) {
-	// 	std::cerr << message << std::endl;
-	// } else {
-	// 	std::cout << message << std::endl;
-	// }
+	if (priority >= SDL_LOG_PRIORITY_WARN) {
+		std::cerr << "[" << getPriorityName(priority) << "] " << message << std::endl;
+	} else {
+		std::cout << "[" << getPriorityName(priority) << "] " << message << std::endl;
+	}
 }
 
 const char* getPriorityName(SDL_LogPriority priority)
