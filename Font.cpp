@@ -54,6 +54,7 @@ Texture* Font::renderKeyText(const string& textKey, const Vector3& color, int po
 		const string& actualText = Assets::getText(textKey);
 		// Draw this to a surface (blended for alpha)
 		SDL_Surface* surf = TTF_RenderUTF8_Blended(font, actualText.c_str(), sdlColor);
+		surf = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGBA32, 0);
 		if (surf != nullptr)
 		{
 			texture = new Texture();
@@ -90,17 +91,7 @@ Texture* Font::renderText(const string& text, const Vector3& color, int pointSiz
 		const string& actualText = text;
 		// Draw this to a surface (blended for alpha)
 		SDL_Surface* surf = TTF_RenderUTF8_Blended(font, actualText.c_str(), sdlColor);
-		
-		//SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-
-		SDL_FreeSurface(surface);
-
-		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, texture, NULL, NULL);
-		SDL_RenderPresent(renderer);
-
-
-		
+		surf = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGBA32, 0);
 		if (surf != nullptr)
 		{
 			texture = new Texture();
