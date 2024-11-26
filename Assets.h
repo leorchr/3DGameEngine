@@ -81,7 +81,7 @@ private:
     // Loads and generates a shader from file
     static Shader loadShaderFromFile(const std::string& vShaderFile, const std::string& fShaderFile,
         const std::string& tcShaderFile = "", const std::string& teShaderFile = "",
-        const std::string& gShaderFile = "");
+        const std::string& gShaderFile = "", const std::string& name = "");
 
     static Mesh loadMeshFromFile(const string& filename);
 

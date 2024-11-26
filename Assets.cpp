@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include <document.h>
 #include <fstream>
+#include <iostream>
 #include <istreamwrapper.h>
 #include <sstream>
 
@@ -38,7 +39,7 @@ Texture& Assets::getTexture(const string& name)
 
 Shader Assets::loadShader(const std::string& vShaderFile, const std::string& fShaderFile, const std::string& tcShaderFile, const std::string& teShaderFile, const std::string& gShaderFile, const std::string& name)
 {
-    shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, tcShaderFile, teShaderFile, gShaderFile);
+    shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, tcShaderFile, teShaderFile, gShaderFile, name);
     return shaders[name];
 }
 
@@ -210,7 +211,7 @@ Texture Assets::loadTextureFromFile(IRenderer& renderer, const string& filename)
     return texture;
 }
 
-Shader Assets::loadShaderFromFile(const std::string& vShaderFile, const std::string& fShaderFile, const std::string& tcShaderFile, const std::string& teShaderFile, const std::string& gShaderFile)
+Shader Assets::loadShaderFromFile(const std::string& vShaderFile, const std::string& fShaderFile, const std::string& tcShaderFile, const std::string& teShaderFile, const std::string& gShaderFile, const std::string& name)
 {
     // 1. Retrieve the vertex/fragment source code from filePath
     std::string vertexCode;
@@ -276,6 +277,7 @@ Shader Assets::loadShaderFromFile(const std::string& vShaderFile, const std::str
     const GLchar* gShaderCode = geometryCode.c_str();
     // 2. Now create shader object from source code
     Shader shader;
+    shader.setName(name);
     shader.compile(vShaderCode, fShaderCode,
         tcShaderFile != "" ? tcShaderCode : nullptr,
         teShaderFile != "" ? teShaderCode : nullptr,

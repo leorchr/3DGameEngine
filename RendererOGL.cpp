@@ -11,6 +11,7 @@
 #include <GL/glew.h>
 #include <SDL_image.h>
 #include "ComputeShader.h"
+#include <iostream>
 
 RendererOGL::RendererOGL() :
 	window(nullptr),

@@ -25,7 +25,7 @@ void Shader::compile(const GLchar* vertexSource, const GLchar* fragmentSource,
     bool gsExists = compileGeometryShader(geometrySource);
     compileFragmentShader(fragmentSource);
     createShaderProgram(tessExists, gsExists);
-    printAllParams(id);
+    printAllParams(id, true,true,tessExists,tessExists,gsExists);
 }
 
 void Shader::compileVertexShader(const GLchar* vertex_source)
@@ -163,6 +163,11 @@ void Shader::setMatrix4(const GLchar* name, const Matrix4& matrix, const bool tr
     else glUniformMatrix4fv(glGetUniformLocation(id, name), 1, GL_FALSE, matrix.getAsFloatPtr());
 }
 
+void Shader::setName(std::string name)
+{
+    this->name = name;
+}
+
 void Shader::printShaderInfoLog(GLuint shaderIndex)
 {
     int max_length = 2048;
@@ -182,6 +187,7 @@ void Shader::printProgrammeInfoLog(GLuint id)
     glGetProgramInfoLog(id, max_length, &actual_length, log);
     std::ostringstream s;
     s << "Program info log for GL index " << id;
+    Log::info(s.str());
     Log::info(s.str());
 }
 
@@ -234,12 +240,39 @@ const char* Shader::GLTypeToString(GLenum type)
     return "other";
 }
 
-void Shader::printAllParams(GLuint id)
+const char* Shader::GLShaderTypeToString(GLenum type)
+{
+    switch (type)
+    {
+    case GL_VERTEX_SHADER:
+        return "vertex shader";
+    case GL_FRAGMENT_SHADER:
+        return "fragment shader";
+    case GL_TESS_CONTROL_SHADER:
+        return "tesselation control shader";
+    case GL_TESS_EVALUATION_SHADER:
+        return "tesselation evaluation shader";
+    case GL_GEOMETRY_SHADER:
+        return "geometry shader";
+    default:
+        break;
+    }
+    return "other";
+}
+
+void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, bool tessControlExist, bool tessEvalExist, bool geometryExist)
 {
     Log::info("-----------------------------");
+
+    std::ostringstream outputName;
+    outputName << "Shader name : " << name;
+    Log::info(outputName.str());
+    
     std::ostringstream s;
-    s << "Shader programme " << id << " info: ";
+    s << "Shader program " << id << " info: ";
     Log::info(s.str());
+
+    
     int params = -1;
     glGetProgramiv(id, GL_LINK_STATUS, &params);
     s.str("");
@@ -251,6 +284,52 @@ void Shader::printAllParams(GLuint id)
     s << "GL_ATTACHED_SHADERS = " << params;
     Log::info(s.str());
 
+    int i = 0;
+    if(vertexExist)
+    {
+        s.str("");
+        GLint shaderType = 0;
+        glGetShaderiv(vs, GL_SHADER_TYPE, &shaderType);
+        s << "  " << i << ") type: " << GLShaderTypeToString(shaderType) << std::endl;
+        Log::info(s.str());
+    }
+    if(fragmentExist)
+    {
+        s.str("");
+        i++;
+        GLint shaderType = 0;
+        glGetShaderiv(fs, GL_SHADER_TYPE, &shaderType);
+        s << "  " << i << ") type: " << GLShaderTypeToString(shaderType) << std::endl;
+        Log::info(s.str());
+    }
+    if(tessControlExist)
+    {
+        s.str("");
+        i++;
+        GLint shaderType = 0;
+        glGetShaderiv(tcs, GL_SHADER_TYPE, &shaderType);
+        s << "  " << i << ") type: " << GLShaderTypeToString(shaderType) << std::endl;
+        Log::info(s.str());
+    }
+    if(tessEvalExist)
+    {
+        s.str("");
+        i++;
+        GLint shaderType = 0;
+        glGetShaderiv(tes, GL_SHADER_TYPE, &shaderType);
+        s << "  " << i << ") type: " << GLShaderTypeToString(shaderType) << std::endl;
+        Log::info(s.str());
+    }
+    if(geometryExist)
+    {
+        s.str("");
+        i++;
+        GLint shaderType = 0;
+        glGetShaderiv(gs, GL_SHADER_TYPE, &shaderType);
+        s << "  " << i << ") type: " << GLShaderTypeToString(shaderType) << std::endl;
+        Log::info(s.str());
+    }
+    
     glGetProgramiv(id, GL_ACTIVE_ATTRIBUTES, &params);
     s.str("");
     s << "GL_ACTIVE_ATTRIBUTES = " << params;
@@ -304,7 +383,7 @@ void Shader::printAllParams(GLuint id)
                 sprintf_s(long_name, "%s[%i]", name, j);
                 int location = glGetUniformLocation(id, long_name);
                 std::ostringstream s;
-                s << "  " << i << ") type:" << GLTypeToString(type) << " name:" << long_name << " location:" << location;
+                s << "  " << i << ") Type: " << GLTypeToString(type) << " | Name: " << long_name << " | Location: " << location;
                 Log::info(s.str());
             }
         }
@@ -312,11 +391,11 @@ void Shader::printAllParams(GLuint id)
         {
             int location = glGetUniformLocation(id, name);
             std::ostringstream s;
-            s << "  " << i << ") type:" << GLTypeToString(type) << " name:" << name << " location:" << location;
+            s << "  " << i << ") Type: " << GLTypeToString(type) << " | Name: " << name << " | Location: " << location;
             Log::info(s.str());
         }
     }
-    printProgrammeInfoLog(id);
+    Log::info("-----------------------------");
 }
 
 bool Shader::isValid(GLuint id)
@@ -324,10 +403,6 @@ bool Shader::isValid(GLuint id)
     glValidateProgram(id);
     int params = -1;
     glGetProgramiv(id, GL_VALIDATE_STATUS, &params);
-    Log::info("");
-    std::ostringstream s;
-    s << "program " << id << " GL_VALIDATE_STATUS = " << params;
-    Log::info(s.str());
     if (params != GL_TRUE)
     {
         printProgrammeInfoLog(id);

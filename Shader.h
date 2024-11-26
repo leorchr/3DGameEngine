@@ -1,11 +1,7 @@
 #pragma once 
 #include <GL/glew.h>
 #include <GL/gl.h>
-#include <GL/glu.h>
-
-#include <iostream>
 #include <string>
-#include <fstream>
 
 #include "Vector2.h"
 #include "Matrix4.h"
@@ -45,6 +41,7 @@ public:
 	void setVector3f(const GLchar* name, GLfloat x, GLfloat y, GLfloat z);
 	void setVector3f(const GLchar* name, const Vector3& value);
 	void setMatrix4(const GLchar* name, const Matrix4& matrix,const bool transpose);
+	void setName(std::string name);
 
 private:
 	GLuint vs;
@@ -52,6 +49,7 @@ private:
 	GLuint tcs;
 	GLuint tes;
 	GLuint gs;
+	std::string name;
 
 	void compileVertexShader(const GLchar* vertexSource);
 	void compileFragmentShader(const GLchar* fragmentSource);
@@ -64,6 +62,7 @@ private:
 	void printShaderInfoLog(GLuint shaderIndex);
 	void printProgrammeInfoLog(GLuint programme);
 	const char* GLTypeToString(GLenum type);
-	void printAllParams(GLuint programme);
+	const char* GLShaderTypeToString(GLenum type);
+	void printAllParams(GLuint programme, bool vertexExist, bool fragmentExist, bool tessControlExist, bool tessEvalExist, bool geometryExist);
 	bool isValid(GLuint programme);
 };
