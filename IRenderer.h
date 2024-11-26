@@ -16,7 +16,7 @@ public:
 
 	virtual ~IRenderer() {};
 
-	virtual bool initialize(Window& window) = 0;
+	virtual bool initialize(Window& windowP, bool usePostProcessing) = 0;
 	virtual void beginDraw() = 0;
 	virtual void draw() = 0;
 	virtual void endDraw() = 0;

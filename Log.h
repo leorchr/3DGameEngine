@@ -26,3 +26,6 @@ public:
 	static void info(const string& message);
 	static void error(LogCategory category, const string& message);
 };
+
+const char* getPriorityName(SDL_LogPriority priority);
+void outputLogFunction(void* userdata, int category, SDL_LogPriority priority, const char* message);

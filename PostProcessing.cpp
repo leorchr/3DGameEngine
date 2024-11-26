@@ -9,18 +9,6 @@ PostProcessing::PostProcessing() : FBO(0), rectVAO(0), rectVBO(0), frameBufferTe
 
 bool PostProcessing::initialize()
 {
-	glEnable(GL_DEBUG_OUTPUT);
-	glDebugMessageCallback(MyDebugCallback, nullptr);
-	Assets::loadComputeShader("Ressources/Shaders/Blur.comp", "Filter");
-	computeShader = &Assets::getComputeShader("Filter");
-	computeShader->use();
-	
-	Assets::loadShader("Ressources/Shaders/Framebuffer.vert", "Ressources/Shaders/Framebuffer.frag", "", "", "", "FrameBuffer");
-	shader = &Assets::getShader("FrameBuffer");
-	shader->use();
-	shader->setInteger("screenTexture", 0);
-
-
 	// Prepare framebuffer rectangle VBO and VAO
 	glGenVertexArrays(1, &rectVAO);
 	glGenBuffers(1, &rectVBO);
@@ -43,7 +31,6 @@ bool PostProcessing::initialize()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, frameBufferTexture, 0);
-
 	
 	glGenTextures(1, &frameBufferOutputTexture);
 	glBindTexture(GL_TEXTURE_2D, frameBufferOutputTexture);
@@ -91,8 +78,6 @@ void PostProcessing::displayFrameBuffer()
 	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 	computeShader->use();
-	//computeShader->setVector2i("texelSize", texelSize);
-
 	
 	// Exécute le compute shader
 	int workgroupSizeX = 16;
@@ -111,9 +96,12 @@ void PostProcessing::displayFrameBuffer()
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void MyDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
-						 GLsizei length, const GLchar* message,
-						 const void* userParam)
+void PostProcessing::setCustomFrambufferShader(Shader* shader)
 {
-	std::cout << "OpenGL Debug Message: " << message << std::endl;
+	this->shader = shader;
+}
+
+void PostProcessing::setupComputeShader(ComputeShader* computeShader)
+{
+	this->computeShader = computeShader;
 }

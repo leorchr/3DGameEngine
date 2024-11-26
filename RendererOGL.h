@@ -16,7 +16,7 @@ public:
 	RendererOGL(const RendererOGL&) = delete;
 	RendererOGL& operator=(const RendererOGL&) = delete;
 
-	bool initialize(Window& window);
+	bool initialize(Window& windowP, bool usePostProcessing);
 	void beginDraw();
 	void draw();
 	void endDraw();
@@ -44,6 +44,7 @@ public:
 	// z = [0, 1) -- 0 is closer to camera, 1 is further
 	Vector3 unproject(const Vector3& screenPoint) const;
 	void getScreenDirection(Vector3& outStart, Vector3& outDir) const;
+	PostProcessing* getPostProcess() const { return postProcessing; }
 
 private:
 	void drawMeshes();

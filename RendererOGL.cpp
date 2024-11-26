@@ -25,7 +25,7 @@ RendererOGL::RendererOGL() :
 
 RendererOGL::~RendererOGL() {}
 
-bool RendererOGL::initialize(Window& windowP)
+bool RendererOGL::initialize(Window& windowP, bool usePostProcessing = false)
 {
 	window = &windowP;
 
@@ -44,6 +44,9 @@ bool RendererOGL::initialize(Window& windowP)
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	// Force OpenGL to use hardware acceleration
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+
+	// Enable debugging
+	glEnable(GL_DEBUG_OUTPUT);
 
 	// OpenGL Context
 	context = SDL_GL_CreateContext(windowP.getSDLWindow());
@@ -67,8 +70,11 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	spriteVertexArray = new VertexArray(spriteVertices, 4, indices, 6);
-	postProcessing = new PostProcessing();
-	postProcessing->initialize();
+	if(usePostProcessing)
+	{
+		postProcessing = new PostProcessing();
+		postProcessing->initialize();
+	}
 	return true;
 }
 
@@ -82,9 +88,10 @@ void RendererOGL::beginDraw()
 	}
 	glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
 
 	//Nettoie et active custom buffer
-	postProcessing->startDrawing();
+	if(postProcessing) postProcessing->startDrawing();
 }
 
 void RendererOGL::draw()
@@ -97,7 +104,7 @@ void RendererOGL::draw()
 
 void RendererOGL::endDraw()
 {
-	postProcessing->displayFrameBuffer();
+	if(postProcessing) postProcessing->displayFrameBuffer();
 	SDL_GL_SwapWindow(window->getSDLWindow());
 }
 

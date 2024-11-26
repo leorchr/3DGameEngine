@@ -13,6 +13,8 @@ public:
 	bool initialize();
 	void startDrawing();
 	void displayFrameBuffer();
+	void setCustomFrambufferShader(Shader* shader);
+	void setupComputeShader(ComputeShader* computeShader);
 
 private:
 	unsigned int FBO;

@@ -15,10 +15,9 @@
 
 bool Game::initialize()
 {
-	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
 	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
-	const bool isRendererInit = renderer.initialize(window);
+	const bool isRendererInit = renderer.initialize(window, false);
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
 	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit; // Return bool && bool && bool ...to detect error
@@ -31,6 +30,16 @@ void Game::load()
 	Assets::loadShader("Ressources/Shaders/Sprite.vert", "Ressources/Shaders/Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
+
+	// Enable post processing
+	if(renderer.getPostProcess())
+	{
+		Assets::loadShader("Ressources/Shaders/Framebuffer.vert", "Ressources/Shaders/Framebuffer.frag", "", "", "", "FrameBuffer");
+		renderer.getPostProcess()->setCustomFrambufferShader(&Assets::getShader("FrameBuffer"));
+		Assets::loadComputeShader("Ressources/Shaders/Blur.comp", "Filter");
+		renderer.getPostProcess()->setupComputeShader(&Assets::getComputeShader("Filter"));
+	}
+	
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
