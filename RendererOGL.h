@@ -45,6 +45,7 @@ public:
 	Vector3 unproject(const Vector3& screenPoint) const;
 	void getScreenDirection(Vector3& outStart, Vector3& outDir) const;
 	PostProcessing* getPostProcess() const { return postProcessing; }
+	SDL_GLContext getSdlGlContext() const { return context; }
 
 private:
 	void drawMeshes();

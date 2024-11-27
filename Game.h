@@ -41,6 +41,7 @@ public:
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 	RendererOGL& getRenderer() { return renderer; }
+	Window& getWindow() { return window; }
 	PhysicsSystem& getPhysicsSystem() { return physicsSystem; }
 	InputSystem& getInputSystem() { return inputSystem; }
 	const std::vector<class UIScreen*>& getUIStack() { return UIStack; }

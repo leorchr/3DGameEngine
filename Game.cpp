@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "TPActor.h"
 #include "FPSActor.h"
+#include "ImGUIManager.h"
 #include <vector>
 #include "MeshComponent.h"
 
@@ -17,9 +18,10 @@ bool Game::initialize()
 	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
 	const bool isRendererInit = renderer.initialize(window, false);
+	const bool isImGUIInit = ImGUIManager::initialize();
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
-	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit; // Return bool && bool && bool ...to detect error
+	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit && isImGUIInit; // Return bool && bool && bool ...to detect error
 }
 
 void Game::load()
