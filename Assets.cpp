@@ -161,7 +161,7 @@ std::vector<std::vector<int>> Assets::getMap(const std::string& name) {
 
 ComputeShader Assets::loadComputeShader(const std::string& cShaderFile, const std::string& name)
 {
-    computeShaders[name] = loadComputeShaderFromFile(cShaderFile);
+    computeShaders[name] = loadComputeShaderFromFile(cShaderFile, name);
     return computeShaders[name];
 }
 
@@ -365,7 +365,7 @@ std::vector<vector<int>> Assets::loadMapFromFile(const string& filename)
     return positions;
 }
 
-ComputeShader Assets::loadComputeShaderFromFile(const std::string& cShaderFile)
+ComputeShader Assets::loadComputeShaderFromFile(const std::string& cShaderFile, const std::string& name)
 {
     std::string computeCode;
     std::ifstream computeShaderFile(cShaderFile);
@@ -382,6 +382,7 @@ ComputeShader Assets::loadComputeShaderFromFile(const std::string& cShaderFile)
 
     //Create the compute shader
     ComputeShader cShader;
+    cShader.setName(name);
     cShader.compile(cShaderCode);
     return cShader;
 }

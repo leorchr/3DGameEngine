@@ -89,5 +89,5 @@ private:
 
     static std::vector<std::vector<int>> loadMapFromFile(const string& filename);
 
-    static ComputeShader loadComputeShaderFromFile(const std::string &cShaderFile);
+    static ComputeShader loadComputeShaderFromFile(const std::string &cShaderFile, const std::string& name = "");
 };

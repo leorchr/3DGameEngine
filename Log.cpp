@@ -44,4 +44,3 @@ const char* getPriorityName(SDL_LogPriority priority)
 	default: return "UNKNOWN";
 	}
 }
-

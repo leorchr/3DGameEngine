@@ -2,14 +2,14 @@
 #include <GL/glew.h>
 #include "Vector3.h"
 #include "Vector2.h"
-#include <xstring>
+#include <string>
 
 class ComputeShader
 {
 public:
 	GLuint id;
 
-	ComputeShader(): id(0), computeShader(0) { }
+	ComputeShader(): id(0), cs(0) { }
 
 	void unload();
 	ComputeShader& use();
@@ -21,9 +21,11 @@ public:
 	void setVector2i(const GLchar* name, GLint x, GLint y, GLint z);
 	void setVector2i(const GLchar *name, const Vector2 &value);
 	void setVector2f(const GLchar* name, const Vector2& value);
+	void setName(std::string name);
 
 private:
-	GLuint computeShader;
+	GLuint cs;
+	std::string name;
 	void compileComputeShader(const GLchar *cSource);
 	void createShaderProgram();
 
@@ -31,5 +33,6 @@ private:
 	void printProgrammeInfoLog(GLuint id);
 	void checkShaderErrors(GLuint shader, std::string shaderType);
 	void printShaderInfoLog(GLuint shaderIndex);
+	void printAllParams();
 };
 

@@ -61,8 +61,9 @@ private:
 	void checkShaderErrors(GLuint shader, std::string shaderType);
 	void printShaderInfoLog(GLuint shaderIndex);
 	void printProgrammeInfoLog(GLuint programme);
-	const char* GLTypeToString(GLenum type);
-	const char* GLShaderTypeToString(GLenum type);
 	void printAllParams(GLuint programme, bool vertexExist, bool fragmentExist, bool tessControlExist, bool tessEvalExist, bool geometryExist);
 	bool isValid(GLuint programme);
 };
+
+const char* GLTypeToString(GLenum type);
+const char* GLShaderTypeToString(GLenum type);

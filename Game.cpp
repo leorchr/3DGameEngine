@@ -10,14 +10,13 @@
 #include "FPSActor.h"
 #include "ComputeShader.h"
 #include <vector>
-#include "FPSActor.h"
 #include "MeshComponent.h"
 
 bool Game::initialize()
 {
 	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
-	const bool isRendererInit = renderer.initialize(window, false);
+	const bool isRendererInit = renderer.initialize(window, true);
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
 	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit; // Return bool && bool && bool ...to detect error

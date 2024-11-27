@@ -135,14 +135,17 @@ void Shader::setFloat(const GLchar* name, GLfloat value)
 {
     glUniform1f(glGetUniformLocation(id, name), value);
 }
+
 void Shader::setInteger(const GLchar* name, GLint value)
 {
     glUniform1i(glGetUniformLocation(id, name), value);
 }
+
 void Shader::setVector2f(const GLchar* name, GLfloat x, GLfloat y)
 {
     glUniform2f(glGetUniformLocation(id, name), x, y);
 }
+
 void Shader::setVector2f(const GLchar* name, const Vector2& value)
 {
     glUniform2f(glGetUniformLocation(id, name), value.x, value.y);
@@ -152,6 +155,7 @@ void Shader::setVector3f(const GLchar* name, GLfloat x, GLfloat y, GLfloat z)
 {
     glUniform3f(glGetUniformLocation(id, name), x, y, z);
 }
+
 void Shader::setVector3f(const GLchar* name, const Vector3& value)
 {
     glUniform3f(glGetUniformLocation(id, name), value.x, value.y, value.z);
@@ -204,62 +208,6 @@ void Shader::checkShaderErrors(GLuint shader, std::string shaderType)
     }
 }
 
-const char* Shader::GLTypeToString(GLenum type)
-{
-    switch (type)
-    {
-    case GL_BOOL:
-        return "bool";
-    case GL_INT:
-        return "int";
-    case GL_FLOAT:
-        return "float";
-    case GL_FLOAT_VEC2:
-        return "vec2";
-    case GL_FLOAT_VEC3:
-        return "vec3";
-    case GL_FLOAT_VEC4:
-        return "vec4";
-    case GL_FLOAT_MAT2:
-        return "mat2";
-    case GL_FLOAT_MAT3:
-        return "mat3";
-    case GL_FLOAT_MAT4:
-        return "mat4";
-    case GL_SAMPLER_2D:
-        return "sampler2D";
-    case GL_SAMPLER_3D:
-        return "sampler3D";
-    case GL_SAMPLER_CUBE:
-        return "samplerCube";
-    case GL_SAMPLER_2D_SHADOW:
-        return "sampler2DShadow";
-    default:
-        break;
-    }
-    return "other";
-}
-
-const char* Shader::GLShaderTypeToString(GLenum type)
-{
-    switch (type)
-    {
-    case GL_VERTEX_SHADER:
-        return "vertex shader";
-    case GL_FRAGMENT_SHADER:
-        return "fragment shader";
-    case GL_TESS_CONTROL_SHADER:
-        return "tesselation control shader";
-    case GL_TESS_EVALUATION_SHADER:
-        return "tesselation evaluation shader";
-    case GL_GEOMETRY_SHADER:
-        return "geometry shader";
-    default:
-        break;
-    }
-    return "other";
-}
-
 void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, bool tessControlExist, bool tessEvalExist, bool geometryExist)
 {
     Log::info("-----------------------------");
@@ -290,7 +238,7 @@ void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, boo
         s.str("");
         GLint shaderType = 0;
         glGetShaderiv(vs, GL_SHADER_TYPE, &shaderType);
-        s << "  " << i << ") type: " << GLShaderTypeToString(shaderType) << std::endl;
+        s << "  " << i << ") Type: " << GLShaderTypeToString(shaderType) << std::endl;
         Log::info(s.str());
     }
     if(fragmentExist)
@@ -350,7 +298,7 @@ void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, boo
                 sprintf_s(long_name, "%s[%i]", name, j);
                 int location = glGetAttribLocation(id, long_name);
                 std::ostringstream s;
-                s << "  " << i << ") type:" << GLTypeToString(type) << " name:" << long_name << " location:" << location;
+                s << "  " << i << ") Type:" << GLTypeToString(type) << " Name:" << long_name << " Location:" << location;
                 Log::info(s.str());
             }
         }
@@ -358,7 +306,7 @@ void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, boo
         {
             int location = glGetAttribLocation(id, name);
             std::ostringstream s;
-            s << "  " << i << ") type:" << GLTypeToString(type) << " name:" << name << " location:" << location;
+            s << "  " << i << ") Type:" << GLTypeToString(type) << " Name:" << name << " Location:" << location;
             Log::info(s.str());
         }
     }
@@ -409,4 +357,60 @@ bool Shader::isValid(GLuint id)
         return false;
     }
     return true;
+}
+
+const char* GLTypeToString(GLenum type)
+{
+    switch (type)
+    {
+    case GL_BOOL:
+        return "bool";
+    case GL_INT:
+        return "int";
+    case GL_FLOAT:
+        return "float";
+    case GL_FLOAT_VEC2:
+        return "vec2";
+    case GL_FLOAT_VEC3:
+        return "vec3";
+    case GL_FLOAT_VEC4:
+        return "vec4";
+    case GL_FLOAT_MAT2:
+        return "mat2";
+    case GL_FLOAT_MAT3:
+        return "mat3";
+    case GL_FLOAT_MAT4:
+        return "mat4";
+    case GL_SAMPLER_2D:
+        return "sampler2D";
+    case GL_SAMPLER_3D:
+        return "sampler3D";
+    case GL_SAMPLER_CUBE:
+        return "samplerCube";
+    case GL_SAMPLER_2D_SHADOW:
+        return "sampler2DShadow";
+    default:
+        break;
+    }
+    return "other";
+}
+
+const char* GLShaderTypeToString(GLenum type)
+{
+    switch (type)
+    {
+    case GL_VERTEX_SHADER:
+        return "vertex shader";
+    case GL_FRAGMENT_SHADER:
+        return "fragment shader";
+    case GL_TESS_CONTROL_SHADER:
+        return "tesselation control shader";
+    case GL_TESS_EVALUATION_SHADER:
+        return "tesselation evaluation shader";
+    case GL_GEOMETRY_SHADER:
+        return "geometry shader";
+    default:
+        break;
+    }
+    return "other";
 }
