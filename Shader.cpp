@@ -210,10 +210,10 @@ void Shader::checkShaderErrors(GLuint shader, std::string shaderType)
 
 void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, bool tessControlExist, bool tessEvalExist, bool geometryExist)
 {
-    Log::info("-----------------------------");
+    Log::info("\033[35m-----------------------------\033[0m");
 
     std::ostringstream outputName;
-    outputName << "Shader name : " << name;
+    outputName << "Shader name : " << "\033[35m" << name << "\033[0m";
     Log::info(outputName.str());
     
     std::ostringstream s;
@@ -343,7 +343,6 @@ void Shader::printAllParams(GLuint id, bool vertexExist, bool fragmentExist, boo
             Log::info(s.str());
         }
     }
-    Log::info("-----------------------------");
 }
 
 bool Shader::isValid(GLuint id)

@@ -5,10 +5,10 @@
 #include "PauseScreen.h"
 #include "PlaneActor.h"
 #include "Texture.h"
+#include "ComputeShader.h"
 #include "Timer.h"
 #include "TPActor.h"
 #include "FPSActor.h"
-#include "ComputeShader.h"
 #include <vector>
 #include "MeshComponent.h"
 
@@ -16,7 +16,7 @@ bool Game::initialize()
 {
 	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
-	const bool isRendererInit = renderer.initialize(window, true);
+	const bool isRendererInit = renderer.initialize(window, false);
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
 	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit; // Return bool && bool && bool ...to detect error
@@ -25,7 +25,7 @@ bool Game::initialize()
 void Game::load()
 {
 	inputSystem.setMouseRelativeMode(true);
-
+	
 	Assets::loadShader("Ressources/Shaders/Sprite.vert", "Ressources/Shaders/Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
@@ -39,6 +39,7 @@ void Game::load()
 		renderer.getPostProcess()->setupComputeShader(&Assets::getComputeShader("Filter"));
 	}
 	
+	Log::info("\033[35m-----------------------------\033[0m");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
@@ -50,6 +51,7 @@ void Game::load()
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
+	Log::info("\033[35m-----------------------------\033[0m");
 	
 	player = new TPActor();
 	player->setPosition(Vector3(0.0f,0.0f,1.0f));

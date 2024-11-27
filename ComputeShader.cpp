@@ -132,10 +132,10 @@ void ComputeShader::printShaderInfoLog(GLuint shaderIndex)
 
 void ComputeShader::printAllParams()
 {
-    Log::info("-----------------------------");
+    Log::info("\033[35m-----------------------------\033[0m");
 
     std::ostringstream outputName;
-    outputName << "Compute shader name : " << name;
+    outputName << "Compute shader name : " << "\033[35m" << name << "\033[0m";
     Log::info(outputName.str());
     
     std::ostringstream s;
