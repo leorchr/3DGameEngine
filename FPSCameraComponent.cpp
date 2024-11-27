@@ -16,7 +16,7 @@ void FPSCameraComponent::update(float dt)
 	pitch += pitchSpeed * dt;
 	pitch = Maths::clamp(pitch, -maxPitch, maxPitch);
 	Quaternion q { owner.getRight(), pitch };
-	Vector3 viewForward = Vector3::transform(owner.getForward(), q);
+	viewForward = Vector3::transform(owner.getForward(), q);
 
 	Vector3 target = cameraPosition + viewForward * 100.0f;
 	Vector3 up = Vector3::transform(Vector3::unitZ, q);

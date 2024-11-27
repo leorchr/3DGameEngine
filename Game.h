@@ -57,6 +57,8 @@ public:
 	std::vector<class CubeActor*>& getCubes() { return cubes; }
 	class TPActor* getPlayer() { return player; }
 
+	class ImGUIWindow* getImGuiWindow(){ return imGuiWindow; }
+
 private:
 	void processInput();
 	void update(float dt);
@@ -72,6 +74,8 @@ private:
 	bool isUpdatingActors;
 	std::vector<Actor*> actors;
 	std::vector<Actor*> pendingActors;
+
+	class ImGUIWindow* imGuiWindow;
 
 	// Game specific
 	class TPActor* player;

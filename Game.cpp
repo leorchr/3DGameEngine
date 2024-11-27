@@ -8,12 +8,13 @@
 #include "ComputeShader.h"
 #include "Timer.h"
 #include "TPActor.h"
-#include "FPSActor.h"
+#include "ViewportActor.h"
 #include "ImGUIManager.h"
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include <vector>
 #include "MeshComponent.h"
+#include "ImGUIWindow.h"
 
 bool Game::initialize()
 {
@@ -56,12 +57,12 @@ void Game::load()
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
 	Log::info("\033[35m-----------------------------\033[0m");
-	
-	player = new TPActor();
-	player->setPosition(Vector3(0.0f,0.0f,1.0f));
 
-	//FPSActor* fps = new FPSActor();
-	//fps->setPosition(Vector3(0.0f,0.0f,11.0f));
+	//player = new TPActor();
+	//player->setPosition(Vector3(0.0f,0.0f,1.0f));
+
+	ViewportActor* viewportActor = new ViewportActor();
+	viewportActor->setPosition(Vector3(0.0f,0.0f,11.0f));
 
 
 	Actor* sphere = new Actor();
@@ -70,6 +71,11 @@ void Game::load()
 	sphere->setPosition(Vector3(0.0f,0.0f,15.0f));
 	sphere->setScale(Vector3(10.0f,10.0f,10.0f));
 
+	imGuiWindow = new ImGUIWindow();
+	imGuiWindow->setActor(sphere);
+	imGuiWindow->setViewportActor(viewportActor);
+
+	
 	for(int i = 0; i < 5; i++)
 	{
 		for(int y = 0; y < 5; y++)
@@ -242,6 +248,7 @@ void Game::close()
 	inputSystem.close();
 	renderer.close();
 	window.close();
+	ImGUIManager::close();
 	SDL_Quit();
 }
 

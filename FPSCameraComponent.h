@@ -15,6 +15,8 @@ public:
 
 	void setPitchSpeed(float speed);
 	void setMaxPitch(float pitch);
+
+	Vector3 getViewForward() const { return viewForward; }
 private:
 	// Rotation/sec speed of pitch
 	float pitchSpeed;
@@ -22,4 +24,6 @@ private:
 	float maxPitch;
 	// Current pitch
 	float pitch;
+	
+	Vector3 viewForward;
 };

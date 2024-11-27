@@ -160,6 +160,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="BackgroundSpriteComponent.cpp" />
     <ClCompile Include="ComputeShader.cpp" />
     <ClCompile Include="ImGUIManager.cpp" />
+    <ClCompile Include="ImGUIWindow.cpp" />
     <ClCompile Include="Include\imgui\imgui.cpp" />
     <ClCompile Include="Include\imgui\imgui_demo.cpp" />
     <ClCompile Include="Include\imgui\imgui_draw.cpp" />
@@ -225,6 +226,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="VertexArray.cpp" />
+    <ClCompile Include="ViewportActor.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +236,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="BackgroundSpriteComponent.h" />
     <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ImGUIManager.h" />
+    <ClInclude Include="ImGUIWindow.h" />
     <ClInclude Include="Include\imgui\imconfig.h" />
     <ClInclude Include="Include\imgui\imgui.h" />
     <ClInclude Include="Include\imgui\imgui_impl_opengl3.h" />
@@ -305,6 +308,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="VertexArray.h" />
+    <ClInclude Include="ViewportActor.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
