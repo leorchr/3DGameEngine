@@ -10,6 +10,8 @@
 #include "TPActor.h"
 #include "FPSActor.h"
 #include "ImGUIManager.h"
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
 #include <vector>
 #include "MeshComponent.h"
 
@@ -97,6 +99,7 @@ void Game::processInput()
 	while (SDL_PollEvent(&event))
 	{
 		bool isRunning = inputSystem.processEvent(event);
+		ImGui_ImplSDL2_ProcessEvent(&event);
 		if (!isRunning) state = GameState::Quit;
 	}
 

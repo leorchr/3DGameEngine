@@ -8,4 +8,6 @@ public:
 	ImGUIManager& operator=(const ImGUIManager&) = delete;
 
 	static bool initialize();
+	static void beginDraw();
+	static void render();
 };

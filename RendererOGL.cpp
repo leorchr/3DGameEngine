@@ -12,6 +12,7 @@
 #include <SDL_image.h>
 #include "ComputeShader.h"
 #include <iostream>
+#include "ImGUIManager.h"
 
 RendererOGL::RendererOGL() :
 	window(nullptr),
@@ -93,6 +94,7 @@ void RendererOGL::beginDraw()
 
 	//Nettoie et active custom buffer
 	if(postProcessing) postProcessing->startDrawing();
+	ImGUIManager::beginDraw();
 }
 
 void RendererOGL::draw()
@@ -105,6 +107,7 @@ void RendererOGL::draw()
 
 void RendererOGL::endDraw()
 {
+	ImGUIManager::render();
 	if(postProcessing) postProcessing->displayFrameBuffer();
 	SDL_GL_SwapWindow(window->getSDLWindow());
 }
