@@ -10,6 +10,10 @@ public:
 	void setViewportActor(class ViewportActor* actor);
 	void setShowImGUI(bool showImGUI);
 
+protected:
+	void viewport();
+	void playmode();
+	
 private:
 	class Actor* sphere;
 	class ViewportActor* viewportActor;

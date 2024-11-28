@@ -10,10 +10,10 @@ ViewportActor::ViewportActor() :
 	moveComponent(nullptr),
 	cameraComponent(nullptr)
 {
-	moveComponent = new MoveComponent(this);
-	cameraComponent = new FPSCameraComponent(this);
 	Game::instance().getInputSystem().setMouseRelativeMode(false);
 	SDL_WarpMouseInWindow(Game::instance().getWindow().getSDLWindow(),WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+	moveComponent = new MoveComponent(this);
+	cameraComponent = new FPSCameraComponent(this);
 	setPosition(Vector3(-100.0f,100.0f,50.0f));
 }
 

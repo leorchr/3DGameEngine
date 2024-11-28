@@ -15,6 +15,7 @@ baseRotation(Quaternion::identity),
 cameraLock(false)
 {
 	Game::instance().getInputSystem().setMouseRelativeMode(true);
+	SDL_WarpMouseInWindow(Game::instance().getWindow().getSDLWindow(),WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 	moveComponent = new MoveComponent(this);
 	meshComponent = new MeshComponent(this);
 	cameraComponent = new TPSCameraComponent(this);
