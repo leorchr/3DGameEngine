@@ -8,7 +8,12 @@
 
 enum class GameState
 {
-	Gameplay, Pause, Quit
+	Running, Pause, Quit
+};
+
+enum class EngineMode
+{
+	Editor, Game, None
 };
 
 class Game
@@ -26,7 +31,7 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : state(GameState::Gameplay), isUpdatingActors(false), player(nullptr) {}
+	Game() : state(GameState::Running), mode(EngineMode::None), isUpdatingActors(false), player(nullptr) {}
 
 public:
 	bool initialize();
@@ -37,6 +42,8 @@ public:
 
 	GameState getState() const { return state; }
 	void setState(GameState stateP);
+	EngineMode getMode() const { return mode; }
+	void setMode(EngineMode mode);
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
@@ -55,7 +62,7 @@ public:
 	void addCube(class CubeActor* cube);
 	void removeCube(class CubeActor* cube);
 	std::vector<class CubeActor*>& getCubes() { return cubes; }
-	class TPActor* getPlayer() { return player; }
+	class Actor* getPlayer() { return player; }
 
 	class ImGUIWindow* getImGuiWindow(){ return imGuiWindow; }
 
@@ -64,6 +71,7 @@ private:
 	void update(float dt);
 	void render();
 
+	EngineMode mode;
 	GameState state;
 	Window window;
 	RendererOGL renderer;
@@ -75,10 +83,11 @@ private:
 	std::vector<Actor*> actors;
 	std::vector<Actor*> pendingActors;
 
-	class ImGUIWindow* imGuiWindow;
 
+	class ImGUIWindow* imGuiWindow;
 	// Game specific
-	class TPActor* player;
+	class Actor* player;
+	
 	std::vector<class PlaneActor*> planes;
 	std::vector<class CubeActor*> cubes;
 };

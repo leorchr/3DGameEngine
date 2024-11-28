@@ -15,7 +15,7 @@ PauseScreen::PauseScreen() : UIScreen()
 
 PauseScreen::~PauseScreen()
 {
-	Game::instance().setState(GameState::Gameplay);
+	Game::instance().setState(GameState::Running);
 	Game::instance().getInputSystem().setMouseRelativeMode(true);
 }
 

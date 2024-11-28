@@ -8,6 +8,7 @@ public:
 	void update();
 	void setActor(class Actor* actor);
 	void setViewportActor(class ViewportActor* actor);
+	void setShowImGUI(bool showImGUI);
 
 private:
 	class Actor* sphere;
@@ -16,4 +17,6 @@ private:
 
 	// Viewport Actor
 	float speed;
+
+	bool showImGUI;
 };

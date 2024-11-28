@@ -58,13 +58,7 @@ void Game::load()
 	Assets::loadText("Ressources/Localization/English.gptext");
 	Log::info("\033[35m-----------------------------\033[0m");
 
-	//player = new TPActor();
-	//player->setPosition(Vector3(0.0f,0.0f,1.0f));
-
-	ViewportActor* viewportActor = new ViewportActor();
-	viewportActor->setPosition(Vector3(0.0f,0.0f,11.0f));
-
-
+	
 	Actor* sphere = new Actor();
 	MeshComponent* sphereMesh = new MeshComponent(sphere);
 	sphereMesh->setMesh(Assets::getMesh("Mesh_Sphere"));
@@ -73,8 +67,7 @@ void Game::load()
 
 	imGuiWindow = new ImGUIWindow();
 	imGuiWindow->setActor(sphere);
-	imGuiWindow->setViewportActor(viewportActor);
-
+	setMode(EngineMode::Editor);
 	
 	for(int i = 0; i < 5; i++)
 	{
@@ -112,15 +105,8 @@ void Game::processInput()
 	inputSystem.update();
 	const InputState& input = inputSystem.getInputState();
 
-	if (state == GameState::Gameplay)
+	if (state == GameState::Running)
 	{
-		// Escape: pause game
-		if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
-		{
-			new PauseScreen();
-			return;
-		}
-
 		// Actor input
 		isUpdatingActors = true;
 		for (auto actor : actors)
@@ -128,15 +114,39 @@ void Game::processInput()
 			actor->processInput(input);
 		}
 		isUpdatingActors = false;
-		if (!UIStack.empty()) {
-			// Update UI screens
-			for (auto ui : UIStack)
+		switch(mode)
+		{
+		case EngineMode::Game:
+			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
 			{
-				if (ui->getState() == UIState::Active)
+				setMode(EngineMode::Editor);
+			}
+			// Escape: pause game
+			if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
+			{
+				new PauseScreen();
+				return;
+			}
+			if (!UIStack.empty()) {
+				// Update UI screens
+				for (auto ui : UIStack)
 				{
-					ui->processInput(input);
+					if (ui->getState() == UIState::Active)
+					{
+						ui->processInput(input);
+					}
 				}
 			}
+			break;
+		case EngineMode::Editor:
+			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
+			{
+				setMode(EngineMode::Game);
+			}
+			if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released) setState(GameState::Quit);
+			break;
+		default:
+			break;
 		}
 	}
 	else
@@ -151,7 +161,7 @@ void Game::processInput()
 
 void Game::update(float dt)
 {	
-	if (state == GameState::Gameplay)
+	if (state == GameState::Running)
 	{
 		// Update actors 
 		isUpdatingActors = true;
@@ -255,6 +265,40 @@ void Game::close()
 void Game::setState(GameState stateP)
 {
 	state = stateP;
+}
+
+void Game::setMode(EngineMode mode)
+{
+	if(this->mode == mode) return;
+	if (player) {
+		player->setState(Actor::ActorState::Dead);
+		imGuiWindow->setViewportActor(nullptr);
+	}
+	
+	this->mode = mode;
+	
+	
+	switch(mode)
+	{
+	case EngineMode::Editor:
+		{
+		player = new ViewportActor();
+		imGuiWindow->setViewportActor(dynamic_cast<ViewportActor*>(player));
+		imGuiWindow->setShowImGUI(true);
+		break;
+		} 
+	case EngineMode::Game:
+		{
+		player = new TPActor();
+		player->setPosition(Vector3(0.0f,0.0f,1.0f));
+		imGuiWindow->setShowImGUI(false);
+		}
+		break;
+	case EngineMode::None:
+		close();
+	default:
+		break;
+	}
 }
 
 void Game::addActor(Actor* actor)

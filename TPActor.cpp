@@ -14,6 +14,7 @@ cameraForwardRaw(Vector3::zero),
 baseRotation(Quaternion::identity),
 cameraLock(false)
 {
+	Game::instance().getInputSystem().setMouseRelativeMode(true);
 	moveComponent = new MoveComponent(this);
 	meshComponent = new MeshComponent(this);
 	cameraComponent = new TPSCameraComponent(this);
