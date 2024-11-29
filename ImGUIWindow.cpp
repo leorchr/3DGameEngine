@@ -14,6 +14,8 @@ void ImGUIWindow::update()
 	{
 		viewport();
 		playmode();
+		//ImGui::ShowStyleEditor();
+		//ImGui::ShowDemoWindow();
 	}
 }
 
@@ -35,64 +37,71 @@ void ImGUIWindow::setShowImGUI(bool showImGUI)
 
 void ImGUIWindow::viewport()
 {
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 8.0f);
-	ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
-	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
-	ImGui::SetNextWindowPos(ImVec2(50.0f, 50.0f), ImGuiCond_Once);
+	ImGui::SetNextWindowPos(ImVec2(50.0f, WINDOW_HEIGHT - 250.0f), ImGuiCond_Once);
 	ImGui::SetNextWindowSize(ImVec2(500.0f, 200.0f), ImGuiCond_Always);
 	
-	ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse);
-	if(sphere)
+	ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
+	if(ImGui::BeginTabBar("Panel"))
 	{
-		ImGui::Text("Sphere : ");
-		Vector3 currentPosition = sphere->getPosition();
-		Vector3 uiPosition = currentPosition;
-			
-		if (ImGui::SliderFloat3("Position Slider", &uiPosition.x, -500.0f, 500.0f)) {
-			// Vérifier si la position a changé
-			if (uiPosition != currentPosition) {
-				sphere->setPosition(uiPosition);
-			}
-		}
-			
-	}
-	if(viewportActor)
-	{
-		ImGui::Text("Camera Settings : ");
-		Vector3 currentPosition = viewportActor->getPosition();
-		Vector3 uiPosition = currentPosition;
-		if(ImGui::SliderFloat3("Camera Position", &uiPosition.x, -500.0f, 500.0f))
+		
+		if (ImGui::BeginTabItem("Viewport"))
 		{
-			if (uiPosition != currentPosition) {
-				viewportActor->setPosition(uiPosition);
+			if(sphere)
+			{
+				ImGui::Text("Sphere : ");
+				Vector3 currentPosition = sphere->getPosition();
+				Vector3 uiPosition = currentPosition;
+				Vector3 currentScale = sphere->getScale();
+				Vector3 uiScale = currentScale;
+					
+				if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
+					// Vérifier si la position a changé
+					if (uiPosition != currentPosition) {
+						sphere->setPosition(uiPosition);
+					}
+				}
+				if (ImGui::DragFloat3("Scale", &uiScale.x, 1.0f)) {
+					// Vérifier si la position a changé
+					if (uiScale != currentScale) {
+						sphere->setScale(uiScale);
+					}
+				}
 			}
+			ImGui::EndTabItem();
 		}
-		if(ImGui::SliderFloat("Camera Speed", &speed, 0.0f, 500.0f))
+		if (ImGui::BeginTabItem("World Settings"))
 		{
-			viewportActor->setBaseSpeed(speed);
+			if(viewportActor)
+			{
+				ImGui::Text("Camera Settings : ");
+				Vector3 currentPosition = viewportActor->getPosition();
+				Vector3 uiPosition = currentPosition;
+				if(ImGui::DragFloat3("Camera Position", &uiPosition.x, 1.0f))
+				{
+					if (uiPosition != currentPosition) {
+						viewportActor->setPosition(uiPosition);
+					}
+				}
+				if(ImGui::DragFloat("Camera Speed", &speed, 1.0f, 0.0f, FLT_MAX))
+				{
+					viewportActor->setBaseSpeed(speed);
+				}
+			}
+			ImGui::EndTabItem();
 		}
+		ImGui::EndTabBar();
 	}
 	ImGui::End();
-	ImGui::PopStyleVar();
-	ImGui::PopStyleColor(2);
 }
 
 void ImGUIWindow::playmode()
 {
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	ImGui::PushStyleColor(ImGuiCol_ResizeGrip, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	ImGui::PushStyleColor(ImGuiCol_ResizeGripHovered, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
 	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 190.0f , 25.0f), ImGuiCond_Always);
-	ImGui::SetNextWindowSize(ImVec2(170.0f, 0.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(175.0f, 0.0f), ImGuiCond_Always);
 	ImGui::Begin("Playmode", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 	if(ImGui::Button("Play", ImVec2(150.0f, 0.0f)))
 	{
 		Game::instance().setMode(EngineMode::Game);
 	}
 	ImGui::End();
-	ImGui::PopStyleColor(7);
 }
