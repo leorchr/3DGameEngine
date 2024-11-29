@@ -38,6 +38,26 @@ public:
 		return Maths::sqrt(lengthSq());
 	}
 
+	Vector3 toDegEulerAngles() const
+	{
+		// Roll (X-axis rotation)
+		float roll = atan2(2.0f * (w * x + y * z), 1.0f - 2.0f * (x * x + y * y));
+    
+		// Pitch (Y-axis rotation)
+		float pitch = asin(2.0f * (w * y - z * x));
+    
+		// Yaw (Z-axis rotation)
+		float yaw = atan2(2.0f * (w * z + x * y), 1.0f - 2.0f * (y * y + z * z));
+
+		// Convert radians to degrees
+		const float radToDeg = 180.0f / Maths::pi;
+		roll *= radToDeg;
+		pitch *= radToDeg;
+		yaw *= radToDeg;
+		
+		return Vector3(roll, pitch, yaw); // Return as Vector3 for roll, pitch, yaw
+	}
+
 	// Normalize the provided quaternion
 	static Quaternion normalize(const Quaternion& q)
 	{

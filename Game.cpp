@@ -61,7 +61,7 @@ void Game::load()
 	
 	Actor* sphere = new Actor();
 	MeshComponent* sphereMesh = new MeshComponent(sphere);
-	sphereMesh->setMesh(Assets::getMesh("Mesh_Sphere"));
+	sphereMesh->setMesh(Assets::getMesh("Mesh_Moto"));
 	sphere->setPosition(Vector3(0.0f,0.0f,15.0f));
 	sphere->setScale(Vector3(10.0f,10.0f,10.0f));
 

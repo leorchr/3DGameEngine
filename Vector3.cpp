@@ -77,3 +77,27 @@ Vector3 Vector3::transform(const Vector3& v, const Quaternion& q)
 	retVal += 2.0f * Vector3::cross(qv, Vector3::cross(qv, v) + q.w * v);
 	return retVal;
 }
+
+Quaternion Vector3::toQuaternion() const
+{
+	float rollRad = x * (Maths::pi / 180.0f);
+	float pitchRad = y * (Maths::pi / 180.0f);
+	float yawRad = z * (Maths::pi / 180.0f);
+
+	// Calculer les demi-angles
+	float cRoll = cos(rollRad / 2.0f);
+	float sRoll = sin(rollRad / 2.0f);
+	float cPitch = cos(pitchRad / 2.0f);
+	float sPitch = sin(pitchRad / 2.0f);
+	float cYaw = cos(yawRad / 2.0f);
+	float sYaw = sin(yawRad / 2.0f);
+
+	// Calculer le quaternion
+	Quaternion q;
+	q.w = cRoll * cPitch * cYaw + sRoll * sPitch * sYaw;
+	q.x = sRoll * cPitch * cYaw - cRoll * sPitch * sYaw;
+	q.y = cRoll * sPitch * cYaw + sRoll * cPitch * sYaw;
+	q.z = cRoll * cPitch * sYaw - sRoll * sPitch * cYaw;
+
+	return q;
+}

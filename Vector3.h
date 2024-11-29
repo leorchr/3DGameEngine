@@ -145,6 +145,7 @@ public:
 
 	// Transform a Vector3 by a quaternion
 	static Vector3 transform(const Vector3& v, const class Quaternion& q);
+	Quaternion toQuaternion() const;
 
 	static const Vector3 zero;
 	static const Vector3 unitX;

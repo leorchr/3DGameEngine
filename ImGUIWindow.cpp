@@ -4,6 +4,7 @@
 #include "ViewportActor.h"
 #include "imgui.h"
 #include "MoveComponent.h"
+#include <iostream>
 #include <string>
 
 ImGUIWindow::ImGUIWindow() : sphere(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true) {}
@@ -51,6 +52,11 @@ void ImGUIWindow::viewport()
 				ImGui::Text("Sphere : ");
 				Vector3 currentPosition = sphere->getPosition();
 				Vector3 uiPosition = currentPosition;
+				
+				Vector3 currentRotation = sphere->getRotation().toDegEulerAngles();
+				Vector3 uiRotation = currentRotation;
+				//std::cout << currentRotation.x << " , " << currentRotation.y << " , " << currentRotation.z << std::endl;
+				
 				Vector3 currentScale = sphere->getScale();
 				Vector3 uiScale = currentScale;
 					
@@ -60,8 +66,14 @@ void ImGUIWindow::viewport()
 						sphere->setPosition(uiPosition);
 					}
 				}
+				if (ImGui::DragFloat3("Rotation", &uiRotation.x, 1.0f)) {
+					//Vérifier si la position a changé
+					if (uiRotation != currentRotation) {
+						sphere->setRotation(uiRotation.toQuaternion());
+					}
+				}
 				if (ImGui::DragFloat3("Scale", &uiScale.x, 1.0f)) {
-					// Vérifier si la position a changé
+					// Vérifier si la scale a changé
 					if (uiScale != currentScale) {
 						sphere->setScale(uiScale);
 					}
