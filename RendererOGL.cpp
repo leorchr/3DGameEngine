@@ -52,7 +52,7 @@ bool RendererOGL::initialize(Window& windowP, bool usePostProcessing = false)
 
 	// OpenGL Context
 	context = SDL_GL_CreateContext(windowP.getSDLWindow());
-	SDL_SetWindowFullscreen(windowP.getSDLWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
+	//SDL_SetWindowFullscreen(windowP.getSDLWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	// GLEW
 	glewExperimental = GL_TRUE;

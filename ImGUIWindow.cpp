@@ -50,15 +50,9 @@ void ImGUIWindow::viewport()
 			if(sphere)
 			{
 				ImGui::Text("Sphere : ");
+				
 				Vector3 currentPosition = sphere->getPosition();
 				Vector3 uiPosition = currentPosition;
-				
-				Vector3 currentRotation = sphere->getRotation().toDegEulerAngles();
-				Vector3 uiRotation = currentRotation;
-				//std::cout << currentRotation.x << " , " << currentRotation.y << " , " << currentRotation.z << std::endl;
-				
-				Vector3 currentScale = sphere->getScale();
-				Vector3 uiScale = currentScale;
 					
 				if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
 					// Vérifier si la position a changé
@@ -66,18 +60,60 @@ void ImGUIWindow::viewport()
 						sphere->setPosition(uiPosition);
 					}
 				}
+
+
+				//Rotation
+				Vector3 currentRotation = uiRotation;
+
 				if (ImGui::DragFloat3("Rotation", &uiRotation.x, 1.0f)) {
-					//Vérifier si la position a changé
 					if (uiRotation != currentRotation) {
-						sphere->setRotation(uiRotation.toQuaternion());
+
+						// ZYX order for rotations
+						Quaternion rot = Quaternion::identity;
+						
+						Quaternion yaw = Quaternion(Vector3::unitZ, uiRotation.z*(Maths::pi/180));
+						rot = Quaternion::concatenate(yaw, rot);
+						
+						Quaternion pitch = Quaternion(Vector3::unitY, uiRotation.y*(Maths::pi/180));
+						rot = Quaternion::concatenate(pitch, rot);
+						
+						Quaternion roll = Quaternion(Vector3::unitX, uiRotation.x*(Maths::pi/180));
+						rot = Quaternion::concatenate(roll, rot);
+						
+						sphere->setRotation(rot);
 					}
 				}
-				if (ImGui::DragFloat3("Scale", &uiScale.x, 1.0f)) {
-					// Vérifier si la scale a changé
+
+				// Scale
+				
+				Vector3 currentScale = sphere->getScale();
+				Vector3 uiScale = currentScale;
+				
+				if (ImGui::DragFloat3("Scale", &uiScale.x, 0.1f)) {
 					if (uiScale != currentScale) {
+						if (lockScale)
+						{
+							if (uiScale.x != currentScale.x)
+							{
+								uiScale.y = uiScale.x;
+								uiScale.z = uiScale.x;
+							}
+							if (uiScale.y != currentScale.y)
+							{
+								uiScale.x = uiScale.y;
+								uiScale.z = uiScale.y;
+							}
+							if (uiScale.z != currentScale.z)
+							{
+								uiScale.x = uiScale.z;
+								uiScale.y = uiScale.z;
+							}
+						}
 						sphere->setScale(uiScale);
 					}
 				}
+				ImGui::SameLine();
+				ImGui::Checkbox("Lock", &lockScale);
 			}
 			ImGui::EndTabItem();
 		}

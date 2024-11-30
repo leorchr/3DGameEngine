@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Vector3.h"
 
 class ImGUIWindow
 {
@@ -21,6 +22,7 @@ private:
 
 	// Viewport Actor
 	float speed;
-
+	bool lockScale;
+	Vector3 uiRotation;
 	bool showImGUI;
 };
