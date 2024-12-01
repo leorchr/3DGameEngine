@@ -211,6 +211,8 @@
     <ClCompile Include="ImGUIManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="ImGUIWindow.cpp" />
+    <ClCompile Include="ViewportActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -441,6 +443,8 @@
     <ClInclude Include="ImGUIManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="ImGUIWindow.h" />
+    <ClInclude Include="ViewportActor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Meshes\cube.fbx">

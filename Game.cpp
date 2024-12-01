@@ -16,6 +16,12 @@
 #include "MeshComponent.h"
 #include "ImGUIWindow.h"
 
+#ifdef _DEBUG
+	#define ENGINE_MODE EngineMode::Editor
+#else
+	#define ENGINE_MODE EngineMode::Game
+#endif
+
 bool Game::initialize()
 {
 	const bool isLogInit = Log::initialize();
@@ -53,21 +59,28 @@ void Game::load()
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Mesh_Cube");
 	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Mesh_Moto");
 	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Mesh_Sphere");
+	Assets::loadMesh("Ressources/Meshes/hdri.fbx", "Hdri");
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
 	Log::info("\033[35m-----------------------------\033[0m");
 
 	
+	Actor* moto = new Actor();
+	MeshComponent* motoMesh = new MeshComponent(moto);
+	motoMesh->setMesh(Assets::getMesh("Mesh_Moto"));
+	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
+	moto->setScale(Vector3(10.0f,10.0f,10.0f));
+
 	Actor* sphere = new Actor();
 	MeshComponent* sphereMesh = new MeshComponent(sphere);
-	sphereMesh->setMesh(Assets::getMesh("Mesh_Moto"));
-	sphere->setPosition(Vector3(0.0f,0.0f,15.0f));
-	sphere->setScale(Vector3(10.0f,10.0f,10.0f));
+	sphereMesh->setMesh(Assets::getMesh("Hdri"));
+	sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
+	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
 
 	imGuiWindow = new ImGUIWindow();
 	imGuiWindow->setActor(sphere);
-	setMode(EngineMode::Editor);
+	setMode(ENGINE_MODE);
 	
 	for(int i = 0; i < 5; i++)
 	{

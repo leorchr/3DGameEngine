@@ -72,21 +72,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(SolutionDir)Include\imgui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(SolutionDir)Include\imgui;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(SolutionDir)Include\imgui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include\SDL2-2.0.12;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.0.15;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(SolutionDir)Include\imgui;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,6 +99,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -135,6 +137,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,7 +154,13 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)Ressources" mkdir "$(TargetDir)Ressources"
+xcopy "$(ProjectDir)Ressources" "$(TargetDir)Ressources" /e /y /i /r
+xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AABB.cpp" />

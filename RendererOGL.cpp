@@ -20,7 +20,7 @@ RendererOGL::RendererOGL() :
 	spriteVertexArray(nullptr),
 	spriteViewProj(Matrix4::createSimpleViewProj(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	view(Matrix4::createLookAt(Vector3::zero, Vector3::unitX, Vector3::unitZ)),
-	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(70.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 1000.0f)),
+	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(70.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 20000.0f)),
 	ambientLight(Vector3(1.0f, 1.0f, 1.0f)),
 	dirLight({Vector3::zero, Vector3::zero, Vector3::zero}),
 	postProcessing(nullptr) {}
