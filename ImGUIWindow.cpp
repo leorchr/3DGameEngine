@@ -97,18 +97,21 @@ void ImGUIWindow::viewport()
 						{
 							if (uiScale.x != currentScale.x)
 							{
-								uiScale.y = uiScale.x;
-								uiScale.z = uiScale.x;
+								float difference = uiScale.x - currentScale.x;
+								uiScale.y += difference;
+								uiScale.z += difference;
 							}
 							if (uiScale.y != currentScale.y)
 							{
-								uiScale.x = uiScale.y;
-								uiScale.z = uiScale.y;
+								float difference = uiScale.y- currentScale.y;
+								uiScale.x += difference;
+								uiScale.z += difference;
 							}
 							if (uiScale.z != currentScale.z)
 							{
-								uiScale.x = uiScale.z;
-								uiScale.y = uiScale.z;
+								float difference = uiScale.z - currentScale.z;
+								uiScale.x += difference;
+								uiScale.y += difference;
 							}
 						}
 						currentActor->setScale(uiScale);
