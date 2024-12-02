@@ -9,12 +9,16 @@
 #include "Timer.h"
 #include "TPActor.h"
 #include "ViewportActor.h"
+#include "MeshComponent.h"
+#include "ImGUIWindow.h"
+#include <vector>
+
+#ifdef _DEBUG
 #include "ImGUIManager.h"
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
-#include <vector>
-#include "MeshComponent.h"
-#include "ImGUIWindow.h"
+#endif
+
 
 #ifdef _DEBUG
 	#define ENGINE_MODE EngineMode::Editor
@@ -27,10 +31,16 @@ bool Game::initialize()
 	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
 	const bool isRendererInit = renderer.initialize(window, false);
+#ifdef _DEBUG
 	const bool isImGUIInit = ImGUIManager::initialize();
+#endif
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
-	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit && isImGUIInit; // Return bool && bool && bool ...to detect error
+	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit
+#ifdef _DEBUG
+	&& isImGUIInit
+#endif
+	; // Return bool && bool && bool ...to detect error
 }
 
 void Game::load()
@@ -78,9 +88,15 @@ void Game::load()
 	sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
 	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
 
+#ifdef _DEBUG
 	imGuiWindow = new ImGUIWindow();
 	imGuiWindow->setActor(sphere);
 	setMode(ENGINE_MODE);
+#else
+	player = new TPActor();
+	player->setPosition(Vector3(0.0f,0.0f,1.0f));
+	mode = EngineMode::Game;
+#endif
 	
 	for(int i = 0; i < 5; i++)
 	{
@@ -111,7 +127,10 @@ void Game::processInput()
 	while (SDL_PollEvent(&event))
 	{
 		bool isRunning = inputSystem.processEvent(event);
+		
+#ifdef _DEBUG
 		ImGui_ImplSDL2_ProcessEvent(&event);
+#endif
 		if (!isRunning) state = GameState::Quit;
 	}
 
@@ -130,15 +149,17 @@ void Game::processInput()
 		switch(mode)
 		{
 		case EngineMode::Game:
-			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
-			{
-				setMode(EngineMode::Editor);
-			}
 			// Escape: pause game
 			if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
 			{
 				new PauseScreen();
 				return;
+			}
+			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
+			{
+#ifdef _DEBUG
+				setMode(EngineMode::Editor);
+#endif
 			}
 			if (!UIStack.empty()) {
 				// Update UI screens
@@ -151,6 +172,7 @@ void Game::processInput()
 				}
 			}
 			break;
+#ifdef _DEBUG
 		case EngineMode::Editor:
 			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
 			{
@@ -158,6 +180,7 @@ void Game::processInput()
 			}
 			if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released) setState(GameState::Quit);
 			break;
+#endif
 		default:
 			break;
 		}
@@ -271,7 +294,9 @@ void Game::close()
 	inputSystem.close();
 	renderer.close();
 	window.close();
+#ifdef _DEBUG
 	ImGUIManager::close();
+#endif
 	SDL_Quit();
 }
 
@@ -280,6 +305,7 @@ void Game::setState(GameState stateP)
 	state = stateP;
 }
 
+#ifdef _DEBUG
 void Game::setMode(EngineMode mode)
 {
 	if(this->mode == mode) return;
@@ -313,6 +339,7 @@ void Game::setMode(EngineMode mode)
 		break;
 	}
 }
+#endif
 
 void Game::addActor(Actor* actor)
 {

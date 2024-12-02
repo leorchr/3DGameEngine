@@ -1,4 +1,6 @@
-﻿#include "ImGUIWindow.h"
+﻿#ifdef _DEBUG
+
+#include "ImGUIWindow.h"
 #include "Actor.h"
 #include "Game.h"
 #include "ViewportActor.h"
@@ -153,3 +155,5 @@ void ImGUIWindow::playmode()
 	}
 	ImGui::End();
 }
+
+#endif

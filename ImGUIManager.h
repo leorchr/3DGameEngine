@@ -1,4 +1,6 @@
-﻿#pragma once
+﻿#ifdef _DEBUG
+
+#pragma once
 
 class ImGUIManager
 {
@@ -12,3 +14,5 @@ public:
 	static void render();
 	static void close();
 };
+
+#endif

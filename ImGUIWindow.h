@@ -1,4 +1,6 @@
-﻿#pragma once
+﻿#ifdef _DEBUG
+
+#pragma once
 #include "Vector3.h"
 
 class ImGUIWindow
@@ -26,3 +28,5 @@ private:
 	Vector3 uiRotation;
 	bool showImGUI;
 };
+
+#endif

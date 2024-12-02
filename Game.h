@@ -42,8 +42,11 @@ public:
 
 	GameState getState() const { return state; }
 	void setState(GameState stateP);
+	
+	#ifdef _DEBUG
 	EngineMode getMode() const { return mode; }
 	void setMode(EngineMode mode);
+	#endif
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
@@ -64,8 +67,10 @@ public:
 	std::vector<class CubeActor*>& getCubes() { return cubes; }
 	class Actor* getPlayer() { return player; }
 
+#ifdef _DEBUG
 	class ImGUIWindow* getImGuiWindow(){ return imGuiWindow; }
-
+#endif
+	
 private:
 	void processInput();
 	void update(float dt);
@@ -84,7 +89,9 @@ private:
 	std::vector<Actor*> pendingActors;
 
 
+#ifdef _DEBUG
 	class ImGUIWindow* imGuiWindow;
+#endif
 	// Game specific
 	class Actor* player;
 	

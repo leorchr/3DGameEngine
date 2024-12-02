@@ -94,7 +94,10 @@ void RendererOGL::beginDraw()
 
 	//Nettoie et active custom buffer
 	if(postProcessing) postProcessing->startDrawing();
+
+#ifdef _DEBUG
 	ImGUIManager::beginDraw();
+#endif
 }
 
 void RendererOGL::draw()
@@ -107,7 +110,11 @@ void RendererOGL::draw()
 
 void RendererOGL::endDraw()
 {
+	
+#ifdef _DEBUG
 	ImGUIManager::render();
+#endif
+	
 	if(postProcessing) postProcessing->displayFrameBuffer();
 	SDL_GL_SwapWindow(window->getSDLWindow());
 }

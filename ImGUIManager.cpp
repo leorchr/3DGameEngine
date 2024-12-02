@@ -1,4 +1,6 @@
-﻿#include "ImGUIManager.h"
+﻿#ifdef _DEBUG
+
+#include "ImGUIManager.h"
 #include "Game.h"
 #include "ImGUIWindow.h"
 #include <imgui.h>
@@ -123,3 +125,5 @@ void ImGUIManager::close()
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 }
+
+#endif
