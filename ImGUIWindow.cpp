@@ -1,4 +1,5 @@
-﻿#ifdef _DEBUG
+﻿#include <iostream>
+#ifdef _DEBUG
 
 #include "ImGUIWindow.h"
 #include "Actor.h"
@@ -7,7 +8,7 @@
 #include "imgui.h"
 #include "MoveComponent.h"
 
-ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames) : sphere(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors), actorNames(actorNames) {}
+ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors), actorNames(actorNames) {}
 
 void ImGUIWindow::update()
 {
@@ -17,13 +18,13 @@ void ImGUIWindow::update()
 		outliner();
 		playmode();
 		//ImGui::ShowStyleEditor();
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 	}
 }
 
 void ImGUIWindow::setActor(Actor* actor)
 {
-	sphere = actor;
+	currentActor = actor;
 }
 
 void ImGUIWindow::setViewportActor(ViewportActor* actor)
@@ -48,17 +49,17 @@ void ImGUIWindow::viewport()
 		
 		if (ImGui::BeginTabItem("Viewport"))
 		{
-			if(sphere)
+			if(currentActor)
 			{
-				ImGui::Text("Sphere : ");
+				ImGui::Text(currentActor->getName().c_str());
 				
-				Vector3 currentPosition = sphere->getPosition();
+				Vector3 currentPosition = currentActor->getPosition();
 				Vector3 uiPosition = currentPosition;
 					
 				if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
 					// Vérifier si la position a changé
 					if (uiPosition != currentPosition) {
-						sphere->setPosition(uiPosition);
+						currentActor->setPosition(uiPosition);
 					}
 				}
 
@@ -81,13 +82,13 @@ void ImGUIWindow::viewport()
 						Quaternion roll = Quaternion(Vector3::unitX, uiRotation.x*(Maths::pi/180));
 						rot = Quaternion::concatenate(roll, rot);
 						
-						sphere->setRotation(rot);
+						currentActor->setRotation(rot);
 					}
 				}
 
 				// Scale
 				
-				Vector3 currentScale = sphere->getScale();
+				Vector3 currentScale = currentActor->getScale();
 				Vector3 uiScale = currentScale;
 				
 				if (ImGui::DragFloat3("Scale", &uiScale.x, 0.1f)) {
@@ -110,7 +111,7 @@ void ImGUIWindow::viewport()
 								uiScale.y = uiScale.z;
 							}
 						}
-						sphere->setScale(uiScale);
+						currentActor->setScale(uiScale);
 					}
 				}
 				ImGui::SameLine();
@@ -145,24 +146,36 @@ void ImGUIWindow::viewport()
 
 void ImGUIWindow::outliner()
 {
-	ImGui::SetNextWindowPos(ImVec2(50.0f, WINDOW_HEIGHT - 750.0f), ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImVec2(500.0f, 200.0f), ImGuiCond_Always);
-	
-	ImGui::Begin("Outliner", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
+	ImGui::SetNextWindowPos(ImVec2(50.0f, 50.0f), ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImVec2(250.0f, 250.0f), ImGuiCond_Always);
 
-	// Construction de la const char* pour ImGUI
-	static int selectedActorIndex = -1;
-	
-	std::vector<const char*> itemNames;
-	itemNames.reserve(actorNames.size());
-	for (const auto& name : actorNames) {
-	 	itemNames.push_back(name.c_str());
+	ImGui::Begin("Outliner", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+	if(ImGui::BeginTabBar("Outliner"))
+	{
+		if (ImGui::BeginTabItem("Outliner"))
+		{
+			// Construction de la const char* pour ImGUI
+			static int selectedActorIndex = -1;
+			
+			std::vector<const char*> itemNames;
+			itemNames.reserve(actorNames.size());
+			for (const auto& name : actorNames) {
+	 			itemNames.push_back(name.c_str());
+			}
+
+			// Fin de la construction
+			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+			ImGui::ListBox("##Actors", &selectedActorIndex, itemNames.data(), itemNames.size(), 10);
+			if (selectedActorIndex != -1) {
+				currentActor = actors[selectedActorIndex];
+			}
+			ImGui::EndChild();
+			ImGui::EndTabItem();
+		}
+		ImGui::EndTabBar();
 	}
-
-	// Fin de la construction
-	
-	ImGui::ListBox("Actors", &selectedActorIndex, itemNames.data(), itemNames.size());
 	ImGui::End();
+
 }
 
 void ImGUIWindow::playmode()

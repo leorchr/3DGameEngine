@@ -21,7 +21,7 @@ protected:
 	void playmode();
 	
 private:
-	class Actor* sphere;
+	class Actor* currentActor;
 	class ViewportActor* viewportActor;
 	float position;
 

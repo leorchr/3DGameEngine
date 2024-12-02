@@ -76,7 +76,7 @@ void Game::load()
 
 	
 	Actor* moto = new Actor();
-	moto->setName("Bonjour");
+	moto->setName("Moto");
 	MeshComponent* motoMesh = new MeshComponent(moto);
 	motoMesh->setMesh(Assets::getMesh("Mesh_Moto"));
 	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
@@ -84,6 +84,7 @@ void Game::load()
 
 	Actor* sphere = new Actor();
 	MeshComponent* sphereMesh = new MeshComponent(sphere);
+	sphere->setName("Hdri");
 	sphereMesh->setMesh(Assets::getMesh("Hdri"));
 	sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
 	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
@@ -103,6 +104,7 @@ void Game::load()
 		for(int y = 0; y < 5; y++)
 		{
 			auto plane = new PlaneActor();
+			plane->setName("Plane");
 			plane->setScale(Vector3(50,50,1));
 			Vector3 pos = Vector3(plane->getPosition().x + i * 100, plane-> getPosition().y + y * 100, 0.0f);
 			plane->setPosition(pos);
@@ -323,6 +325,7 @@ void Game::setMode(EngineMode mode)
 	case EngineMode::Editor:
 		{
 		player = new ViewportActor();
+		player->setName("Viewport");
 		imGuiWindow->setViewportActor(dynamic_cast<ViewportActor*>(player));
 		imGuiWindow->setShowImGUI(true);
 		break;
@@ -330,6 +333,7 @@ void Game::setMode(EngineMode mode)
 	case EngineMode::Game:
 		{
 		player = new TPActor();
+		player->setName("Third Person");
 		player->setPosition(Vector3(0.0f,0.0f,1.0f));
 		imGuiWindow->setShowImGUI(false);
 		}
