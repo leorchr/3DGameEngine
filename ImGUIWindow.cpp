@@ -6,19 +6,18 @@
 #include "ViewportActor.h"
 #include "imgui.h"
 #include "MoveComponent.h"
-#include <iostream>
-#include <string>
 
-ImGUIWindow::ImGUIWindow() : sphere(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true) {}
+ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames) : sphere(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors), actorNames(actorNames) {}
 
 void ImGUIWindow::update()
 {
 	if(showImGUI)
 	{
 		viewport();
+		outliner();
 		playmode();
 		//ImGui::ShowStyleEditor();
-		//ImGui::ShowDemoWindow();
+		ImGui::ShowDemoWindow();
 	}
 }
 
@@ -141,6 +140,28 @@ void ImGUIWindow::viewport()
 		}
 		ImGui::EndTabBar();
 	}
+	ImGui::End();
+}
+
+void ImGUIWindow::outliner()
+{
+	ImGui::SetNextWindowPos(ImVec2(50.0f, WINDOW_HEIGHT - 750.0f), ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImVec2(500.0f, 200.0f), ImGuiCond_Always);
+	
+	ImGui::Begin("Outliner", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
+
+	// Construction de la const char* pour ImGUI
+	static int selectedActorIndex = -1;
+	
+	std::vector<const char*> itemNames;
+	itemNames.reserve(actorNames.size());
+	for (const auto& name : actorNames) {
+	 	itemNames.push_back(name.c_str());
+	}
+
+	// Fin de la construction
+	
+	ImGui::ListBox("Actors", &selectedActorIndex, itemNames.data(), itemNames.size());
 	ImGui::End();
 }
 

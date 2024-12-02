@@ -5,6 +5,7 @@
 #include "RendererOGL.h"
 #include "Window.h"
 #include <vector>
+#include <string>
 
 enum class GameState
 {
@@ -50,6 +51,7 @@ public:
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
+	void setActorNewName(class Actor* actor);
 	RendererOGL& getRenderer() { return renderer; }
 	Window& getWindow() { return window; }
 	PhysicsSystem& getPhysicsSystem() { return physicsSystem; }
@@ -66,6 +68,7 @@ public:
 	void removeCube(class CubeActor* cube);
 	std::vector<class CubeActor*>& getCubes() { return cubes; }
 	class Actor* getPlayer() { return player; }
+	class std::vector<Actor*>& getActors() { return actors; }
 
 #ifdef _DEBUG
 	class ImGUIWindow* getImGuiWindow(){ return imGuiWindow; }
@@ -87,7 +90,7 @@ private:
 	bool isUpdatingActors;
 	std::vector<Actor*> actors;
 	std::vector<Actor*> pendingActors;
-
+	std::vector<std::string> actorNames;
 
 #ifdef _DEBUG
 	class ImGUIWindow* imGuiWindow;

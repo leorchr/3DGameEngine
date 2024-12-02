@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include <SDL_stdinc.h>
 #include "Matrix4.h"
+#include <string>
 using std::vector;
 
 class Game;
@@ -50,6 +51,9 @@ public:
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
 
+	void setName(std::string name);
+	std::string getName() {return name;}
+
 private:
 	Game& game;
 	ActorState state;
@@ -58,6 +62,7 @@ private:
 	Quaternion rotation;
 	Matrix4 worldTransform;
 	bool mustRecomputeWorldTransform;
+	std::string name;
 
 	vector<Component*> components;
 };

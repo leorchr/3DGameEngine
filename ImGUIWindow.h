@@ -2,11 +2,13 @@
 
 #pragma once
 #include "Vector3.h"
+#include <string>
+#include <vector>
 
 class ImGUIWindow
 {
 public:
-	ImGUIWindow();
+	ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames);
 
 	void update();
 	void setActor(class Actor* actor);
@@ -15,6 +17,7 @@ public:
 
 protected:
 	void viewport();
+	void outliner();
 	void playmode();
 	
 private:
@@ -27,6 +30,10 @@ private:
 	bool lockScale;
 	Vector3 uiRotation;
 	bool showImGUI;
+
+	// Refers to game lists
+	std::vector<class Actor*>& actors;
+	std::vector<std::string>& actorNames;
 };
 
 #endif

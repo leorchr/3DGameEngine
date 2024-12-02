@@ -10,7 +10,8 @@ Actor::Actor() :
 	scale(Vector3(1.0f, 1.0f, 1.0f)),
 	rotation(Quaternion::identity),
 	mustRecomputeWorldTransform(true),
-	game(Game::instance())
+	game(Game::instance()),
+	name("Unnamed")
 {
 	game.addActor(this);
 }
@@ -176,4 +177,10 @@ void Actor::removeComponent(Component* component)
 	{
 		components.erase(iter);
 	}
+}
+
+void Actor::setName(std::string name)
+{
+	this->name = name;
+	game.setActorNewName(this);
 }

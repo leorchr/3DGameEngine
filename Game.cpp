@@ -11,7 +11,6 @@
 #include "ViewportActor.h"
 #include "MeshComponent.h"
 #include "ImGUIWindow.h"
-#include <vector>
 
 #ifdef _DEBUG
 #include "ImGUIManager.h"
@@ -77,6 +76,7 @@ void Game::load()
 
 	
 	Actor* moto = new Actor();
+	moto->setName("Bonjour");
 	MeshComponent* motoMesh = new MeshComponent(moto);
 	motoMesh->setMesh(Assets::getMesh("Mesh_Moto"));
 	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
@@ -89,7 +89,7 @@ void Game::load()
 	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
 
 #ifdef _DEBUG
-	imGuiWindow = new ImGUIWindow();
+	imGuiWindow = new ImGUIWindow(actors, actorNames);
 	imGuiWindow->setActor(sphere);
 	setMode(ENGINE_MODE);
 #else
@@ -212,6 +212,7 @@ void Game::update(float dt)
 		{
 			pendingActor->computeWorldTransform();
 			actors.emplace_back(pendingActor);
+			actorNames.emplace_back(pendingActor->getName());
 		}
 		pendingActors.clear();
 
@@ -350,6 +351,7 @@ void Game::addActor(Actor* actor)
 	else
 	{
 		actors.emplace_back(actor);
+		actorNames.emplace_back(actor->getName());
 	}
 }
 
@@ -368,6 +370,22 @@ void Game::removeActor(Actor* actor)
 	{
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();
+		auto iterName = std::find(begin(actorNames), end(actorNames), actor->getName());
+		if (iterName != end(actorNames))
+		{
+			std::iter_swap(iterName, end(actorNames) - 1);
+			actorNames.pop_back();
+		}
+	}
+}
+
+void Game::setActorNewName(Actor* actor)
+{
+	auto iter = std::find(begin(actors), end(actors), actor);
+	if (iter != end(actors))
+	{
+		size_t index = std::distance(actors.begin(), iter);
+		actorNames[index] = actor->getName();
 	}
 }
 
