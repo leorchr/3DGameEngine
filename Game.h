@@ -6,6 +6,7 @@
 #include "Window.h"
 #include <vector>
 #include <string>
+#include <memory>
 
 enum class GameState
 {
@@ -52,6 +53,7 @@ public:
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 	void setActorNewName(class Actor* actor);
+	void createActor();
 	RendererOGL& getRenderer() { return renderer; }
 	Window& getWindow() { return window; }
 	PhysicsSystem& getPhysicsSystem() { return physicsSystem; }
@@ -71,7 +73,7 @@ public:
 	class std::vector<Actor*>& getActors() { return actors; }
 
 #ifdef _DEBUG
-	class ImGUIWindow* getImGuiWindow(){ return imGuiWindow; }
+	std::shared_ptr<class ImGUIWindow> getImGuiWindow(){ return imGuiWindow; }
 #endif
 	
 private:
@@ -93,7 +95,7 @@ private:
 	std::vector<std::string> actorNames;
 
 #ifdef _DEBUG
-	class ImGUIWindow* imGuiWindow;
+	std::shared_ptr<class ImGUIWindow> imGuiWindow;
 #endif
 	// Game specific
 	class Actor* player;

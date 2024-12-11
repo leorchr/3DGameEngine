@@ -14,6 +14,7 @@ public:
 
 	virtual void draw(class Shader& shader);
 	virtual void setMesh(class Mesh& meshP);
+	
 
 
 protected:

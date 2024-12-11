@@ -179,6 +179,11 @@ void Actor::removeComponent(Component* component)
 	}
 }
 
+std::vector<Component*> Actor::getComponents()
+{
+	return components;
+}
+
 void Actor::setName(std::string name)
 {
 	this->name = name;

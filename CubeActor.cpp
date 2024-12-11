@@ -4,7 +4,7 @@
 
 CubeActor::CubeActor()
 {
-	Mesh* mesh = &Assets::getMesh("Mesh_Monkey");
+	Mesh* mesh = &Assets::getMesh("Monkey");
 	mc = new MeshComponent(this);
 	mc->setMesh(*mesh);
 	box = new BoxComponent(this); 

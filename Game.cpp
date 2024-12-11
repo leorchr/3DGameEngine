@@ -10,6 +10,7 @@
 #include "TPActor.h"
 #include "ViewportActor.h"
 #include "MeshComponent.h"
+#include "MeshActor.h"
 #include "ImGUIWindow.h"
 
 #ifdef _DEBUG
@@ -64,10 +65,10 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	
-	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Mesh_Plane");
-	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Mesh_Cube");
-	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Mesh_Moto");
-	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Mesh_Sphere");
+	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Plane");
+	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Cube");
+	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Moto");
+	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Sphere");
 	Assets::loadMesh("Ressources/Meshes/hdri.fbx", "Hdri");
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
@@ -78,7 +79,7 @@ void Game::load()
 	Actor* moto = new Actor();
 	moto->setName("Moto");
 	MeshComponent* motoMesh = new MeshComponent(moto);
-	motoMesh->setMesh(Assets::getMesh("Mesh_Moto"));
+	motoMesh->setMesh(Assets::getMesh("Moto"));
 	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
 	moto->setScale(Vector3(10.0f,10.0f,10.0f));
 
@@ -90,7 +91,7 @@ void Game::load()
 	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
 
 #ifdef _DEBUG
-	imGuiWindow = new ImGUIWindow(actors, actorNames);
+	imGuiWindow = std::make_shared<ImGUIWindow>(actors, actorNames);
 	imGuiWindow->setActor(sphere);
 	setMode(ENGINE_MODE);
 #else
@@ -391,6 +392,11 @@ void Game::setActorNewName(Actor* actor)
 		size_t index = std::distance(actors.begin(), iter);
 		actorNames[index] = actor->getName();
 	}
+}
+
+void Game::createActor()
+{
+	MeshActor* newMeshActor = new MeshActor();
 }
 
 void Game::pushUI(UIScreen* screen)

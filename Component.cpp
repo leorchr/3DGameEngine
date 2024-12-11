@@ -4,7 +4,8 @@
 
 Component::Component(Actor* ownerP, int updateOrderP):
 	owner(*ownerP),
-	updateOrder(updateOrderP)
+	updateOrder(updateOrderP),
+	type(ComponentType::Unknown)
 {
 	owner.addComponent(this);
 }
@@ -12,6 +13,11 @@ Component::Component(Actor* ownerP, int updateOrderP):
 Component::~Component()
 {
 	owner.removeComponent(this);
+}
+
+void Component::setType(const ComponentType newType)
+{
+	this->type = newType;
 }
 
 void Component::processInput(const InputState& inputState)

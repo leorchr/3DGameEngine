@@ -50,6 +50,7 @@ public:
 	virtual void updateActor(float dt);
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
+	std::vector<Component*> getComponents();
 
 	void setName(std::string name);
 	std::string getName() {return name;}

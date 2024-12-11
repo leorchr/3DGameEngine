@@ -1,4 +1,5 @@
 #pragma once
+#include "EnumComponentType.h"
 #include <SDL_stdinc.h>
 
 class Actor;
@@ -15,12 +16,17 @@ public:
 	int getUpdateOrder() const { return updateOrder; }
 	class Actor& getOwner() { return owner; }
 
+	ComponentType getType() const { return type;}
+
 	virtual void processInput(const struct InputState& inputState);
 	virtual void update(float dt);
 	virtual void onUpdateWorldTransform() {}
 
 protected:
+	void setType(const ComponentType newType);
+	
 	Actor& owner;
 	int updateOrder;		// Order of the component in the actor's updateComponent method
+	ComponentType type;
 };
 

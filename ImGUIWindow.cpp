@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿#include "Assets.h"
+#include "MeshComponent.h"
+#include <iostream>
 #ifdef _DEBUG
 
 #include "ImGUIWindow.h"
@@ -17,6 +19,7 @@ void ImGUIWindow::update()
 		viewport();
 		outliner();
 		playmode();
+		addActor();
 		//ImGui::ShowStyleEditor();
 		//ImGui::ShowDemoWindow();
 	}
@@ -40,8 +43,8 @@ void ImGUIWindow::setShowImGUI(bool showImGUI)
 
 void ImGUIWindow::viewport()
 {
-	ImGui::SetNextWindowPos(ImVec2(50.0f, WINDOW_HEIGHT - 250.0f), ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImVec2(500.0f, 200.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 550.0f, 50.0f), ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImVec2(500.0f, 220.0f), ImGuiCond_Always);
 	
 	ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 	if(ImGui::BeginTabBar("Panel"))
@@ -119,6 +122,31 @@ void ImGUIWindow::viewport()
 				}
 				ImGui::SameLine();
 				ImGui::Checkbox("Lock", &lockScale);
+
+				
+				if(!currentActor->getComponents().empty())ImGui::Text("Components");
+				for(auto component : currentActor->getComponents())
+				{
+					if(component->getType() == ComponentType::Mesh)
+					{
+						static int currentMeshSelected = 0;
+						
+						vector<const char*> meshesNames;
+						meshesNames.reserve(Assets::meshes.size());
+						for(const auto& pair : Assets::meshes)
+						{
+							meshesNames.emplace_back(pair.first.c_str());
+						}
+						
+						if(ImGui::Combo("Meshes", &currentMeshSelected, meshesNames.data(), meshesNames.size(), 9))
+						{
+							if(auto mc = dynamic_cast<MeshComponent*>(component))
+							{
+								mc->setMesh(Assets::getMesh(meshesNames[currentMeshSelected]));
+							}
+						}
+					}
+				}
 			}
 			ImGui::EndTabItem();
 		}
@@ -168,7 +196,7 @@ void ImGUIWindow::outliner()
 
 			// Fin de la construction
 			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-			ImGui::ListBox("##Actors", &selectedActorIndex, itemNames.data(), itemNames.size(), 10);
+			ImGui::ListBox("##Actors", &selectedActorIndex, itemNames.data(), itemNames.size(), 9);
 			if (selectedActorIndex != -1) {
 				currentActor = actors[selectedActorIndex];
 			}
@@ -183,12 +211,24 @@ void ImGUIWindow::outliner()
 
 void ImGUIWindow::playmode()
 {
-	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 190.0f , 25.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH/2 - 95.0f , 50.0f), ImGuiCond_Always);
 	ImGui::SetNextWindowSize(ImVec2(175.0f, 0.0f), ImGuiCond_Always);
 	ImGui::Begin("Playmode", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 	if(ImGui::Button("Play", ImVec2(150.0f, 0.0f)))
 	{
 		Game::instance().setMode(EngineMode::Game);
+	}
+	ImGui::End();
+}
+
+void ImGUIWindow::addActor()
+{
+	ImGui::SetNextWindowPos(ImVec2(50.0f , 350.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(175.0f, 0.0f), ImGuiCond_Always);
+	ImGui::Begin("Actors", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
+	if(ImGui::Button("New Actor", ImVec2(150.0f, 0.0f)))
+	{
+		Game::instance().createActor();
 	}
 	ImGui::End();
 }

@@ -9,6 +9,7 @@
 MeshComponent::MeshComponent(Actor* owner) : Component(owner), mesh(nullptr), isVisible(true)
 {
 	owner->getGame().getRenderer().addMesh(this);
+	setType(ComponentType::Mesh);
 }
 
 MeshComponent::~MeshComponent()
