@@ -1,7 +1,4 @@
-﻿#include "Assets.h"
-#include "MeshComponent.h"
-#include <iostream>
-#ifdef _DEBUG
+﻿#ifdef _DEBUG
 
 #include "ImGUIWindow.h"
 #include "Actor.h"
@@ -9,6 +6,10 @@
 #include "ViewportActor.h"
 #include "imgui.h"
 #include "MoveComponent.h"
+#include "Assets.h"
+#include "MeshComponent.h"
+#include "SaveSystem.h"
+#include <iostream>
 
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors), actorNames(actorNames) {}
 
@@ -16,6 +17,7 @@ void ImGUIWindow::update()
 {
 	if(showImGUI)
 	{
+		menu();
 		viewport();
 		outliner();
 		playmode();
@@ -231,6 +233,21 @@ void ImGUIWindow::addActor()
 		Game::instance().createActor();
 	}
 	ImGui::End();
+}
+
+void ImGUIWindow::menu()
+{
+	static int activeTab = 0;
+	ImGui::BeginMainMenuBar();
+	if (ImGui::BeginMenu("File"))
+	{
+		if (ImGui::MenuItem("Save", "Ctrl+S"))
+		{
+			SaveSystem::save();
+		}
+		ImGui::EndMenu();
+	}
+	ImGui::EndMainMenuBar();
 }
 
 #endif

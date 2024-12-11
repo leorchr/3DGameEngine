@@ -211,8 +211,18 @@
     <ClCompile Include="ImGUIManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="ImGUIWindow.cpp" />
-    <ClCompile Include="ViewportActor.cpp" />
+    <ClCompile Include="SaveSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUIWindow.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewportActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -409,7 +419,6 @@
     <ClInclude Include="ComputeShader.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Include\imgui\imconfig.h">
       <Filter>Include\imgui</Filter>
     </ClInclude>
@@ -443,8 +452,21 @@
     <ClInclude Include="ImGUIManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="ImGUIWindow.h" />
-    <ClInclude Include="ViewportActor.h" />
+    <ClInclude Include="SaveSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUIWindow.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumComponentType.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewportActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Meshes\cube.fbx">

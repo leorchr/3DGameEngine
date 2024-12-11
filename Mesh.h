@@ -16,13 +16,15 @@ class Texture;
 class Mesh
 {
 public:
-	Mesh(){}
+	Mesh() : id(nextID++) {}
 	~Mesh(){}
 	bool LoadMesh(const std::string& Filename);
 
 	std::vector<MeshEntry>* getMeshes() {return &m_Meshes; }
 	std::vector<Texture*>* getTextures() {return &m_Textures; }
 	GLuint getVAO() const { return m_VAO; }
+	int getId() const { return id; }
+	
 private:
 
 	bool InitFromScene(const aiScene* pScene, const std::string& Filename);
@@ -56,6 +58,9 @@ private:
 	std::vector<Vector3> m_Normals;
 	std::vector<Vector2> m_TexCoords;
 	std::vector<unsigned int> m_Indices;
+
+	static int nextID;
+	int id;
 };
 
 struct MeshEntry {

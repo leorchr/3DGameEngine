@@ -14,9 +14,9 @@ public:
 
 	virtual void draw(class Shader& shader);
 	virtual void setMesh(class Mesh& meshP);
+
+	Mesh* getMesh() { return mesh; }
 	
-
-
 protected:
 	Mesh* mesh;
 	bool isVisible;

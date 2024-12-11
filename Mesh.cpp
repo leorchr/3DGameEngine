@@ -9,6 +9,8 @@
 #define TEX_COORD_LOCATION   1
 #define NORMAL_LOCATION   2
 
+int Mesh::nextID = 0;
+
 bool Mesh::LoadMesh(const std::string& Filename)
 {
 

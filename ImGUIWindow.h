@@ -10,6 +10,7 @@ class ImGUIWindow
 public:
 	ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames);
 
+	void menu();
 	void update();
 	void setActor(class Actor* actor);
 	void setViewportActor(class ViewportActor* actor);
