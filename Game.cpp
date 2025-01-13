@@ -14,7 +14,7 @@
 #include "ImGUIWindow.h"
 
 #ifdef _DEBUG
-#include "ImGUIManager.h"
+#include "ImGUIManager.h"   
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #endif
@@ -70,36 +70,27 @@ void Game::load()
 	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Moto");
 	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Sphere");
 	Assets::loadMesh("Ressources/Meshes/hdri.fbx", "Hdri");
+	Assets::loadMesh("Ressources/Meshes/spaceHDRI.fbx", "SpaceHDRI");
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
 	Log::info("\033[35m-----------------------------\033[0m");
 
 	
-	Actor* moto = new Actor();
-	moto->setName("Moto");
-	MeshComponent* motoMesh = new MeshComponent(moto);
-	motoMesh->setMesh(Assets::getMesh("Moto"));
-	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
-	moto->setScale(Vector3(10.0f,10.0f,10.0f));
-
+	// Actor* moto = new Actor();
+	// moto->setName("Moto");
+	// MeshComponent* motoMesh = new MeshComponent(moto);
+	// motoMesh->setMesh(Assets::getMesh("Moto"));
+	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));
+	// moto->setScale(Vector3(10.0f,10.0f,10.0f));
+	
 	Actor* sphere = new Actor();
 	MeshComponent* sphereMesh = new MeshComponent(sphere);
-	sphere->setName("Hdri");
-	sphereMesh->setMesh(Assets::getMesh("Hdri"));
+	sphere->setName("SpaceHDRI");
+	sphereMesh->setMesh(Assets::getMesh("SpaceHDRI"));
 	sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
 	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
 
-#ifdef _DEBUG
-	imGuiWindow = std::make_shared<ImGUIWindow>(actors, actorNames);
-	imGuiWindow->setActor(sphere);
-	setMode(ENGINE_MODE);
-#else
-	player = new TPActor();
-	player->setPosition(Vector3(0.0f,0.0f,1.0f));
-	mode = EngineMode::Game;
-#endif
-	
 	for(int i = 0; i < 5; i++)
 	{
 		for(int y = 0; y < 5; y++)
@@ -111,6 +102,17 @@ void Game::load()
 			plane->setPosition(pos);
 		}
 	}
+	
+#ifdef _DEBUG
+	imGuiWindow = std::make_shared<ImGUIWindow>(actors, actorNames);
+	imGuiWindow->setActor(sphere);
+	setMode(ENGINE_MODE);
+#else
+	player = new TPActor();
+	player->setPosition(Vector3(0.0f,0.0f,1.0f));
+	mode = EngineMode::Game;
+#endif
+	
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.1f, 0.1f, 0.1f));
