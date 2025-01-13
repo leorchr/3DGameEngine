@@ -10,12 +10,18 @@ public:
 	MoveComponent& operator=(const MoveComponent&) = delete;
 
 	float getForwardSpeed() const { return forwardSpeed; }
-	float getAngularSpeed() const { return angularSpeed; }
+	float getUpSpeed() const { return upSpeed; }
+	float getYawSpeed() const { return yawSpeed; }
+	float getPitchSpeed() const { return pitchSpeed; }
+	float getRollSpeed() const { return rollSpeed; }
 	float getStrafeSpeed() const { return strafeSpeed; }
 	Vector3 getVelocity() const { return velocity; }
 
 	void setForwardSpeed(float forwardSpeedP);
-	void setAngularSpeed(float angularSpeedP);
+	void setUpSpeed(float upSpeedP);
+	void setYawSpeed(float yawSpeedP);
+	void setPitchSpeed(float pitchSpeedP);
+	void setRollSpeed(float rollSpeedP);
 	void setStrafeSpeed(float strafeSpeedP);
 	void setVelocity(Vector3 velocityP);
 	void addForce(Vector3 force);
@@ -26,8 +32,11 @@ public:
 
 private:
 	float forwardSpeed;
-	float angularSpeed;
+	float upSpeed;
 	float strafeSpeed;
+	float yawSpeed;
+	float pitchSpeed;
+	float rollSpeed;
 	const float friction = 0.995f;
 	Vector3 velocity;
 };

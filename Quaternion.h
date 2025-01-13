@@ -22,11 +22,14 @@ public:
 	// and the angle is in radians
 	explicit Quaternion(const Vector3& axis, float angle);
 
+	Quaternion(const Quaternion& other) = default;
+
 
 	Quaternion operator*(const Quaternion& q) const;
 	void set(float inX, float inY, float inZ, float inW);
 	void conjugate();
 	void normalize();
+	float getRoll() const;
 
 	float lengthSq() const
 	{
@@ -146,7 +149,7 @@ public:
 
 		return retVal;
 	}
-
+	
 	static const Quaternion identity;
 };
 

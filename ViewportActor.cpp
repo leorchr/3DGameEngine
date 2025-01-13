@@ -43,7 +43,7 @@ void ViewportActor::actorInput(const InputState& inputState)
 	{
 		Game::instance().getInputSystem().setMouseRelativeMode(false);
 		SDL_WarpMouseInWindow(Game::instance().getWindow().getSDLWindow(),mousePos.x, mousePos.y);
-		moveComponent->setAngularSpeed(0.0f);
+		moveComponent->setYawSpeed(0.0f);
 		moveComponent->setForwardSpeed(0.0f);
 		moveComponent->setStrafeSpeed(0.0f);
 		cameraComponent->setPitchSpeed(0.0f);
@@ -84,7 +84,7 @@ void ViewportActor::actorInput(const InputState& inputState)
 			angularSpeed = x / maxMouseSpeed;
 			angularSpeed *= maxAngularSpeed;
 		}
-		moveComponent->setAngularSpeed(angularSpeed);
+		moveComponent->setYawSpeed(angularSpeed);
 		const float maxPitchSpeed = Maths::pi * 8;
 		float pitchSpeed = 0.0f;
 		if (y != 0)

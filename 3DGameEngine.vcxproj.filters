@@ -223,6 +223,12 @@
     <ClCompile Include="MeshActor.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
+    <ClCompile Include="SpaceshipActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceshipCameraComponent.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -465,6 +471,12 @@
       <Filter>GameSpecific</Filter>
     </ClInclude>
     <ClInclude Include="MeshActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceshipActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceshipCameraComponent.h">
       <Filter>GameSpecific</Filter>
     </ClInclude>
   </ItemGroup>

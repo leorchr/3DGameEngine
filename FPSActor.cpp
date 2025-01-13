@@ -86,7 +86,7 @@ void FPSActor::actorInput(const InputState& inputState)
 		angularSpeed = x / maxMouseSpeed;
 		angularSpeed *= maxAngularSpeed;
 	}
-	moveComponent->setAngularSpeed(angularSpeed);
+	moveComponent->setYawSpeed(angularSpeed);
 	const float maxPitchSpeed = Maths::pi * 8;
 	float pitchSpeed = 0.0f;
 	if (y != 0)

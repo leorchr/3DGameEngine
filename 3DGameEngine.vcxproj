@@ -223,6 +223,8 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="SaveSystem.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SpaceshipActor.cpp" />
+    <ClCompile Include="SpaceshipCameraComponent.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SphereActor.cpp" />
     <ClCompile Include="Spline.cpp" />
@@ -307,6 +309,8 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Assets.h" />
     <ClInclude Include="SaveSystem.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SpaceshipActor.h" />
+    <ClInclude Include="SpaceshipCameraComponent.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SphereActor.h" />
     <ClInclude Include="Spline.h" />

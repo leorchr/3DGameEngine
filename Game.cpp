@@ -7,7 +7,7 @@
 #include "Texture.h"
 #include "ComputeShader.h"
 #include "Timer.h"
-#include "TPActor.h"
+#include "SpaceshipActor.h"
 #include "ViewportActor.h"
 #include "MeshComponent.h"
 #include "MeshActor.h"
@@ -108,7 +108,7 @@ void Game::load()
 	imGuiWindow->setActor(sphere);
 	setMode(ENGINE_MODE);
 #else
-	player = new TPActor();
+	player = new SpaceshipActor();
 	player->setPosition(Vector3(0.0f,0.0f,1.0f));
 	mode = EngineMode::Game;
 #endif

@@ -40,6 +40,14 @@ void Quaternion::normalize()
 	w /= len;
 }
 
+float Quaternion::getRoll() const
+{
+	// No need to normalize before, we'll do here
+	Quaternion thisCopy(this->x, this->y, this->z, this->w);
+	thisCopy.normalize();
+	return Maths::atan2(2.0f * (thisCopy.w * thisCopy.x +thisCopy.y * thisCopy.z), 1.0f - 2.0f * (thisCopy.x * thisCopy.x + thisCopy.y * thisCopy.y));
+}
+
 Quaternion Quaternion::operator*(const Quaternion& q) const
 {
 	Vector3 axis = Vector3(x,y,z);
