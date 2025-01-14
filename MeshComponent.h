@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include <vector>
 
 class Mesh;
 
@@ -16,9 +17,13 @@ public:
 	virtual void setMesh(class Mesh& meshP);
 
 	Mesh* getMesh() { return mesh; }
+	std::vector<class Texture*>* getTextures() {return &textures; }
+	void setTexture(int index, class Texture* newTexture);
 	
 protected:
 	Mesh* mesh;
+	std::vector<class Texture*> textures;
+
 	bool isVisible;
 };
 

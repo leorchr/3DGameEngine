@@ -23,6 +23,7 @@ public:
 
 	std::vector<MeshEntry>* getMeshes() {return &m_Meshes; }
 	std::vector<Texture*>* getTextures() {return &m_Textures; }
+	void setTexture(int index, Texture* newTexture);
 	GLuint getVAO() const { return m_VAO; }
 	int getId() const { return id; }
 	AABB getBox() const { return box; }

@@ -78,12 +78,12 @@ void Game::load()
 	Log::info("\033[35m-----------------------------\033[0m");
 
 	
-	// Actor* moto = new Actor();
-	// moto->setName("Moto");
-	// MeshComponent* motoMesh = new MeshComponent(moto);
-	// motoMesh->setMesh(Assets::getMesh("Moto"));
-	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));
-	// moto->setScale(Vector3(10.0f,10.0f,10.0f));
+	Actor* moto = new Actor();
+	moto->setName("Moto");
+	MeshComponent* motoMesh = new MeshComponent(moto);
+	motoMesh->setMesh(Assets::getMesh("Moto"));
+	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
+	moto->setScale(Vector3(10.0f,10.0f,10.0f));
 	
 	Actor* sphere = new Actor();
 	MeshComponent* sphereMesh = new MeshComponent(sphere);

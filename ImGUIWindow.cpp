@@ -8,6 +8,7 @@
 #include "MoveComponent.h"
 #include "Assets.h"
 #include "MeshComponent.h"
+#include "Texture.h"
 #include "SaveSystem.h"
 #include <iostream>
 
@@ -46,7 +47,7 @@ void ImGUIWindow::setShowImGUI(bool showImGUI)
 void ImGUIWindow::viewport()
 {
 	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 550.0f, 50.0f), ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImVec2(500.0f, 220.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(500.0f, 270.0f), ImGuiCond_Always);
 	
 	ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 	if(ImGui::BeginTabBar("Panel"))
@@ -145,6 +146,33 @@ void ImGUIWindow::viewport()
 							if(auto mc = dynamic_cast<MeshComponent*>(component))
 							{
 								mc->setMesh(Assets::getMesh(meshesNames[currentMeshSelected]));
+							}
+						}
+
+						if(auto mc = dynamic_cast<MeshComponent*>(component))
+						{
+							
+						static std::vector<int> currentTextureSelections;
+						if (currentTextureSelections.size() != mc->getTextures()->size())
+						{
+							currentTextureSelections.resize(mc->getTextures()->size(), 0);
+						}
+						
+						vector<const char*> textureNames;
+						textureNames.reserve(Assets::textures.size());
+						for(const auto& pair : Assets::textures)
+						{
+							textureNames.emplace_back(pair.first.c_str());
+						}
+							for(size_t i = 0; i < mc->getTextures()->size(); i++)
+							{
+								ImGui::PushID(static_cast<int>(i));
+								std::string label = "Texture " + std::to_string(i+1);
+								if(ImGui::Combo(label.c_str(), &currentTextureSelections[i], textureNames.data(), static_cast<int>(textureNames.size()), 9))
+								{
+									mc->setTexture(static_cast<int>(i), &Assets::getTexture(textureNames[currentTextureSelections[i]]));
+								}
+								ImGui::PopID();
 							}
 						}
 					}

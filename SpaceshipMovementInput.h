@@ -11,7 +11,7 @@ public:
 	SpaceshipMovementInput& operator=(const SpaceshipMovementInput&) = delete;
 	
 	void update(float dt) override;
-	void processInput(const struct InputState& inputState);
+	void processInput(const struct InputState& inputState) override;
 
 private:
 	

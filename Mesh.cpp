@@ -39,6 +39,19 @@ bool Mesh::LoadMesh(const std::string& Filename)
 	return Ret;
 }
 
+void Mesh::setTexture(int index, Texture* newTexture)
+{
+	if (index >= 0 && index < static_cast<int>(m_Textures.size()))
+	{
+		m_Textures[index] = newTexture;
+	}
+	else
+	{
+		Log::error(LogCategory::Application, "No Object Link To This Index");
+
+	}
+}
+
 bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 {
 	m_Meshes.resize(pScene->mNumMeshes);

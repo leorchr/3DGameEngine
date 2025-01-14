@@ -2,6 +2,7 @@
 #include "Mesh.h"
 #include "Actor.h"
 #include "Game.h"
+#include "Log.h"
 #include "Texture.h"
 #include <assert.h>
 #include <GL/glew.h>
@@ -29,7 +30,6 @@ void MeshComponent::draw(Shader& shader)
 	shader.setMatrix4("uWorldTransform", worldTransform, false);
 
 	std::vector<MeshEntry> meshes = *mesh->getMeshes();
-	std::vector<Texture*> textures = *mesh->getTextures();
 	
 	glBindVertexArray(mesh->getVAO());
 
@@ -55,4 +55,17 @@ void MeshComponent::draw(Shader& shader)
 void MeshComponent::setMesh(Mesh& meshP)
 {
 	mesh = &meshP;
+	textures = *mesh->getTextures();
+}
+
+void MeshComponent::setTexture(int index, Texture* newTexture)
+{
+	if (index >= 0 && index < static_cast<int>(textures.size()))
+	{
+		textures[index] = newTexture;
+	}
+	else
+	{
+		Log::error(LogCategory::Application, "No Object Link To This Index");
+	}
 }
