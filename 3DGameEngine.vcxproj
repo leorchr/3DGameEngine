@@ -209,6 +209,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="MouseState.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="SpaceshipMoveComponent.cpp" />
     <ClCompile Include="OrbitActor.cpp" />
     <ClCompile Include="OrbitCameraComponent.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
@@ -225,6 +226,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SpaceshipActor.cpp" />
     <ClCompile Include="SpaceshipCameraComponent.cpp" />
+    <ClCompile Include="SpaceshipMovementInput.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SphereActor.cpp" />
     <ClCompile Include="Spline.cpp" />
@@ -295,6 +297,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MouseState.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="SpaceshipMoveComponent.h" />
     <ClInclude Include="OrbitActor.h" />
     <ClInclude Include="OrbitCameraComponent.h" />
     <ClInclude Include="PauseScreen.h" />
@@ -311,6 +314,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpaceshipActor.h" />
     <ClInclude Include="SpaceshipCameraComponent.h" />
+    <ClInclude Include="SpaceshipMovementInput.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SphereActor.h" />
     <ClInclude Include="Spline.h" />
