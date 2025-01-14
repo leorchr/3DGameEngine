@@ -32,7 +32,7 @@ FPSActor::FPSActor() :
 	meshComponent->setVisible(false);
 
 	boxComponent = new BoxComponent(this);
-	AABB collision(Vector3(-25.0f, -25.0f, -87.5f), Vector3(25.0f, 25.0f, 87.5f));
+	AABB collision(Vector3(-10.0f, -10.0f, -10.0f), Vector3(10.0f, 10.0f, 10.0f));
 	boxComponent->setObjectBox(collision);
 	boxComponent->setShouldRotate(false);
 }

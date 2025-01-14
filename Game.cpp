@@ -338,7 +338,7 @@ void Game::setMode(EngineMode mode)
 		{
 		player = new FPSActor();
 		player->setName("Spaceship Actor");
-		player->setPosition(Vector3(0.0f,0.0f,15.0f));
+		player->setPosition(Vector3(0.0f,0.0f,10.0f));
 		imGuiWindow->setShowImGUI(false);
 		}
 		break;

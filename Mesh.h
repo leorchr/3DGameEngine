@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "AABB.h"
 #include <GL/glew.h>
 #include <vector>
 #include <assimp/Importer.hpp>      // C++ importer interface
@@ -16,7 +17,7 @@ class Texture;
 class Mesh
 {
 public:
-	Mesh() : id(nextID++) {}
+	Mesh() : id(nextID++), box(Vector3::infinity, Vector3::negInfinity) {}
 	~Mesh(){}
 	bool LoadMesh(const std::string& Filename);
 
@@ -24,6 +25,7 @@ public:
 	std::vector<Texture*>* getTextures() {return &m_Textures; }
 	GLuint getVAO() const { return m_VAO; }
 	int getId() const { return id; }
+	AABB getBox() const { return box; }
 	
 private:
 
@@ -58,7 +60,9 @@ private:
 	std::vector<Vector3> m_Normals;
 	std::vector<Vector2> m_TexCoords;
 	std::vector<unsigned int> m_Indices;
-
+	
+	AABB box;
+	
 	static int nextID;
 	int id;
 };

@@ -101,6 +101,8 @@ void Mesh::InitSingleMesh(const aiMesh* paiMesh)
 		const aiVector3D& pNormal   = paiMesh->mNormals[i];
 		const aiVector3D& pTexCoord = paiMesh->HasTextureCoords(0) ? paiMesh->mTextureCoords[0][i] : Zero3D;
 
+		const Vector3 AABBPos = Vector3(pPos.x,pPos.y, pPos.z);
+		box.updateMinMax(AABBPos);
 		m_Positions.push_back(Vector3(pPos.x, pPos.y, pPos.z));
 		m_Normals.push_back(Vector3(pNormal.x, pNormal.y, pNormal.z));
 		m_TexCoords.push_back(Vector2(pTexCoord.x, pTexCoord.y));
