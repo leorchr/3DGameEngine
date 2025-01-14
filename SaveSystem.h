@@ -11,4 +11,5 @@ public:
 
 	static void save();
 	static void saveActors(rapidjson::Document& document, rapidjson::Document::AllocatorType& allocator);
+	static void load();
 };

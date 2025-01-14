@@ -273,6 +273,10 @@ void ImGUIWindow::menu()
 		{
 			SaveSystem::save();
 		}
+		if (ImGui::MenuItem("Load"))
+		{
+			SaveSystem::load();
+		}
 		ImGui::EndMenu();
 	}
 	ImGui::EndMainMenuBar();

@@ -10,6 +10,13 @@
 #include <fstream>
 #include <filesystem>
 
+#include <tchar.h>
+#include <windows.h>
+#include <commdlg.h>
+#include <iostream>
+
+
+
 using namespace rapidjson;
 using namespace std;
 
@@ -101,4 +108,28 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 	}
 	
 	document.AddMember("actors", actors, allocator);
+}
+
+void SaveSystem::load()
+{
+	TCHAR szFile[MAX_PATH] = _T(""); 
+
+	// Initialisation de la structure OPENFILENAME
+	OPENFILENAME ofn = {0}; // Zero-initialisation pour éviter des valeurs non définies
+	ofn.lStructSize = sizeof(OPENFILENAME); // Taille de la structure
+	ofn.hwndOwner = NULL; // Fenêtre parente (NULL si aucune)
+	ofn.lpstrFile = szFile; // Pointeur vers le buffer pour le chemin du fichier
+	ofn.nMaxFile = MAX_PATH; // Taille du buffer
+	ofn.lpstrFilter = _T("JSON Files\0*.json\0All Files\0*.*\0"); // Filtres
+	ofn.nFilterIndex = 1; // Index du filtre sélectionné par défaut
+	ofn.lpstrFileTitle = NULL; // Titre du fichier (non utilisé ici)
+	ofn.nMaxFileTitle = 0; // Taille du buffer pour lpstrFileTitle
+	ofn.lpstrInitialDir = NULL; // Répertoire initial (NULL pour le dernier utilisé)
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST; // Options (par ex., chemin doit exister)
+	
+	if (GetOpenFileName(&ofn)) {
+		std::wcout << ofn.lpstrFile << std::endl;
+	} else {
+		SDL_Log("No file selected.");
+	}
 }
