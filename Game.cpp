@@ -17,6 +17,7 @@
 #include "ImGUIManager.h"   
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
+#include "FPSActor.h"
 #endif
 
 
@@ -335,9 +336,9 @@ void Game::setMode(EngineMode mode)
 		} 
 	case EngineMode::Game:
 		{
-		player = new TPActor();
-		player->setName("Third Person");
-		player->setPosition(Vector3(0.0f,0.0f,1.0f));
+		player = new FPSActor();
+		player->setName("Spaceship Actor");
+		player->setPosition(Vector3(0.0f,0.0f,15.0f));
 		imGuiWindow->setShowImGUI(false);
 		}
 		break;

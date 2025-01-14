@@ -47,7 +47,7 @@ void FollowActor::actorInput(const InputState& inputState)
 	}
 
 	moveComponent->setForwardSpeed(forwardSpeed);
-	moveComponent->setYawSpeed(angularSpeed);
+	moveComponent->setAngularSpeed(angularSpeed);
 
 	// Adjust horizontal distance of camera based on speed
 	if (!Maths::nearZero(forwardSpeed))

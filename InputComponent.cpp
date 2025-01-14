@@ -35,7 +35,7 @@ void InputComponent::processInput(const InputState& inputState)
 	{
 		angularSpeed += maxAngularSpeed;
 	}
-	setYawSpeed(angularSpeed);
+	setAngularSpeed(angularSpeed);
 }
 
 void InputComponent::setMaxForwardSpeed(float maxForwardSpeedP)

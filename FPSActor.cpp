@@ -22,6 +22,9 @@ FPSActor::FPSActor() :
 {
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FPSCameraComponent(this);
+	Game::instance().getInputSystem().setMouseRelativeMode(true);
+	SDL_WarpMouseInWindow(Game::instance().getWindow().getSDLWindow(),WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+
 
 	FPSModel = new Actor();
 	meshComponent = new MeshComponent(FPSModel);
@@ -58,19 +61,19 @@ void FPSActor::actorInput(const InputState& inputState)
 	// wasd movement
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_W))
 	{
-		forwardSpeed += 200.0f;
+		forwardSpeed += 50.0f;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_S))
 	{
-		forwardSpeed -= 200.0f;
+		forwardSpeed -= 50.0f;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
 	{
-		strafeSpeed -= 200.0f;
+		strafeSpeed -= 50.0f;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
 	{
-		strafeSpeed += 200.0f;
+		strafeSpeed += 50.0f;
 	}
 	moveComponent->setForwardSpeed(forwardSpeed);
 	moveComponent->setStrafeSpeed(strafeSpeed);
@@ -86,7 +89,7 @@ void FPSActor::actorInput(const InputState& inputState)
 		angularSpeed = x / maxMouseSpeed;
 		angularSpeed *= maxAngularSpeed;
 	}
-	moveComponent->setYawSpeed(angularSpeed);
+	moveComponent->setAngularSpeed(angularSpeed);
 	const float maxPitchSpeed = Maths::pi * 8;
 	float pitchSpeed = 0.0f;
 	if (y != 0)
