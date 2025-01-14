@@ -233,6 +233,9 @@
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -485,6 +488,9 @@
     </ClInclude>
     <ClInclude Include="SpaceshipMoveComponent.h" />
     <ClInclude Include="MoveComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
