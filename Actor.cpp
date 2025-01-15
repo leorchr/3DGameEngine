@@ -189,3 +189,44 @@ void Actor::setName(std::string name)
 	this->name = name;
 	game.setActorNewName(this);
 }
+
+std::string Actor::getTypeName() const
+{
+	return typeid(*this).name();
+}
+
+void Actor::load(const rapidjson::Value& data)
+{
+	if (data.HasMember("Name") && data["Name"].IsString())
+	{
+		name = data["Name"].GetString();
+	}
+	if (data.HasMember("Position") && data["Position"].IsArray())
+	{
+		const auto& pos = data["Position"];
+		Vector3 loadedPos;
+		if(pos[0].IsFloat()) loadedPos.x = pos[0].GetFloat();
+		if(pos[1].IsFloat()) loadedPos.y = pos[1].GetFloat();
+		if(pos[2].IsFloat()) loadedPos.z = pos[2].GetFloat();
+		setPosition(loadedPos);
+	}
+	if (data.HasMember("Rotation") && data["Rotation"].IsArray())
+	{
+		const auto& rot = data["Rotation"];
+		Quaternion loadedRot;
+		if(rot[0].IsFloat()) loadedRot.x = rot[0].GetFloat();
+		if(rot[1].IsFloat()) loadedRot.y = rot[1].GetFloat();
+		if(rot[2].IsFloat()) loadedRot.z = rot[2].GetFloat();
+		if(rot[3].IsFloat()) loadedRot.z = rot[3].GetFloat();
+		setRotation(loadedRot);
+	}
+	if (data.HasMember("Scale") && data["Scale"].IsArray())
+	{
+		const auto& scale = data["Scale"];
+		Vector3 loadedScale;
+		if(scale[0].IsFloat()) loadedScale.x = scale[0].GetFloat();
+		if(scale[1].IsFloat()) loadedScale.y = scale[1].GetFloat();
+		if(scale[2].IsFloat()) loadedScale.z = scale[2].GetFloat();
+		setScale(loadedScale);
+	}
+}

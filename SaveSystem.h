@@ -1,6 +1,6 @@
-﻿#include <document.h>
-
-#pragma once
+﻿#pragma once
+#include <document.h>
+#include <string>
 
 class SaveSystem
 {
@@ -11,5 +11,7 @@ public:
 
 	static void save();
 	static void saveActors(rapidjson::Document& document, rapidjson::Document::AllocatorType& allocator);
+	static std::wstring openFilePath();
 	static void load();
+	static void loadActors(rapidjson::Document& document);
 };

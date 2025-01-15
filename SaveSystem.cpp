@@ -1,6 +1,7 @@
 ﻿#include "SaveSystem.h"
 #include "Game.h"
-#include "Actor.h"
+// #include "Actor.h"
+#include "ActorFactory.h"
 #include "Assets.h"
 #include "Component.h"
 #include "MeshComponent.h"
@@ -14,8 +15,7 @@
 #include <windows.h>
 #include <commdlg.h>
 #include <iostream>
-
-
+#include <sstream>
 
 using namespace rapidjson;
 using namespace std;
@@ -58,6 +58,10 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 	
 	for(auto actor : Game::instance().getActors())
 	{
+		Value typeValue;
+		string type = actor->getTypeName();
+		typeValue.SetString(type.c_str(), allocator);
+		
 		Value nameValue;
 		string name = actor->getName();
 		nameValue.SetString(name.c_str(), allocator);
@@ -71,6 +75,7 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 		rotation.PushBack(actor->getRotation().x, allocator);
 		rotation.PushBack(actor->getRotation().y, allocator);
 		rotation.PushBack(actor->getRotation().z, allocator);
+		rotation.PushBack(actor->getRotation().w, allocator);
 
 		Value scale(rapidjson::kArrayType);
 		scale.PushBack(actor->getScale().x, allocator);
@@ -79,6 +84,7 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 
 		
 		Value actorAttributes(rapidjson::kObjectType);
+		actorAttributes.AddMember("Type", typeValue, allocator);
 		actorAttributes.AddMember("Name", nameValue, allocator);
 		actorAttributes.AddMember("Position", position, allocator);
 		actorAttributes.AddMember("Rotation", rotation, allocator);
@@ -107,10 +113,10 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 		
 	}
 	
-	document.AddMember("actors", actors, allocator);
+	document.AddMember("Actors", actors, allocator);
 }
 
-void SaveSystem::load()
+std::wstring SaveSystem::openFilePath()
 {
 	TCHAR szFile[MAX_PATH] = _T(""); 
 
@@ -120,7 +126,7 @@ void SaveSystem::load()
 	ofn.hwndOwner = NULL; // Fenêtre parente (NULL si aucune)
 	ofn.lpstrFile = szFile; // Pointeur vers le buffer pour le chemin du fichier
 	ofn.nMaxFile = MAX_PATH; // Taille du buffer
-	ofn.lpstrFilter = _T("JSON Files\0*.json\0All Files\0*.*\0"); // Filtres
+	ofn.lpstrFilter = _T("JSON Files\0*.json\0"); // Filtres
 	ofn.nFilterIndex = 1; // Index du filtre sélectionné par défaut
 	ofn.lpstrFileTitle = NULL; // Titre du fichier (non utilisé ici)
 	ofn.nMaxFileTitle = 0; // Taille du buffer pour lpstrFileTitle
@@ -128,8 +134,74 @@ void SaveSystem::load()
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST; // Options (par ex., chemin doit exister)
 	
 	if (GetOpenFileName(&ofn)) {
-		std::wcout << ofn.lpstrFile << std::endl;
+		std::wstring wFilePath(ofn.lpstrFile);
+		return wFilePath;
 	} else {
-		SDL_Log("No file selected.");
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "No file selected.");
+		return std::wstring();
 	}
 }
+
+void SaveSystem::load()
+{
+	std::wstring filepath = openFilePath();
+	// Check if the file exists
+	if (!filesystem::exists(filepath))
+	{
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "File does not exist !");
+		return;
+	}
+	
+	ifstream file(filepath);
+	if (!file.is_open())
+	{
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Could not open file !");
+		return;
+	}
+
+	// Read the entire file content into a string
+	stringstream buffer;
+	buffer << file.rdbuf();
+	file.close();
+
+	Document document;
+	if (document.Parse(buffer.str().c_str()).HasParseError())
+	{
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Failed to parse JSON file !");
+		return;
+	}
+	
+	if (!document.IsObject())
+	{
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Invalid JSON structure: Root is not an object");
+		return;
+	}
+
+	// Load actors or other game objects
+	loadActors(document);
+}
+
+void SaveSystem::loadActors(rapidjson::Document& document)
+{
+	if (!document.HasMember("Actors") || !document["Actors"].IsArray())
+	{
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Actors data missing or not an array in the JSON file.");
+		return;
+	}
+
+	const auto& actorsArray = document["Actors"];
+	for (const auto& actorData : actorsArray.GetArray())
+	{
+		if (actorData.HasMember("Type") && actorData["Type"].IsString()) {
+			std::string type = actorData["Type"].GetString();
+
+			auto actor = ActorFactory::getInstance().create(type);
+			if (actor) {
+				actor->load(actorData);
+			} else {
+				SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Unknown actor type");
+			}
+		}
+	}
+}
+

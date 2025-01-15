@@ -229,12 +229,14 @@
     <ClCompile Include="SpaceshipMovementInput.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceshipMoveComponent.cpp" />
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceshipMoveComponent.cpp">
+      <Filter>GameSpecific</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -486,12 +488,14 @@
     <ClInclude Include="SpaceshipMovementInput.h">
       <Filter>GameSpecific</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceshipMoveComponent.h" />
     <ClInclude Include="MoveComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceshipMoveComponent.h">
+      <Filter>GameSpecific</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

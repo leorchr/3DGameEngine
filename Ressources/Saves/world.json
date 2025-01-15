@@ -1,6 +1,7 @@
 {
-    "actors": [
+    "Actors": [
         {
+            "Type": "class MeshActor",
             "Name": "Moto",
             "Position": [
                 0.0,
@@ -10,7 +11,8 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0
+                0.0,
+                1.0
             ],
             "Scale": [
                 10.0,
@@ -20,7 +22,8 @@
             "Mesh": "Moto"
         },
         {
-            "Name": "Hdri",
+            "Type": "class MeshActor",
+            "Name": "SpaceHDRI",
             "Position": [
                 0.0,
                 0.0,
@@ -29,526 +32,560 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0
+                0.0,
+                1.0
             ],
             "Scale": [
                 10000.0,
                 10000.0,
                 10000.0
             ],
-            "Mesh": "Hdri"
+            "Mesh": "SpaceHDRI"
         },
         {
-            "Name": "Viewport",
+            "Type": "class PlaneActor",
+            "Name": "Plane",
             "Position": [
-                -126.55841064453125,
-                102.15168762207031,
-                190.6840057373047
+                0.0,
+                0.0,
+                0.0
             ],
             "Rotation": [
                 0.0,
                 0.0,
-                0.17593853175640107
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                100.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                200.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                300.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                400.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                0.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                100.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                200.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                300.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                400.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                0.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                100.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                200.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                300.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                400.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                300.0,
+                0.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                300.0,
+                100.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                300.0,
+                200.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                300.0,
+                300.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                300.0,
+                400.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                400.0,
+                0.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                400.0,
+                100.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                400.0,
+                200.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                400.0,
+                300.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                400.0,
+                400.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane"
+        },
+        {
+            "Type": "class ViewportActor",
+            "Name": "Viewport",
+            "Position": [
+                -100.0,
+                100.0,
+                50.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
             ],
             "Scale": [
                 1.0,
                 1.0,
                 1.0
             ]
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                0.0,
-                100.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                0.0,
-                200.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                0.0,
-                300.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                0.0,
-                400.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                100.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                100.0,
-                100.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                100.0,
-                200.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                100.0,
-                300.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                100.0,
-                400.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                200.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                200.0,
-                100.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                200.0,
-                200.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                200.0,
-                300.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                200.0,
-                400.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                300.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                300.0,
-                100.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                300.0,
-                200.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                300.0,
-                300.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                300.0,
-                400.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                400.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                400.0,
-                100.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                400.0,
-                200.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                400.0,
-                300.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Plane",
-            "Position": [
-                400.0,
-                400.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                50.0,
-                50.0,
-                1.0
-            ],
-            "Mesh": "Plane"
-        },
-        {
-            "Name": "Unnamed",
-            "Position": [
-                136.0,
-                90.0,
-                15.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Scale": [
-                9.800000190734864,
-                9.800000190734864,
-                13.0
-            ],
-            "Mesh": "Plane"
         }
     ]
 }

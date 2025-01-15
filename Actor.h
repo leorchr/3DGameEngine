@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include <SDL_stdinc.h>
 #include "Matrix4.h"
+#include <document.h>
 #include <string>
 using std::vector;
 
@@ -54,6 +55,10 @@ public:
 
 	void setName(std::string name);
 	std::string getName() {return name;}
+
+	virtual std::string getTypeName() const;
+
+	virtual void load(const rapidjson::Value& data);
 
 private:
 	Game& game;

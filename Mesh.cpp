@@ -48,7 +48,6 @@ void Mesh::setTexture(int index, Texture* newTexture)
 	else
 	{
 		Log::error(LogCategory::Application, "No Object Link To This Index");
-
 	}
 }
 

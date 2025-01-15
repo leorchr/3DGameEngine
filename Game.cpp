@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "ActorFactory.h"
 #include "Assets.h"
 #include "Font.h"
 #include "Log.h"
@@ -12,6 +13,7 @@
 #include "MeshComponent.h"
 #include "MeshActor.h"
 #include "ImGUIWindow.h"
+#include <iostream>
 
 #ifdef _DEBUG
 #include "ImGUIManager.h"   
@@ -77,36 +79,39 @@ void Game::load()
 	Assets::loadText("Ressources/Localization/English.gptext");
 	Log::info("\033[35m-----------------------------\033[0m");
 
-	
-	Actor* moto = new Actor();
-	moto->setName("Moto");
-	MeshComponent* motoMesh = new MeshComponent(moto);
-	motoMesh->setMesh(Assets::getMesh("Moto"));
-	moto->setPosition(Vector3(0.0f,0.0f,15.0f));
-	moto->setScale(Vector3(10.0f,10.0f,10.0f));
-	
-	Actor* sphere = new Actor();
-	MeshComponent* sphereMesh = new MeshComponent(sphere);
-	sphere->setName("SpaceHDRI");
-	sphereMesh->setMesh(Assets::getMesh("SpaceHDRI"));
-	sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
-	sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
+	auto& factory = ActorFactory::getInstance();
 
-	for(int i = 0; i < 5; i++)
-	{
-		for(int y = 0; y < 5; y++)
-		{
-			auto plane = new PlaneActor();
-			plane->setName("Plane");
-			plane->setScale(Vector3(50,50,1));
-			Vector3 pos = Vector3(plane->getPosition().x + i * 100, plane-> getPosition().y + y * 100, 0.0f);
-			plane->setPosition(pos);
-		}
-	}
+	ActorFactory::getInstance().registerActor("class MeshActor", []() -> Actor* { return new MeshActor(); });
+	ActorFactory::getInstance().registerActor("class PlaneActor", []() -> Actor* { return new PlaneActor(); });
+	ActorFactory::getInstance().registerActor("class Actor", []() -> Actor* { return new Actor(); });
+	ActorFactory::getInstance().registerActor("class SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
+	ActorFactory::getInstance().registerActor("class ViewportActor", []() -> Actor* { return new ViewportActor(); });	
+	
+	// MeshActor* moto = new MeshActor("Moto");
+	// moto->setName("Moto");
+	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));
+	// moto->setScale(Vector3(10.0f,10.0f,10.0f));
+	//
+	// MeshActor* sphere = new MeshActor("SpaceHDRI");
+	// sphere->setName("SpaceHDRI");
+	// sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
+	// sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
+	//
+	// for(int i = 0; i < 5; i++)
+	// {
+	// 	for(int y = 0; y < 5; y++)
+	// 	{
+	// 		auto plane = new PlaneActor();
+	// 		plane->setName("Plane");
+	// 		plane->setScale(Vector3(50,50,1));
+	// 		Vector3 pos = Vector3(plane->getPosition().x + i * 100, plane-> getPosition().y + y * 100, 0.0f);
+	// 		plane->setPosition(pos);
+	// 	}
+	// }
 	
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors, actorNames);
-	imGuiWindow->setActor(sphere);
+	//imGuiWindow->setActor(sphere);
 	setMode(ENGINE_MODE);
 #else
 	player = new SpaceshipActor();
