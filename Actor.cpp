@@ -217,7 +217,7 @@ void Actor::load(const rapidjson::Value& data)
 		if(rot[0].IsFloat()) loadedRot.x = rot[0].GetFloat();
 		if(rot[1].IsFloat()) loadedRot.y = rot[1].GetFloat();
 		if(rot[2].IsFloat()) loadedRot.z = rot[2].GetFloat();
-		if(rot[3].IsFloat()) loadedRot.z = rot[3].GetFloat();
+		if(rot[3].IsFloat()) loadedRot.w = rot[3].GetFloat();
 		setRotation(loadedRot);
 	}
 	if (data.HasMember("Scale") && data["Scale"].IsArray())

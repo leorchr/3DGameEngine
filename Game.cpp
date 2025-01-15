@@ -85,8 +85,8 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("class PlaneActor", []() -> Actor* { return new PlaneActor(); });
 	ActorFactory::getInstance().registerActor("class Actor", []() -> Actor* { return new Actor(); });
 	ActorFactory::getInstance().registerActor("class SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
-	ActorFactory::getInstance().registerActor("class ViewportActor", []() -> Actor* { return new ViewportActor(); });	
-	
+	ActorFactory::getInstance().registerActor("class ViewportActor", []() -> Actor* { return new ViewportActor(); });   	
+	//
 	// MeshActor* moto = new MeshActor("Moto");
 	// moto->setName("Moto");
 	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));
