@@ -66,57 +66,10 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 		{
 			continue;
 		}
-		Value typeValue;
-		typeValue.SetString(type.c_str(), allocator);
-		
-		Value nameValue;
-		string name = actor->getName();
-		nameValue.SetString(name.c_str(), allocator);
-
-		Value position(rapidjson::kArrayType);
-		position.PushBack(actor->getPosition().x, allocator);
-		position.PushBack(actor->getPosition().y, allocator);
-		position.PushBack(actor->getPosition().z, allocator);
-
-		Value rotation(rapidjson::kArrayType);
-		rotation.PushBack(actor->getRotation().x, allocator);
-		rotation.PushBack(actor->getRotation().y, allocator);
-		rotation.PushBack(actor->getRotation().z, allocator);
-		rotation.PushBack(actor->getRotation().w, allocator);
-
-		Value scale(rapidjson::kArrayType);
-		scale.PushBack(actor->getScale().x, allocator);
-		scale.PushBack(actor->getScale().y, allocator);
-		scale.PushBack(actor->getScale().z, allocator);
-
-		
-		Value actorAttributes(rapidjson::kObjectType);
-		actorAttributes.AddMember("Type", typeValue, allocator);
-		actorAttributes.AddMember("Name", nameValue, allocator);
-		actorAttributes.AddMember("Position", position, allocator);
-		actorAttributes.AddMember("Rotation", rotation, allocator);
-		actorAttributes.AddMember("Scale",scale, allocator);
-
+		rapidjson::Value actorAttributes = actor->save(allocator);
 		for(auto component: actor->getComponents())
 		{
-			if(component->getType() == ComponentType::Mesh)
-			{
-				if(auto mc = dynamic_cast<MeshComponent*>(component))
-				{
-					if(mc->getMesh() != nullptr)
-					{
-						for(auto pair : Assets::meshes)
-						{
-							if(pair.second.getId() == mc->getMesh()->getId())
-							{
-								Value meshValue;
-								meshValue.SetString(pair.first.c_str(), allocator);
-								actorAttributes.AddMember("Mesh",meshValue, allocator);
-							}
-						}
-					}
-				}
-			}
+			component->save(actorAttributes, allocator);
 		}
 		
 		actors.PushBack(actorAttributes, allocator);
@@ -211,6 +164,10 @@ void SaveSystem::loadActors(rapidjson::Document& document)
 			auto actor = ActorFactory::getInstance().create(type);
 			if (actor) {
 				actor->load(actorData);
+				for(auto component : actor->getComponents())
+				{
+					component->load(actorData);
+				}
 			} else {
 				SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Unknown actor type");
 			}

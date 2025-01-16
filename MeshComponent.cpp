@@ -74,6 +74,34 @@ void MeshComponent::setTexture(int index, Texture* newTexture)
 	}
 }
 
+void MeshComponent::load(const rapidjson::Value& data)
+{
+	if (data.HasMember("Mesh"))
+	{
+		if(data["Mesh"].IsString())
+		{
+			if(mesh != nullptr) setMesh(Assets::getMesh(data["Name"].GetString()));
+		}
+	}
+}
+
+void MeshComponent::save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator)
+{
+	Component::save(actorAttributes, allocator);
+	if(mesh != nullptr)
+	{
+		for(auto pair : Assets::meshes)
+		{
+			if(pair.second.getId() == mesh->getId())
+			{
+				rapidjson::Value meshValue;
+				meshValue.SetString(pair.first.c_str(), allocator);
+				actorAttributes.AddMember("Mesh", meshValue, allocator);
+			}
+		}
+	}
+}
+
 void MeshComponent::updateImGUIOutliner()
 {
 	Component::updateImGUIOutliner();

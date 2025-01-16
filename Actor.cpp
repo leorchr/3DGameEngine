@@ -312,3 +312,41 @@ void Actor::load(const rapidjson::Value& data)
 		setScale(loadedScale);
 	}
 }
+
+rapidjson::Value Actor::save(rapidjson::Document::AllocatorType& allocator)
+{
+	std::string type = getTypeName();
+	rapidjson::Value typeValue;
+	typeValue.SetString(type.c_str(), allocator);
+
+	rapidjson::Value nameValue;
+	std::string name = name;
+	nameValue.SetString(name.c_str(), allocator);
+
+	rapidjson::Value positionToSave(rapidjson::kArrayType);
+	positionToSave.PushBack(position.x, allocator);
+	positionToSave.PushBack(position.y, allocator);
+	positionToSave.PushBack(position.z, allocator);
+
+	rapidjson::Value rotationToSave(rapidjson::kArrayType);
+	rotationToSave.PushBack(rotation.x, allocator);
+	rotationToSave.PushBack(rotation.y, allocator);
+	rotationToSave.PushBack(rotation.z, allocator);
+	rotationToSave.PushBack(rotation.w, allocator);
+
+	rapidjson::Value scaleToSave(rapidjson::kArrayType);
+	scaleToSave.PushBack(scale.x, allocator);
+	scaleToSave.PushBack(scale.y, allocator);
+	scaleToSave.PushBack(scale.z, allocator);
+
+
+	rapidjson::Value actorAttributes(rapidjson::kObjectType);
+	actorAttributes.AddMember("Type", typeValue, allocator);
+	actorAttributes.AddMember("Name", nameValue, allocator);
+	actorAttributes.AddMember("Position", position, allocator);
+	actorAttributes.AddMember("Rotation", rotation, allocator);
+	actorAttributes.AddMember("Scale",scale, allocator);
+
+	return actorAttributes;
+
+}

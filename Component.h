@@ -1,6 +1,6 @@
 #pragma once
 #include "EnumComponentType.h"
-#include <SDL_stdinc.h>
+#include <document.h>
 
 class Actor;
 
@@ -17,10 +17,13 @@ public:
 	class Actor& getOwner() { return owner; }
 
 	ComponentType getType() const { return type;}
-
 	virtual void processInput(const struct InputState& inputState);
 	virtual void update(float dt);
 	virtual void onUpdateWorldTransform() {}
+
+	virtual void load(const rapidjson::Value& data);
+	virtual void save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator);
+
 
 #ifdef _DEBUG
 	virtual void updateImGUIOutliner();

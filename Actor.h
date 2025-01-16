@@ -58,6 +58,7 @@ public:
 
 	virtual std::string getTypeName() const;
 	virtual void load(const rapidjson::Value& data);
+	virtual rapidjson::Value save(rapidjson::Document::AllocatorType& allocator);
 
 protected:
 	Game& game;

@@ -20,6 +20,9 @@ public:
 	std::vector<class Texture*>* getTextures() {return &textures; }
 	void setTexture(int index, class Texture* newTexture);
 
+	virtual void load(const rapidjson::Value& data) override;
+	virtual void save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator) override;
+
 #ifdef  _DEBUG
 	virtual void updateImGUIOutliner() override;
 #endif

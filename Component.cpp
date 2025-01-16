@@ -15,11 +15,6 @@ Component::~Component()
 	owner.removeComponent(this);
 }
 
-void Component::updateImGUIOutliner()
-{
-	
-}
-
 void Component::setType(const ComponentType newType)
 {
 	this->type = newType;
@@ -32,3 +27,7 @@ void Component::processInput(const InputState& inputState)
 void Component::update(float dt)
 {
 }
+
+void Component::load(const rapidjson::Value& data) {}
+void Component::save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator) {}
+void Component::updateImGUIOutliner() {}
