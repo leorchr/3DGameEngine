@@ -19,7 +19,13 @@
                 10.0,
                 10.0
             ],
-            "Mesh": "Moto"
+            "Mesh": "Moto",
+            "Textures": [
+                "Base_Color_bodywork.png",
+                "Base_Color_chassis.png",
+                "Base_Color_elec_comp.png",
+                "Base_Color_wheel.png"
+            ]
         },
         {
             "Type": "MeshActor",
@@ -40,14 +46,17 @@
                 10000.0,
                 10000.0
             ],
-            "Mesh": "SpaceHDRI"
+            "Mesh": "SpaceHDRI",
+            "Textures": [
+                "spaceHDRI.png"
+            ]
         },
         {
             "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 0.0,
-                0.0,
+                -767.0,
                 0.0
             ],
             "Rotation": [
@@ -61,7 +70,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -82,7 +94,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "ButtonBlue"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -103,7 +118,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "Base_Color_elec_comp.png"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -124,7 +142,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -145,7 +166,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -166,7 +190,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -187,7 +214,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -208,7 +238,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -229,7 +262,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -250,7 +286,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -271,7 +310,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -292,7 +334,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -313,7 +358,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -334,7 +382,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -355,7 +406,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -376,7 +430,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -397,7 +454,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -418,7 +478,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -439,7 +502,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -460,7 +526,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -481,7 +550,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -502,7 +574,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -523,7 +598,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -544,7 +622,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         },
         {
             "Type": "PlaneActor",
@@ -565,7 +646,10 @@
                 50.0,
                 1.0
             ],
-            "Mesh": "Plane"
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
         }
     ]
 }

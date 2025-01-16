@@ -83,23 +83,53 @@ void MeshComponent::load(const rapidjson::Value& data)
 			if(mesh != nullptr) setMesh(Assets::getMesh(data["Name"].GetString()));
 		}
 	}
+	if (data.HasMember("Textures"))
+	{
+		if(data["Textures"].IsArray())
+		{
+			for(size_t i = 0; i<data["Textures"].GetArray().Size(); i++)
+			{
+				const auto& textureNames = data["Textures"].GetArray();
+				if(textureNames[i].IsString() && textures[i] != nullptr)
+				{
+					textures[i] = &Assets::getTexture(textureNames[i].GetString());
+				}
+				
+			}
+		}
+	}
 }
 
-void MeshComponent::save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator)
+void MeshComponent::save(rapidjson::Value& actorAttributes, rapidjson::Document::AllocatorType& allocator)
 {
-	Component::save(actorAttributes, allocator);
 	if(mesh != nullptr)
 	{
 		for(auto pair : Assets::meshes)
 		{
 			if(pair.second.getId() == mesh->getId())
 			{
-				rapidjson::Value meshValue;
+				rapidjson::Value meshValue(rapidjson::kStringType);
 				meshValue.SetString(pair.first.c_str(), allocator);
 				actorAttributes.AddMember("Mesh", meshValue, allocator);
 			}
 		}
 	}
+
+	rapidjson::Value textureArray(rapidjson::kArrayType);
+	for (auto texture : textures) {
+		if (texture != nullptr) {
+			for (auto pair : Assets::textures) {
+				if (pair.second.getId() == texture->getId()) {
+					rapidjson::Value textureValue(rapidjson::kStringType);
+					textureValue.SetString(pair.first.c_str(), allocator);
+					textureArray.PushBack(textureValue, allocator); // Ajoute la texture au tableau
+				}
+			}
+		}
+	}
+
+	// Ajoute le tableau de textures au document JSON
+	actorAttributes.AddMember("Textures", textureArray, allocator);
 }
 
 void MeshComponent::updateImGUIOutliner()

@@ -22,7 +22,7 @@ public:
 	virtual void onUpdateWorldTransform() {}
 
 	virtual void load(const rapidjson::Value& data);
-	virtual void save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator);
+	virtual void save(rapidjson::Value& actorAttributes, rapidjson::Document::AllocatorType& allocator);
 
 
 #ifdef _DEBUG

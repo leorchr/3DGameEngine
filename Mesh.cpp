@@ -1,4 +1,5 @@
 ﻿#include "Mesh.h"
+#include "Assets.h"
 #include <assert.h>
 #include "Game.h"
 #include "RendererOGL.h"
@@ -165,12 +166,8 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& fileName)
 				}
 
 				string FullPath = "Ressources/Textures/" + p;
-				m_Textures[i] = new Texture();
-				if (!m_Textures[i]->loadOGL(dynamic_cast<RendererOGL&>(Game::instance().getRenderer()), FullPath.c_str())) {
-					delete m_Textures[i];
-					m_Textures[i] = NULL;
-					Ret = false;
-				}
+				Assets::loadTexture(Game::instance().getRenderer(), FullPath, p);
+				m_Textures[i] = &Assets::getTexture(p);
 			}
 		}
 	}

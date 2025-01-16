@@ -3,7 +3,9 @@
 #include <SDL_image.h>
 #include <sstream>
 
-Texture::Texture() : width(0), height(0), textureTarget(GL_TEXTURE_2D), textureObj(0) {}
+int Texture::nextID = 0;
+
+Texture::Texture() : width(0), height(0), textureTarget(GL_TEXTURE_2D), textureObj(0), id(nextID++) {}
 
 Texture::~Texture()
 {

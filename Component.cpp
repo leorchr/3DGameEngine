@@ -29,5 +29,6 @@ void Component::update(float dt)
 }
 
 void Component::load(const rapidjson::Value& data) {}
-void Component::save(rapidjson::Value& actorAttributes, rapidjson::MemoryPoolAllocator<>& allocator) {}
+void Component::save(rapidjson::Value& actorAttributes, rapidjson::Document::AllocatorType& allocator){}
+
 void Component::updateImGUIOutliner() {}

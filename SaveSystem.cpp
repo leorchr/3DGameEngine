@@ -1,6 +1,6 @@
 ﻿#include "SaveSystem.h"
 #include "Game.h"
-// #include "Actor.h"
+#include "Actor.h"
 #include "ActorFactory.h"
 #include "Assets.h"
 #include "Component.h"
@@ -10,7 +10,7 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
-
+#include <document.h>
 #include <tchar.h>
 #include <windows.h>
 #include <commdlg.h>
@@ -66,7 +66,8 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 		{
 			continue;
 		}
-		rapidjson::Value actorAttributes = actor->save(allocator);
+		rapidjson::Value actorAttributes(rapidjson::kObjectType);
+		actorAttributes = actor->save(allocator);
 		for(auto component: actor->getComponents())
 		{
 			component->save(actorAttributes, allocator);

@@ -21,12 +21,16 @@ public:
 
 	inline int getWidth() const { return width; }
 	inline int getHeight() const { return height; }
-
+	int getId() const { return id; }
+	
 private:
 	int width;
 	int height;
 	SDL_Texture* SDLTexture = nullptr;
 	GLenum textureTarget;
 	GLuint textureObj;
+
+	static int nextID;
+	int id;
 };
 
