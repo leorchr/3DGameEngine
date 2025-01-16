@@ -19,6 +19,10 @@ public:
 	Mesh* getMesh() { return mesh; }
 	std::vector<class Texture*>* getTextures() {return &textures; }
 	void setTexture(int index, class Texture* newTexture);
+
+#ifdef  _DEBUG
+	virtual void updateImGUIOutliner() override;
+#endif
 	
 protected:
 	Mesh* mesh;

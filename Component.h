@@ -22,6 +22,10 @@ public:
 	virtual void update(float dt);
 	virtual void onUpdateWorldTransform() {}
 
+#ifdef _DEBUG
+	virtual void updateImGUIOutliner();
+#endif
+
 protected:
 	void setType(const ComponentType newType);
 	

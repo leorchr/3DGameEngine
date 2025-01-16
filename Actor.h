@@ -59,7 +59,7 @@ public:
 	virtual std::string getTypeName() const;
 	virtual void load(const rapidjson::Value& data);
 
-private:
+protected:
 	Game& game;
 	ActorState state;
 	Vector3 position;
@@ -67,11 +67,8 @@ private:
 	Quaternion rotation;
 	Matrix4 worldTransform;
 	bool mustRecomputeWorldTransform;
-
 	std::string name;
-	
 	vector<Component*> components;
-
 	
 	// ImGUI
 #ifdef _DEBUG

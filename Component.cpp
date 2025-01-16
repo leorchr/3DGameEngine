@@ -15,6 +15,11 @@ Component::~Component()
 	owner.removeComponent(this);
 }
 
+void Component::updateImGUIOutliner()
+{
+	
+}
+
 void Component::setType(const ComponentType newType)
 {
 	this->type = newType;

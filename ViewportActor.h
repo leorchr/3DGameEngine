@@ -12,6 +12,10 @@ public:
 	class MoveComponent* getMoveComponent() const { return moveComponent; }
 	float getBaseSpeed() const { return baseSpeed; }
 	void setBaseSpeed(float speed);
+
+#ifdef _DEBUG
+	virtual void updateImGUIOutliner() override;
+#endif
 private:
 	class MoveComponent* moveComponent;
 	class FPSCameraComponent* cameraComponent;

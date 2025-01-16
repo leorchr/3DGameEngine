@@ -35,6 +35,7 @@ private:
 	// Refers to game lists
 	std::vector<class Actor*>& actors;
 	
+	std::vector<class Actor*> imGuiActors;
 	std::vector<std::string> itemNames;
 	std::vector<const char*> itemNamePtrs;
 };

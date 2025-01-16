@@ -1,27 +1,16 @@
 ﻿#ifdef _DEBUG
 
 #include "ImGUIWindow.h"
+#include "Component.h"
 #include "Actor.h"
 #include "Game.h"
-#include "ViewportActor.h"
 #include "imgui.h"
-#include "MoveComponent.h"
-#include "Assets.h"
-#include "MeshComponent.h"
-#include "Texture.h"
 #include "SaveSystem.h"
-#include <iostream>
+#include "ViewportActor.h"
 
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
 {
-	itemNames.reserve(actors.size());
-	itemNamePtrs.reserve(actors.size());
-	for (const auto& actor : actors) {
-		itemNames.push_back(actor->getName());
-	}
-	for (const auto& name : itemNames) {
-		itemNamePtrs.push_back(name.c_str());
-	}
+	updateItems();
 }
 
 void ImGUIWindow::update()
@@ -56,10 +45,18 @@ void ImGUIWindow::setShowImGUI(bool showImGUI)
 
 void ImGUIWindow::updateItems()
 {
+	imGuiActors.clear();
 	itemNames.clear();
 	itemNamePtrs.clear();
-
+	
+	imGuiActors.reserve(actors.size());
 	for (const auto& actor : actors) {
+		if(actor->getTypeName() != "ViewportActor") imGuiActors.push_back(actor);
+	}
+	
+	itemNames.reserve(imGuiActors.size());
+	itemNamePtrs.reserve(imGuiActors.size());
+	for (const auto& actor : imGuiActors) {
 		itemNames.push_back(actor->getName());
 	}
 	for (const auto& name : itemNames) {
@@ -84,52 +81,7 @@ void ImGUIWindow::viewport()
 				if(!currentActor->getComponents().empty())ImGui::Text("Components");
 				for(auto component : currentActor->getComponents())
 				{
-					if(component->getType() == ComponentType::Mesh)
-					{
-						static int currentMeshSelected = 0;
-						
-						vector<const char*> meshesNames;
-						meshesNames.reserve(Assets::meshes.size());
-						for(const auto& pair : Assets::meshes)
-						{
-							meshesNames.emplace_back(pair.first.c_str());
-						}
-						
-						if(ImGui::Combo("Meshes", &currentMeshSelected, meshesNames.data(), meshesNames.size(), 9))
-						{
-							if(auto mc = dynamic_cast<MeshComponent*>(component))
-							{
-								mc->setMesh(Assets::getMesh(meshesNames[currentMeshSelected]));
-							}
-						}
-
-						if(auto mc = dynamic_cast<MeshComponent*>(component))
-						{
-							
-						static std::vector<int> currentTextureSelections;
-						if (currentTextureSelections.size() != mc->getTextures()->size())
-						{
-							currentTextureSelections.resize(mc->getTextures()->size(), 0);
-						}
-						
-						vector<const char*> textureNames;
-						textureNames.reserve(Assets::textures.size());
-						for(const auto& pair : Assets::textures)
-						{
-							textureNames.emplace_back(pair.first.c_str());
-						}
-							for(size_t i = 0; i < mc->getTextures()->size(); i++)
-							{
-								ImGui::PushID(static_cast<int>(i));
-								std::string label = "Texture " + std::to_string(i+1);
-								if(ImGui::Combo(label.c_str(), &currentTextureSelections[i], textureNames.data(), static_cast<int>(textureNames.size()), 9))
-								{
-									mc->setTexture(static_cast<int>(i), &Assets::getTexture(textureNames[currentTextureSelections[i]]));
-								}
-								ImGui::PopID();
-							}
-						}
-					}
+					component->updateImGUIOutliner();
 				}
 			}
 			ImGui::EndTabItem();
@@ -138,19 +90,7 @@ void ImGUIWindow::viewport()
 		{
 			if(viewportActor)
 			{
-				ImGui::Text("Camera Settings : ");
-				Vector3 currentPosition = viewportActor->getPosition();
-				Vector3 uiPosition = currentPosition;
-				if(ImGui::DragFloat3("Camera Position", &uiPosition.x, 1.0f))
-				{
-					if (uiPosition != currentPosition) {
-						viewportActor->setPosition(uiPosition);
-					}
-				}
-				if(ImGui::DragFloat("Camera Speed", &speed, 1.0f, 0.0f, FLT_MAX))
-				{
-					viewportActor->setBaseSpeed(speed);
-				}
+				viewportActor->updateImGUIOutliner();
 			}
 			ImGui::EndTabItem();
 		}
@@ -176,7 +116,7 @@ void ImGUIWindow::outliner()
 			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9);
 			if (selectedActorIndex != -1) {
-				currentActor = actors[selectedActorIndex];
+				currentActor = imGuiActors[selectedActorIndex];
 			}
 			ImGui::EndChild();
 			ImGui::EndTabItem();

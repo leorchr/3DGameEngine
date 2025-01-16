@@ -3,6 +3,7 @@
 #include "FPSCameraComponent.h"
 #include "InputSystem.h"
 #include "Game.h"
+#include "imgui.h"
 #include <iostream>
 
 ViewportActor::ViewportActor() :
@@ -100,4 +101,22 @@ void ViewportActor::actorInput(const InputState& inputState)
 void ViewportActor::setBaseSpeed(float speed)
 {
 	baseSpeed = speed;
+}
+
+void ViewportActor::updateImGUIOutliner()
+{
+	ImGui::Text(name.c_str());
+				
+	Vector3 currentPosition = position;
+	Vector3 uiPosition = currentPosition;
+					
+	if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
+		if (uiPosition != currentPosition) {
+			setPosition(uiPosition);
+		}
+	}
+	if(ImGui::DragFloat("Camera Speed", &baseSpeed, 1.0f, 0.0f, FLT_MAX))
+	{
+		setBaseSpeed(baseSpeed);
+	}
 }
