@@ -20,6 +20,8 @@
 using namespace rapidjson;
 using namespace std;
 
+static const std::filesystem::path initialPath = std::filesystem::current_path();
+
 void SaveSystem::save()
 {
 	// Setup document and allocator
@@ -36,14 +38,15 @@ void SaveSystem::save()
 	document.Accept(writer);
 
 	// Write in an output file
-	const string folder = "Ressources";
-	const string folder2 = "Saves";
-	const string filepath = folder + "/" + folder2 + "/world.json";
+	const filesystem::path folder = "Ressources";
+	const filesystem::path savesFolder = folder / "Saves";
+	const filesystem::path filepath = savesFolder / "world.json";
 
+	// Restore le chemin de base
+	std::filesystem::current_path(initialPath);
 	// Créer le dossier si nécessaire
-	filesystem::create_directories(folder);
-	filesystem::create_directories("Ressources/" + folder2);
-
+	if (filesystem::create_directories(savesFolder)){}
+	
 	// Ouvrir le fichier pour écriture
 	ofstream file(filepath);
 	
@@ -100,13 +103,16 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 			{
 				if(auto mc = dynamic_cast<MeshComponent*>(component))
 				{
-					for(auto pair : Assets::meshes)
+					if(mc->getMesh() != nullptr)
 					{
-						if(pair.second.getId() == mc->getMesh()->getId())
+						for(auto pair : Assets::meshes)
 						{
-							Value meshValue;
-							meshValue.SetString(pair.first.c_str(), allocator);
-							actorAttributes.AddMember("Mesh",meshValue, allocator);
+							if(pair.second.getId() == mc->getMesh()->getId())
+							{
+								Value meshValue;
+								meshValue.SetString(pair.first.c_str(), allocator);
+								actorAttributes.AddMember("Mesh",meshValue, allocator);
+							}
 						}
 					}
 				}
@@ -181,6 +187,9 @@ void SaveSystem::load()
 		return;
 	}
 
+	// Clear Actors
+	Game::instance().clearActors();
+	
 	// Load actors or other game objects
 	loadActors(document);
 }

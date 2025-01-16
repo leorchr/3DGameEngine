@@ -27,12 +27,14 @@ void MeshComponent::setVisible(bool isVisibleP)
 
 void MeshComponent::draw(Shader& shader)
 {
+	if(mesh == nullptr) return;
+	std::vector<MeshEntry> meshes = *mesh->getMeshes();
+	if(meshes.size() == 0) return;
+	
 	Matrix4 worldTransform = owner.getWorldTransform();
 	shader.setFloat("uSpecPower", 32.0f);
 	shader.setMatrix4("uWorldTransform", worldTransform, false);
 
-	std::vector<MeshEntry> meshes = *mesh->getMeshes();
-	
 	glBindVertexArray(mesh->getVAO());
 
 	for (unsigned int i = 0 ; i < meshes.size() ; i++) {

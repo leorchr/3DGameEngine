@@ -70,7 +70,8 @@ public:
 	std::vector<class CubeActor*>& getCubes() { return cubes; }
 	class Actor* getPlayer() { return player; }
 	class std::vector<Actor*>& getActors() { return actors; }
-
+	void clearActors();
+	
 #ifdef _DEBUG
 	std::shared_ptr<class ImGUIWindow> getImGuiWindow(){ return imGuiWindow; }
 #endif

@@ -10,6 +10,8 @@
 
 bool ImGUIWindow::showDemoWindow = false;
 bool ImGUIWindow::showStyleEditor = false;
+int ImGUIWindow::selectedActorIndex = -1;
+
 
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
 {
@@ -54,7 +56,7 @@ void ImGUIWindow::updateItems()
 	
 	imGuiActors.reserve(actors.size());
 	for (const auto& actor : actors) {
-		if(actor->getTypeName() != "ViewportActor") imGuiActors.push_back(actor);
+		if(actor->getTypeName() != "ViewportActor" && actor->getState() == Actor::ActorState::Active) imGuiActors.push_back(actor);
 	}
 	
 	itemNames.reserve(imGuiActors.size());
@@ -65,6 +67,11 @@ void ImGUIWindow::updateItems()
 	for (const auto& name : itemNames) {
 		itemNamePtrs.push_back(name.c_str());
 	}
+}
+
+void ImGUIWindow::reset()
+{
+	selectedActorIndex = -1;
 }
 
 void ImGUIWindow::viewport()
@@ -78,7 +85,7 @@ void ImGUIWindow::viewport()
 		
 		if (ImGui::BeginTabItem("Viewport"))
 		{
-			if(currentActor)
+			if(currentActor && currentActor->getState() == Actor::ActorState::Active)
 			{
 				currentActor->updateImGUIOutliner();
 				if(!currentActor->getComponents().empty())ImGui::Text("Components");
@@ -113,7 +120,6 @@ void ImGUIWindow::outliner()
 		if (ImGui::BeginTabItem("Outliner"))
 		{
 			// Construction de la const char* pour ImGUI
-			static int selectedActorIndex = -1;
 			
 			// Fin de la construction
 			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
@@ -187,7 +193,6 @@ void ImGUIWindow::menu()
 		ImGui::EndMenu();
 	}
 	ImGui::EndMainMenuBar();
-	
 }
 
 #endif

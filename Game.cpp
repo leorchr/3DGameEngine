@@ -127,6 +127,18 @@ void Game::load()
 
 }
 
+void Game::clearActors()
+{
+	for(auto actor : actors)
+	{
+		if(actor->getTypeName() != "ViewportActor")	actor->setState(Actor::ActorState::Dead);
+	}
+#ifdef _DEBUG
+	imGuiWindow->reset();
+#endif
+	
+}
+
 void Game::updateImGUI()
 {
 #ifdef _DEBUG

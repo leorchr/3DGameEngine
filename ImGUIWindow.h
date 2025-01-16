@@ -16,9 +16,10 @@ public:
 	void setViewportActor(class ViewportActor* actor);
 	void setShowImGUI(bool showImGUI);
 	void updateItems();
+	void reset();
 	static bool showDemoWindow;
 	static bool showStyleEditor;
-
+	static int selectedActorIndex;
 protected:
 	void viewport();
 	void outliner();
