@@ -8,6 +8,9 @@
 #include "SaveSystem.h"
 #include "ViewportActor.h"
 
+bool ImGUIWindow::showDemoWindow = false;
+bool ImGUIWindow::showStyleEditor = false;
+
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
 {
 	updateItems();
@@ -22,8 +25,8 @@ void ImGUIWindow::update()
 		outliner();
 		playmode();
 		addActor();
-		//ImGui::ShowStyleEditor();
-		//ImGui::ShowDemoWindow();
+		if(showDemoWindow) ImGui::ShowDemoWindow();
+		if(showStyleEditor) ImGui::ShowStyleEditor();
 	}
 }
 
@@ -167,7 +170,24 @@ void ImGUIWindow::menu()
 		}
 		ImGui::EndMenu();
 	}
+
+	if (ImGui::BeginMenu("View"))
+	{
+		
+
+		if (ImGui::MenuItem("Show Demo Window", nullptr, showDemoWindow))
+		{
+			showDemoWindow = !showDemoWindow; // Toggle the value
+		}
+
+		if (ImGui::MenuItem("Show Style Editor", nullptr, showStyleEditor))
+		{
+			showStyleEditor = !showStyleEditor; // Toggle the value
+		}
+		ImGui::EndMenu();
+	}
 	ImGui::EndMainMenuBar();
+	
 }
 
 #endif

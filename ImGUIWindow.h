@@ -16,6 +16,8 @@ public:
 	void setViewportActor(class ViewportActor* actor);
 	void setShowImGUI(bool showImGUI);
 	void updateItems();
+	static bool showDemoWindow;
+	static bool showStyleEditor;
 
 protected:
 	void viewport();
@@ -38,6 +40,9 @@ private:
 	std::vector<class Actor*> imGuiActors;
 	std::vector<std::string> itemNames;
 	std::vector<const char*> itemNamePtrs;
+
+	// Im GUI
+
 };
 
 #endif
