@@ -12,7 +12,17 @@
 #include "SaveSystem.h"
 #include <iostream>
 
-ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors), actorNames(actorNames) {}
+ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
+{
+	itemNames.reserve(actors.size());
+	itemNamePtrs.reserve(actors.size());
+	for (const auto& actor : actors) {
+		itemNames.push_back(actor->getName());
+	}
+	for (const auto& name : itemNames) {
+		itemNamePtrs.push_back(name.c_str());
+	}
+}
 
 void ImGUIWindow::update()
 {
@@ -44,6 +54,19 @@ void ImGUIWindow::setShowImGUI(bool showImGUI)
 	this->showImGUI = showImGUI;
 }
 
+void ImGUIWindow::updateItems()
+{
+	itemNames.clear();
+	itemNamePtrs.clear();
+
+	for (const auto& actor : actors) {
+		itemNames.push_back(actor->getName());
+	}
+	for (const auto& name : itemNames) {
+		itemNamePtrs.push_back(name.c_str());
+	}
+}
+
 void ImGUIWindow::viewport()
 {
 	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 550.0f, 50.0f), ImGuiCond_Once);
@@ -57,76 +80,7 @@ void ImGUIWindow::viewport()
 		{
 			if(currentActor)
 			{
-				ImGui::Text(currentActor->getName().c_str());
-				
-				Vector3 currentPosition = currentActor->getPosition();
-				Vector3 uiPosition = currentPosition;
-					
-				if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
-					// Vérifier si la position a changé
-					if (uiPosition != currentPosition) {
-						currentActor->setPosition(uiPosition);
-					}
-				}
-
-
-				//Rotation
-				Vector3 currentRotation = uiRotation;
-
-				if (ImGui::DragFloat3("Rotation", &uiRotation.x, 1.0f)) {
-					if (uiRotation != currentRotation) {
-
-						// ZYX order for rotations
-						Quaternion rot = Quaternion::identity;
-						
-						Quaternion yaw = Quaternion(Vector3::unitZ, uiRotation.z*(Maths::pi/180));
-						rot = Quaternion::concatenate(yaw, rot);
-						
-						Quaternion pitch = Quaternion(Vector3::unitY, uiRotation.y*(Maths::pi/180));
-						rot = Quaternion::concatenate(pitch, rot);
-						
-						Quaternion roll = Quaternion(Vector3::unitX, uiRotation.x*(Maths::pi/180));
-						rot = Quaternion::concatenate(roll, rot);
-						
-						currentActor->setRotation(rot);
-					}
-				}
-
-				// Scale
-				
-				Vector3 currentScale = currentActor->getScale();
-				Vector3 uiScale = currentScale;
-				
-				if (ImGui::DragFloat3("Scale", &uiScale.x, 0.1f)) {
-					if (uiScale != currentScale) {
-						if (lockScale)
-						{
-							if (uiScale.x != currentScale.x)
-							{
-								float difference = uiScale.x - currentScale.x;
-								uiScale.y += difference;
-								uiScale.z += difference;
-							}
-							if (uiScale.y != currentScale.y)
-							{
-								float difference = uiScale.y- currentScale.y;
-								uiScale.x += difference;
-								uiScale.z += difference;
-							}
-							if (uiScale.z != currentScale.z)
-							{
-								float difference = uiScale.z - currentScale.z;
-								uiScale.x += difference;
-								uiScale.y += difference;
-							}
-						}
-						currentActor->setScale(uiScale);
-					}
-				}
-				ImGui::SameLine();
-				ImGui::Checkbox("Lock", &lockScale);
-
-				
+				currentActor->updateImGUIOutliner();
 				if(!currentActor->getComponents().empty())ImGui::Text("Components");
 				for(auto component : currentActor->getComponents())
 				{
@@ -218,15 +172,9 @@ void ImGUIWindow::outliner()
 			// Construction de la const char* pour ImGUI
 			static int selectedActorIndex = -1;
 			
-			std::vector<const char*> itemNames;
-			itemNames.reserve(actorNames.size());
-			for (const auto& name : actorNames) {
-	 			itemNames.push_back(name.c_str());
-			}
-
 			// Fin de la construction
 			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-			ImGui::ListBox("##Actors", &selectedActorIndex, itemNames.data(), itemNames.size(), 9);
+			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9);
 			if (selectedActorIndex != -1) {
 				currentActor = actors[selectedActorIndex];
 			}

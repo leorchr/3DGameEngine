@@ -15,6 +15,7 @@ ViewportActor::ViewportActor() :
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FPSCameraComponent(this);
 	setPosition(Vector3(-100.0f,100.0f,50.0f));
+	setName("ViewportActor");
 }
 
 void ViewportActor::updateActor(float dt)

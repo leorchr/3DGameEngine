@@ -81,12 +81,21 @@ void Game::load()
 
 	auto& factory = ActorFactory::getInstance();
 
-	ActorFactory::getInstance().registerActor("class MeshActor", []() -> Actor* { return new MeshActor(); });
-	ActorFactory::getInstance().registerActor("class PlaneActor", []() -> Actor* { return new PlaneActor(); });
-	ActorFactory::getInstance().registerActor("class Actor", []() -> Actor* { return new Actor(); });
-	ActorFactory::getInstance().registerActor("class SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
-	ActorFactory::getInstance().registerActor("class ViewportActor", []() -> Actor* { return new ViewportActor(); });   	
-	//
+	ActorFactory::getInstance().registerActor("MeshActor", []() -> Actor* { return new MeshActor(); });
+	ActorFactory::getInstance().registerActor("PlaneActor", []() -> Actor* { return new PlaneActor(); });
+	ActorFactory::getInstance().registerActor("Actor", []() -> Actor* { return new Actor(); });
+	ActorFactory::getInstance().registerActor("SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
+	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });   	
+	
+#ifdef _DEBUG
+	imGuiWindow = std::make_shared<ImGUIWindow>(actors);
+	setMode(ENGINE_MODE);
+#else
+	player = new SpaceshipActor();
+	player->setPosition(Vector3(0.0f,0.0f,1.0f));
+	mode = EngineMode::Game;
+#endif
+	
 	// MeshActor* moto = new MeshActor("Moto");
 	// moto->setName("Moto");
 	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));
@@ -108,17 +117,6 @@ void Game::load()
 	// 		plane->setPosition(pos);
 	// 	}
 	// }
-	
-#ifdef _DEBUG
-	imGuiWindow = std::make_shared<ImGUIWindow>(actors, actorNames);
-	//imGuiWindow->setActor(sphere);
-	setMode(ENGINE_MODE);
-#else
-	player = new SpaceshipActor();
-	player->setPosition(Vector3(0.0f,0.0f,1.0f));
-	mode = EngineMode::Game;
-#endif
-	
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.1f, 0.1f, 0.1f));
@@ -127,6 +125,13 @@ void Game::load()
 	dir.direction = Vector3(-1.0f,-1.0f,-1.0f);
 	dir.specColor = Vector3(1.0f,1.0f,1.0f);
 
+}
+
+void Game::updateImGUI()
+{
+#ifdef _DEBUG
+	imGuiWindow->updateItems();
+#endif
 }
 
 void Game::processInput()
@@ -223,7 +228,6 @@ void Game::update(float dt)
 		{
 			pendingActor->computeWorldTransform();
 			actors.emplace_back(pendingActor);
-			actorNames.emplace_back(pendingActor->getName());
 		}
 		pendingActors.clear();
 
@@ -364,7 +368,7 @@ void Game::addActor(Actor* actor)
 	else
 	{
 		actors.emplace_back(actor);
-		actorNames.emplace_back(actor->getName());
+		updateImGUI();
 	}
 }
 
@@ -383,22 +387,7 @@ void Game::removeActor(Actor* actor)
 	{
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();
-		auto iterName = std::find(begin(actorNames), end(actorNames), actor->getName());
-		if (iterName != end(actorNames))
-		{
-			std::iter_swap(iterName, end(actorNames) - 1);
-			actorNames.pop_back();
-		}
-	}
-}
-
-void Game::setActorNewName(Actor* actor)
-{
-	auto iter = std::find(begin(actors), end(actors), actor);
-	if (iter != end(actors))
-	{
-		size_t index = std::distance(actors.begin(), iter);
-		actorNames[index] = actor->getName();
+		updateImGUI();
 	}
 }
 

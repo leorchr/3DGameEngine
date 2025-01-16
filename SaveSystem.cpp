@@ -58,8 +58,12 @@ void SaveSystem::saveActors(rapidjson::Document& document, rapidjson::Document::
 	
 	for(auto actor : Game::instance().getActors())
 	{
-		Value typeValue;
 		string type = actor->getTypeName();
+		if(type == "ViewportActor")
+		{
+			continue;
+		}
+		Value typeValue;
 		typeValue.SetString(type.c_str(), allocator);
 		
 		Value nameValue;

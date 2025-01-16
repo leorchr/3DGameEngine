@@ -52,7 +52,6 @@ public:
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
-	void setActorNewName(class Actor* actor);
 	void createActor();
 	RendererOGL& getRenderer() { return renderer; }
 	Window& getWindow() { return window; }
@@ -75,6 +74,7 @@ public:
 #ifdef _DEBUG
 	std::shared_ptr<class ImGUIWindow> getImGuiWindow(){ return imGuiWindow; }
 #endif
+	void updateImGUI();
 	
 private:
 	void processInput();
@@ -92,7 +92,6 @@ private:
 	bool isUpdatingActors;
 	std::vector<Actor*> actors;
 	std::vector<Actor*> pendingActors;
-	std::vector<std::string> actorNames;
 
 #ifdef _DEBUG
 	std::shared_ptr<class ImGUIWindow> imGuiWindow;

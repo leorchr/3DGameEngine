@@ -8,13 +8,14 @@
 class ImGUIWindow
 {
 public:
-	ImGUIWindow(std::vector<class Actor*>& actors, std::vector<std::string>& actorNames);
+	ImGUIWindow(std::vector<class Actor*>& actors);
 
 	void menu();
 	void update();
 	void setActor(class Actor* actor);
 	void setViewportActor(class ViewportActor* actor);
 	void setShowImGUI(bool showImGUI);
+	void updateItems();
 
 protected:
 	void viewport();
@@ -29,13 +30,13 @@ private:
 
 	// Viewport Actor
 	float speed;
-	bool lockScale;
-	Vector3 uiRotation;
 	bool showImGUI;
 
 	// Refers to game lists
 	std::vector<class Actor*>& actors;
-	std::vector<std::string>& actorNames;
+	
+	std::vector<std::string> itemNames;
+	std::vector<const char*> itemNamePtrs;
 };
 
 #endif

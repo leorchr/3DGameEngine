@@ -1,7 +1,7 @@
 {
     "Actors": [
         {
-            "Type": "class MeshActor",
+            "Type": "MeshActor",
             "Name": "Moto",
             "Position": [
                 0.0,
@@ -22,7 +22,7 @@
             "Mesh": "Moto"
         },
         {
-            "Type": "class MeshActor",
+            "Type": "MeshActor",
             "Name": "SpaceHDRI",
             "Position": [
                 0.0,
@@ -43,7 +43,7 @@
             "Mesh": "SpaceHDRI"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 0.0,
@@ -64,7 +64,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 0.0,
@@ -85,7 +85,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 0.0,
@@ -106,7 +106,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 0.0,
@@ -127,7 +127,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 0.0,
@@ -148,7 +148,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 100.0,
@@ -169,7 +169,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 100.0,
@@ -190,7 +190,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 100.0,
@@ -211,7 +211,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 100.0,
@@ -232,7 +232,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 100.0,
@@ -253,7 +253,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 200.0,
@@ -274,7 +274,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 200.0,
@@ -295,7 +295,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 200.0,
@@ -316,7 +316,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 200.0,
@@ -337,7 +337,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 200.0,
@@ -358,7 +358,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 300.0,
@@ -379,7 +379,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 300.0,
@@ -400,7 +400,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 300.0,
@@ -421,7 +421,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 300.0,
@@ -442,7 +442,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 300.0,
@@ -463,7 +463,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 400.0,
@@ -484,7 +484,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 400.0,
@@ -505,7 +505,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 400.0,
@@ -526,7 +526,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 400.0,
@@ -547,7 +547,7 @@
             "Mesh": "Plane"
         },
         {
-            "Type": "class PlaneActor",
+            "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
                 400.0,
@@ -566,26 +566,6 @@
                 1.0
             ],
             "Mesh": "Plane"
-        },
-        {
-            "Type": "class ViewportActor",
-            "Name": "Viewport",
-            "Position": [
-                -100.0,
-                100.0,
-                50.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ]
         }
     ]
 }

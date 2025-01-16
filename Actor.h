@@ -57,7 +57,6 @@ public:
 	std::string getName() {return name;}
 
 	virtual std::string getTypeName() const;
-
 	virtual void load(const rapidjson::Value& data);
 
 private:
@@ -68,7 +67,22 @@ private:
 	Quaternion rotation;
 	Matrix4 worldTransform;
 	bool mustRecomputeWorldTransform;
-	std::string name;
 
+	std::string name;
+	
 	vector<Component*> components;
+
+	
+	// ImGUI
+#ifdef _DEBUG
+	
+public:
+	virtual void updateImGUIOutliner();
+	
+private:
+	bool isScaleLocked;
+	Vector3 uiRotation;
+	
+#endif
+	// End of ImGUI
 };

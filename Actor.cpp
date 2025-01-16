@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "Game.h"
 #include "Component.h"
+#include "imgui.h"
 #include "Maths.h"
 
 Actor::Actor() :
@@ -12,6 +13,9 @@ Actor::Actor() :
 	mustRecomputeWorldTransform(true),
 	game(Game::instance()),
 	name("Unnamed")
+#ifdef _DEBUG
+	,isScaleLocked(false)
+#endif
 {
 	game.addActor(this);
 }
@@ -187,19 +191,97 @@ std::vector<Component*> Actor::getComponents()
 void Actor::setName(std::string name)
 {
 	this->name = name;
-	game.setActorNewName(this);
+	game.updateImGUI();
 }
 
 std::string Actor::getTypeName() const
 {
-	return typeid(*this).name();
+	const std::string prefix = "class ";
+	std::string typeNameString = typeid(*this).name();
+	if (typeNameString.find(prefix) == 0) {
+		return typeNameString.substr(prefix.size());
+	}
+	return typeNameString;
 }
+
+#ifdef _DEBUG
+void Actor::updateImGUIOutliner()
+{
+	ImGui::Text(name.c_str());
+				
+	Vector3 currentPosition = position;
+	Vector3 uiPosition = currentPosition;
+					
+	if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
+		if (uiPosition != currentPosition) {
+			setPosition(uiPosition);
+		}
+	}
+
+
+	//Rotation
+	Vector3 currentRotation = uiRotation;
+
+	if (ImGui::DragFloat3("Rotation", &uiRotation.x, 1.0f)) {
+		if (uiRotation != currentRotation) {
+
+			// ZYX order for rotations
+			Quaternion rot = Quaternion::identity;
+						
+			Quaternion yaw = Quaternion(Vector3::unitZ, uiRotation.z*(Maths::pi/180));
+			rot = Quaternion::concatenate(yaw, rot);
+						
+			Quaternion pitch = Quaternion(Vector3::unitY, uiRotation.y*(Maths::pi/180));
+			rot = Quaternion::concatenate(pitch, rot);
+						
+			Quaternion roll = Quaternion(Vector3::unitX, uiRotation.x*(Maths::pi/180));
+			rot = Quaternion::concatenate(roll, rot);
+						
+			setRotation(rot);
+		}
+	}
+
+	// Scale
+				
+	Vector3 currentScale = scale;
+	Vector3 uiScale = currentScale;
+				
+	if (ImGui::DragFloat3("Scale", &uiScale.x, 0.1f)) {
+		if (uiScale != currentScale) {
+			if (isScaleLocked)
+			{
+				if (uiScale.x != currentScale.x)
+				{
+					float difference = uiScale.x - currentScale.x;
+					uiScale.y += difference;
+					uiScale.z += difference;
+				}
+				if (uiScale.y != currentScale.y)
+				{
+					float difference = uiScale.y- currentScale.y;
+					uiScale.x += difference;
+					uiScale.z += difference;
+				}
+				if (uiScale.z != currentScale.z)
+				{
+					float difference = uiScale.z - currentScale.z;
+					uiScale.x += difference;
+					uiScale.y += difference;
+				}
+			}
+			setScale(uiScale);
+		}
+	}
+	ImGui::SameLine();
+	ImGui::Checkbox("Lock", &isScaleLocked);
+}
+#endif
 
 void Actor::load(const rapidjson::Value& data)
 {
 	if (data.HasMember("Name") && data["Name"].IsString())
 	{
-		name = data["Name"].GetString();
+		setName(data["Name"].GetString());
 	}
 	if (data.HasMember("Position") && data["Position"].IsArray())
 	{

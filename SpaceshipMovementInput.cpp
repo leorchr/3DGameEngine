@@ -18,18 +18,22 @@ void SpaceshipMovementInput::update(float dt)
 			isYawing = false;
 			return;
 		}
+
 		// Current Rotation
 		Quaternion newRotation = owner.getRotation();
-		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
 
-		// End Rotation
+		// Slerp Rotation
 		Quaternion finalRotation;
+		
+		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
+		
 		if(roll > 0) finalRotation = Quaternion(forward, -dt);
 		else finalRotation = Quaternion(forward, dt);
 
-		// Slerp Rotation
-		newRotation = Quaternion::concatenate(newRotation, finalRotation);
-		Quaternion stepRotation = Quaternion::slerp(owner.getRotation(), newRotation, rollSpeedSlerp);
+		// End Rotation
+		// Apply Rotation
+		Quaternion endRotation = Quaternion::concatenate(newRotation, finalRotation);
+		Quaternion stepRotation = Quaternion::slerp(owner.getRotation(), endRotation, rollSpeedSlerp);
 
 		// Apply
 		owner.setRotation(stepRotation);
