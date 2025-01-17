@@ -119,9 +119,6 @@ void ImGUIWindow::outliner()
 	{
 		if (ImGui::BeginTabItem("Outliner"))
 		{
-			// Construction de la const char* pour ImGUI
-			
-			// Fin de la construction
 			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9);
 			if (selectedActorIndex != -1) {
@@ -170,7 +167,7 @@ void ImGUIWindow::menu()
 		{
 			SaveSystem::save();
 		}
-		if (ImGui::MenuItem("Load"))
+		if (ImGui::MenuItem("Load", "Ctrl+L"))
 		{
 			SaveSystem::load();
 		}

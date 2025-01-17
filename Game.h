@@ -3,6 +3,7 @@
 #include "InputSystem.h"
 #include "PhysicsSystem.h"
 #include "RendererOGL.h"
+#include "ShortcutsManager.h"
 #include "Window.h"
 #include <vector>
 #include <string>
@@ -33,7 +34,7 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : state(GameState::Running), mode(EngineMode::None), isUpdatingActors(false), player(nullptr) {}
+	Game();
 
 public:
 	bool initialize();
@@ -97,6 +98,7 @@ private:
 #ifdef _DEBUG
 	std::shared_ptr<class ImGUIWindow> imGuiWindow;
 #endif
+	std::unique_ptr<ShortcutsManager> shortcutsManager;
 	// Game specific
 	class Actor* player;
 	

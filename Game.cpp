@@ -29,6 +29,8 @@
 	#define ENGINE_MODE EngineMode::Game
 #endif
 
+Game::Game() : state(GameState::Running), mode(EngineMode::None), isUpdatingActors(false), player(nullptr) {}
+
 bool Game::initialize()
 {
 	const bool isLogInit = Log::initialize();
@@ -90,6 +92,7 @@ void Game::load()
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors);
 	setMode(ENGINE_MODE);
+	shortcutsManager = std::make_unique<ShortcutsManager>();
 #else
 	player = new SpaceshipActor();
 	player->setPosition(Vector3(0.0f,0.0f,1.0f));
@@ -174,6 +177,9 @@ void Game::processInput()
 			actor->processInput(input);
 		}
 		isUpdatingActors = false;
+#ifdef _DEBUG
+		shortcutsManager->processInput(input);
+#endif
 		switch(mode)
 		{
 		case EngineMode::Game:
@@ -182,12 +188,6 @@ void Game::processInput()
 			{
 				new PauseScreen();
 				return;
-			}
-			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
-			{
-#ifdef _DEBUG
-				setMode(EngineMode::Editor);
-#endif
 			}
 			if (!UIStack.empty()) {
 				// Update UI screens
@@ -202,10 +202,6 @@ void Game::processInput()
 			break;
 #ifdef _DEBUG
 		case EngineMode::Editor:
-			if (input.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed && input.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held)
-			{
-				setMode(EngineMode::Game);
-			}
 			if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released) setState(GameState::Quit);
 			break;
 #endif

@@ -5,7 +5,7 @@
 class SaveSystem
 {
 public:
-	SaveSystem();
+	SaveSystem() = default;
 	SaveSystem(const SaveSystem&) = delete;
 	SaveSystem& operator=(const SaveSystem&) = delete;
 

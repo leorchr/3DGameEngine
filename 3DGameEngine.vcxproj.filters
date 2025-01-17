@@ -238,6 +238,10 @@
     <ClCompile Include="SpaceshipMoveComponent.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
+    <ClCompile Include="ActorFactory.cpp" />
+    <ClCompile Include="ShortcutsManager.cpp">
+      <Filter>Systems\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -496,6 +500,10 @@
     </ClInclude>
     <ClInclude Include="SpaceshipMoveComponent.h">
       <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorFactory.h" />
+    <ClInclude Include="ShortcutsManager.h">
+      <Filter>Systems\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
