@@ -18,6 +18,7 @@ SpaceshipActor::SpaceshipActor() :
 	boxComponent->setShouldRotate(true);
 
 	physicsComponent = new PhysicsComponent(this, *boxComponent);
+	setName("SpaceshipActor");
 }
 
 void SpaceshipActor::updateActor(float dt)

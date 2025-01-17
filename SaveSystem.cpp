@@ -128,9 +128,43 @@ std::wstring SaveSystem::openFilePath()
 	}
 }
 
-void SaveSystem::load()
+void SaveSystem::loadFile()
 {
 	std::wstring filepath = openFilePath();
+	load(filepath);
+}
+
+void SaveSystem::loadFirstFile()
+{
+#ifdef _DEBUG
+	const filesystem::path folder = "Ressources";
+	const filesystem::path savesFolder = folder / "Saves";
+	const filesystem::path filepath = savesFolder / "editorDefaultMap.json";
+	if (filesystem::exists(filepath))
+	{
+		load(filepath);
+	}
+	else
+	{
+		loadFile();
+	}
+#else
+	const filesystem::path folder = "Ressources";
+	const filesystem::path savesFolder = folder / "Saves";
+	const filesystem::path filepath = savesFolder / "world.json";
+	if (filesystem::exists(filepath))
+	{
+		load(filepath);
+	}
+	else
+	{
+		loadFile();
+	}
+#endif
+}
+
+void SaveSystem::load(std::wstring filepath)
+{
 	// Check if the file exists
 	if (!filesystem::exists(filepath))
 	{

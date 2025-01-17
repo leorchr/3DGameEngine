@@ -15,7 +15,7 @@ ViewportActor::ViewportActor() :
 	SDL_WarpMouseInWindow(Game::instance().getWindow().getSDLWindow(),WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FPSCameraComponent(this);
-	setPosition(Vector3(-100.0f,100.0f,50.0f));
+	setPosition(Vector3(-190.0f,325.0f,180.0f));
 	setName("ViewportActor");
 }
 
@@ -103,6 +103,7 @@ void ViewportActor::setBaseSpeed(float speed)
 	baseSpeed = speed;
 }
 
+#ifdef _DEBUG
 void ViewportActor::updateImGUIOutliner()
 {
 	ImGui::Text(name.c_str());
@@ -120,3 +121,4 @@ void ViewportActor::updateImGUIOutliner()
 		setBaseSpeed(baseSpeed);
 	}
 }
+#endif

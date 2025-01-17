@@ -5,6 +5,7 @@
 
 void ShortcutsManager::processInput(const InputState& inputState) const
 {
+#ifdef _DEBUG
 	switch(Game::instance().getMode())
 	{
 	case EngineMode::Game:
@@ -29,7 +30,7 @@ void ShortcutsManager::processInput(const InputState& inputState) const
 		if (inputState.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held &&
 			inputState.keyboard.getKeyState(SDL_SCANCODE_L) == ButtonState::Pressed)
 		{
-			SaveSystem::load();
+			SaveSystem::loadFile();
 		}
 		if(inputState.keyboard.getKeyState(SDL_SCANCODE_LCTRL) == ButtonState::Held &&
 			inputState.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed)
@@ -40,4 +41,5 @@ void ShortcutsManager::processInput(const InputState& inputState) const
 	case EngineMode::None:
 		break;
 	}
+#endif
 }

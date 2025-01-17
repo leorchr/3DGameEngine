@@ -145,6 +145,7 @@ void MeshComponent::save(rapidjson::Value& actorAttributes, rapidjson::Document:
 	}
 }
 
+#ifdef _DEBUG
 void MeshComponent::updateImGUIOutliner()
 {
 	Component::updateImGUIOutliner();
@@ -185,3 +186,4 @@ void MeshComponent::updateImGUIOutliner()
 		ImGui::PopID();
 	}
 }
+#endif

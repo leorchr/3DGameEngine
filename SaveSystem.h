@@ -18,6 +18,8 @@ public:
 	static void saveInFile(std::filesystem::path path);
 	static void saveActors(rapidjson::Document& document, rapidjson::Document::AllocatorType& allocator);
 	static std::wstring openFilePath();
-	static void load();
+	static void loadFile();
+	static void loadFirstFile();
+	static void load(std::wstring filepath);
 	static void loadActors(rapidjson::Document& document);
 };

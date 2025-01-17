@@ -16,6 +16,8 @@
 #include "SphereActor.h"
 #include <iostream>
 
+#include "SaveSystem.h"
+
 #ifdef _DEBUG
 #include "ImGUIManager.h"   
 #include "imgui.h"
@@ -88,7 +90,7 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("PlaneActor", []() -> Actor* { return new PlaneActor(); });
 	ActorFactory::getInstance().registerActor("Actor", []() -> Actor* { return new Actor(); });
 	ActorFactory::getInstance().registerActor("SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
-	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });   	
+	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });
 
 
 	
@@ -101,29 +103,6 @@ void Game::load()
 	player->setPosition(Vector3(0.0f,0.0f,1.0f));
 	mode = EngineMode::Game;
 #endif
-	
-	auto sphere = new SphereActor();
-	// MeshActor* moto = new MeshActor("Moto");
-	// moto->setName("Moto");
-	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));
-	// moto->setScale(Vector3(10.0f,10.0f,10.0f));
-	//
-	// MeshActor* sphere = new MeshActor("SpaceHDRI");
-	// sphere->setName("SpaceHDRI");
-	// sphere->setPosition(Vector3(0.0f,0.0f,0.0f));
-	// sphere->setScale(Vector3(10000.0f,10000.0f,10000.0f));
-	//
-	// for(int i = 0; i < 5; i++)
-	// {
-	// 	for(int y = 0; y < 5; y++)
-	// 	{
-	// 		auto plane = new PlaneActor();
-	// 		plane->setName("Plane");
-	// 		plane->setScale(Vector3(50,50,1));
-	// 		Vector3 pos = Vector3(plane->getPosition().x + i * 100, plane-> getPosition().y + y * 100, 0.0f);
-	// 		plane->setPosition(pos);
-	// 	}
-	// }
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.1f, 0.1f, 0.1f));
@@ -132,13 +111,14 @@ void Game::load()
 	dir.direction = Vector3(-1.0f,-1.0f,-1.0f);
 	dir.specColor = Vector3(1.0f,1.0f,1.0f);
 
+	SaveSystem::loadFirstFile();
 }
 
 void Game::clearActors()
 {
 	for(auto actor : actors)
 	{
-		if(actor->getTypeName() != "ViewportActor")	actor->setState(Actor::ActorState::Dead);
+		if(actor->getTypeName() != "ViewportActor" && actor->getTypeName() != "SpaceshipActor")	actor->setState(Actor::ActorState::Dead);
 	}
 #ifdef _DEBUG
 	imGuiWindow->reset();
