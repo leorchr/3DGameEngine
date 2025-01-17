@@ -167,6 +167,10 @@ void ImGUIWindow::menu()
 		{
 			SaveSystem::save();
 		}
+		if (ImGui::MenuItem("Save As", "Ctrl+Shift+S"))
+		{
+			SaveSystem::saveAs();
+		}
 		if (ImGui::MenuItem("Load", "Ctrl+L"))
 		{
 			SaveSystem::load();

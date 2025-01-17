@@ -21,8 +21,39 @@ using namespace rapidjson;
 using namespace std;
 
 static const std::filesystem::path initialPath = std::filesystem::current_path();
+static std::filesystem::path currentPath;
+
+void SaveSystem::saveAs()
+{
+	OPENFILENAME ofn;
+	TCHAR szFile[MAX_PATH] = _T("");
+
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFilter = _T("JSON Files(*.json)\0*.json\0");
+	ofn.lpstrFile = szFile;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.Flags = OFN_OVERWRITEPROMPT;
+	ofn.lpstrDefExt = _T("json");
+
+	if (GetSaveFileName(&ofn)) {
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "File saved");
+	} else {
+		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Save canceled");
+	}
+	
+	currentPath = ofn.lpstrFile;
+	saveInFile(ofn.lpstrFile);
+}
 
 void SaveSystem::save()
+{
+	if(currentPath.empty()) saveAs();
+	else saveInFile(currentPath);
+}
+
+void SaveSystem::saveInFile(filesystem::path path)
 {
 	// Setup document and allocator
 	Document document;
@@ -37,18 +68,9 @@ void SaveSystem::save()
 	PrettyWriter<StringBuffer> writer(buffer);
 	document.Accept(writer);
 
-	// Write in an output file
-	const filesystem::path folder = "Ressources";
-	const filesystem::path savesFolder = folder / "Saves";
-	const filesystem::path filepath = savesFolder / "world.json";
 
-	// Restore le chemin de base
-	std::filesystem::current_path(initialPath);
-	// Créer le dossier si nécessaire
-	if (filesystem::create_directories(savesFolder)){}
-	
 	// Ouvrir le fichier pour écriture
-	ofstream file(filepath);
+	ofstream file(path);
 	
 	//std::ofstream file("world.json");
 	file << buffer.GetString();
