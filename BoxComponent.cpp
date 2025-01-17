@@ -4,6 +4,7 @@
 
 BoxComponent::BoxComponent(Actor* ownerP, int updateOrderP):
 	Component(ownerP, updateOrderP),
+	baseObjectAABB(Vector3::zero, Vector3::zero),
 	objectAABB(Vector3::zero, Vector3::zero),
 	worldAABB(Vector3::zero, Vector3::zero),
 	worldOBB(Vector3::zero, Vector3::zero, Quaternion::identity),
@@ -19,7 +20,7 @@ BoxComponent::~BoxComponent()
 
 void BoxComponent::setObjectBox(const AABB& objectBoxP)
 {
-	objectAABB = objectBoxP;
+	baseObjectAABB = objectBoxP;
 }
 
 void BoxComponent::setShouldRotate(bool shouldRotateP)
@@ -29,11 +30,10 @@ void BoxComponent::setShouldRotate(bool shouldRotateP)
 
 void BoxComponent::onUpdateWorldTransform()
 {
-	// Reset to object space box
+	objectAABB = baseObjectAABB;
+	objectAABB.min *= owner.getScale();
+	objectAABB.max *= owner.getScale();
 	worldAABB = objectAABB;
-
-	worldAABB.min *= owner.getScale();
-	worldAABB.max *= owner.getScale();
 	if (shouldRotate)
 	{
 		worldAABB.rotate(owner.getRotation());
@@ -43,10 +43,10 @@ void BoxComponent::onUpdateWorldTransform()
 
 
 	const Vector3 currentPosition = owner.getPosition();
-	worldOBB.center = Vector3(currentPosition.x + objectAABB.max.x/2,
-								currentPosition.y + objectAABB.max.y/2,
-								currentPosition.z + objectAABB.max.z/2);
+	worldOBB.center = Vector3(	currentPosition.x,
+								currentPosition.y,
+								currentPosition.z);
 	
-	worldOBB.extents = (objectAABB.max - objectAABB.min) * 0.5f * owner.getScale();
+	worldOBB.extents = (baseObjectAABB.max - baseObjectAABB.min) * 0.5f * owner.getScale();
 	worldOBB.rotation = owner.getRotation();
 }
