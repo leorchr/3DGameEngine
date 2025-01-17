@@ -48,6 +48,26 @@ float Quaternion::getRoll() const
 	return Maths::atan2(2.0f * (thisCopy.w * thisCopy.x +thisCopy.y * thisCopy.z), 1.0f - 2.0f * (thisCopy.x * thisCopy.x + thisCopy.y * thisCopy.y));
 }
 
+Matrix3 Quaternion::toMatrix() const
+{
+	float xx = x * x;
+	float yy = y * y;
+	float zz = z * z;
+	float xy = x * y;
+	float xz = x * z;
+	float yz = y * z;
+	float wx = w * x;
+	float wy = w * y;
+	float wz = w * z;
+
+	float mat[3][3] = {
+		{ 1 - 2 * (yy + zz), 2 * (xy - wz),     2 * (xz + wy) },
+		{ 2 * (xy + wz),     1 - 2 * (xx + zz), 2 * (yz - wx) },
+		{ 2 * (xz - wy),     2 * (yz + wx),     1 - 2 * (xx + yy) }
+	};
+	return Matrix3(mat);
+}
+
 Quaternion Quaternion::operator*(const Quaternion& q) const
 {
 	Vector3 axis = Vector3(x,y,z);

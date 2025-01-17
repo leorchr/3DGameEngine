@@ -35,7 +35,7 @@ bool PhysicsSystem::segmentCast(const LineSegment& l, CollisionInfo& outColl)
 	{
 		float t;
 		// Does the segment intersect with the box?
-		if (Collisions::intersect(l, box->getWorldBox(), t, norm))
+		if (Collisions::intersect(l, box->getWorldAABB(), t, norm))
 		{
 			// Is this closer than previous intersection?
 			if (t < closestT)
@@ -61,7 +61,7 @@ void PhysicsSystem::testPairwise(std::function<void(Actor*, Actor*)> f)
 		{
 			BoxComponent* a = boxes[i];
 			BoxComponent* b = boxes[j];
-			if (Collisions::intersect(a->getWorldBox(), b->getWorldBox()))
+			if (Collisions::intersect(a->getWorldAABB(), b->getWorldAABB()))
 			{
 				// Call supplied function to handle intersection
 				f(&a->getOwner(), &b->getOwner());
@@ -75,25 +75,25 @@ void PhysicsSystem::testSweepAndPrune(std::function<void(Actor*, Actor*)> f)
 	// Sort by min.x
 	std::sort(begin(boxes), end(boxes),
 		[](BoxComponent* a, BoxComponent* b) {
-			return a->getWorldBox().min.x < b->getWorldBox().min.x;
+			return a->getWorldAABB().min.x < b->getWorldAABB().min.x;
 		});
 
 	for (size_t i = 0; i < boxes.size(); i++)
 	{
 		// Get max.x for current box
 		BoxComponent* a = boxes[i];
-		float max = a->getWorldBox().max.x;
+		float max = a->getWorldAABB().max.x;
 		for (size_t j = i + 1; j < boxes.size(); j++)
 		{
 			BoxComponent* b = boxes[j];
 			// If AABB[j] min is past the max bounds of AABB[i],
 			// then there aren't any other possible intersections
 			// against AABB[i]
-			if (b->getWorldBox().min.x > max)
+			if (b->getWorldAABB().min.x > max)
 			{
 				break;
 			}
-			else if (Collisions::intersect(a->getWorldBox(), b->getWorldBox()))
+			else if (Collisions::intersect(a->getWorldAABB(), b->getWorldAABB()))
 			{
 				f(&a->getOwner(), &b->getOwner());
 			}

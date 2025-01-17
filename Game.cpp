@@ -13,6 +13,7 @@
 #include "MeshComponent.h"
 #include "MeshActor.h"
 #include "ImGUIWindow.h"
+#include "SphereActor.h"
 #include <iostream>
 
 #ifdef _DEBUG
@@ -88,6 +89,8 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("Actor", []() -> Actor* { return new Actor(); });
 	ActorFactory::getInstance().registerActor("SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
 	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });   	
+
+
 	
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors);
@@ -99,6 +102,7 @@ void Game::load()
 	mode = EngineMode::Game;
 #endif
 	
+	auto sphere = new SphereActor();
 	// MeshActor* moto = new MeshActor("Moto");
 	// moto->setName("Moto");
 	// moto->setPosition(Vector3(0.0f,0.0f,15.0f));

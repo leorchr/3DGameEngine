@@ -1,4 +1,5 @@
 #pragma once
+#include "Matrix3.h"
 #include "Vector3.h"
 class Quaternion
 {
@@ -149,6 +150,8 @@ public:
 
 		return retVal;
 	}
+
+	class Matrix3 toMatrix() const;
 	
 	static const Quaternion identity;
 };

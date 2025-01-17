@@ -15,14 +15,14 @@ void PhysicsComponent::update(float dt)
 	// Need to recompute world transform to update world box
 	owner.computeWorldTransform();
 
-	const AABB& playerBox = boxComponent.getWorldBox();
+	const AABB& playerBox = boxComponent.getWorldAABB();
 	Vector3 pos = owner.getPosition();
 
 	auto& planes = owner.getGame().getPlanes();
 	for (auto pa : planes)
 	{
 		// Do we collide with this PlaneActor?
-		const AABB& planeBox = pa->getBox()->getWorldBox();
+		const AABB& planeBox = pa->getBox()->getWorldAABB();
 		if (Collisions::intersect(playerBox, planeBox))
 		{
 			// Calculate all our differences
@@ -64,7 +64,7 @@ void PhysicsComponent::update(float dt)
 	for (auto ca : cubes)
 	{
 		// Do we collide with this PlaneActor?
-		const AABB& cubeBox = ca->getBox()->getWorldBox();
+		const AABB& cubeBox = ca->getBox()->getWorldAABB();
 		if (Collisions::intersect(playerBox, cubeBox))
 		{
 			// Calculate all our differences

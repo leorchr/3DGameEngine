@@ -1,0 +1,88 @@
+{
+    "Actors": [
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                50.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                22.700000762939454,
+                22.700000762939454,
+                22.700000762939454
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
+        }
+    ]
+}
