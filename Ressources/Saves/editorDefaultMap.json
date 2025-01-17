@@ -2,7 +2,7 @@
     "Actors": [
         {
             "Type": "MeshActor",
-            "Name": "Unnamed",
+            "Name": "Ground",
             "Position": [
                 0.0,
                 0.0,
@@ -23,6 +23,30 @@
             "Textures": [
                 "planeTexture.jpg"
             ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Sky Atmosphere",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                10000.0,
+                10000.0,
+                10000.0
+            ],
+            "Mesh": "Sphere",
+          "Textures": [
+            "autumn_field_puresky"
+          ]
         }
     ]
 }

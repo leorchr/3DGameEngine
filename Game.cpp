@@ -72,6 +72,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonYellow.png", "ButtonYellow");
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
+	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
 	
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Cube");
