@@ -59,8 +59,8 @@ void ImGUIWindow::updateItems()
 		if(actor->getTypeName() != "ViewportActor" && actor->getState() == Actor::ActorState::Active) imGuiActors.push_back(actor);
 	}
 	
-	itemNames.reserve(imGuiActors.size());
-	itemNamePtrs.reserve(imGuiActors.size());
+	itemNames.reserve(actors.size());
+	itemNamePtrs.reserve(actors.size());
 	for (const auto& actor : imGuiActors) {
 		itemNames.push_back(actor->getName());
 	}

@@ -25,10 +25,4 @@ std::shared_ptr<MeshComponent> MeshActor::getMeshComponent()
 void MeshActor::load(const rapidjson::Value& data)
 {
 	Actor::load(data);
-
-	if (data.HasMember("Mesh") && data["Mesh"].IsString())
-	{
-		string meshName = data["Name"].GetString();
-		meshComponent->setMesh(Assets::getMesh(meshName));
-	}
 }

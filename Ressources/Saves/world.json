@@ -650,6 +650,137 @@
             "Textures": [
                 "planeTexture.jpg"
             ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                45.0,
+                45.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                8.399999618530274,
+                8.399999618530274,
+                8.399999618530274
+            ],
+            "Mesh": "Moto",
+            "Textures": [
+                "DialogBG",
+                "ButtonYellow",
+                "Base_Color_elec_comp.png",
+                "ButtonYellow"
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                104.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.5299192667007446,
+                0.0,
+                0.8480480909347534
+            ],
+            "Scale": [
+                21.0,
+                21.0,
+                21.0
+            ],
+            "Mesh": "SpaceHDRI",
+            "Textures": [
+                "spaceHDRI.png"
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Unnamed",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
         }
     ]
 }
