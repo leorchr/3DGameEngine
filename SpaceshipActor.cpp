@@ -1,5 +1,6 @@
 #include "SpaceshipActor.h"
 #include "BoxComponent.h"
+#include "CubeActor.h"
 #include "SpaceshipMovementInput.h"
 #include "SpaceshipCameraComponent.h"
 #include "PhysicsComponent.h"
@@ -17,7 +18,7 @@ SpaceshipActor::SpaceshipActor() :
 	boxComponent->setObjectBox(collision);
 	boxComponent->setShouldRotate(true);
 
-	physicsComponent = new PhysicsComponent(this, *boxComponent);
+	physicsComponent = new PhysicsComponent(this, *boxComponent, 1);
 	setName("SpaceshipActor");
 }
 

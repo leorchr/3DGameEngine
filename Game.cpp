@@ -16,6 +16,7 @@
 #include "SphereActor.h"
 #include <iostream>
 
+#include "CubeActor.h"
 #include "SaveSystem.h"
 
 #ifdef _DEBUG
@@ -93,7 +94,6 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
 	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });
 
-
 	
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors);
@@ -101,7 +101,7 @@ void Game::load()
 	shortcutsManager = std::make_unique<ShortcutsManager>();
 #else
 	player = new SpaceshipActor();
-	player->setPosition(Vector3(0.0f,0.0f,1.0f));
+	player->setPosition(Vector3(5.0f,5.0f,500.0f));
 	mode = EngineMode::Game;
 #endif
 
@@ -112,7 +112,11 @@ void Game::load()
 	dir.direction = Vector3(-1.0f,-1.0f,-1.0f);
 	dir.specColor = Vector3(1.0f,1.0f,1.0f);
 
-	SaveSystem::loadFirstFile();
+	//SaveSystem::loadFirstFile();
+
+	CubeActor* ca = new CubeActor();
+	ca->setScale(Vector3(10.0f,10.0f,10.0f));
+	ca->setPosition(Vector3(10.0f,10.0f,10.0f));
 }
 
 void Game::clearActors()

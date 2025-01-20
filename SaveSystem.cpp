@@ -38,7 +38,7 @@ void SaveSystem::saveAs()
 	ofn.lpstrDefExt = _T("json");
 
 	if (GetSaveFileName(&ofn)) {
-		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "File saved");
+		SDL_Log( "File saved");
 	} else {
 		SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Save canceled");
 	}

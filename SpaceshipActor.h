@@ -7,7 +7,6 @@ public:
 	SpaceshipActor();
 
 	void updateActor(float dt) override;
-	void fixCollisions();
 
 private:
 	class SpaceshipMovementInput* moveInputComponent;
