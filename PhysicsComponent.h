@@ -13,4 +13,6 @@ public:
 
 private:
 	class BoxComponent& boxComponent;
+
+	
 };
