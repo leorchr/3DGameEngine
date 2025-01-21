@@ -70,12 +70,12 @@ void Actor::setState(ActorState stateP)
 
 Vector3 Actor::getForward() const
 {
-	return Vector3::transform(Vector3::unitX, rotation);
+	return Vector3::transform(Vector3::unitY, rotation);
 }
 
 Vector3 Actor::getRight() const
 {
-	return Vector3::transform(Vector3::unitY, rotation);
+	return Vector3::transform(Vector3::unitX, rotation);
 }
 
 Vector3 Actor::getUp() const

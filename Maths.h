@@ -114,4 +114,20 @@ namespace Maths
 	{
 		return num*num;
 	}
+
+	inline float snapTo(float value)
+	{
+		return value;
+	}
+
+	inline float snapTo(float value, float first)
+	{
+		return first;
+	}
+
+	template <typename... Args> float snapTo(float value, float first, Args... options)
+	{
+		float closest = snapTo(value, options...);
+		return (std::abs(value - first) < std::abs(value - closest)) ? first : closest;
+	}
 }

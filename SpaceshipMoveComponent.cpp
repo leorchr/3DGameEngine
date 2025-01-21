@@ -53,21 +53,23 @@ void SpaceshipMoveComponent::update(float dt)
 	velocity *= friction;
 
 	if (!Maths::nearZero(yawSpeed) || !Maths::nearZero(pitchSpeed) || !Maths::nearZero(rollSpeed))
-	{
+	{		
 		Quaternion newRotation = owner.getRotation();
+		
 		float yawAngle = yawSpeed * dt;
-		Quaternion increment(owner.getUp(), yawAngle);
+		Vector3 up = Vector3::transform(Vector3::unitZ, newRotation);
+		Quaternion increment(up, yawAngle);
 		newRotation = Quaternion::concatenate(newRotation, increment);
-		//owner.setRotation(newRotation);
+		owner.setRotation(newRotation);
 		
 		float pitchAngle = pitchSpeed * dt;
-		Vector3 right = Vector3::transform(Vector3::unitY, newRotation);
+		Vector3 right = Vector3::transform(Vector3::unitX, newRotation);
 		Quaternion increment2(right, pitchAngle);
 		newRotation = Quaternion::concatenate(newRotation, increment2);
-		//owner.setRotation(newRotation);
+		owner.setRotation(newRotation);
 		
 		float angle = rollSpeed * dt;
-		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
+		Vector3 forward = Vector3::transform(Vector3::unitY, newRotation);
 		Quaternion increment3(forward, angle);
 		newRotation = Quaternion::concatenate(newRotation, increment3);
 		owner.setRotation(newRotation);

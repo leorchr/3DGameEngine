@@ -1,5 +1,7 @@
 #include "SpaceshipMovementInput.h"
 #include "InputSystem.h"
+#include <algorithm>
+#include <iostream>
 #define INVERT_MOUSE_AXIS false
 
 SpaceshipMovementInput::SpaceshipMovementInput(Actor* ownerP) : SpaceshipMoveComponent(ownerP){}
@@ -7,110 +9,30 @@ SpaceshipMovementInput::SpaceshipMovementInput(Actor* ownerP) : SpaceshipMoveCom
 void SpaceshipMovementInput::update(float dt)
 {
 	SpaceshipMoveComponent::update(dt);
-
-	float roll = owner.getRotation().getRoll() * 180 / Maths::pi;
-	float acceptation = rotationAcceptance;
 	if(isRolling) return;
-	if(roll < 45.0f && roll > -45.0f)
-	{
-		if(std::abs(roll) < acceptation)
-		{
-			isYawing = false;
-			return;
-		}
 
-		// Current Rotation
-		Quaternion newRotation = owner.getRotation();
+	Vector3 right = owner.getRight();
+	Vector3 forward = owner.getForward();
+	Vector3 globalUp = Vector3::unitZ;
 
-		// Slerp Rotation
-		Quaternion finalRotation;
-		
-		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
-		
-		if(roll > 0) finalRotation = Quaternion(forward, -dt);
-		else finalRotation = Quaternion(forward, dt);
+	float angle = Maths::acos(Vector3::dot(right,globalUp));
+	Vector3 cross = Vector3::cross(right, globalUp);
+	float sign = Vector3::dot(cross, forward) >= 0.0f ? 1.0f : -1.0f;
 
-		// End Rotation
-		// Apply Rotation
-		Quaternion endRotation = Quaternion::concatenate(newRotation, finalRotation);
-		Quaternion stepRotation = Quaternion::slerp(owner.getRotation(), endRotation, rollSpeedSlerp);
-
-		// Apply
-		owner.setRotation(stepRotation);
-	}
-
-	if(roll < 135.0f && roll > 45.0f)
-	{
-		if(std::abs(roll-90) < acceptation)
-		{
-			isYawing = false;
-			return;
-		}
-		// Current Rotation
-		Quaternion newRotation = owner.getRotation();
-		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
-
-		// End Rotation
-		Quaternion finalRotation;
-		if(roll > 90) finalRotation = Quaternion(forward, -dt);
-		else finalRotation = Quaternion(forward, dt);
-
-		// Slerp Rotation
-		newRotation = Quaternion::concatenate(newRotation, finalRotation);
-		Quaternion stepRotation = Quaternion::slerp(owner.getRotation(), newRotation, rollSpeedSlerp);
-
-		// Apply
-		owner.setRotation(stepRotation);
-	}
-
-	if(roll < -45.0f && roll > -135.0f)
-	{
-		if(std::abs(roll+90) < acceptation)
-		{
-			isYawing = false;
-			return;
-		}
-		// Current Rotation
-		Quaternion newRotation = owner.getRotation();
-		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
+	float currentRoll = angle * sign;
 	
-		// End Rotation
-		Quaternion finalRotation;
-		if(roll > -90) finalRotation = Quaternion(forward, -dt);
-		else finalRotation = Quaternion(forward, dt);
-	
-		// Slerp Rotation
-		newRotation = Quaternion::concatenate(newRotation, finalRotation);
-		Quaternion stepRotation = Quaternion::slerp(owner.getRotation(), newRotation, rollSpeedSlerp);
-	
-		// Apply
-		owner.setRotation(stepRotation);
-	}
-	
-	if(roll > 135.0f || roll < -135.0f)
-	{
-		if(180-std::abs(roll) < acceptation)
-		{
-			isYawing = false;
-			return;
-		}
-		// Current Rotation
-		Quaternion newRotation = owner.getRotation();
-		Vector3 forward = Vector3::transform(Vector3::unitX, newRotation);
-	
-		// End Rotation
-		Quaternion finalRotation;
-		if(roll < 0) finalRotation = Quaternion(forward, -dt);
-		else finalRotation = Quaternion(forward, dt);
-	
-		// Slerp Rotation
-		newRotation = Quaternion::concatenate(newRotation, finalRotation);
-		Quaternion stepRotation = Quaternion::slerp(owner.getRotation(), newRotation, rollSpeedSlerp);
-	
-		// Apply
-		owner.setRotation(stepRotation);
-	}
-	
+	float goalRoll = Maths::snapTo(currentRoll, 0.f, -Maths::twoPi, Maths::twoPi, Maths::piOver2,
+								 -Maths::piOver2, Maths::pi, -Maths::pi);
+
+	if(std::abs(currentRoll - goalRoll) < 0.02f) return;
+
+	float lerpedRoll = Maths::lerp(currentRoll, goalRoll, std::clamp(dt * rollSpeedSlerp, 0.01f, 1.f));
+
+	if((currentRoll - lerpedRoll) == 0.0f) return;
+	Quaternion angledRoll = Quaternion(forward, currentRoll - lerpedRoll);
+
+	Quaternion endPosition = Quaternion::concatenate(owner.getRotation(), angledRoll); 
+	owner.setRotation(endPosition);
 }
 
 void SpaceshipMovementInput::processInput(const InputState& inputState)
@@ -130,11 +52,11 @@ void SpaceshipMovementInput::processInput(const InputState& inputState)
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
 	{
-		strafeSpeed -= moveSpeed;
+		strafeSpeed += moveSpeed;
 	}
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
 	{
-		strafeSpeed += moveSpeed;
+		strafeSpeed -= moveSpeed;
 	}
 	setForwardSpeed(forwardSpeed);
 	setStrafeSpeed(strafeSpeed);
@@ -170,14 +92,6 @@ void SpaceshipMovementInput::processInput(const InputState& inputState)
 	
 	float y = mousePosition.y * (INVERT_MOUSE_AXIS ? -1.f : 1.f);
 	const int maxMouseSpeed = 500;
-
-	if(Maths::nearZero(y) || Maths::nearZero(x)) rollSpeedSlerp = .5f;
-	else
-	{
-		isYawing = true;
-		rollSpeedSlerp = rollSpeedWhenYawSlerp;
-	}
-
 	
 	const float maxAngularSpeed = Maths::pi * 8;
 	float yawSpeed = 0.0f;
@@ -185,8 +99,10 @@ void SpaceshipMovementInput::processInput(const InputState& inputState)
 	{
 		yawSpeed = x / maxMouseSpeed;
 		yawSpeed *= maxAngularSpeed;
+		if(std::abs(x) > 20.0f) rollSpeed += x / maxMouseSpeed * -5;
 	}
 	setYawSpeed(yawSpeed);
+	setRollSpeed(rollSpeed);
 
 	
 	const float maxPitchSpeed = Maths::pi * 8;
@@ -194,7 +110,7 @@ void SpaceshipMovementInput::processInput(const InputState& inputState)
 	if (y != 0)
 	{
 		pitchSpeed = y / maxMouseSpeed;
-		pitchSpeed *= maxPitchSpeed;
+		pitchSpeed *= maxPitchSpeed * -1.0f;
 	}
 	setPitchSpeed(pitchSpeed);
 }
