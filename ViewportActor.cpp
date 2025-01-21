@@ -12,6 +12,7 @@ ViewportActor::ViewportActor() :
 	cameraComponent(nullptr)
 {
 	Game::instance().getInputSystem().setMouseRelativeMode(false);
+	Game::instance().setPlayer(this);
 	SDL_WarpMouseInWindow(Game::instance().getWindow().getSDLWindow(),WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 	moveComponent = new MoveComponent(this);
 	cameraComponent = new FPSCameraComponent(this);
@@ -63,11 +64,11 @@ void ViewportActor::actorInput(const InputState& inputState)
 		}
 		if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
 		{
-			sideSpeed -= baseSpeed;
+			sideSpeed += baseSpeed;
 		}
 		if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
 		{
-			sideSpeed += baseSpeed;
+			sideSpeed -= baseSpeed;
 		}
 
 		// Set forward speed
@@ -94,7 +95,7 @@ void ViewportActor::actorInput(const InputState& inputState)
 			pitchSpeed = y / maxMouseSpeed;
 			pitchSpeed *= maxPitchSpeed;
 		}
-		cameraComponent->setPitchSpeed(pitchSpeed);
+		cameraComponent->setPitchSpeed(-pitchSpeed);
 	}	
 }
 

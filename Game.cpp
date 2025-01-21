@@ -100,7 +100,7 @@ void Game::load()
 	setMode(ENGINE_MODE);
 	shortcutsManager = std::make_unique<ShortcutsManager>();
 #else
-	player = new SpaceshipActor();
+	new SpaceshipActor();
 	player->setPosition(Vector3(5.0f,5.0f,30.0f));
 	mode = EngineMode::Game;
 #endif
@@ -113,6 +113,11 @@ void Game::load()
 	dir.specColor = Vector3(1.0f,1.0f,1.0f);
 
 	SaveSystem::loadFirstFile();
+}
+
+void Game::setPlayer(Actor* player)
+{
+	this->player = player;
 }
 
 void Game::clearActors()
@@ -329,20 +334,16 @@ void Game::setMode(EngineMode mode)
 	switch(mode)
 	{
 	case EngineMode::Editor:
-		{
-		player = new ViewportActor();
+		new ViewportActor();
 		player->setName("Viewport");
 		imGuiWindow->setViewportActor(dynamic_cast<ViewportActor*>(player));
 		imGuiWindow->setShowImGUI(true);
 		break;
-		} 
 	case EngineMode::Game:
-		{
-		player = new SpaceshipActor();
+		new SpaceshipActor();
 		player->setName("Spaceship Actor");
 		player->setPosition(Vector3(0.0f,0.0f,50.0f));
 		imGuiWindow->setShowImGUI(false);
-		}
 		break;
 	case EngineMode::None:
 		close();

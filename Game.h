@@ -70,6 +70,7 @@ public:
 	void removeCube(class CubeActor* cube);
 	std::vector<class CubeActor*>& getCubes() { return cubes; }
 	class Actor* getPlayer() { return player; }
+	void setPlayer(class Actor* player);
 	class std::vector<Actor*>& getActors() { return actors; }
 	void clearActors();
 	
