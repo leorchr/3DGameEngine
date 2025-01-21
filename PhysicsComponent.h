@@ -5,7 +5,7 @@
 class PhysicsComponent : public Component
 {
 public:
-	PhysicsComponent(Actor* ownerP, class BoxComponent& boxComponent, float radius);
+	PhysicsComponent(Actor* ownerP, float radius);
 	PhysicsComponent() = delete;
 	PhysicsComponent(const PhysicsComponent&) = delete;
 	PhysicsComponent& operator=(const PhysicsComponent&) = delete;
@@ -13,7 +13,5 @@ public:
 	void update(float dt) override;
 
 private:
-	class BoxComponent& boxComponent;
-
 	float radius;
 };

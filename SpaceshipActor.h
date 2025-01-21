@@ -11,6 +11,5 @@ public:
 private:
 	class SpaceshipMovementInput* moveInputComponent;
 	class SpaceshipCameraComponent* cameraComponent;
-	class BoxComponent* boxComponent;
 	class PhysicsComponent* physicsComponent;
 };

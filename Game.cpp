@@ -101,7 +101,7 @@ void Game::load()
 	shortcutsManager = std::make_unique<ShortcutsManager>();
 #else
 	player = new SpaceshipActor();
-	player->setPosition(Vector3(5.0f,5.0f,500.0f));
+	player->setPosition(Vector3(5.0f,5.0f,30.0f));
 	mode = EngineMode::Game;
 #endif
 
@@ -112,11 +112,7 @@ void Game::load()
 	dir.direction = Vector3(-1.0f,-1.0f,-1.0f);
 	dir.specColor = Vector3(1.0f,1.0f,1.0f);
 
-	//SaveSystem::loadFirstFile();
-
-	CubeActor* ca = new CubeActor();
-	ca->setScale(Vector3(10.0f,10.0f,10.0f));
-	ca->setPosition(Vector3(10.0f,10.0f,10.0f));
+	SaveSystem::loadFirstFile();
 }
 
 void Game::clearActors()
