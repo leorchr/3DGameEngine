@@ -61,7 +61,6 @@ public:
 	const std::vector<class UIScreen*>& getUIStack() { return UIStack; }
 	void pushUI(class UIScreen* screen);
 
-	// Game-specific
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	std::vector<class PlaneActor*>& getPlanes() { return planes; }
@@ -78,6 +77,12 @@ public:
 	std::shared_ptr<class ImGUIWindow> getImGuiWindow(){ return imGuiWindow; }
 #endif
 	void updateImGUI();
+	
+	// Game-specific
+
+	void addDoor(class DoorActor* door);
+	void removeDoor(class DoorActor* door);
+	std::vector<class DoorActor*>& getDoors() { return doors; }
 	
 private:
 	void processInput();
@@ -100,9 +105,11 @@ private:
 	std::shared_ptr<class ImGUIWindow> imGuiWindow;
 #endif
 	std::unique_ptr<ShortcutsManager> shortcutsManager;
-	// Game specific
 	class Actor* player;
 	
 	std::vector<class PlaneActor*> planes;
 	std::vector<class CubeActor*> cubes;
+	
+	// Game specific
+	std::vector<class DoorActor*> doors;
 };

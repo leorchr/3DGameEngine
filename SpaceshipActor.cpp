@@ -1,4 +1,5 @@
 #include "SpaceshipActor.h"
+#include "DoorActor.h"
 #include "Game.h"
 #include "SpaceshipMovementInput.h"
 #include "SpaceshipCameraComponent.h"
@@ -15,6 +16,9 @@ SpaceshipActor::SpaceshipActor() :
 	setName("SpaceshipActor");
 	setPosition(Vector3(0.0f,0.0f,10.0f));
 	Game::instance().setPlayer(this);
+
+	auto da = new DoorActor();
+	da->setPosition(Vector3(0.0f,0.0f,50.0f));
 }
 
 void SpaceshipActor::updateActor(float dt)

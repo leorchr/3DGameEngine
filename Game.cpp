@@ -17,6 +17,7 @@
 #include <iostream>
 
 #include "CubeActor.h"
+#include "DoorActor.h"
 #include "SaveSystem.h"
 
 #ifdef _DEBUG
@@ -93,7 +94,7 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("Actor", []() -> Actor* { return new Actor(); });
 	ActorFactory::getInstance().registerActor("SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
 	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });
-
+	ActorFactory::getInstance().registerActor("DoorActor", []() -> Actor* { return new DoorActor(); });
 	
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors);
@@ -415,4 +416,15 @@ void Game::removeCube(CubeActor* cube)
 {
 	auto iter = std::find(begin(cubes), end(cubes), cube);
 	cubes.erase(iter);
+}
+
+void Game::addDoor(DoorActor* door)
+{
+	doors.emplace_back(door);
+}
+
+void Game::removeDoor(DoorActor* door)
+{
+	auto iter = std::find(begin(doors), end(doors), door);
+	doors.erase(iter);
 }
