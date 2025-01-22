@@ -7,6 +7,7 @@ public:
 	SpaceshipActor();
 
 	void updateActor(float dt) override;
+	void actorInput(const InputState& inputState) override;
 
 private:
 	class SpaceshipMovementInput* moveInputComponent;
