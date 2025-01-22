@@ -43,7 +43,7 @@ void PhysicsComponent::update(float dt)
 		
 		if(distance < radius && distance > 0)
 		{
-			owner.setPosition(owner.getPosition()-normal*(radius-distance));
+			onHit(normal, distance);
 		}
 	}
 
@@ -68,7 +68,7 @@ void PhysicsComponent::update(float dt)
 		
 		if(distance < radius && distance > 0)
 		{
-			owner.setPosition(owner.getPosition()-normal*(radius-distance));
+			onHit(normal, distance);
 		}
 	}
 }

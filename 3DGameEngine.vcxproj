@@ -215,7 +215,9 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="OBB.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="RocketActor.cpp" />
+    <ClCompile Include="RocketCollisionComponent.cpp" />
     <ClCompile Include="ShortcutsManager.cpp" />
+    <ClCompile Include="SpaceshipCollisionsComponent.cpp" />
     <ClCompile Include="SpaceshipMoveComponent.cpp" />
     <ClCompile Include="OrbitActor.cpp" />
     <ClCompile Include="OrbitCameraComponent.cpp" />
@@ -310,7 +312,9 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="OBB.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="RocketActor.h" />
+    <ClInclude Include="RocketCollisionComponent.h" />
     <ClInclude Include="ShortcutsManager.h" />
+    <ClInclude Include="SpaceshipCollisionsComponent.h" />
     <ClInclude Include="SpaceshipMoveComponent.h" />
     <ClInclude Include="OrbitActor.h" />
     <ClInclude Include="OrbitCameraComponent.h" />

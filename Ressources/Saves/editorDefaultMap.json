@@ -1,7 +1,7 @@
 {
     "Actors": [
         {
-            "Type": "MeshActor",
+            "Type": "PlaneActor",
             "Name": "Ground",
             "Position": [
                 0.0,

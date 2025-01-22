@@ -11,7 +11,8 @@ public:
 	PhysicsComponent& operator=(const PhysicsComponent&) = delete;
 	
 	void update(float dt) override;
-
-private:
+	virtual void onHit(Vector3 normal, float distance) = 0;
+	
+protected:
 	float radius;
 };

@@ -2,18 +2,31 @@
 #include "Assets.h"
 #include "MeshComponent.h"
 #include "MoveComponent.h"
+#include "RocketCollisionComponent.h"
 
 RocketActor::RocketActor() :
 	Actor(),
 	moveComponent(nullptr),
-	meshComponent(nullptr)
+	meshComponent(nullptr),
+	collisionComponent(nullptr),
+	lifeTimeRemaining(startLifeSpan)
 {
 	moveComponent = new MoveComponent(this);
 	meshComponent = new MeshComponent(this);
 	meshComponent->setMesh(Assets::getMesh("Sphere"));
+	
+	moveComponent->setForwardSpeed(400.0f);
+	collisionComponent = new RocketCollisionComponent(this, 10);
+}
 
-	auto mc = new MeshComponent(this);
-	mc->setMesh(Assets::getMesh("Plane"));
+void RocketActor::updateActor(float dt)
+{
+	Actor::updateActor(dt);
+	if(lifeTimeRemaining > 0.0f) lifeTimeRemaining -= dt;
+	else setState(ActorState::Dead);
+}
 
-	moveComponent->setForwardSpeed(50.0f);
+MeshComponent* RocketActor::getMeshComponent()
+{
+	return meshComponent;
 }
