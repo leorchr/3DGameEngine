@@ -19,3 +19,8 @@ Actor* ActorFactory::create(const std::string& type)
 	}
 	return nullptr; // Retourne nullptr si le type n'est pas trouvé
 }
+
+std::unordered_map<std::string, ActorFactory::Creator> ActorFactory::getCreators()
+{
+	return creators;
+}

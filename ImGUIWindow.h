@@ -25,7 +25,6 @@ protected:
 	void viewport();
 	void outliner();
 	void playmode();
-	void addActor();
 	
 private:
 	class Actor* currentActor;

@@ -1,4 +1,5 @@
-﻿#ifdef _DEBUG
+﻿#include "ActorFactory.h"
+#ifdef _DEBUG
 
 #include "ImGUIWindow.h"
 #include "Component.h"
@@ -26,7 +27,6 @@ void ImGUIWindow::update()
 		viewport();
 		outliner();
 		playmode();
-		addActor();
 		if(showDemoWindow) ImGui::ShowDemoWindow();
 		if(showStyleEditor) ImGui::ShowStyleEditor();
 	}
@@ -151,18 +151,6 @@ void ImGUIWindow::playmode()
 	ImGui::End();
 }
 
-void ImGUIWindow::addActor()
-{
-	ImGui::SetNextWindowPos(ImVec2(50.0f , 350.0f), ImGuiCond_Always);
-	ImGui::SetNextWindowSize(ImVec2(175.0f, 0.0f), ImGuiCond_Always);
-	ImGui::Begin("Actors", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
-	if(ImGui::Button("New Actor", ImVec2(150.0f, 0.0f)))
-	{
-		Game::instance().createActor();
-	}
-	ImGui::End();
-}
-
 void ImGUIWindow::menu()
 {
 	static int activeTab = 0;
@@ -196,6 +184,18 @@ void ImGUIWindow::menu()
 		if (ImGui::MenuItem("Show Style Editor", nullptr, showStyleEditor))
 		{
 			showStyleEditor = !showStyleEditor; // Toggle the value
+		}
+		ImGui::EndMenu();
+	}
+
+	if (ImGui::BeginMenu("Add"))
+	{
+		for(auto& pair : ActorFactory::getInstance().getCreators())
+		{
+			if (ImGui::MenuItem(pair.first.c_str(), nullptr))
+			{
+				ActorFactory::getInstance().create(pair.first);
+			}
 		}
 		ImGui::EndMenu();
 	}

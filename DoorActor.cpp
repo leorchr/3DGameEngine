@@ -13,11 +13,17 @@ DoorActor::DoorActor() : mc(nullptr), box(nullptr)
 	box = new BoxComponent(this);
 	box->setObjectBox(mesh->getBox());
 	getGame().addDoor(this);
+	setName("Door");
 }
 
 void DoorActor::updateActor(float dt)
 {
 	Actor::updateActor(dt);
+	if((this->position - getGame().getPlayer()->getPosition()).length() < 10.0f)
+	{
+		open();
+	}
+	else{ close();}
 }
 
 void DoorActor::open()

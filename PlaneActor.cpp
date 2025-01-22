@@ -12,6 +12,7 @@ PlaneActor::PlaneActor() : Actor()
 	box = new BoxComponent(this);
 	box->setObjectBox(mesh->getBox());
 	getGame().addPlane(this);
+	setName("Plane");
 }
 
 PlaneActor::~PlaneActor()

@@ -91,9 +91,6 @@ void Game::load()
 
 	ActorFactory::getInstance().registerActor("MeshActor", []() -> Actor* { return new MeshActor(); });
 	ActorFactory::getInstance().registerActor("PlaneActor", []() -> Actor* { return new PlaneActor(); });
-	ActorFactory::getInstance().registerActor("Actor", []() -> Actor* { return new Actor(); });
-	ActorFactory::getInstance().registerActor("SpaceshipActor", []() -> Actor* { return new SpaceshipActor(); });
-	ActorFactory::getInstance().registerActor("ViewportActor", []() -> Actor* { return new ViewportActor(); });
 	ActorFactory::getInstance().registerActor("DoorActor", []() -> Actor* { return new DoorActor(); });
 	
 #ifdef _DEBUG

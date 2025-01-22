@@ -11,6 +11,8 @@ public:
 
 	class Actor* create(const std::string& type);
 
+	std::unordered_map<std::string, Creator> getCreators();
+
 private:
 	std::unordered_map<std::string, Creator> creators;
 };
