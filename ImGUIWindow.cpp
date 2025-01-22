@@ -74,6 +74,12 @@ void ImGUIWindow::reset()
 	selectedActorIndex = -1;
 }
 
+void ImGUIWindow::deleteSelectedActor()
+{
+	if(currentActor != nullptr) currentActor->setState(Actor::ActorState::Dead);
+	reset();
+}
+
 void ImGUIWindow::viewport()
 {
 	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 550.0f, 50.0f), ImGuiCond_Once);

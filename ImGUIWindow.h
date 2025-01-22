@@ -17,6 +17,7 @@ public:
 	void setShowImGUI(bool showImGUI);
 	void updateItems();
 	void reset();
+	void deleteSelectedActor();
 	static bool showDemoWindow;
 	static bool showStyleEditor;
 	static int selectedActorIndex;

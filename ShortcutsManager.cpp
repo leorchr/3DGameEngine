@@ -1,5 +1,6 @@
 #include "ShortcutsManager.h"
 #include "Game.h"
+#include "ImGUIWindow.h"
 #include "InputSystem.h"
 #include "SaveSystem.h"
 
@@ -36,6 +37,10 @@ void ShortcutsManager::processInput(const InputState& inputState) const
 			inputState.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed)
 		{
 			Game::instance().setMode(EngineMode::Game);
+		}
+		if(inputState.keyboard.getKeyState(SDL_SCANCODE_DELETE) == ButtonState::Pressed)
+		{
+			Game::instance().getImGuiWindow()->deleteSelectedActor();
 		}
 		break;
 	case EngineMode::None:
