@@ -18,6 +18,7 @@
 
 #include "CubeActor.h"
 #include "DoorActor.h"
+#include "EnemyActor.h"
 #include "SaveSystem.h"
 
 #ifdef _DEBUG
@@ -82,6 +83,7 @@ void Game::load()
 	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Sphere");
 	Assets::loadMesh("Ressources/Meshes/hdri.fbx", "Hdri");
 	Assets::loadMesh("Ressources/Meshes/spaceHDRI.fbx", "SpaceHDRI");
+	Assets::loadMesh("Ressources/Meshes/portalTurret.fbx", "Turret");
 
 	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Ressources/Localization/English.gptext");
@@ -90,6 +92,7 @@ void Game::load()
 	auto& factory = ActorFactory::getInstance();
 
 	ActorFactory::getInstance().registerActor("MeshActor", []() -> Actor* { return new MeshActor(); });
+	ActorFactory::getInstance().registerActor("EnemyActor", []() -> Actor* { return new EnemyActor(); });
 	ActorFactory::getInstance().registerActor("PlaneActor", []() -> Actor* { return new PlaneActor(); });
 	ActorFactory::getInstance().registerActor("DoorActor", []() -> Actor* { return new DoorActor(); });
 	

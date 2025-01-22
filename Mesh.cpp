@@ -5,6 +5,7 @@
 #include "RendererOGL.h"
 #include "Log.h"
 #include "Texture.h"
+#include "GLHelper.h"
 
 #define POSITION_LOCATION    0
 #define TEX_COORD_LOCATION   1
@@ -72,7 +73,7 @@ bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 
 	PopulateBuffers();
 
-	return GLCheckError();
+	return GLHelper::getError();
 }
 
 void Mesh::CountVerticesAndIndices(const aiScene* pScene, unsigned int& NumVertices, unsigned int& NumIndices)

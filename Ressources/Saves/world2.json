@@ -1,8 +1,8 @@
 {
     "Actors": [
         {
-            "Type": "MeshActor",
-            "Name": "Unnamed",
+            "Type": "PlaneActor",
+            "Name": "Ground",
             "Position": [
                 0.0,
                 0.0,
@@ -15,73 +15,61 @@
                 1.0
             ],
             "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        {
-            "Type": "MeshActor",
-            "Name": "Unnamed",
-            "Position": [
-                0.0,
-                0.0,
-                15.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        {
-            "Type": "MeshActor",
-            "Name": "Unnamed",
-            "Position": [
-                0.0,
-                0.0,
-                15.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        {
-            "Type": "MeshActor",
-            "Name": "Unnamed",
-            "Position": [
-                0.0,
-                50.0,
-                15.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                22.700000762939454,
-                22.700000762939454,
-                22.700000762939454
+                200.0,
+                200.0,
+                200.0
             ],
             "Mesh": "Plane",
             "Textures": [
                 "planeTexture.jpg"
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Sky Atmosphere",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                10000.0,
+                10000.0,
+                10000.0
+            ],
+            "Mesh": "Sphere",
+            "Textures": [
+                "autumn_field_puresky"
+            ]
+        },
+        {
+            "Type": "EnemyActor",
+            "Name": "Enemy",
+            "Position": [
+                0.0,
+                -42.0,
+                15.0
+            ],
+            "Rotation": [
+                0.43484416604042055,
+                -0.5005686283111572,
+                -0.49070337414741518,
+                0.5652891993522644
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Mesh": "Turret",
+            "Textures": [
+                "Turret_01.png"
             ]
         }
     ]
