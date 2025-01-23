@@ -13,10 +13,10 @@ bool ImGUIWindow::showDemoWindow = false;
 bool ImGUIWindow::showStyleEditor = false;
 int ImGUIWindow::selectedActorIndex = -1;
 
-
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
 {
 	updateItems();
+	
 }
 
 void ImGUIWindow::update()
@@ -82,8 +82,8 @@ void ImGUIWindow::deleteSelectedActor()
 
 void ImGUIWindow::viewport()
 {
-	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 550.0f, 50.0f), ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImVec2(500.0f, 270.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH - 550.0f*Window::ratio, 50.0f*Window::ratio), ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImVec2(500.0f*Window::ratio, 270.0f*Window::ratio), ImGuiCond_Always);
 	
 	ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 	if(ImGui::BeginTabBar("Panel"))
@@ -117,15 +117,15 @@ void ImGUIWindow::viewport()
 
 void ImGUIWindow::outliner()
 {
-	ImGui::SetNextWindowPos(ImVec2(50.0f, 50.0f), ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImVec2(250.0f, 250.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(50.0f*Window::ratio, 50.0f*Window::ratio), ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImVec2(250.0f*Window::ratio, 250.0f*Window::ratio), ImGuiCond_Always);
 
 	ImGui::Begin("Outliner", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 	if(ImGui::BeginTabBar("Outliner"))
 	{
 		if (ImGui::BeginTabItem("Outliner"))
 		{
-			ImGui::BeginChild("NoScrollChild", ImVec2(345, 900), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+			ImGui::BeginChild("NoScrollChild", ImVec2(300*Window::ratio, 170*Window::ratio), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9);
 			if (selectedActorIndex != -1) {
 				currentActor = imGuiActors[selectedActorIndex];
@@ -141,10 +141,10 @@ void ImGUIWindow::outliner()
 
 void ImGUIWindow::playmode()
 {
-	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH/2 - 95.0f , 50.0f), ImGuiCond_Always);
-	ImGui::SetNextWindowSize(ImVec2(175.0f, 0.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH/2 - 95.0f*Window::ratio , 50.0f*Window::ratio), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(175.0f*Window::ratio, 0.0f*Window::ratio), ImGuiCond_Always);
 	ImGui::Begin("Playmode", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
-	if(ImGui::Button("Play", ImVec2(150.0f, 0.0f)))
+	if(ImGui::Button("Play", ImVec2(135.0f*Window::ratio, 0.0f*Window::ratio)))
 	{
 		Game::instance().setMode(EngineMode::Game);
 	}

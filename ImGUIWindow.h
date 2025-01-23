@@ -1,4 +1,5 @@
-﻿#ifdef _DEBUG
+﻿#include "Window.h"
+#ifdef _DEBUG
 
 #pragma once
 #include "Vector3.h"
@@ -43,7 +44,6 @@ private:
 	std::vector<const char*> itemNamePtrs;
 
 	// Im GUI
-
 };
 
 #endif

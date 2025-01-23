@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "Log.h"
 
+const float Window::ratio = (float)WINDOW_WIDTH/(float)1920;
+
 Window::Window() : SDLWindow(nullptr), width(WINDOW_WIDTH), height(WINDOW_HEIGHT)
 {
 }
