@@ -2,6 +2,8 @@
 #include "GameOverScreen.h"
 #include "Game.h"
 #include "DialogBox.h"
+#include "SaveSystem.h"
+#include "SpaceshipActor.h"
 #include "Texture.h"
 #include <string>
 
@@ -30,6 +32,10 @@ void GameOverScreen::draw(Shader& shader)
 void GameOverScreen::processInput(const InputState& inputState)
 {
 	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed) {
-		state = UIState::Closing;
+		SaveSystem::reloadCurrentMap();
+		SpaceshipActor* player = new SpaceshipActor();
+		player->setPosition(Vector3(5.0f,5.0f,30.0f));
+		Game::instance().setPlayer(player);
+		close();
 	}
 }

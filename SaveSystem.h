@@ -22,4 +22,5 @@ public:
 	static void loadFirstFile();
 	static void load(std::wstring filepath);
 	static void loadActors(rapidjson::Document& document);
+	static void reloadCurrentMap();
 };

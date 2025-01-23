@@ -17,7 +17,7 @@ void EnemyRocketActor::updateActor(float dt)
 		float distance = (player->getPosition()-position).length();
 		if(distance <= player->getRadius() + radius)
 		{
-			player->onHit(4.0f);
+			player->onHit(50.0f);
 			setState(ActorState::Dead);
 		}
 	}

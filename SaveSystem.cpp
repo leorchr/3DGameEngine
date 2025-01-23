@@ -202,6 +202,8 @@ void SaveSystem::load(std::wstring filepath)
 	
 	// Load actors or other game objects
 	loadActors(document);
+
+	currentPath = filepath;
 }
 
 void SaveSystem::loadActors(rapidjson::Document& document)
@@ -229,6 +231,14 @@ void SaveSystem::loadActors(rapidjson::Document& document)
 				SDL_LogError(SDL_LogCategory::SDL_LOG_CATEGORY_SYSTEM, "Unknown actor type");
 			}
 		}
+	}
+}
+
+void SaveSystem::reloadCurrentMap()
+{
+	if(!currentPath.empty())
+	{
+		load(currentPath);
 	}
 }
 

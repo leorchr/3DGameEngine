@@ -77,6 +77,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/ButtonBlue.png", "ButtonBlue");
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
+	Assets::loadTexture(renderer, "Ressources/Textures/Blackbg.jpg", "Blackbg");
 	
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Cube");
@@ -139,12 +140,6 @@ void Game::updateImGUI()
 #ifdef _DEBUG
 	imGuiWindow->updateItems();
 #endif
-}
-
-void Game::gameOver()
-{
-	clearActors();
-	new GameOverScreen();
 }
 
 void Game::processInput()
@@ -434,4 +429,11 @@ void Game::removeDoor(DoorActor* door)
 {
 	auto iter = std::find(begin(doors), end(doors), door);
 	doors.erase(iter);
+}
+
+void Game::gameOver()
+{
+	clearActors();
+	if(player) delete player;
+	new GameOverScreen();
 }

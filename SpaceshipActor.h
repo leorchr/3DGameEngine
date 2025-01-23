@@ -5,6 +5,7 @@ class SpaceshipActor : public Actor
 {
 public:
 	SpaceshipActor();
+	virtual ~SpaceshipActor() override;
 
 	void updateActor(float dt) override;
 	void actorInput(const InputState& inputState) override;

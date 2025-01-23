@@ -26,6 +26,11 @@ SpaceshipActor::SpaceshipActor() :
 	ui = new SpaceshipUi(*this);
 }
 
+SpaceshipActor::~SpaceshipActor()
+{
+	ui->close();
+}
+
 void SpaceshipActor::updateActor(float dt)
 {
 	Actor::updateActor(dt);
