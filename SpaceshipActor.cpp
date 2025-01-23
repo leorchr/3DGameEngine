@@ -5,18 +5,25 @@
 #include "SpaceshipCameraComponent.h"
 #include "SpaceshipCollisionsComponent.h"
 #include "RocketActor.h"
+#include "SpaceshipUI.h"
+#include <iostream>
 
 SpaceshipActor::SpaceshipActor() :
 	moveInputComponent(nullptr),
-	cameraComponent(nullptr)
+	cameraComponent(nullptr),
+	physicsComponent(nullptr),
+	ui(nullptr),
+	currentLife(baseLife)
 {
 	Game::instance().getInputSystem().setMouseRelativeMode(true);
 	moveInputComponent = new SpaceshipMovementInput(this);
 	cameraComponent = new SpaceshipCameraComponent(this);
-	physicsComponent = new SpaceshipCollisionsComponent(this, 2);
+	physicsComponent = new SpaceshipCollisionsComponent(this, radius);
 	setName("Spaceship");
 	setPosition(Vector3(0.0f,0.0f,10.0f));
 	Game::instance().setPlayer(this);
+
+	ui = new SpaceshipUi(*this);
 }
 
 void SpaceshipActor::updateActor(float dt)
@@ -46,4 +53,25 @@ void SpaceshipActor::actorInput(const InputState& inputState)
 		// Rotate the ball to face new direction
 		ball->rotateToNewForward(dir);
 	}
+}
+
+const float SpaceshipActor::getRadius() const
+{
+	return radius;
+}
+
+const int SpaceshipActor::getCurrentLife() const
+{
+	return currentLife;
+}
+
+void SpaceshipActor::onHit(float damages)
+{
+	currentLife -= damages;
+	if(currentLife <= 0)
+	{
+		game.gameOver();
+		return;
+	}
+	if(ui) ui->updateText();
 }

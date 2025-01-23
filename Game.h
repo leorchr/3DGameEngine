@@ -83,6 +83,8 @@ public:
 	void addDoor(class DoorActor* door);
 	void removeDoor(class DoorActor* door);
 	std::vector<class DoorActor*>& getDoors() { return doors; }
+
+	void gameOver();
 	
 private:
 	void processInput();

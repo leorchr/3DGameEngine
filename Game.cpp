@@ -19,6 +19,7 @@
 #include "CubeActor.h"
 #include "DoorActor.h"
 #include "EnemyActor.h"
+#include "GameOverScreen.h"
 #include "SaveSystem.h"
 
 #ifdef _DEBUG
@@ -138,6 +139,12 @@ void Game::updateImGUI()
 #ifdef _DEBUG
 	imGuiWindow->updateItems();
 #endif
+}
+
+void Game::gameOver()
+{
+	clearActors();
+	new GameOverScreen();
 }
 
 void Game::processInput()

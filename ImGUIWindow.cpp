@@ -167,7 +167,7 @@ void ImGUIWindow::menu()
 		}
 		if (ImGui::MenuItem("Load", "Ctrl+L"))
 		{
-			SaveSystem::loadFirstFile();
+			SaveSystem::loadFile();
 		}
 		ImGui::EndMenu();
 	}

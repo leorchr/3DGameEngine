@@ -29,7 +29,7 @@ void GameOverScreen::draw(Shader& shader)
 
 void GameOverScreen::processInput(const InputState& inputState)
 {
-	if (inputState.keyboard.getKeyState(SDL_SCANCODE_SPACE) == ButtonState::Pressed) {
+	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed) {
 		state = UIState::Closing;
 	}
 }

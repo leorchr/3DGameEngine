@@ -1,0 +1,148 @@
+{
+    "Actors": [
+        {
+            "Type": "PlaneActor",
+            "Name": "Ground",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                200.0,
+                200.0,
+                200.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Sky Atmosphere",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                10000.0,
+                10000.0,
+                10000.0
+            ],
+            "Mesh": "Sphere",
+            "Textures": [
+                "autumn_field_puresky"
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Mesh Actor",
+            "Position": [
+                0.0,
+                0.0,
+                83.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                8.899999618530274,
+                8.899999618530274,
+                8.899999618530274
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
+        },
+        {
+            "Type": "DoorActor",
+            "Name": "Door",
+            "Position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                17.399999618530275,
+                17.399999618530275,
+                17.399999618530275
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "planeTexture.jpg"
+            ]
+        },
+        {
+            "Type": "EnemyActor",
+            "Name": "Enemy",
+            "Position": [
+                0.0,
+                0.0,
+                15.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Mesh": "Turret",
+            "Textures": [
+                "Turret_01.png"
+            ]
+        },
+        {
+            "Type": "MeshActor",
+            "Name": "Mesh Actor",
+            "Position": [
+                84.0,
+                120.0,
+                170.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                11.899999618530274,
+                11.899999618530274,
+                11.899999618530274
+            ],
+            "Mesh": "Sphere",
+            "Textures": [
+                "sphereTexture.png"
+            ]
+        }
+    ]
+}
