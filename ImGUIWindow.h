@@ -1,8 +1,6 @@
-﻿#include "Window.h"
-#ifdef _DEBUG
+﻿#ifdef _DEBUG
 
 #pragma once
-#include "Vector3.h"
 #include <string>
 #include <vector>
 

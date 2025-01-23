@@ -1,7 +1,5 @@
 ﻿#pragma once
-#include "Actor.h"
 #include "MeshActor.h"
-#include <string>
 
 class EnemyActor : public MeshActor
 {
@@ -12,6 +10,8 @@ public:
 	EnemyActor& operator=(const EnemyActor&) = delete;
 
 	void updateActor(float dt) override;
+
+	void shoot();
 
 private:
 	const float baseShootingIntervals = 2.0f;

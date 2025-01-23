@@ -23,7 +23,7 @@ void DoorActor::updateActor(float dt)
 	{
 		open();
 	}
-	else{ close();}
+	else{ close(); }
 }
 
 void DoorActor::open()

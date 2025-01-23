@@ -1,8 +1,6 @@
 ﻿#include "EnemyRocketActor.h"
 #include "Game.h"
 #include "SpaceshipActor.h"
-#include <iostream>
-#include <ostream>
 
 EnemyRocketActor::EnemyRocketActor()
 {
@@ -12,6 +10,16 @@ EnemyRocketActor::EnemyRocketActor()
 void EnemyRocketActor::updateActor(float dt)
 {
 	RocketActor::updateActor(dt);
+	checkCollisions();
+}
+
+const float EnemyRocketActor::getRadius() const
+{
+	return radius;
+}
+
+void EnemyRocketActor::checkCollisions()
+{
 	if(player)
 	{
 		float distance = (player->getPosition()-position).length();
@@ -21,9 +29,4 @@ void EnemyRocketActor::updateActor(float dt)
 			setState(ActorState::Dead);
 		}
 	}
-}
-
-const float EnemyRocketActor::getRadius() const
-{
-	return radius;
 }

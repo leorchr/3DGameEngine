@@ -13,6 +13,7 @@ MeshActor::MeshActor(const std::string meshName) : Actor(), meshComponent(nullpt
 MeshActor::MeshActor() : Actor(), meshComponent(nullptr)
 {
 	meshComponent = std::make_shared<MeshComponent>(this);
+	meshComponent->setMesh(Assets::getMesh("Cube"));
 	setPosition(Vector3(0.0f,0.0f,15.0f));
 	setName("Mesh Actor");
 }

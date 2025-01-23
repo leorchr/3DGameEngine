@@ -1,13 +1,14 @@
-﻿#include "ActorFactory.h"
-#ifdef _DEBUG
+﻿#ifdef _DEBUG
 
+#include "ActorFactory.h"
 #include "ImGUIWindow.h"
 #include "Component.h"
 #include "Actor.h"
 #include "Game.h"
-#include "imgui.h"
 #include "SaveSystem.h"
 #include "ViewportActor.h"
+
+#include <imgui.h>
 
 bool ImGUIWindow::showDemoWindow = false;
 bool ImGUIWindow::showStyleEditor = false;

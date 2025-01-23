@@ -80,13 +80,13 @@
       <Filter>Maths</Filter>
     </ClCompile>
     <ClCompile Include="CubeActor.cpp">
-      <Filter>Prefabs\Geometry</Filter>
+      <Filter>Prefabs\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="SphereActor.cpp">
-      <Filter>Prefabs\Geometry</Filter>
+      <Filter>Prefabs\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="PlaneActor.cpp">
-      <Filter>Prefabs\Geometry</Filter>
+      <Filter>Prefabs\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="FollowActor.cpp">
       <Filter>Prefabs\Views</Filter>
@@ -160,12 +160,6 @@
     <ClCompile Include="GameOverScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="TPActor.cpp">
-      <Filter>GameSpecific</Filter>
-    </ClCompile>
-    <ClCompile Include="TPSCameraComponent.cpp">
-      <Filter>GameSpecific</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
@@ -214,12 +208,6 @@
     <ClCompile Include="ImGUIWindow.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="ViewportActor.cpp">
-      <Filter>GameSpecific</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshActor.cpp">
-      <Filter>GameSpecific</Filter>
-    </ClCompile>
     <ClCompile Include="SpaceshipActor.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
@@ -238,9 +226,50 @@
     <ClCompile Include="SpaceshipMoveComponent.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
-    <ClCompile Include="ActorFactory.cpp" />
     <ClCompile Include="ShortcutsManager.cpp">
       <Filter>Systems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshActor.cpp">
+      <Filter>Prefabs\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorFactory.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRocketActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="RocketActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="RocketCollisionComponent.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceshipCollisionsComponent.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceshipUI.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="OBB.cpp">
+      <Filter>Systems\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix3.cpp">
+      <Filter>Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="TPActor.cpp">
+      <Filter>Prefabs\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewportActor.cpp">
+      <Filter>Prefabs\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="TPSCameraComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,13 +360,13 @@
       <Filter>Maths</Filter>
     </ClInclude>
     <ClInclude Include="CubeActor.h">
-      <Filter>Prefabs\Geometry</Filter>
+      <Filter>Prefabs\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="SphereActor.h">
-      <Filter>Prefabs\Geometry</Filter>
+      <Filter>Prefabs\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="PlaneActor.h">
-      <Filter>Prefabs\Geometry</Filter>
+      <Filter>Prefabs\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="FollowActor.h">
       <Filter>Prefabs\Views</Filter>
@@ -414,12 +443,6 @@
     <ClInclude Include="GameOverScreen.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="TPActor.h">
-      <Filter>GameSpecific</Filter>
-    </ClInclude>
-    <ClInclude Include="TPSCameraComponent.h">
-      <Filter>GameSpecific</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -477,12 +500,6 @@
     <ClInclude Include="EnumComponentType.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ViewportActor.h">
-      <Filter>GameSpecific</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshActor.h">
-      <Filter>GameSpecific</Filter>
-    </ClInclude>
     <ClInclude Include="SpaceshipActor.h">
       <Filter>GameSpecific</Filter>
     </ClInclude>
@@ -501,9 +518,53 @@
     <ClInclude Include="SpaceshipMoveComponent.h">
       <Filter>GameSpecific</Filter>
     </ClInclude>
-    <ClInclude Include="ActorFactory.h" />
     <ClInclude Include="ShortcutsManager.h">
       <Filter>Systems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshActor.h">
+      <Filter>Prefabs\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorFactory.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRocketActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="RocketActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="RocketCollisionComponent.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceshipCollisionsComponent.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceshipUI.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="OBB.h">
+      <Filter>Systems\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="GLHelper.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="TPActor.h">
+      <Filter>Prefabs\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewportActor.h">
+      <Filter>Prefabs\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="TPSCameraComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -566,9 +627,6 @@
     <Filter Include="Prefabs">
       <UniqueIdentifier>{e194c962-5b24-484f-982e-ea7b04b4a5ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Prefabs\Geometry">
-      <UniqueIdentifier>{ec5a9f8d-b46f-4c47-980f-0e5dcc40f658}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Prefabs\Views">
       <UniqueIdentifier>{6db2c170-ec79-4c13-8179-e8cab706e1bb}</UniqueIdentifier>
     </Filter>
@@ -592,6 +650,9 @@
     </Filter>
     <Filter Include="Include\imgui">
       <UniqueIdentifier>{5e55c00c-585d-4d2a-a5d1-fccec58d0443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs\Primitives">
+      <UniqueIdentifier>{ec5a9f8d-b46f-4c47-980f-0e5dcc40f658}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

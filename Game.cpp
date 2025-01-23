@@ -1,32 +1,28 @@
 #include "Game.h"
 #include "ActorFactory.h"
 #include "Assets.h"
-#include "Font.h"
-#include "Log.h"
-#include "PauseScreen.h"
-#include "PlaneActor.h"
-#include "Texture.h"
 #include "ComputeShader.h"
 #include "Timer.h"
+#include "Texture.h"
+
 #include "SpaceshipActor.h"
 #include "ViewportActor.h"
-#include "MeshComponent.h"
 #include "MeshActor.h"
-#include "ImGUIWindow.h"
-#include "SphereActor.h"
-#include <iostream>
-
-#include "CubeActor.h"
+#include "PlaneActor.h"
 #include "DoorActor.h"
 #include "EnemyActor.h"
 #include "GameOverScreen.h"
+#include "PauseScreen.h"
+
+#include "Log.h"
+#include "Font.h"
+#include "ImGUIWindow.h"
 #include "SaveSystem.h"
 
 #ifdef _DEBUG
 #include "ImGUIManager.h"   
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
-#include "FPSActor.h"
 #endif
 
 
