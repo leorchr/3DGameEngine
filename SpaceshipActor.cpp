@@ -1,12 +1,10 @@
 #include "SpaceshipActor.h"
-#include "DoorActor.h"
 #include "Game.h"
 #include "SpaceshipMovementInput.h"
 #include "SpaceshipCameraComponent.h"
 #include "SpaceshipCollisionsComponent.h"
 #include "RocketActor.h"
 #include "SpaceshipUI.h"
-#include <iostream>
 
 SpaceshipActor::SpaceshipActor() :
 	moveInputComponent(nullptr),
@@ -41,8 +39,6 @@ void SpaceshipActor::actorInput(const InputState& inputState)
 	Actor::actorInput(inputState);
 	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
 	{
-		
-		
 		// Get start point (in center of screen on near plane)
 		Vector3 screenPoint(0.0f, 0.0f, 0.0f);
 		Vector3 start = getGame().getRenderer().unproject(screenPoint);

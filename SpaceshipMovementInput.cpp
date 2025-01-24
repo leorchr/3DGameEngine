@@ -1,7 +1,6 @@
 #include "SpaceshipMovementInput.h"
 #include "InputSystem.h"
 #include <algorithm>
-#include <iostream>
 #define INVERT_MOUSE_AXIS false
 
 SpaceshipMovementInput::SpaceshipMovementInput(Actor* ownerP) : SpaceshipMoveComponent(ownerP){}
@@ -103,7 +102,6 @@ void SpaceshipMovementInput::processInput(const InputState& inputState)
 	}
 	setYawSpeed(yawSpeed);
 	setRollSpeed(rollSpeed);
-
 	
 	const float maxPitchSpeed = Maths::pi * 8;
 	float pitchSpeed = 0.0f;

@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include "UIScreen.h"
-#include "Text.h"
-#include <vector>
 
 class SpaceshipUi : public UIScreen
 {

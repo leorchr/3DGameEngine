@@ -1,10 +1,9 @@
 #include "SpaceshipMoveComponent.h"
 #include "Maths.h"
 #include "Actor.h"
-#include "Window.h"
 
 SpaceshipMoveComponent::SpaceshipMoveComponent(Actor* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), yawSpeed(0.0f), strafeSpeed(0.0f), pitchSpeed(0.0f), rollSpeed(0.0f), upSpeed(0.0f)
+	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), upSpeed(0.0f), strafeSpeed(0.0f), yawSpeed(0.0f), pitchSpeed(0.0f), rollSpeed(0.0f)
 {
 	velocity = Vector3(0, 0, 0);
 }

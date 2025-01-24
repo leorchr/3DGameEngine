@@ -18,11 +18,8 @@ public:
 
 	Vector3 getViewForward() const { return viewForward; }
 private:
-	// Rotation/sec speed of pitch
 	float pitchSpeed;
-	// Maximum pitch deviation from forward
 	float maxPitch;
-	// Current pitch
 	float pitch;
 	
 	Vector3 viewForward;

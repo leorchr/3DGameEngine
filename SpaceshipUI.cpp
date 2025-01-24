@@ -1,9 +1,7 @@
 ﻿#include "SpaceshipUI.h"
-
-#include "Assets.h"
 #include "Game.h"
-#include "DialogBox.h"
 #include "SpaceshipActor.h"
+#include "Text.h"
 #include "Texture.h"
 #include <string>
 
