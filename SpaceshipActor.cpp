@@ -50,9 +50,10 @@ void SpaceshipActor::actorInput(const InputState& inputState)
 		dir.normalize();
 		// Spawn a ball
 		RocketActor* ball = new RocketActor();
-		ball->setPosition(start + dir * 20.0f);
 		// Rotate the ball to face new direction
 		ball->rotateToNewForward(dir);
+		ball->setPosition(start+ getUp() * -4.0f);
+		
 	}
 }
 
@@ -66,7 +67,7 @@ const int SpaceshipActor::getCurrentLife() const
 	return currentLife;
 }
 
-void SpaceshipActor::onHit(float damages)
+void SpaceshipActor::onHit(int damages)
 {
 	currentLife -= damages;
 	if(currentLife <= 0)

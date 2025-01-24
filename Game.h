@@ -86,6 +86,10 @@ public:
 	void removeDoor(class DoorActor* door);
 	std::vector<class DoorActor*>& getDoors() { return doors; }
 
+	void addEnemy(class EnemyActor* enemy);
+	void removeEnemy(class EnemyActor* enemy);
+	std::vector<class EnemyActor*>& getEnemies() { return enemies; }
+
 	void gameOver();
 	
 private:
@@ -119,4 +123,5 @@ private:
 	
 	// Game specific
 	std::vector<class DoorActor*> doors;
+	std::vector<class EnemyActor*> enemies;
 };

@@ -7,6 +7,8 @@ public:
 	RocketActor();
 
 	virtual void updateActor(float dt) override;
+	const float getRadius() const;
+	void checkCollisions();
 	
 	class MeshComponent* getMeshComponent();
 	
@@ -17,4 +19,8 @@ private:
 
 	const float startLifeSpan = 2.0f;
 	float lifeTimeRemaining;
+	
+	const float radius = 2;
+
+	std::vector <class EnemyActor*>& enemies;
 };

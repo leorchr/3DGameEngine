@@ -499,6 +499,17 @@ void Game::removeDoor(DoorActor* door)
 	doors.erase(iter);
 }
 
+void Game::addEnemy(EnemyActor* enemy)
+{
+	enemies.emplace_back(enemy);
+}
+
+void Game::removeEnemy(EnemyActor* enemy)
+{
+	auto iter = std::find(begin(enemies), end(enemies), enemy);
+	enemies.erase(iter);
+}
+
 void Game::gameOver()
 {
 	clearActors();

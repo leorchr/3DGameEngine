@@ -12,7 +12,7 @@ public:
 	const float getRadius() const;
 	const int getCurrentLife() const;
 
-	void onHit(float damages);
+	void onHit(int damages);
 
 private:
 	class SpaceshipMovementInput* moveInputComponent;
@@ -20,7 +20,7 @@ private:
 	class SpaceshipCollisionsComponent* physicsComponent;
 	class SpaceshipUi* ui;
 	
-	const float radius = 2;
+	const float radius = 10;
 
 	const int baseLife = 100;
 	int currentLife;

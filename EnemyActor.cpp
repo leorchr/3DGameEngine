@@ -2,12 +2,16 @@
 #include "EnemyActor.h"
 #include "EnemyRocketActor.h"
 
-EnemyActor::EnemyActor() : MeshActor("Turret"), currentShootIntervals(baseShootingIntervals)
+EnemyActor::EnemyActor() : MeshActor("Turret"), currentShootIntervals(baseShootingIntervals), currentLife(baseLife)
 {
 	setName("Enemy");
+	game.addEnemy(this);
 }
 
-EnemyActor::~EnemyActor() {}
+EnemyActor::~EnemyActor()
+{
+	game.removeEnemy(this);
+}
 
 void EnemyActor::updateActor(float dt)
 {
@@ -17,6 +21,19 @@ void EnemyActor::updateActor(float dt)
 	{
 		shoot();
 	}
+
+	Vector3 start = position + Vector3(0.0f,20.0f,35.0f);
+	Vector3 end = getGame().getPlayer()->getPosition();
+		
+	// Get direction vector
+	Vector3 dir = end - start;
+	dir.normalize();
+	rotateToNewForward(dir);
+}
+
+const float EnemyActor::getRadius() const
+{
+	return radius;
 }
 
 void EnemyActor::shoot()
@@ -37,4 +54,13 @@ void EnemyActor::shoot()
 		
 	// Rotate the ball to face new direction
 	ball->rotateToNewForward(dir);
+}
+
+void EnemyActor::onHit(int damages)
+{
+	currentLife -= damages;
+	if(currentLife <= 0)
+	{
+		setState(ActorState::Dead);
+	}
 }
