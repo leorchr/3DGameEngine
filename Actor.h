@@ -82,6 +82,8 @@ public:
 private:
 	bool isScaleLocked;
 	Vector3 uiRotation;
+	Vector3 uiPosition;
+	Vector3 uiScale;
 	
 #endif
 	// End of ImGUI

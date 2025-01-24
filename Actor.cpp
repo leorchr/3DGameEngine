@@ -240,8 +240,7 @@ void Actor::updateImGUIOutliner()
 {
 	ImGui::Text(name.c_str());
 				
-	Vector3 currentPosition = position;
-	Vector3 uiPosition = currentPosition;
+	Vector3 currentPosition = uiPosition;
 					
 	if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
 		if (uiPosition != currentPosition) {
@@ -274,8 +273,7 @@ void Actor::updateImGUIOutliner()
 
 	// Scale
 				
-	Vector3 currentScale = scale;
-	Vector3 uiScale = currentScale;
+	Vector3 currentScale = uiScale;
 				
 	if (ImGui::DragFloat3("Scale", &uiScale.x, 0.1f)) {
 		if (uiScale != currentScale) {
