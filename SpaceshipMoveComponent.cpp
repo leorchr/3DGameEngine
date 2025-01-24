@@ -77,6 +77,11 @@ void SpaceshipMoveComponent::update(float dt)
 	
 	if (!Maths::nearZero(forwardSpeed) || !Maths::nearZero(upSpeed) || !Maths::nearZero(strafeSpeed))
 	{
+		forwardSpeed *= acc;
+		upSpeed *= acc;
+		if(forwardSpeed >= maxSpeed) forwardSpeed = maxSpeed;
+		if(upSpeed >= maxSpeed) upSpeed = maxSpeed;
+		
 		Vector3 newPosition = owner.getPosition();
 		newPosition += owner.getForward() * forwardSpeed * dt;
 		newPosition += owner.getUp() * upSpeed * dt;

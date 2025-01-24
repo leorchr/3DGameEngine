@@ -37,4 +37,7 @@ private:
 	float rollSpeed;
 	const float friction = 0.995f;
 	Vector3 velocity;
+	
+	float maxSpeed = 100.0f;
+	float acc = 1.1f;
 };
