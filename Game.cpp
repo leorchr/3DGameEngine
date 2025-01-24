@@ -175,6 +175,7 @@ void Game::processInput()
 			// Escape: pause game
 			if (input.keyboard.getKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::Released)
 			{
+				setUiInactive();
 				new PauseScreen();
 				return;
 			}
@@ -251,6 +252,9 @@ void Game::update(float dt)
 
 		// Delete dead actors
 		deleteDeadActors();
+
+		// Update UI screens
+		updateUI(dt);
 		break;
 
 	case EngineMode::None:
@@ -436,6 +440,30 @@ void Game::createActor()
 void Game::pushUI(UIScreen* screen)
 {
 	UIStack.emplace_back(screen);
+}
+
+void Game::setUiInactive()
+{
+	// Update UI screens
+	for (auto ui : UIStack)
+	{
+		if (ui->getState() == UIState::Active)
+		{
+			ui->setState(UIState::Inactive);
+		}
+	}
+}
+
+void Game::setUiActive()
+{
+	// Update UI screens
+	for (auto ui : UIStack)
+	{
+		if (ui->getState() == UIState::Inactive)
+		{
+			ui->setState(UIState::Active);
+		}
+	}
 }
 
 void Game::addPlane(PlaneActor* plane)

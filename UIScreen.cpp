@@ -27,6 +27,11 @@ UIScreen::~UIScreen()
 	}
 }
 
+void UIScreen::setState(UIState newState)
+{
+	state = newState;
+}
+
 void UIScreen::setTitle(const string& titleP, const Vector3& color, int pointSize)
 {
 	if (title)
@@ -44,6 +49,7 @@ void UIScreen::update(float dt)
 
 void UIScreen::draw(Shader& shader)
 {
+	if(state != UIState::Active) return;
 	if (background)
 	{
 		drawTexture(shader, background, backgroundPosition);

@@ -21,6 +21,7 @@ SpaceshipUi::~SpaceshipUi()
 
 void SpaceshipUi::draw(Shader& shader)
 {
+	if(state != UIState::Active) return;
 	UIScreen::draw(shader);
 	drawTexture(shader, text->getTexture(), text->getPosition());
 }

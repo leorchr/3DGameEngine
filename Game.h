@@ -60,6 +60,8 @@ public:
 	InputSystem& getInputSystem() { return inputSystem; }
 	const std::vector<class UIScreen*>& getUIStack() { return UIStack; }
 	void pushUI(class UIScreen* screen);
+	void setUiInactive();
+	void setUiActive();
 
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
