@@ -209,41 +209,84 @@ void Game::processInput()
 }
 
 void Game::update(float dt)
-{	
-	if (state == GameState::Running)
+{
+	switch (mode)
 	{
-		// Update actors 
+	case EngineMode::Game:
+		if (state == GameState::Running)
+		{
+			isUpdatingActors = true;
+			for (auto actor : actors)
+			{
+				actor->updateInGame(dt);
+			}
+			isUpdatingActors = false;
+
+			// Move pending actors to actors
+			movePendingActorsToActors();
+
+			// Delete dead actors
+			deleteDeadActors();
+		}
+
+		// Update UI screens
+		updateUI(dt);
+		break;
+
+	case EngineMode::Editor:
+		if (player)
+		{
+			player->updateInGame(dt);
+		}
+
 		isUpdatingActors = true;
 		for (auto actor : actors)
 		{
-			actor->update(dt);
+			actor->updateInEditor(dt);
 		}
 		isUpdatingActors = false;
-
+		
 		// Move pending actors to actors
-		for (auto pendingActor : pendingActors)
-		{
-			pendingActor->computeWorldTransform();
-			actors.emplace_back(pendingActor);
-		}
-		pendingActors.clear();
+		movePendingActorsToActors();
 
 		// Delete dead actors
-		vector<Actor*> deadActors;
-		for (auto actor : actors)
+		deleteDeadActors();
+		break;
+
+	case EngineMode::None:
+		break;
+	}
+}
+
+void Game::movePendingActorsToActors()
+{
+	for (auto pendingActor : pendingActors)
+	{
+		pendingActor->computeWorldTransform();
+		actors.emplace_back(pendingActor);
+	}
+	pendingActors.clear();
+}
+
+void Game::deleteDeadActors()
+{
+	vector<Actor*> deadActors;
+	for (auto actor : actors)
+	{
+		if (actor->getState() == Actor::ActorState::Dead)
 		{
-			if (actor->getState() == Actor::ActorState::Dead)
-			{
-				deadActors.emplace_back(actor);
-			}
-		}
-		for (auto deadActor : deadActors)
-		{
-			delete deadActor;
+			deadActors.emplace_back(actor);
 		}
 	}
 
-	// Update UI screens
+	for (auto deadActor : deadActors)
+	{
+		delete deadActor;
+	}
+}
+
+void Game::updateUI(float dt)
+{
 	for (auto ui : UIStack)
 	{
 		if (ui->getState() == UIState::Active)
@@ -251,13 +294,14 @@ void Game::update(float dt)
 			ui->update(dt);
 		}
 	}
-	// Delete any UIScreens that are closed
+
+	// Delete any UI screens that are closing
 	auto iter = UIStack.begin();
 	while (iter != UIStack.end())
 	{
 		if ((*iter)->getState() == UIState::Closing)
 		{
-			delete* iter;
+			delete *iter;
 			iter = UIStack.erase(iter);
 		}
 		else

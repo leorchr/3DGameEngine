@@ -89,6 +89,9 @@ public:
 private:
 	void processInput();
 	void update(float dt);
+	void movePendingActorsToActors();
+	void deleteDeadActors();
+	void updateUI(float dt);
 	void render();
 
 	EngineMode mode;

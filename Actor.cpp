@@ -155,13 +155,22 @@ void Actor::actorInput(const InputState& inputState)
 {
 }
 
-void Actor::update(float dt)
+void Actor::updateInGame(float dt)
 {
 	if (state == Actor::ActorState::Active)
 	{
 		computeWorldTransform();
 		updateComponents(dt);
 		updateActor(dt);
+		computeWorldTransform();
+	}
+}
+
+void Actor::updateInEditor(float dt)
+{
+	if (state == Actor::ActorState::Active)
+	{
+		computeWorldTransform();
 		computeWorldTransform();
 	}
 }

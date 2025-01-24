@@ -47,7 +47,8 @@ public:
 
 	void processInput(const struct InputState& inputState);
 	virtual void actorInput(const struct InputState& inputState);
-	void update(float dt);
+	void updateInGame(float dt);
+	void updateInEditor(float dt);
 	void updateComponents(float dt);
 	virtual void updateActor(float dt);
 	void addComponent(Component* component);
