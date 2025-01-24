@@ -24,7 +24,7 @@ void EnemyActor::shoot()
 	currentShootIntervals = baseShootingIntervals;
 		
 	Vector3 start = position + Vector3(0.0f,20.0f,35.0f);
-	Vector3 end = getGame().getPlayer()->getPosition();
+	Vector3 end = getGame().getPlayer()->getPosition() - Vector3(0.0f,0.0f, 10.0f);
 		
 	// Get direction vector
 	Vector3 dir = end - start;

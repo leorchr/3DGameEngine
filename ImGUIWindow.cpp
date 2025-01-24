@@ -127,7 +127,7 @@ void ImGUIWindow::outliner()
 		if (ImGui::BeginTabItem("Outliner"))
 		{
 			ImGui::BeginChild("NoScrollChild", ImVec2(300*Window::ratio, 170*Window::ratio), false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9);
+			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9*Window::ratio);
 			if (selectedActorIndex != -1) {
 				currentActor = imGuiActors[selectedActorIndex];
 			}
