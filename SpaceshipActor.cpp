@@ -67,13 +67,24 @@ const int SpaceshipActor::getCurrentLife() const
 	return currentLife;
 }
 
+void SpaceshipActor::setCurrentLife(int newLife)
+{
+	currentLife = newLife;
+	if(currentLife > baseLife) currentLife = baseLife;
+	if(ui) ui->updateText();
+}
+
 void SpaceshipActor::onHit(int damages)
 {
-	currentLife -= damages;
+	setCurrentLife(currentLife-damages);
 	if(currentLife <= 0)
 	{
 		game.gameOver();
 		return;
 	}
-	if(ui) ui->updateText();
+}
+
+void SpaceshipActor::onCollect(int collectibleHealAmount)
+{
+	setCurrentLife(getCurrentLife()+collectibleHealAmount);
 }

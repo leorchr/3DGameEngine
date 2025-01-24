@@ -20,7 +20,7 @@ private:
 	const float startLifeSpan = 2.0f;
 	float lifeTimeRemaining;
 	
-	const float radius = 2;
+	const float radius = 1;
 
 	std::vector <class EnemyActor*>& enemies;
 };

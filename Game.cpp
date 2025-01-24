@@ -11,6 +11,7 @@
 #include "PlaneActor.h"
 #include "DoorActor.h"
 #include "EnemyActor.h"
+#include "CollectibleActor.h"
 #include "GameOverScreen.h"
 #include "PauseScreen.h"
 
@@ -93,6 +94,7 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("EnemyActor", []() -> Actor* { return new EnemyActor(); });
 	ActorFactory::getInstance().registerActor("PlaneActor", []() -> Actor* { return new PlaneActor(); });
 	ActorFactory::getInstance().registerActor("DoorActor", []() -> Actor* { return new DoorActor(); });
+	ActorFactory::getInstance().registerActor("CollectibleActor", []() -> Actor* { return new CollectibleActor(); });
 	
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors);
@@ -508,6 +510,17 @@ void Game::removeEnemy(EnemyActor* enemy)
 {
 	auto iter = std::find(begin(enemies), end(enemies), enemy);
 	enemies.erase(iter);
+}
+
+void Game::addCollectible(CollectibleActor* collectible)
+{
+	collectibles.emplace_back(collectible);
+}
+
+void Game::removeCollectible(CollectibleActor* collectible)
+{
+	auto iter = std::find(begin(collectibles), end(collectibles), collectible);
+	collectibles.erase(iter);
 }
 
 void Game::gameOver()

@@ -32,7 +32,7 @@ void RocketActor::updateActor(float dt)
 
 const float RocketActor::getRadius() const
 {
-	return radius;
+	return scale.x * radius;
 }
 
 void RocketActor::checkCollisions()

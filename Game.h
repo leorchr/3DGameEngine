@@ -90,6 +90,10 @@ public:
 	void removeEnemy(class EnemyActor* enemy);
 	std::vector<class EnemyActor*>& getEnemies() { return enemies; }
 
+	void addCollectible(class CollectibleActor* collectible);
+	void removeCollectible(class CollectibleActor* collectible);
+	std::vector<class CollectibleActor*>& getCollectible() { return collectibles; }
+
 	void gameOver();
 	
 private:
@@ -124,4 +128,5 @@ private:
 	// Game specific
 	std::vector<class DoorActor*> doors;
 	std::vector<class EnemyActor*> enemies;
+	std::vector<class CollectibleActor*> collectibles;
 };

@@ -11,8 +11,10 @@ public:
 	void actorInput(const InputState& inputState) override;
 	const float getRadius() const;
 	const int getCurrentLife() const;
-
+	void setCurrentLife(int newLife);
+	
 	void onHit(int damages);
+	void onCollect(int collectibleHealAmount);
 
 private:
 	class SpaceshipMovementInput* moveInputComponent;

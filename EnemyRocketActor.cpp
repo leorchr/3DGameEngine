@@ -15,7 +15,7 @@ void EnemyRocketActor::updateActor(float dt)
 
 const float EnemyRocketActor::getRadius() const
 {
-	return radius;
+	return scale.x * radius;
 }
 
 void EnemyRocketActor::checkCollisions()

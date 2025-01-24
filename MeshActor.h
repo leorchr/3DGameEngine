@@ -16,6 +16,6 @@ public:
 
 	void load(const rapidjson::Value& data) override;
 
-private:
+protected:
 	std::shared_ptr<class MeshComponent> meshComponent;
 };

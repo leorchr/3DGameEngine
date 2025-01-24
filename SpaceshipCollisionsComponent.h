@@ -10,5 +10,11 @@ public:
 	SpaceshipCollisionsComponent& operator=(const SpaceshipCollisionsComponent&) = delete;
 
 	virtual void onHit(Vector3 normal, float distance) override;
+
+	virtual void update(float dt) override;
+	virtual void checkCollectiblesCollisions();
+
+private:
+	std::vector <class CollectibleActor*>& collectibles;
 	
 };

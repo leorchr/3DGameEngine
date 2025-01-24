@@ -12,5 +12,5 @@ public:
 
 private:
 	class SpaceshipActor* player;
-	const float radius = 2;
+	const float radius = 1.0f;
 };
