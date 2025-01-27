@@ -32,6 +32,14 @@ bool Texture::loadOGL(RendererOGL& renderer, std::string fileName)
 		Log::error(LogCategory::Application, "Failed to load texture file " + fileName);
 		return false;
 	}
+	auto filtering = GL_LINEAR;
+	
+	if (surf->format->format != SDL_PIXELFORMAT_RGB24 && surf->format->format != SDL_PIXELFORMAT_RGBA32)
+	{
+		surf = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGBA32, 0);
+		filtering = GL_NEAREST;
+	}
+	
 	width = surf->w;
 	height = surf->h;
 	int format = 0;
@@ -51,8 +59,8 @@ bool Texture::loadOGL(RendererOGL& renderer, std::string fileName)
 
 	Log::info("Loaded texture " + fileName);
 	// Enable bilinear filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filtering);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filtering);
 
 	return true;
 }

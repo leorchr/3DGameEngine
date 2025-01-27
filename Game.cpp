@@ -59,6 +59,7 @@ void Game::load()
 	Assets::loadShader("Ressources/Shaders/Sprite.vert", "Ressources/Shaders/Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
+	Assets::loadShader("Ressources/Shaders/BasicMesh.vert", "Ressources/Shaders/BasicMesh.frag", "", "", "", "BasicMesh");
 
 	// Enable post processing
 	if(renderer.getPostProcess())
@@ -75,6 +76,11 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
 	Assets::loadTexture(renderer, "Ressources/Textures/Blackbg.jpg", "Blackbg");
+	
+	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1A.png", "NFSILV1A");
+	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1B.png", "NFSILV1B");
+	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV3A.png", "NFSILV3A");
+	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV3B.png", "NFSILV3B");
 	
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Cube");
