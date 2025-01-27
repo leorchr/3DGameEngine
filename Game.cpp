@@ -387,6 +387,13 @@ void Game::setMode(EngineMode mode)
 		player->setName("Viewport");
 		imGuiWindow->setViewportActor(dynamic_cast<ViewportActor*>(player));
 		imGuiWindow->setShowImGUI(true);
+		for (auto ui : UIStack)
+		{
+			if (ui->getState() == UIState::Active)
+			{
+				ui->setState(UIState::Closing);
+			}
+		}
 		break;
 	case EngineMode::Game:
 		new SpaceshipActor();
