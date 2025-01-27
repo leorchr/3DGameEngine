@@ -36,25 +36,11 @@ void SpaceshipActor::updateActor(float dt)
 
 void SpaceshipActor::actorInput(const InputState& inputState)
 {
-	Actor::actorInput(inputState);
 	if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
 	{
-		// Get start point (in center of screen on near plane)
-		Vector3 screenPoint(0.0f, 0.0f, 0.0f);
-		Vector3 start = getGame().getRenderer().unproject(screenPoint);
-		// Get end point (in center of screen, between near and far)
-		screenPoint.z = 0.9f;
-		Vector3 end = getGame().getRenderer().unproject(screenPoint);
-		// Get direction vector
-		Vector3 dir = end - start;
-		dir.normalize();
-		// Spawn a ball
-		RocketActor* ball = new RocketActor();
-		// Rotate the ball to face new direction
-		ball->rotateToNewForward(dir);
-		ball->setPosition(start+ getUp() * -4.0f);
-		
+		shoot();
 	}
+	Actor::actorInput(inputState);
 }
 
 const float SpaceshipActor::getRadius() const
@@ -87,4 +73,23 @@ void SpaceshipActor::onHit(int damages)
 void SpaceshipActor::onCollect(int collectibleHealAmount)
 {
 	setCurrentLife(getCurrentLife()+collectibleHealAmount);
+}
+
+void SpaceshipActor::shoot() const
+{
+	Vector3 screenPoint(0.0f, 0.0f, 0.0f);
+	Vector3 start = getGame().getRenderer().unproject(screenPoint);
+	screenPoint.z = 0.9f;
+	Vector3 end = getGame().getRenderer().unproject(screenPoint);
+	Vector3 dir = end - start;
+	dir.normalize();
+	
+
+	Vector3 up = getUp(); // Ensure getUp() returns the correct 'up' vector for the player's current orientation
+	Vector3 positionOffset = up * -4.0f;
+	Vector3 adjustedStart = start + positionOffset;
+
+	RocketActor* ball = new RocketActor();
+	ball->rotateToNewForward(dir);
+	ball->setPosition(adjustedStart);
 }

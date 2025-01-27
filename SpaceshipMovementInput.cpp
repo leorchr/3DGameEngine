@@ -23,7 +23,14 @@ void SpaceshipMovementInput::update(float dt)
 	float goalRoll = Maths::snapTo(currentRoll, 0.f, -Maths::twoPi, Maths::twoPi, Maths::piOver2,
 								 -Maths::piOver2, Maths::pi, -Maths::pi);
 
+	
 	if(std::abs(currentRoll - goalRoll) < 0.02f) return;
+	else if (goalRoll == Maths::pi || goalRoll == Maths::pi || goalRoll == .0f){
+		float angle2 = Maths::atan2(Vector3::dot(cross, forward), Vector3::dot(right, globalUp));
+		float currentRoll2 = angle2 * sign;
+		if(std::abs(currentRoll2 - goalRoll) < 0.02f) return;
+	}
+
 
 	float lerpedRoll = Maths::lerp(currentRoll, goalRoll, std::clamp(dt * rollSpeedSlerp, 0.01f, 1.f));
 

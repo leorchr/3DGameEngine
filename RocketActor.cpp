@@ -17,8 +17,8 @@ RocketActor::RocketActor() :
 	moveComponent = new MoveComponent(this);
 	meshComponent = new MeshComponent(this);
 	meshComponent->setMesh(Assets::getMesh("Sphere"));
-	
-	moveComponent->setForwardSpeed(400.0f);
+
+	moveComponent->setForwardSpeed(forwardSpeed);
 	collisionComponent = new RocketCollisionComponent(this, 10);
 }
 

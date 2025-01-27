@@ -17,6 +17,7 @@ private:
 	class MeshComponent* meshComponent;
 	class RocketCollisionComponent* collisionComponent;
 
+	const float forwardSpeed = 700.0f;
 	const float startLifeSpan = 2.0f;
 	float lifeTimeRemaining;
 	
