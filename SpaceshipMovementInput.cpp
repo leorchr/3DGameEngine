@@ -41,36 +41,51 @@ void SpaceshipMovementInput::processInput(const InputState& inputState)
 	float forwardSpeed = 0.0f;
 	float strafeSpeed = 0.0f;
 	// wasd movement
+
+	// Forward/Backwards
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_W))
 	{
-		forwardSpeed += moveSpeed;
+		currentForwardMovement = Movement::movingPositive;
 	}
-	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_S))
+	else if (inputState.keyboard.getKeyValue(SDL_SCANCODE_S))
 	{
-		forwardSpeed -= moveSpeed;
+		currentForwardMovement = Movement::movingNegative;
 	}
+	else
+	{
+		currentForwardMovement = Movement::idle;
+	}
+
+	// Left/Right
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
 	{
-		strafeSpeed += moveSpeed;
+		currentStrafeMovement = Movement::movingPositive;
 	}
-	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
+	else if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
 	{
-		strafeSpeed -= moveSpeed;
+		currentStrafeMovement = Movement::movingNegative;
 	}
-	setForwardSpeed(forwardSpeed);
-	setStrafeSpeed(strafeSpeed);
+	else
+	{
+		currentStrafeMovement = Movement::idle;
+	}
 
-	float upDownSpeed = 0.f;
-	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_LCTRL))
-	{
-		upDownSpeed -= upSpeed;
-	}
+	// Up/Down
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_SPACE))
 	{
-		upDownSpeed += upSpeed;
+		currentUpMovement = Movement::movingPositive;
 	}
-	setUpSpeed(upDownSpeed);
+	else if (inputState.keyboard.getKeyValue(SDL_SCANCODE_LCTRL))
+	{
+		currentUpMovement = Movement::movingNegative;
+	}
+	else
+	{
+		currentUpMovement = Movement::idle;
+	}
+	
 
+	// Rotations
 	float rollSpeed = 0.0f;
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_Q))
 	{

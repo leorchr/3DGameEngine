@@ -16,8 +16,4 @@ public:
 private:
 	bool isRolling = false;
 	float rollSpeedSlerp = 1.2f;
-
-	const float moveSpeed = 50.f;
-	const float upSpeed = 50.f;
-	const float rotationAcceptance = .5f;
 };

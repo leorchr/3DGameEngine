@@ -1,6 +1,14 @@
 #pragma once
 #include "Component.h"
 #include "Vector3.h"
+
+enum class Movement
+{
+	idle,
+	movingPositive,
+	movingNegative
+};
+
 class SpaceshipMoveComponent : public Component
 {
 public:
@@ -9,35 +17,48 @@ public:
 	SpaceshipMoveComponent(const SpaceshipMoveComponent&) = delete;
 	SpaceshipMoveComponent& operator=(const SpaceshipMoveComponent&) = delete;
 
-	float getForwardSpeed() const { return forwardSpeed; }
-	float getUpSpeed() const { return upSpeed; }
+	float getForwardSpeed() const { return currentForwardSpeed; }
+	float getUpSpeed() const { return currentUpSpeed; }
+	float getStrafeSpeed() const { return currentStrafeSpeed; }
 	float getYawSpeed() const { return yawSpeed; }
 	float getPitchSpeed() const { return pitchSpeed; }
 	float getRollSpeed() const { return rollSpeed; }
-	float getStrafeSpeed() const { return strafeSpeed; }
 	Vector3 getVelocity() const { return velocity; }
-
-	void setForwardSpeed(float forwardSpeedP);
-	void setUpSpeed(float upSpeedP);
+	
 	void setYawSpeed(float yawSpeedP);
 	void setPitchSpeed(float pitchSpeedP);
 	void setRollSpeed(float rollSpeedP);
-	void setStrafeSpeed(float strafeSpeedP);
 	void setVelocity(Vector3 velocityP);
 	void addForce(Vector3 force);
 
 	void update(float dt) override;
 
 private:
-	float forwardSpeed;
-	float upSpeed;
-	float strafeSpeed;
+
+	// Movement Speed
+
+	float currentForwardSpeed;
+	const float maxForwardSpeed = 150.0f;
+	float currentUpSpeed;
+	const float maxUpSpeed = 150.0f;
+	float currentStrafeSpeed;
+	const float maxStrafeSpeed = 150.0f;
+	const float acc = 5.f;
+	const float decc = 4.f;
+
+
+	// Rotation Speed
+	
 	float yawSpeed;
 	float pitchSpeed;
 	float rollSpeed;
 	const float friction = 0.995f;
 	Vector3 velocity;
 	
-	float maxSpeed = 100.0f;
-	float acc = 1.1f;
+
+protected:
+	enum Movement currentForwardMovement = Movement::idle; 
+	enum Movement currentUpMovement = Movement::idle; 
+	enum Movement currentStrafeMovement = Movement::idle; 
+	
 };

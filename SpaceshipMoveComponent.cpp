@@ -3,19 +3,9 @@
 #include "Actor.h"
 
 SpaceshipMoveComponent::SpaceshipMoveComponent(Actor* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), upSpeed(0.0f), strafeSpeed(0.0f), yawSpeed(0.0f), pitchSpeed(0.0f), rollSpeed(0.0f)
+	: Component(ownerP, updateOrderP), currentForwardSpeed(0.0f), currentUpSpeed(0.0f), currentStrafeSpeed(0.0f), yawSpeed(0.0f), pitchSpeed(0.0f), rollSpeed(0.0f)
 {
 	velocity = Vector3(0, 0, 0);
-}
-
-void SpaceshipMoveComponent::setForwardSpeed(float forwardSpeedP)
-{
-	forwardSpeed = forwardSpeedP;
-}
-
-void SpaceshipMoveComponent::setUpSpeed(float upSpeedP)
-{
-	upSpeed = upSpeedP;
 }
 
 void SpaceshipMoveComponent::setYawSpeed(float yawSpeedP)
@@ -32,11 +22,6 @@ void SpaceshipMoveComponent::setRollSpeed(float rollSpeedP)
 	rollSpeed = rollSpeedP;
 }
 
-void SpaceshipMoveComponent::setStrafeSpeed(float strafeSpeedP)
-{
-	strafeSpeed = strafeSpeedP;
-}
-
 void SpaceshipMoveComponent::setVelocity(Vector3 velocityP)
 {
 	velocity = velocityP;
@@ -51,6 +36,7 @@ void SpaceshipMoveComponent::update(float dt)
 {
 	velocity *= friction;
 
+	// Rotation Movements
 	if (!Maths::nearZero(yawSpeed) || !Maths::nearZero(pitchSpeed) || !Maths::nearZero(rollSpeed))
 	{		
 		Quaternion newRotation = owner.getRotation();
@@ -74,18 +60,53 @@ void SpaceshipMoveComponent::update(float dt)
 		owner.setRotation(newRotation);
 	}
 
-	
-	if (!Maths::nearZero(forwardSpeed) || !Maths::nearZero(upSpeed) || !Maths::nearZero(strafeSpeed))
+
+	// Base Movements
+	switch (currentForwardMovement)
 	{
-		forwardSpeed *= acc;
-		upSpeed *= acc;
-		if(forwardSpeed >= maxSpeed) forwardSpeed = maxSpeed;
-		if(upSpeed >= maxSpeed) upSpeed = maxSpeed;
-		
+	case Movement::idle:
+		if (!Maths::nearZero(currentForwardSpeed)) currentForwardSpeed = Maths::lerp(currentForwardSpeed, 0.f, dt*decc);
+		break;
+	case Movement::movingPositive:
+		currentForwardSpeed = Maths::lerp(currentForwardSpeed, maxForwardSpeed, dt*acc);
+		break;
+	case Movement::movingNegative:
+		currentForwardSpeed = Maths::lerp(currentForwardSpeed, -maxForwardSpeed, dt*acc);
+		break;
+	}
+
+	switch (currentStrafeMovement)
+	{
+	case Movement::idle:
+		if (!Maths::nearZero(currentStrafeSpeed)) currentStrafeSpeed = Maths::lerp(currentStrafeSpeed, 0.f, dt*decc);
+		break;
+	case Movement::movingPositive:
+		currentStrafeSpeed = Maths::lerp(currentStrafeSpeed, maxStrafeSpeed, dt*acc);
+		break;
+	case Movement::movingNegative:
+		currentStrafeSpeed = Maths::lerp(currentStrafeSpeed, -maxStrafeSpeed, dt*acc);
+		break;
+	}
+
+	switch (currentUpMovement)
+	{
+	case Movement::idle:
+		if (!Maths::nearZero(currentUpSpeed)) currentUpSpeed = Maths::lerp(currentUpSpeed, 0.f, dt*decc);
+		break;
+	case Movement::movingPositive:
+		currentUpSpeed = Maths::lerp(currentUpSpeed, maxUpSpeed, dt*acc);
+		break;
+	case Movement::movingNegative:
+		currentUpSpeed = Maths::lerp(currentUpSpeed, -maxUpSpeed, dt*acc);
+		break;
+	}
+
+	if (!Maths::nearZero(currentForwardSpeed) || !Maths::nearZero(currentUpSpeed) || !Maths::nearZero(currentStrafeSpeed))
+	{
 		Vector3 newPosition = owner.getPosition();
-		newPosition += owner.getForward() * forwardSpeed * dt;
-		newPosition += owner.getUp() * upSpeed * dt;
-		newPosition += owner.getRight() * strafeSpeed * dt;
+		newPosition += owner.getForward() * currentForwardSpeed * dt;
+		newPosition += owner.getUp() * currentUpSpeed * dt;
+		newPosition += owner.getRight() * currentStrafeSpeed * dt;
 		owner.setPosition(newPosition);
 	}
 }
