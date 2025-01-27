@@ -92,13 +92,16 @@ void ImGUIWindow::viewport()
 		
 		if (ImGui::BeginTabItem("Viewport"))
 		{
-			if(currentActor && currentActor->getState() == Actor::ActorState::Active)
+			if(currentActor != nullptr)
 			{
-				currentActor->updateImGUIOutliner();
-				if(!currentActor->getComponents().empty())ImGui::Text("Components");
-				for(auto component : currentActor->getComponents())
+				if(currentActor->getState() == Actor::ActorState::Active)
 				{
-					component->updateImGUIOutliner();
+					currentActor->updateImGUIOutliner();
+					if(!currentActor->getComponents().empty())ImGui::Text("Components");
+					for(auto component : currentActor->getComponents())
+					{
+						component->updateImGUIOutliner();
+					}
 				}
 			}
 			ImGui::EndTabItem();

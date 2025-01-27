@@ -378,7 +378,7 @@ void Game::setMode(EngineMode mode)
 	}
 	
 	this->mode = mode;
-	
+	imGuiWindow->reset();
 	
 	switch(mode)
 	{

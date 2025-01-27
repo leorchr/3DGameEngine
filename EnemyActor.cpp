@@ -28,7 +28,7 @@ void EnemyActor::updateActor(float dt)
 	// Get direction vector
 	Vector3 dir = end - start;
 	dir.normalize();
-	rotateToNewForward(dir);
+	//rotateToNewForward(dir);
 }
 
 const float EnemyActor::getRadius() const

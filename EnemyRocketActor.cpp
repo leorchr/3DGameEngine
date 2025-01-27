@@ -10,7 +10,6 @@ EnemyRocketActor::EnemyRocketActor()
 void EnemyRocketActor::updateActor(float dt)
 {
 	RocketActor::updateActor(dt);
-	checkCollisions();
 }
 
 const float EnemyRocketActor::getRadius() const

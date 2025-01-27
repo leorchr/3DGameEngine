@@ -8,7 +8,7 @@ public:
 
 	virtual void updateActor(float dt) override;
 	const float getRadius() const;
-	void checkCollisions();
+	virtual void checkCollisions();
 	
 	class MeshComponent* getMeshComponent();
 	

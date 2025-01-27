@@ -8,7 +8,7 @@ public:
 
 	virtual void updateActor(float dt) override;
 	const float getRadius() const;
-	void checkCollisions();
+	void checkCollisions() override;
 
 private:
 	class SpaceshipActor* player;
