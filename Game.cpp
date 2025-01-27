@@ -59,7 +59,6 @@ void Game::load()
 	Assets::loadShader("Ressources/Shaders/Sprite.vert", "Ressources/Shaders/Sprite.frag", "", "", "", "Sprite");
 	Assets::loadShader("Ressources/Shaders/Phong.vert", "Ressources/Shaders/Phong.frag", "", "", "", "Phong");
 	Assets::loadShader("Ressources/Shaders/Mesh.vert", "Ressources/Shaders/Mesh.frag", "", "", "", "Mesh");
-	Assets::loadShader("Ressources/Shaders/BasicMesh.vert", "Ressources/Shaders/BasicMesh.frag", "", "", "", "BasicMesh");
 
 	// Enable post processing
 	if(renderer.getPostProcess())
@@ -76,11 +75,19 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
 	Assets::loadTexture(renderer, "Ressources/Textures/Blackbg.jpg", "Blackbg");
+	Assets::loadTexture(renderer, "Ressources/Textures/DescentCockpit.png", "DescentCockpit");
 	
 	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1A.png", "NFSILV1A");
 	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1B.png", "NFSILV1B");
 	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV3A.png", "NFSILV3A");
 	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV3B.png", "NFSILV3B");
+
+	for (int i = 1; i < 71; i++)
+	{
+		string path = "Ressources/TexturesLibrairy/METL" + std::to_string(i) + ".png";
+		string name = "METL" + std::to_string(i);
+		Assets::loadTexture(renderer, path, name);
+	}
 	
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Cube");
@@ -90,7 +97,7 @@ void Game::load()
 	Assets::loadMesh("Ressources/Meshes/spaceHDRI.fbx", "SpaceHDRI");
 	Assets::loadMesh("Ressources/Meshes/portalTurret.fbx", "Turret");
 
-	Assets::loadFont("Ressources/Fonts/Carlito-Regular.ttf", "Carlito");
+	Assets::loadFont("Ressources/Fonts/Descent.ttf", "Descent");
 	Assets::loadText("Ressources/Localization/English.gptext");
 	Log::info("\033[35m-----------------------------\033[0m");
 

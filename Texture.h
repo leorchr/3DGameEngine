@@ -22,6 +22,7 @@ public:
 	inline int getWidth() const { return width; }
 	inline int getHeight() const { return height; }
 	int getId() const { return id; }
+	GLint getFormat() const { return format; }
 	
 private:
 	int width;
@@ -29,7 +30,7 @@ private:
 	SDL_Texture* SDLTexture = nullptr;
 	GLenum textureTarget;
 	GLuint textureObj;
-
+	GLint format = 0;
 	static int nextID;
 	int id;
 };

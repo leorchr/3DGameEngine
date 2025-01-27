@@ -7,7 +7,9 @@
 
 SpaceshipUi::SpaceshipUi(SpaceshipActor& spaceshipActor) : UIScreen(), spaceshipActor(spaceshipActor)
 {
-	text = new Text("100", Vector2(0.0f,-100.0f));
+	text = new Text("100", Vector2(0.0f,-400.0f));
+	//background = &Assets::getTexture("DescentCockpit");
+	//backgroundPosition = Vector2(0.0f, .0f);
 }
 
 SpaceshipUi::~SpaceshipUi()

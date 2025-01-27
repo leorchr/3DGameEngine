@@ -9,7 +9,7 @@ UIScreen::UIScreen() :
 	title(nullptr),
 	titlePosition(0.0f, 300.0f),
 	state(UIState::Active),
-	font(Assets::getFont("Carlito")),
+	font(Assets::getFont("Descent")),
 	buttonOn(Assets::getTexture("ButtonYellow")),
 	buttonOff(Assets::getTexture("ButtonBlue")),
 	background(nullptr),

@@ -7,7 +7,7 @@ Text::Text(std::string content, Vector2 position) :
 	text(content),
 	position(position),
 	texture(nullptr),
-	font(Assets::getFont("Carlito"))
+	font(Assets::getFont("Descent"))
 {
 	texture = font.renderText(text, Color::white, 40);
 }

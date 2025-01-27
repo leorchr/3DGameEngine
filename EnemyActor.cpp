@@ -28,7 +28,6 @@ void EnemyActor::updateActor(float dt)
 	// Get direction vector
 	Vector3 dir = end - start;
 	dir.normalize();
-	//rotateToNewForward(dir);
 }
 
 const float EnemyActor::getRadius() const
@@ -45,6 +44,7 @@ void EnemyActor::shoot()
 		
 	// Get direction vector
 	Vector3 dir = end - start;
+	if (dir.length() > 500.f) return;
 	dir.normalize();
 		
 	// Spawn a ball

@@ -42,7 +42,10 @@ bool Texture::loadOGL(RendererOGL& renderer, std::string fileName)
 	
 	width = surf->w;
 	height = surf->h;
-	int format = 0;
+
+	if (surf->w <= 128) filtering = GL_NEAREST;
+	
+	
 	if (surf->format->format == SDL_PIXELFORMAT_RGB24)
 	{
 		format = GL_RGB;
