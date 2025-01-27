@@ -77,30 +77,6 @@
             "Name": "Plane",
             "Position": [
                 0.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ],
-            "Mesh": "Plane",
-            "Textures": [
-                "planeTexture.jpg"
-            ]
-        },
-        {
-            "Type": "PlaneActor",
-            "Name": "Plane",
-            "Position": [
-                0.0,
                 -150.0,
                 50.0
             ],
@@ -502,30 +478,6 @@
             "Mesh": "Plane",
             "Textures": [
                 "METL47"
-            ]
-        },
-        {
-            "Type": "PlaneActor",
-            "Name": "Plane",
-            "Position": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ],
-            "Mesh": "Plane",
-            "Textures": [
-                "planeTexture.jpg"
             ]
         },
         {

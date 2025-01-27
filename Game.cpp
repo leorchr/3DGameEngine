@@ -75,7 +75,6 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
 	Assets::loadTexture(renderer, "Ressources/Textures/Blackbg.jpg", "Blackbg");
-	Assets::loadTexture(renderer, "Ressources/Textures/DescentCockpit.png", "DescentCockpit");
 	
 	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1A.png", "NFSILV1A");
 	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1B.png", "NFSILV1B");
