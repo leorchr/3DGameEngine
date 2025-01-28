@@ -76,21 +76,20 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
 	Assets::loadTexture(renderer, "Ressources/Textures/Blackbg.jpg", "Blackbg");
 	
-	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1A.png", "NFSILV1A");
-	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV1B.png", "NFSILV1B");
-	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV3A.png", "NFSILV3A");
-	Assets::loadTexture(renderer, "Ressources/TexturesLibrairy/NFSILV3B.png", "NFSILV3B");
+	Assets::loadTexture(renderer, "Ressources/Textures/OldTextures/NFSILV1A.png", "NFSILV1A");
+	Assets::loadTexture(renderer, "Ressources/Textures/OldTextures/NFSILV1B.png", "NFSILV1B");
+	Assets::loadTexture(renderer, "Ressources/Textures/OldTextures/NFSILV3A.png", "NFSILV3A");
+	Assets::loadTexture(renderer, "Ressources/Textures/OldTextures/NFSILV3B.png", "NFSILV3B");
 
 	for (int i = 1; i < 71; i++)
 	{
-		string path = "Ressources/TexturesLibrairy/METL" + std::to_string(i) + ".png";
+		string path = "Ressources/Textures/OldTextures/METL" + std::to_string(i) + ".png";
 		string name = "METL" + std::to_string(i);
 		Assets::loadTexture(renderer, path, name);
 	}
 	
 	Assets::loadMesh("Ressources/Meshes/plane.fbx", "Plane");
 	Assets::loadMesh("Ressources/Meshes/cube.fbx", "Cube");
-	Assets::loadMesh("Ressources/Meshes/moto.fbx", "Moto");
 	Assets::loadMesh("Ressources/Meshes/smoothSphere.fbx", "Sphere");
 	Assets::loadMesh("Ressources/Meshes/hdri.fbx", "Hdri");
 	Assets::loadMesh("Ressources/Meshes/spaceHDRI.fbx", "SpaceHDRI");
