@@ -151,7 +151,7 @@ void SaveSystem::loadFirstFile()
 #else
 	const filesystem::path folder = "Ressources";
 	const filesystem::path savesFolder = folder / "Saves";
-	const filesystem::path filepath = savesFolder / "world.json";
+	const filesystem::path filepath = savesFolder / "editorDefaultMap.json";
 	if (filesystem::exists(filepath))
 	{
 		load(filepath);

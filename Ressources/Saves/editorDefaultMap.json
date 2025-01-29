@@ -6623,6 +6623,54 @@
             "Textures": [
                 "Sun"
             ]
+        },
+        {
+            "Type": "DoorActor",
+            "Name": "Door",
+            "Position": [
+                0.0,
+                300.0,
+                -220.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL14"
+            ]
+        },
+        {
+            "Type": "DoorActor",
+            "Name": "Door",
+            "Position": [
+                -570.0,
+                250.0,
+                -700.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL14"
+            ]
         }
     ]
 }

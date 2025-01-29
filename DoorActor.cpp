@@ -19,7 +19,7 @@ DoorActor::DoorActor() : mc(nullptr), box(nullptr)
 void DoorActor::updateActor(float dt)
 {
 	Actor::updateActor(dt);
-	if((this->position - getGame().getPlayer()->getPosition()).length() < 10.0f)
+	if((this->position - getGame().getPlayer()->getPosition()).length() < 150.0f)
 	{
 		open();
 	}
@@ -28,9 +28,9 @@ void DoorActor::updateActor(float dt)
 
 void DoorActor::open()
 {
-	mc->setMesh(Assets::getMesh("Cube"));
+	mc->setVisible(false);
 }
 void DoorActor::close()
 {
-	mc->setMesh(Assets::getMesh("Plane"));
+	mc->setVisible(true	);
 }
