@@ -23,4 +23,6 @@ private:
 	float pitch;
 	
 	Vector3 viewForward;
+
+	float timeElapsed;
 };

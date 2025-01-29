@@ -1,18 +1,24 @@
 #include "SpaceshipCameraComponent.h"
+#include "Maths.h"
 
 SpaceshipCameraComponent::SpaceshipCameraComponent(Actor* ownerP):
 	CameraComponent(ownerP),
 	pitchSpeed(0.0f),
 	maxPitch(Maths::pi / 3.0f),
-	pitch(0.0f)
+	pitch(0.0f),
+	timeElapsed(0.0f)
 {
 }
 
 void SpaceshipCameraComponent::update(float dt)
 {
 	CameraComponent::update(dt);
+	timeElapsed+=dt;
+	
 
-	Vector3 cameraPosition = owner.getPosition();
+	float offset = Maths::sin(timeElapsed * 2) * 4	;
+	
+	Vector3 cameraPosition = owner.getPosition() + owner.getUp() * offset;
 	
 	Quaternion q { owner.getRight(), 0 };
 	viewForward = Vector3::transform(owner.getForward(), q);
