@@ -7,7 +7,7 @@
 #include "Game.h"
 #include "SaveSystem.h"
 #include "ViewportActor.h"
-#include "ImguiSettings.h"
+#include "ImGUISettings.h"
 
 #include <imgui.h>
 
@@ -18,7 +18,7 @@ int ImGUIWindow::selectedActorIndex = -1;
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
 {
 	updateItems();
-	ImguiSettings::updateForResolution(WINDOW_WIDTH, WINDOW_HEIGHT);
+	ImGUISettings::updateForResolution(WINDOW_WIDTH, WINDOW_HEIGHT);
 	
 }
 
@@ -85,8 +85,8 @@ void ImGUIWindow::deleteSelectedActor()
 
 void ImGUIWindow::viewport()
 {
-	ImGui::SetNextWindowPos(ImguiSettings::viewportPosition, ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImguiSettings::viewportSize, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImGUISettings::viewportPosition, ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImGUISettings::viewportSize, ImGuiCond_Always);
 	
 	ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 	if(ImGui::BeginTabBar("Panel"))
@@ -123,16 +123,16 @@ void ImGUIWindow::viewport()
 
 void ImGUIWindow::outliner()
 {
-	ImGui::SetNextWindowPos(ImguiSettings::outlinerPos, ImGuiCond_Once);
-	ImGui::SetNextWindowSize(ImguiSettings::outlinerSize, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImGUISettings::outlinerPos, ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImGUISettings::outlinerSize, ImGuiCond_Always);
 
 	ImGui::Begin("Outliner", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 	if(ImGui::BeginTabBar("Outliner"))
 	{
 		if (ImGui::BeginTabItem("Outliner"))
 		{
-			ImGui::BeginChild("NoScrollChild", ImguiSettings::outlinerChildSize, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), 9*Window::ratio);
+			ImGui::BeginChild("NoScrollChild", ImGUISettings::outlinerChildSize, false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+			ImGui::ListBox("##Actors", &selectedActorIndex, itemNamePtrs.data(), itemNamePtrs.size(), ImGUISettings::outlinerListSize);
 			if (selectedActorIndex != -1) {
 				currentActor = imGuiActors[selectedActorIndex];
 			}
@@ -147,10 +147,10 @@ void ImGUIWindow::outliner()
 
 void ImGUIWindow::playmode()
 {
-	ImGui::SetNextWindowPos(ImguiSettings::playModePos, ImGuiCond_Always);
-	ImGui::SetNextWindowSize(ImguiSettings::playModeSize, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImGUISettings::playModePos, ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImGUISettings::playModeSize, ImGuiCond_Always);
 	ImGui::Begin("Playmode", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
-	if(ImGui::Button("Play", ImguiSettings::playModeButtonSize))
+	if(ImGui::Button("Play", ImGUISettings::playModeButtonSize))
 	{
 		Game::instance().setMode(EngineMode::Game);
 	}

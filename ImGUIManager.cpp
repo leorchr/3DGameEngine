@@ -15,11 +15,9 @@ bool ImGUIManager::initialize()
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
 	ImGui_ImplSDL2_InitForOpenGL(Game::instance().getWindow().getSDLWindow(), Game::instance().getRenderer().getSdlGlContext());
-	ImGui_ImplOpenGL3_Init("#version 430");
-
-
-
+	
 	ImGui::LoadIniSettingsFromDisk("Ressources/ImGUI/game_editor.ini");
+	ImGui_ImplOpenGL3_Init("#version 430");	
 	ImGui::StyleColorsDark();
 	ImGuiStyle& style = ImGui::GetStyle();
 
