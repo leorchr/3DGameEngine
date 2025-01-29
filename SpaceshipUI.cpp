@@ -7,7 +7,7 @@
 
 SpaceshipUi::SpaceshipUi(SpaceshipActor& spaceshipActor) : UIScreen(), spaceshipActor(spaceshipActor)
 {
-	text = new Text("100", Vector2(0.0f,-400.0f));
+	text = new Text("100", Vector2(0.0f,-400.0f*WINDOW_WIDTH/1920));
 }
 
 SpaceshipUi::~SpaceshipUi()

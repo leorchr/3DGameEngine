@@ -19,6 +19,7 @@
 #include "Font.h"
 #include "ImGUIWindow.h"
 #include "SaveSystem.h"
+#include "SunActor.h"
 
 #ifdef _DEBUG
 #include "ImGUIManager.h"   
@@ -75,6 +76,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources/Textures/DialogBG.png", "DialogBG");
 	Assets::loadTexture(renderer, "Ressources/Textures/autumn_field_puresky.jpg", "autumn_field_puresky");
 	Assets::loadTexture(renderer, "Ressources/Textures/Blackbg.jpg", "Blackbg");
+	Assets::loadTexture(renderer, "Ressources/Textures/sun.jpg", "Sun");
 	
 	Assets::loadTexture(renderer, "Ressources/Textures/OldTextures/NFSILV1A.png", "NFSILV1A");
 	Assets::loadTexture(renderer, "Ressources/Textures/OldTextures/NFSILV1B.png", "NFSILV1B");
@@ -106,6 +108,7 @@ void Game::load()
 	ActorFactory::getInstance().registerActor("PlaneActor", []() -> Actor* { return new PlaneActor(); });
 	ActorFactory::getInstance().registerActor("DoorActor", []() -> Actor* { return new DoorActor(); });
 	ActorFactory::getInstance().registerActor("CollectibleActor", []() -> Actor* { return new CollectibleActor(); });
+	ActorFactory::getInstance().registerActor("SunActor", []() -> Actor* { return new SunActor(); });
 	
 #ifdef _DEBUG
 	imGuiWindow = std::make_shared<ImGUIWindow>(actors);

@@ -271,6 +271,12 @@
     <ClCompile Include="TPSCameraComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="CollectibleActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="SunActor.cpp">
+      <Filter>GameSpecific</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -566,14 +572,17 @@
     <ClInclude Include="TPSCameraComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="CollectibleActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="SunActor.h">
+      <Filter>GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUISettings.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Meshes\cube.fbx">
-      <Filter>Meshes</Filter>
-    </None>
-    <None Include="Ressources\Meshes\plane.fbx">
-      <Filter>Meshes</Filter>
-    </None>
     <None Include="Ressources\Shaders\Mesh.frag">
       <Filter>Shaders</Filter>
     </None>

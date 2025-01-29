@@ -248,6 +248,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="StationaryActor.cpp" />
     <ClCompile Include="StationaryCameraComponent.cpp" />
+    <ClCompile Include="SunActor.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -351,6 +352,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="StationaryActor.h" />
     <ClInclude Include="StationaryCameraComponent.h" />
+    <ClInclude Include="SunActor.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />

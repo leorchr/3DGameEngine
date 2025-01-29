@@ -9,6 +9,7 @@ SphereActor::SphereActor() : Actor()
 	mc->setMesh(*mesh);
 	setName("Sphere");
 	setScale(Vector3(1.0f,1.0f,1.0f));
+	mc->getMesh()->setTexture(0, &Assets::getTexture("ButtonYellow"));
 }
 
 void SphereActor::updateActor(float dt)

@@ -25,51 +25,27 @@
             ]
         },
         {
-            "Type": "CollectibleActor",
-            "Name": "Collectible",
+            "Type": "PlaneActor",
+            "Name": "Plane",
             "Position": [
-                -200.0,
-                100.0,
+                200.0,
+                500.0,
+                170.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
                 50.0
             ],
-            "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "Scale": [
-                10.0,
-                10.0,
-                10.0
-            ],
-            "Mesh": "Sphere",
+            "Mesh": "Plane",
             "Textures": [
-                "ButtonBlue"
-            ]
-        },
-        {
-            "Type": "EnemyActor",
-            "Name": "Enemy",
-            "Position": [
-                0.0,
-                1000.0,
-                0.0
-            ],
-            "Rotation": [
-                0.0,
-                0.0,
-                -1.0,
-                -4.371138828673793e-8
-            ],
-            "Scale": [
-                1.0,
-                1.0,
-                1.0
-            ],
-            "Mesh": "Turret",
-            "Textures": [
-                "Turret_01.png"
+                "METL8"
             ]
         },
         {
@@ -533,14 +509,14 @@
             "Name": "Plane",
             "Position": [
                 0.0,
-                1000.0,
-                0.0
+                500.0,
+                -370.0
             ],
             "Rotation": [
                 0.0,
                 0.0,
-                0.7071067690849304,
-                0.7071067690849304
+                0.0,
+                1.0
             ],
             "Scale": [
                 50.0,
@@ -549,7 +525,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "METL51"
+                "METL33"
             ]
         },
         {
@@ -1252,9 +1228,9 @@
             "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
-                0.0,
-                300.0,
-                -70.0
+                100.0,
+                500.0,
+                170.0
             ],
             "Rotation": [
                 0.0,
@@ -1269,7 +1245,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "METL5"
+                "METL29"
             ]
         },
         {
@@ -2397,7 +2373,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL50"
             ]
         },
         {
@@ -2409,10 +2385,10 @@
                 170.0
             ],
             "Rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
+                0.7071067690849304,
+                0.7071067690849304,
+                -3.0908619663705397e-8,
+                -3.0908619663705397e-8
             ],
             "Scale": [
                 50.0,
@@ -2421,7 +2397,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL43"
             ]
         },
         {
@@ -2445,7 +2421,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL8"
             ]
         },
         {
@@ -2459,8 +2435,8 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0,
-                1.0
+                0.7071067690849304,
+                0.7071067690849304
             ],
             "Scale": [
                 50.0,
@@ -2469,7 +2445,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL43"
             ]
         },
         {
@@ -2493,7 +2469,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL7"
             ]
         },
         {
@@ -2517,7 +2493,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL8"
             ]
         },
         {
@@ -2541,7 +2517,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL8"
             ]
         },
         {
@@ -2565,7 +2541,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL30"
             ]
         },
         {
@@ -2589,7 +2565,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL33"
             ]
         },
         {
@@ -2613,7 +2589,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL39"
             ]
         },
         {
@@ -2627,8 +2603,8 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0,
-                1.0
+                1.0,
+                -4.371138828673793e-8
             ],
             "Scale": [
                 50.0,
@@ -2637,7 +2613,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL40"
             ]
         },
         {
@@ -2661,7 +2637,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL40"
             ]
         },
         {
@@ -2675,8 +2651,8 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0,
-                1.0
+                0.7071067690849304,
+                0.7071067690849304
             ],
             "Scale": [
                 50.0,
@@ -2685,7 +2661,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL41"
             ]
         },
         {
@@ -2709,7 +2685,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL8"
             ]
         },
         {
@@ -2733,7 +2709,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL31"
             ]
         },
         {
@@ -2757,7 +2733,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL32"
             ]
         },
         {
@@ -2781,7 +2757,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL32"
             ]
         },
         {
@@ -2795,8 +2771,8 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0,
-                1.0
+                0.7071067690849304,
+                0.7071067690849304
             ],
             "Scale": [
                 50.0,
@@ -2805,7 +2781,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL40"
             ]
         },
         {
@@ -2819,8 +2795,8 @@
             "Rotation": [
                 0.0,
                 0.0,
-                0.0,
-                1.0
+                0.7071067690849304,
+                0.7071067690849304
             ],
             "Scale": [
                 50.0,
@@ -2829,7 +2805,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL6"
             ]
         },
         {
@@ -2853,7 +2829,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL7"
             ]
         },
         {
@@ -2877,7 +2853,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL7"
             ]
         },
         {
@@ -2901,7 +2877,7 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL8"
             ]
         },
         {
@@ -2925,22 +2901,22 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL33"
             ]
         },
         {
             "Type": "PlaneActor",
             "Name": "Plane",
             "Position": [
-                100.0,
-                500.0,
-                170.0
+                -50.0,
+                300.0,
+                -120.0
             ],
             "Rotation": [
                 0.0,
+                0.7071067690849304,
                 0.0,
-                0.0,
-                1.0
+                0.7071067690849304
             ],
             "Scale": [
                 50.0,
@@ -2949,7 +2925,247 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                50.0,
+                300.0,
+                -120.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -50.0,
+                300.0,
+                -220.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                50.0,
+                300.0,
+                -220.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                250.0,
+                -120.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                350.0,
+                -120.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL47"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                250.0,
+                -220.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL46"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                350.0,
+                -220.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                -0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL46"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                250.0,
+                -320.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                -0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL46"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                350.0,
+                -320.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL46"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -50.0,
+                300.0,
+                -320.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
             ]
         },
         {
@@ -2958,7 +3174,7 @@
             "Position": [
                 200.0,
                 500.0,
-                170.0
+                -370.0
             ],
             "Rotation": [
                 0.0,
@@ -2973,7 +3189,3439 @@
             ],
             "Mesh": "Plane",
             "Textures": [
-                "planeTexture.jpg"
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                500.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "StartPoint",
+            "Position": [
+                0.0,
+                0.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                -0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                50.0,
+                0.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                -150.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                0.4999999701976776,
+                0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL12"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                -100.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                -0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                50.0,
+                -100.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -50.0,
+                -100.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                0.0,
+                -440.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                -100.0,
+                -440.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                85.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL25"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -50.0,
+                0.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                85.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                85.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                85.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                85.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                85.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                85.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                85.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL35"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                50.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL42"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                50.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL47"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                50.0,
+                300.0,
+                -320.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1A"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                50.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL42"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                50.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                100.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                0.27059805393218996,
+                -0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                200.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                0.27059805393218996,
+                -0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                300.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                0.27059805393218996,
+                -0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                0.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL35"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                400.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                0.27059805393218996,
+                -0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                500.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                0.27059805393218996,
+                -0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                515.0,
+                -575.0
+            ],
+            "Rotation": [
+                1.672762550697371e-8,
+                0.3826834559440613,
+                -0.9238795042037964,
+                -4.038405521100685e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                515.0,
+                -575.0
+            ],
+            "Rotation": [
+                1.672762550697371e-8,
+                0.3826834559440613,
+                -0.9238795042037964,
+                -4.038405521100685e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL26"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                515.0,
+                -575.0
+            ],
+            "Rotation": [
+                1.672762550697371e-8,
+                0.3826834559440613,
+                -0.9238795042037964,
+                -4.038405521100685e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                515.0,
+                -575.0
+            ],
+            "Rotation": [
+                1.672762550697371e-8,
+                0.3826834559440613,
+                -0.9238795042037964,
+                -4.038405521100685e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                515.0,
+                -575.0
+            ],
+            "Rotation": [
+                1.672762550697371e-8,
+                0.3826834559440613,
+                -0.9238795042037964,
+                -4.038405521100685e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL35"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                500.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                400.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL26"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                300.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                200.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL35"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                100.0,
+                -575.0
+            ],
+            "Rotation": [
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL34"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                100.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL29"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                100.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                100.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                100.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                100.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                200.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL12"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                200.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL11"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                200.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL12"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                200.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL11"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                200.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL12"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                300.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL12"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                300.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL31"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                500.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL29"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                300.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                300.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                0.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                400.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                400.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                400.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                -1.0,
+                0.0,
+                -4.371138828673793e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL9"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                400.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.7071067690849304,
+                -3.0908619663705397e-8,
+                -3.0908619663705397e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                0.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL6"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                400.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                500.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                1.0,
+                0.0,
+                -4.371138828673793e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL9"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                500.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL5"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                500.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                500.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL9"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                500.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -250.0,
+                50.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL16"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -250.0,
+                150.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL27"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -570.0,
+                200.0,
+                -660.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL16"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -250.0,
+                350.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.5,
+                0.4999999403953552,
+                0.5,
+                0.4999999403953552
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL37"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -250.0,
+                450.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999403953552,
+                0.5,
+                0.4999999403953552,
+                -0.5
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL44"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -250.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999403953552,
+                0.5,
+                0.4999999403953552,
+                -0.5
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                0.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL51"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL51"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL6"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL59"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL51"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                250.0,
+                550.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL53"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                250.0,
+                450.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                250.0,
+                350.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL47"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                250.0,
+                250.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL5"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                250.0,
+                150.0,
+                -490.0
+            ],
+            "Rotation": [
+                -0.4999999701976776,
+                -0.4999999701976776,
+                0.4999999701976776,
+                0.4999999701976776
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                250.0,
+                50.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL5"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                85.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                85.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.3826834559440613,
+                0.0,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                100.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                0.6532814502716065,
+                0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                0.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                200.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                0.6532814502716065,
+                0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                300.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                0.6532814502716065,
+                0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                400.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                0.6532814502716065,
+                0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -215.0,
+                500.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                0.6532814502716065,
+                0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                100.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                200.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                300.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                400.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                215.0,
+                500.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                515.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.9238795042037964,
+                0.0,
+                0.0,
+                0.3826834261417389
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                515.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.9238795042037964,
+                0.0,
+                0.0,
+                0.3826834261417389
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                515.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.9238795042037964,
+                0.0,
+                0.0,
+                0.3826834261417389
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                515.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.9238795042037964,
+                0.0,
+                0.0,
+                0.3826834261417389
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                515.0,
+                -405.0
+            ],
+            "Rotation": [
+                0.9238795042037964,
+                0.0,
+                0.0,
+                0.3826834261417389
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                100.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL50"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                100.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.7071067690849304,
+                -3.0908619663705397e-8,
+                -3.0908619663705397e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                100.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                100.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL43"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                100.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL7"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                200.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                200.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                200.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL30"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                200.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL33"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                200.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL39"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                300.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                1.0,
+                -4.371138828673793e-8
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                300.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                300.0,
+                -610.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                300.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                300.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL31"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                400.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL32"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -100.0,
+                400.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL32"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                0.0,
+                400.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                100.0,
+                400.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.7071067690849304,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL6"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                200.0,
+                400.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL7"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -200.0,
+                500.0,
+                -370.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -300.0,
+                250.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL7"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -300.0,
+                250.0,
+                -440.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -400.0,
+                250.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -400.0,
+                250.0,
+                -440.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL6"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -485.0,
+                250.0,
+                -575.0
+            ],
+            "Rotation": [
+                0.0,
+                -0.3826834559440613,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV3B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -525.0,
+                250.0,
+                -475.0
+            ],
+            "Rotation": [
+                0.0,
+                -0.3826834559440613,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -520.0,
+                250.0,
+                -660.0
+            ],
+            "Rotation": [
+                0.0,
+                -0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -595.0,
+                250.0,
+                -545.0
+            ],
+            "Rotation": [
+                0.0,
+                -0.3826834559440613,
+                0.0,
+                0.9238795042037964
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "CollectibleActor",
+            "Name": "Collectible",
+            "Position": [
+                -175.0,
+                475.0,
+                -475.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                15.0,
+                15.0,
+                15.0
+            ],
+            "Mesh": "Sphere",
+            "Textures": [
+                "ButtonBlue"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -620.0,
+                250.0,
+                -660.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -520.0,
+                200.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL47"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -500.0,
+                250.0,
+                -440.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -620.0,
+                250.0,
+                -560.0
+            ],
+            "Rotation": [
+                0.0,
+                0.7071067690849304,
+                0.0,
+                -0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "NFSILV1B"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -300.0,
+                200.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -400.0,
+                200.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                1.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL4"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -464.0,
+                199.0,
+                -484.0
+            ],
+            "Rotation": [
+                -0.6532814502716065,
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -580.0,
+                199.0,
+                -600.0
+            ],
+            "Rotation": [
+                -0.6532814502716065,
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -580.0,
+                301.0,
+                -600.0
+            ],
+            "Rotation": [
+                -0.6532814502716065,
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -464.0,
+                301.0,
+                -484.0
+            ],
+            "Rotation": [
+                -0.6532814502716065,
+                -0.27059805393218996,
+                -0.27059805393218996,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL8"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -520.0,
+                300.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.6532814502716065,
+                -0.27059805393218996,
+                0.27059805393218996,
+                0.6532814502716065
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -300.0,
+                300.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL40"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -400.0,
+                300.0,
+                -490.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL41"
+            ]
+        },
+        {
+            "Type": "PlaneActor",
+            "Name": "Plane",
+            "Position": [
+                -570.0,
+                300.0,
+                -660.0
+            ],
+            "Rotation": [
+                0.7071067690849304,
+                0.0,
+                0.0,
+                0.7071067690849304
+            ],
+            "Scale": [
+                50.0,
+                50.0,
+                50.0
+            ],
+            "Mesh": "Plane",
+            "Textures": [
+                "METL29"
+            ]
+        },
+        {
+            "Type": "EnemyActor",
+            "Name": "Enemy",
+            "Position": [
+                0.0,
+                -85.0,
+                -540.0
+            ],
+            "Rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "Scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Mesh": "Turret",
+            "Textures": [
+                "Turret_01.png"
+            ]
+        },
+        {
+            "Type": "SunActor",
+            "Name": "Sphere",
+            "Position": [
+                0.0,
+                1778.0,
+                -7000.0
+            ],
+            "Rotation": [
+                0.0,
+                -0.713250458240509,
+                0.0,
+                0.7009092569351196
+            ],
+            "Scale": [
+                1094.0,
+                1094.0,
+                1094.0
+            ],
+            "Mesh": "Sphere",
+            "Textures": [
+                "Sun"
             ]
         }
     ]
