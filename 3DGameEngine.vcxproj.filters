@@ -277,6 +277,21 @@
     <ClCompile Include="SunActor.cpp">
       <Filter>GameSpecific</Filter>
     </ClCompile>
+    <ClCompile Include="Include\imguizmo\GraphEditor.cpp">
+      <Filter>Include\imguizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\imguizmo\ImCurveEdit.cpp">
+      <Filter>Include\imguizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\imguizmo\ImGradient.cpp">
+      <Filter>Include\imguizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\imguizmo\ImGuizmo.cpp">
+      <Filter>Include\imguizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\imguizmo\ImSequencer.cpp">
+      <Filter>Include\imguizmo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -581,6 +596,24 @@
     <ClInclude Include="ImGUISettings.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Include\imguizmo\GraphEditor.h">
+      <Filter>Include\imguizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imguizmo\ImCurveEdit.h">
+      <Filter>Include\imguizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imguizmo\ImGradient.h">
+      <Filter>Include\imguizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imguizmo\ImGuizmo.h">
+      <Filter>Include\imguizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imguizmo\ImSequencer.h">
+      <Filter>Include\imguizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imguizmo\ImZoomSlider.h">
+      <Filter>Include\imguizmo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Shaders\Mesh.frag">
@@ -662,6 +695,9 @@
     </Filter>
     <Filter Include="Prefabs\Primitives">
       <UniqueIdentifier>{ec5a9f8d-b46f-4c47-980f-0e5dcc40f658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\imguizmo">
+      <UniqueIdentifier>{5e551c2c-b643-402e-9461-b463c0a770c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

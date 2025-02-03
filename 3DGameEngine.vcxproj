@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(SolutionDir)Include\imgui;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Include\SDL2-2.30.9;$(SolutionDir)Include\SDL2_image-2.0.5;$(SolutionDir)Include\SDL2_ttf-2.22.0;$(SolutionDir)Include\SDL2_mixer-2.0.4;$(SolutionDir)Include\glew-2.1.0;$(SolutionDir)Include\rapidjson;$(SolutionDir)Include\assimp;$(SolutionDir)Include\imgui;$(SolutionDir)Include\imguizmo;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
@@ -178,6 +178,11 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClCompile Include="EnemyRocketActor.cpp" />
     <ClCompile Include="ImGUIManager.cpp" />
     <ClCompile Include="ImGUIWindow.cpp" />
+    <ClCompile Include="Include\imguizmo\GraphEditor.cpp" />
+    <ClCompile Include="Include\imguizmo\ImCurveEdit.cpp" />
+    <ClCompile Include="Include\imguizmo\ImGradient.cpp" />
+    <ClCompile Include="Include\imguizmo\ImGuizmo.cpp" />
+    <ClCompile Include="Include\imguizmo\ImSequencer.cpp" />
     <ClCompile Include="Include\imgui\imgui.cpp" />
     <ClCompile Include="Include\imgui\imgui_demo.cpp" />
     <ClCompile Include="Include\imgui\imgui_draw.cpp" />
@@ -277,6 +282,12 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="ImGUIManager.h" />
     <ClInclude Include="ImGUISettings.h" />
     <ClInclude Include="ImGUIWindow.h" />
+    <ClInclude Include="Include\imguizmo\GraphEditor.h" />
+    <ClInclude Include="Include\imguizmo\ImCurveEdit.h" />
+    <ClInclude Include="Include\imguizmo\ImGradient.h" />
+    <ClInclude Include="Include\imguizmo\ImGuizmo.h" />
+    <ClInclude Include="Include\imguizmo\ImSequencer.h" />
+    <ClInclude Include="Include\imguizmo\ImZoomSlider.h" />
     <ClInclude Include="Include\imgui\imconfig.h" />
     <ClInclude Include="Include\imgui\imgui.h" />
     <ClInclude Include="Include\imgui\imgui_impl_opengl3.h" />
