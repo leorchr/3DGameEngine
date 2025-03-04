@@ -163,7 +163,7 @@ void ImGUIWindow::playmode()
 
 void ImGUIWindow::postProcessing()
 {
-	Game::instance().getRenderer().updateImGui();
+	Game::instance().getRenderer().getPostProcess()->updateImGui();
 }
 
 void ImGUIWindow::menu()
@@ -202,7 +202,7 @@ void ImGUIWindow::menu()
 		if (ImGui::MenuItem("Show Compute Shader Editor", nullptr, showRendererPostProcessWindow))
 		{
 			showRendererPostProcessWindow = !showRendererPostProcessWindow; // Toggle the value
-			Game::instance().getRenderer().setPostProcessWindowActive(showRendererPostProcessWindow);
+			PostProcessing::setPostProcessWindowActive(showRendererPostProcessWindow);
 		}
 		ImGui::EndMenu();
 	}

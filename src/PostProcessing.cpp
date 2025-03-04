@@ -2,8 +2,23 @@
 #include "Assets.h"
 #include "Shader.h"
 #include "ComputeShader.h"
+#include "imgui.h"
+#include "ImGUISettings.h"
+#include "imgui_internal.h"
 #include <GL/glew.h>
 #include <iostream>
+
+int PostProcessing::kernelSize = 5;
+int PostProcessing::kernelAverage = 256;
+std::vector<std::vector<int>> PostProcessing::kernel = {
+	{1, 4, 6, 4, 1},
+	{4, 16, 24, 16, 4},
+	{6, 24, 36, 24, 6},
+	{4, 16, 24, 16, 4},
+	{1, 4, 6, 4, 1}
+};;
+bool PostProcessing::showPostProcessingWindow = false;
+bool PostProcessing::showPostProcessing = false;
 
 PostProcessing::PostProcessing() : FBO(0), rectVAO(0), rectVBO(0), frameBufferTexture(0), frameBufferOutputTexture(0), shader(nullptr), computeShader(nullptr){}
 
@@ -55,10 +70,12 @@ bool PostProcessing::initialize()
 		return false;
 	}
 	else{return true;}
+	
 }
 
 void PostProcessing::startDrawing()
 {
+	if(!showPostProcessing) return;
 	glBindFramebuffer(GL_FRAMEBUFFER, FBO);
 
 	//Check si le buffer est valide
@@ -74,48 +91,30 @@ void PostProcessing::startDrawing()
 
 void PostProcessing::computePostProcessing()
 {
+	if(!showPostProcessing) return;
 	computeShader->use();
 	
 	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 
-	computeShader->setInteger("matrixSize", 5);
-	computeShader->setInteger("average", 256);
-
-	std::vector<std::vector<int>> matrix = {
-		{1, 4, 6, 4, 1},
-		{4, 16, 24, 16, 4},
-		{6, 24, 36, 24, 6},
-		{4, 16, 24, 16, 4},
-		{1, 4, 6, 4, 1}
-	};
-	computeShader->setMatrix(matrix, 2, 3);
-
-	GLint numUniforms;
-	glGetProgramiv(computeShader->id, GL_ACTIVE_UNIFORMS, &numUniforms);
-	computeShader->printAllParams();
+	if(mustComputeKernel)
+	{
+		computeShader->setInteger("matrixSize", kernelSize);
+		computeShader->setInteger("average", kernelAverage);
+		computeShader->setMatrix(kernel, 2);
+		mustComputeKernel = false;
+	}
 
 	// Exécute le compute shader
 	int workgroupSizeX = 16;
 	int workgroupSizeY = 16;
 	glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
 	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
-	
-
-	int* mappedData = (int*)glMapBuffer(GL_SHADER_STORAGE_BUFFER, GL_READ_ONLY);
-	if (mappedData) {
-		for (int i = 0; i < 25; ++i) {
-			std::cout << "Data[" << i << "] = " << mappedData[i] << std::endl;
-		}
-		// Dé-mappage du buffer après avoir terminé la lecture
-		glUnmapBuffer(GL_SHADER_STORAGE_BUFFER);
-	} else {
-		std::cerr << "Failed to map buffer!" << std::endl;
-	}
 }
 
-void PostProcessing::displayFrameBuffer()
+void PostProcessing::displayFrameBuffer() const
 {
+	if(!showPostProcessing) return;
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	shader->use();
 	glDisable(GL_DEPTH_TEST); // prevents framebuffer rectangle from being discarded
@@ -135,4 +134,59 @@ void PostProcessing::setCustomFrambufferShader(Shader* shader)
 void PostProcessing::setupComputeShader(ComputeShader* computeShader)
 {
 	this->computeShader = computeShader;
+}
+
+void PostProcessing::updateImGui()
+{
+	if(!showPostProcessingWindow) return;
+	
+	ImGui::SetNextWindowPos(ImGUISettings::computeShaderWindowPos, ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImGUISettings::computeShaderWindowSize, ImGuiCond_Once);
+
+	if(ImGui::Begin("Post Processing", &showPostProcessingWindow, ImGuiWindowFlags_NoNavFocus))
+	
+	ImGui::Checkbox("Blur Effect", &showPostProcessing);
+	
+	if(ImGui::DragInt("Kernel Size", &kernelSize, 2, 3, 6, "%d"))
+	{
+		kernelSize = kernelSize % 2 == 0 ? kernelSize + 1 : kernelSize;
+		kernel.resize(kernelSize);
+		for(auto& row : kernel)
+		{
+			row.resize(kernelSize);
+		}
+		mustComputeKernel = true;
+	}
+
+	if(ImGui::DragInt("Kernel Average", &kernelAverage, 1, 1, 10000, "%d"))
+	{
+		mustComputeKernel = true;	
+	}
+
+	ImGuiWindow* window = ImGui::GetCurrentWindow();
+	ImVec2 windowPadding = window->WindowPadding;
+	int padding = (int)windowPadding.x;
+	
+	for(size_t i = 0; i < kernel.size(); i++)
+	{
+		for(size_t j = 0; j < kernel[0].size(); j++)
+		{
+			int& value = kernel[i][j];
+			std::string uniqueLabel = "##CurrentKernelMatrixValue" + std::to_string(i) + std::to_string(j);
+			ImGui::PushItemWidth(((int)ImGui::GetWindowWidth() - padding*2 - spacing * (kernel.size()-1)) / kernel.size());
+			if(ImGui::DragInt(uniqueLabel.c_str(), &value))
+			{
+				mustComputeKernel = true;
+			}
+			ImGui::PopItemWidth();
+			if(j >= kernelSize-1) continue;
+			ImGui::SameLine(0, (int)spacing);
+		}
+	}	
+	ImGui::End();
+}
+
+void PostProcessing::setPostProcessWindowActive(bool showRendererPostProcessWindow)
+{
+	showPostProcessingWindow = showRendererPostProcessWindow;
 }

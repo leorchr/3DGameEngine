@@ -68,15 +68,4 @@ private:
 	DirectionalLight dirLight;
 
 	PostProcessing* postProcessing;
-
-	// ImGui
-public:
-	void updateImGui();
-	void setPostProcessWindowActive(bool showRendererPostProcessWindow);
-
-private:
-	static int kernelSize;
-	static std::vector<std::vector<int>> kernel;
-	static bool showPostProcessingWindow;
-	static bool showPostProcessing;
 };

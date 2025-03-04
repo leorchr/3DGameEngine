@@ -2,6 +2,7 @@
 #include "Vector2.h"
 #include "Window.h"
 #include"GL/glew.h"
+#include <vector>
 
 class ComputeShader;
 class Shader;
@@ -13,7 +14,7 @@ public:
 	bool initialize();
 	void startDrawing();
 	void computePostProcessing();
-	void displayFrameBuffer();
+	void displayFrameBuffer() const;
 	void setCustomFrambufferShader(Shader* shader);
 	void setupComputeShader(ComputeShader* computeShader);
 
@@ -38,6 +39,21 @@ private:
    };
 
 	const Vector2 texelSize = Vector2(1.0f/WINDOW_WIDTH,1.0f/WINDOW_HEIGHT);
+
+	// ImGui
+public:
+	void updateImGui();
+	static void setPostProcessWindowActive(bool showRendererPostProcessWindow);
+
+private:
+	static int kernelSize;
+	static int kernelAverage;
+	static std::vector<std::vector<int>> kernel;
+	static bool showPostProcessingWindow;
+	static bool showPostProcessing;
+	const int spacing = 2;
+	bool mustComputeKernel = true;
+
 };
 
 void MyDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,

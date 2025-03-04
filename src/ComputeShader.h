@@ -22,7 +22,7 @@ public:
 	void setVector2i(const GLchar* name, GLint x, GLint y, GLint z);
 	void setVector2i(const GLchar *name, const Vector2 &value);
 	void setVector2f(const GLchar* name, const Vector2& value);
-	void setMatrix(std::vector<std::vector<int>> matrix,int inputIndex, int outputIndex);
+	void setMatrix(std::vector<std::vector<int>> matrix,int inputIndex);
 	void setInteger(const GLchar* name, GLint value);
 	void setName(std::string name);
 	void printAllParams();

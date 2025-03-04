@@ -25,7 +25,7 @@ protected:
 	void viewport();
 	void outliner();
 	void playmode();
-	void postProcessing();
+	static void postProcessing();
 	
 private:
 	class Actor* currentActor;
