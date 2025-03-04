@@ -12,6 +12,7 @@ public:
 	PostProcessing();
 	bool initialize();
 	void startDrawing();
+	void computePostProcessing();
 	void displayFrameBuffer();
 	void setCustomFrambufferShader(Shader* shader);
 	void setupComputeShader(ComputeShader* computeShader);

@@ -3,6 +3,7 @@
 #include "Vector3.h"
 #include "Vector2.h"
 #include <string>
+#include <vector>
 
 class ComputeShader
 {
@@ -21,7 +22,10 @@ public:
 	void setVector2i(const GLchar* name, GLint x, GLint y, GLint z);
 	void setVector2i(const GLchar *name, const Vector2 &value);
 	void setVector2f(const GLchar* name, const Vector2& value);
+	void setMatrix(std::vector<std::vector<int>> matrix,int inputIndex, int outputIndex);
+	void setInteger(const GLchar* name, GLint value);
 	void setName(std::string name);
+	void printAllParams();
 
 private:
 	GLuint cs;
@@ -30,9 +34,8 @@ private:
 	void createShaderProgram();
 
 	bool isValid(GLuint programme);
-	void printProgrammeInfoLog(GLuint id);
 	void checkShaderErrors(GLuint shader, std::string shaderType);
 	void printShaderInfoLog(GLuint shaderIndex);
-	void printAllParams();
+	void printProgrammeInfoLog(GLuint id);
 };
 

@@ -20,10 +20,12 @@ public:
 	static bool showDemoWindow;
 	static bool showStyleEditor;
 	static int selectedActorIndex;
+	static bool showRendererPostProcessWindow;
 protected:
 	void viewport();
 	void outliner();
 	void playmode();
+	void postProcessing();
 	
 private:
 	class Actor* currentActor;

@@ -16,9 +16,10 @@ public:
 	RendererOGL(const RendererOGL&) = delete;
 	RendererOGL& operator=(const RendererOGL&) = delete;
 
-	bool initialize(Window& windowP, bool usePostProcessing);
+	bool initialize(Window& windowP);
 	void beginDraw();
 	void draw();
+	void drawImGuiWindow();
 	void endDraw();
 	void close();
 	IRenderer::Type type() { return Type::OGL; }
@@ -47,6 +48,7 @@ public:
 	PostProcessing* getPostProcess() const { return postProcessing; }
 	SDL_GLContext getSdlGlContext() const { return context; }
 
+	
 private:
 	void drawMeshes();
 	void drawSprites();
@@ -66,4 +68,15 @@ private:
 	DirectionalLight dirLight;
 
 	PostProcessing* postProcessing;
+
+	// ImGui
+public:
+	void updateImGui();
+	void setPostProcessWindowActive(bool showRendererPostProcessWindow);
+
+private:
+	static int kernelSize;
+	static std::vector<std::vector<int>> kernel;
+	static bool showPostProcessingWindow;
+	static bool showPostProcessing;
 };

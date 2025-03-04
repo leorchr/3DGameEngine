@@ -4,6 +4,8 @@
 #include "Shader.h"
 #include <sstream>
 
+using std::vector;
+
 void ComputeShader::unload()
 {
 	glDeleteProgram(id);
@@ -80,6 +82,43 @@ void ComputeShader::setVector2i(const GLchar *name, const Vector2 &value)
 void ComputeShader::setVector2f(const GLchar *name, const Vector2 &value)
 {
 	glUniform2f(glGetUniformLocation(id, name), value.x, value.y);
+}
+
+void ComputeShader::setMatrix(vector<vector<int>> matrix,int inputIndex, int outputIndex)
+{
+	int rows = matrix.size();
+	int cols = matrix[0].size();
+	int numElements = rows * cols;
+
+	
+	int flattenedMatrix[25]; // Tableau 1D pour OpenGL
+	
+	// Aplatir la matrice 2D en 1D
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			flattenedMatrix[i * rows + j] = matrix[i][j];
+		}
+	}
+
+	GLuint matrixBuffer;
+	glGenBuffers(1, &matrixBuffer);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, matrixBuffer);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(flattenedMatrix), flattenedMatrix, GL_STATIC_DRAW);
+	
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, inputIndex, matrixBuffer);
+
+	GLuint debugBuffer;
+	glGenBuffers(1, &debugBuffer);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, debugBuffer);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(flattenedMatrix), nullptr, GL_DYNAMIC_READ);
+	
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, outputIndex, debugBuffer);
+
+}
+
+void ComputeShader::setInteger(const GLchar* name, GLint value)
+{
+	glUniform1i(glGetUniformLocation(id, name), value);
 }
 
 bool ComputeShader::isValid(GLuint id)

@@ -11,8 +11,16 @@
 #include <GL/glew.h>
 #include <SDL_image.h>
 #include "ComputeShader.h"
+#include "imgui.h"
 #include <iostream>
 #include "ImGUIManager.h"
+#include "ImGUISettings.h"
+#include "imgui_internal.h"
+
+int RendererOGL::kernelSize = 3;
+std::vector<std::vector<int>> RendererOGL::kernel;
+bool RendererOGL::showPostProcessingWindow = false;
+bool RendererOGL::showPostProcessing = false;
 
 RendererOGL::RendererOGL() :
 	window(nullptr),
@@ -27,7 +35,7 @@ RendererOGL::RendererOGL() :
 
 RendererOGL::~RendererOGL() {}
 
-bool RendererOGL::initialize(Window& windowP, bool usePostProcessing = false)
+bool RendererOGL::initialize(Window& windowP)
 {
 	window = &windowP;
 
@@ -72,11 +80,8 @@ bool RendererOGL::initialize(Window& windowP, bool usePostProcessing = false)
 	}
 
 	spriteVertexArray = new VertexArray(spriteVertices, 4, indices, 6);
-	if(usePostProcessing)
-	{
-		postProcessing = new PostProcessing();
-		postProcessing->initialize();
-	}
+	postProcessing = new PostProcessing();
+	postProcessing->initialize();
 	return true;
 }
 
@@ -93,29 +98,33 @@ void RendererOGL::beginDraw()
 	glEnable(GL_DEPTH_TEST);
 
 	//Nettoie et active custom buffer
-	if(postProcessing) postProcessing->startDrawing();
-
-#ifdef _DEBUG
-	ImGUIManager::beginDraw();
-#endif
+	if(showPostProcessing)	 postProcessing->startDrawing();
 }
 
 void RendererOGL::draw()
 {
-	//Draw on the custom buffer
 	drawMeshes();
 	drawSprites();
 	drawUI();
 }
 
-void RendererOGL::endDraw()
+void RendererOGL::drawImGuiWindow()
 {
-	
 #ifdef _DEBUG
+	ImGUIManager::beginDraw();
 	ImGUIManager::render();
 #endif
-	
-	if(postProcessing) postProcessing->displayFrameBuffer();
+}
+
+void RendererOGL::endDraw()
+{
+	if(showPostProcessing)
+	{
+		postProcessing->computePostProcessing();
+		postProcessing->displayFrameBuffer();
+	}
+	drawImGuiWindow();	
+
 	SDL_GL_SwapWindow(window->getSDLWindow());
 }
 
@@ -264,4 +273,51 @@ void RendererOGL::setLightUniforms(Shader& shader)
 void RendererOGL::setAmbientLight(const Vector3& ambientP)
 {
 	ambientLight = ambientP;
+}
+
+void RendererOGL::updateImGui()
+{
+	ImGui::SetNextWindowPos(ImGUISettings::computeShaderWindowPos, ImGuiCond_Once);
+	ImGui::SetNextWindowSize(ImGUISettings::computeShaderWindowSize, ImGuiCond_Once);
+
+	ImGui::Begin("Post Processing", &showPostProcessingWindow, ImGuiWindowFlags_NoNavFocus);
+	
+	ImGui::Checkbox("Blur Effect", &showPostProcessing);
+	
+	if(ImGui::DragInt("Kernel Size", &kernelSize, 2, 3, 150, "%d"))
+	{
+		kernelSize = kernelSize % 2 == 0 ? kernelSize + 1 : kernelSize;
+		kernel.resize(kernelSize);
+		for(auto& row : kernel)
+		{
+			row.resize(kernelSize);
+		}
+	}
+
+	ImGuiWindow* window = ImGui::GetCurrentWindow();
+	ImVec2 windowPadding = window->WindowPadding;
+	int paddingX = (int)windowPadding.x;
+	int spacing = 2;
+	
+	for(size_t i = 0; i < kernel.size(); i++)
+	{
+		for(size_t j = 0; j < kernel[0].size(); j++)
+		{
+			//ImGui::ItemSize(ImVec2(5,5));
+			int& value = kernel[i][j];
+			std::string uniqueLabel = "##CurrentKernelMatrixValue" + std::to_string(i) + std::to_string(j);
+			ImGui::PushItemWidth(((int)ImGui::GetWindowWidth() - paddingX*2 - spacing * (kernel.size()-1)) / kernel.size());
+			ImGui::DragInt(uniqueLabel.c_str(), &value);
+			ImGui::PopItemWidth();
+			if(j >= kernelSize-1) continue;
+			ImGui::SameLine(0, (int)spacing);
+		}
+	}
+	
+	ImGui::End();
+}
+
+void RendererOGL::setPostProcessWindowActive(bool showRendererPostProcessWindow)
+{
+	showPostProcessingWindow = showRendererPostProcessWindow;
 }

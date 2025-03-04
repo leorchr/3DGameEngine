@@ -292,6 +292,9 @@
     <ClCompile Include="Include\imguizmo\ImSequencer.cpp">
       <Filter>Include\imguizmo</Filter>
     </ClCompile>
+    <ClCompile Include="src\ImGUISettings.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />

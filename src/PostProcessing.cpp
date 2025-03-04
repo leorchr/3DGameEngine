@@ -72,19 +72,50 @@ void PostProcessing::startDrawing()
 	glEnable(GL_DEPTH_TEST);
 }
 
-void PostProcessing::displayFrameBuffer()
+void PostProcessing::computePostProcessing()
 {
+	computeShader->use();
 	
 	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
-	computeShader->use();
-	
+
+	computeShader->setInteger("matrixSize", 5);
+	computeShader->setInteger("average", 256);
+
+	std::vector<std::vector<int>> matrix = {
+		{1, 4, 6, 4, 1},
+		{4, 16, 24, 16, 4},
+		{6, 24, 36, 24, 6},
+		{4, 16, 24, 16, 4},
+		{1, 4, 6, 4, 1}
+	};
+	computeShader->setMatrix(matrix, 2, 3);
+
+	GLint numUniforms;
+	glGetProgramiv(computeShader->id, GL_ACTIVE_UNIFORMS, &numUniforms);
+	computeShader->printAllParams();
+
 	// Exécute le compute shader
 	int workgroupSizeX = 16;
 	int workgroupSizeY = 16;
 	glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
 	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
 	
+
+	int* mappedData = (int*)glMapBuffer(GL_SHADER_STORAGE_BUFFER, GL_READ_ONLY);
+	if (mappedData) {
+		for (int i = 0; i < 25; ++i) {
+			std::cout << "Data[" << i << "] = " << mappedData[i] << std::endl;
+		}
+		// Dé-mappage du buffer après avoir terminé la lecture
+		glUnmapBuffer(GL_SHADER_STORAGE_BUFFER);
+	} else {
+		std::cerr << "Failed to map buffer!" << std::endl;
+	}
+}
+
+void PostProcessing::displayFrameBuffer()
+{
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	shader->use();
 	glDisable(GL_DEPTH_TEST); // prevents framebuffer rectangle from being discarded

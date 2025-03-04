@@ -11,6 +11,8 @@ struct ImGUISettings
 	static ImVec2 playModePos;
 	static ImVec2 playModeSize;
 	static ImVec2 playModeButtonSize;
+	static ImVec2 computeShaderWindowPos;
+	static ImVec2 computeShaderWindowSize;
 	
 	static void updateForResolution(int windowWidth, int windowHeight)
 	{
@@ -24,6 +26,8 @@ struct ImGUISettings
 			playModePos = ImVec2(windowWidth / 2 - 100, 50);
 			playModeSize = ImVec2(125, 0);
 			playModeButtonSize = ImVec2(100, 0);
+			computeShaderWindowPos = ImVec2(50, 550);
+			computeShaderWindowSize = ImVec2(150, 75);
 		}
 		
 		else if (windowWidth == 1280 && windowHeight == 720) {
@@ -36,16 +40,9 @@ struct ImGUISettings
 			playModePos = ImVec2(windowWidth / 2 - 100, 50);
 			playModeSize = ImVec2(125, 0);
 			playModeButtonSize = ImVec2(100, 0);
+			computeShaderWindowPos = ImVec2(25, 350);
+			computeShaderWindowSize = ImVec2(200, 100);
 		}
 	}
 };
 
-ImVec2 ImGUISettings::viewportPosition = ImVec2(0, 0);
-ImVec2 ImGUISettings::viewportSize = ImVec2(0, 0);
-ImVec2 ImGUISettings::outlinerPos = ImVec2(0, 0);
-ImVec2 ImGUISettings::outlinerSize = ImVec2(0, 0);
-int ImGUISettings::outlinerListSize = 0;
-ImVec2 ImGUISettings::outlinerChildSize = ImVec2(0, 0);
-ImVec2 ImGUISettings::playModePos = ImVec2(0, 0);
-ImVec2 ImGUISettings::playModeSize = ImVec2(0, 0);
-ImVec2 ImGUISettings::playModeButtonSize = ImVec2(0, 0);

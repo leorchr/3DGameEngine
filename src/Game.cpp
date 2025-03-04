@@ -40,7 +40,7 @@ bool Game::initialize()
 {
 	const bool isLogInit = Log::initialize();
 	const bool isWindowInit = window.initialize();
-	const bool isRendererInit = renderer.initialize(window, false);
+	const bool isRendererInit = renderer.initialize(window);
 #ifdef _DEBUG
 	const bool isImGUIInit = ImGUIManager::initialize();
 #endif

@@ -1,4 +1,5 @@
-﻿#ifdef _DEBUG
+﻿#include "imgui_internal.h"
+#ifdef _DEBUG
 
 #include "ActorFactory.h"
 #include "ImGUIWindow.h"
@@ -8,12 +9,14 @@
 #include "SaveSystem.h"
 #include "ViewportActor.h"
 #include "ImGUISettings.h"
+#include "RendererOGL.h"
 
 #include <imgui.h>
 
 bool ImGUIWindow::showDemoWindow = false;
 bool ImGUIWindow::showStyleEditor = false;
 int ImGUIWindow::selectedActorIndex = -1;
+bool ImGUIWindow::showRendererPostProcessWindow = false;
 
 ImGUIWindow::ImGUIWindow(std::vector<class Actor*>& actors) : currentActor(nullptr), viewportActor(nullptr), position(0.0f), speed(0.0f), showImGUI(true), actors(actors)
 {
@@ -32,6 +35,7 @@ void ImGUIWindow::update()
 		playmode();
 		if(showDemoWindow) ImGui::ShowDemoWindow();
 		if(showStyleEditor) ImGui::ShowStyleEditor();
+		postProcessing();
 	}
 }
 
@@ -157,6 +161,11 @@ void ImGUIWindow::playmode()
 	ImGui::End();
 }
 
+void ImGUIWindow::postProcessing()
+{
+	Game::instance().getRenderer().updateImGui();
+}
+
 void ImGUIWindow::menu()
 {
 	static int activeTab = 0;
@@ -180,8 +189,6 @@ void ImGUIWindow::menu()
 
 	if (ImGui::BeginMenu("View"))
 	{
-		
-
 		if (ImGui::MenuItem("Show Demo Window", nullptr, showDemoWindow))
 		{
 			showDemoWindow = !showDemoWindow; // Toggle the value
@@ -190,6 +197,12 @@ void ImGUIWindow::menu()
 		if (ImGui::MenuItem("Show Style Editor", nullptr, showStyleEditor))
 		{
 			showStyleEditor = !showStyleEditor; // Toggle the value
+		}
+
+		if (ImGui::MenuItem("Show Compute Shader Editor", nullptr, showRendererPostProcessWindow))
+		{
+			showRendererPostProcessWindow = !showRendererPostProcessWindow; // Toggle the value
+			Game::instance().getRenderer().setPostProcessWindowActive(showRendererPostProcessWindow);
 		}
 		ImGui::EndMenu();
 	}

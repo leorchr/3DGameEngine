@@ -4,29 +4,38 @@ layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
 
 layout (binding = 0, rgba8) uniform image2D inputImage;
 layout (binding = 1, rgba8) uniform image2D outputImage;
-
-const int coeff[5][5] = {
-{1, 4, 6, 4, 1},
-{4, 16, 24, 16, 4},
-{6, 24, 36, 24, 6},
-{4, 16, 24, 16, 4},
-{1, 4, 6, 4, 1}
+layout(std430, binding = 2) buffer MatrixBuffer {
+    int matrix[];
 };
+layout(std430, binding = 3) buffer DebugBuffer {
+    int debugData[];
+};  
+
+uniform int matrixSize;
+uniform int average;
         
 void main()
 {
+    
     ivec2 coords = ivec2(gl_GlobalInvocationID.xy);
     vec4 color = vec4(0.0);
-            
-    for (int i = -2; i <= 2; i++)
+    
+    int currentMatrixSize = matrixSize/2;
+    
+    //Output matrix for debug
+    for (int i = 0; i < matrixSize*matrixSize; ++i) {
+        debugData[i] = matrix[i];
+    }
+    
+    for (int i = -currentMatrixSize; i <= currentMatrixSize; i++)
     {
-        for (int j = -2; j <= 2; j++)
+        for (int j = -currentMatrixSize; j <= currentMatrixSize; j++)
         {
             ivec2 offset = ivec2(i,j);
             vec4 colorBlurred = vec4(imageLoad(inputImage, coords + offset).xyz, 1.0);
-            color += colorBlurred * coeff[i + 2][j + 2];
+            color += colorBlurred * matrix[(i + currentMatrixSize) * matrixSize + j + currentMatrixSize];
         }
     }
-    color = color/256;
+    color = color/average;
     imageStore(outputImage, coords, color); // Écriture dans l'image de sortie
 }
