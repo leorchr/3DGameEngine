@@ -9,15 +9,15 @@ layout(std430, binding = 2) buffer MatrixBuffer {
 };
 
 uniform int matrixSize;
-uniform int average;
         
 void main()
 {
-    
     ivec2 coords = ivec2(gl_GlobalInvocationID.xy);
     vec4 color = vec4(0.0);
     
     int currentMatrixSize = matrixSize/2;
+    
+    int totalWeight = 0;
     
     for (int i = -currentMatrixSize; i <= currentMatrixSize; i++)
     {
@@ -25,9 +25,17 @@ void main()
         {
             ivec2 offset = ivec2(i,j);
             vec4 colorBlurred = vec4(imageLoad(inputImage, coords + offset).xyz, 1.0);
+            
             color += colorBlurred * matrix[(i + currentMatrixSize) * matrixSize + j + currentMatrixSize];
+            
+            totalWeight += matrix[(i + currentMatrixSize) * matrixSize + j + currentMatrixSize];
         }
     }
-    color = color/average;
-    imageStore(outputImage, coords, color); // Écriture dans l'image de sortie
+    
+    if(totalWeight != 0) {
+        color = color/ totalWeight;
+    } else {
+        color.a = 1.0;
+    }
+    imageStore(outputImage, coords, color);
 }

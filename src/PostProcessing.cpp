@@ -9,7 +9,7 @@
 #include <iostream>
 
 int PostProcessing::kernelSize = 5;
-int PostProcessing::kernelAverage = 256;
+int PostProcessing::numberPasses = 1;
 std::vector<std::vector<int>> PostProcessing::kernel = {
 	{1, 4, 6, 4, 1},
 	{4, 16, 24, 16, 4},
@@ -94,22 +94,33 @@ void PostProcessing::computePostProcessing()
 	if(!showPostProcessing) return;
 	computeShader->use();
 	
-	glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
-	glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
-
 	if(mustComputeKernel)
 	{
 		computeShader->setInteger("matrixSize", kernelSize);
-		computeShader->setInteger("average", kernelAverage);
 		computeShader->setMatrix(kernel, 2);
 		mustComputeKernel = false;
 	}
-
-	// Exécute le compute shader
+	
 	int workgroupSizeX = 16;
 	int workgroupSizeY = 16;
-	glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
-	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
+
+	for(size_t i = 0; i < numberPasses; i++)
+	{
+		glBindImageTexture(0, frameBufferTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
+		glBindImageTexture(1, frameBufferOutputTexture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
+		glDispatchCompute(WINDOW_WIDTH/workgroupSizeX,WINDOW_HEIGHT/workgroupSizeY,1);
+		glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT);
+
+		if(i == numberPasses - 1)
+		{
+			if(i%2 == 1) std::swap(frameBufferTexture, frameBufferOutputTexture);
+		}
+		else
+		{
+			std::swap(frameBufferTexture, frameBufferOutputTexture);
+			glClearTexImage(frameBufferOutputTexture, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+		}
+	}
 }
 
 void PostProcessing::displayFrameBuffer() const
@@ -158,10 +169,7 @@ void PostProcessing::updateImGui()
 		mustComputeKernel = true;
 	}
 
-	if(ImGui::DragInt("Kernel Average", &kernelAverage, 1, 1, 10000, "%d"))
-	{
-		mustComputeKernel = true;	
-	}
+	ImGui::DragInt("Multipass Rendering", &numberPasses, 1, 1, 10000, "%d");
 
 	ImGuiWindow* window = ImGui::GetCurrentWindow();
 	ImVec2 windowPadding = window->WindowPadding;

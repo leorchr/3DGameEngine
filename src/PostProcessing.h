@@ -47,7 +47,7 @@ public:
 
 private:
 	static int kernelSize;
-	static int kernelAverage;
+	static int numberPasses;
 	static std::vector<std::vector<int>> kernel;
 	static bool showPostProcessingWindow;
 	static bool showPostProcessing;
