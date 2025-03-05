@@ -122,10 +122,10 @@ void Game::load()
 
 	// Setup lights
 	renderer.setAmbientLight(Vector3(0.1f, 0.1f, 0.1f));
-	DirectionalLight& dir = renderer.getDirectionalLight();
-	dir.diffuseColor = Vector3(0.9f,0.9f,0.9f);
-	dir.direction = Vector3(-1.0f,-1.0f,-1.0f);
-	dir.specColor = Vector3(1.0f,1.0f,1.0f);
+	PositionalLight& positionalLight = renderer.getPositionalLight();
+	positionalLight.diffuseColor = Vector3(0.8f,0.8f,0.8f);
+	positionalLight.position = Vector3(10000.0f,10000.0f,10000.0f);
+	positionalLight.specColor = Vector3(1.0f,1.0f,1.0f);
 
 	SaveSystem::loadFirstFile();
 }

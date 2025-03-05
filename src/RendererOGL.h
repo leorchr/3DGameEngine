@@ -5,7 +5,7 @@
 #include "Shader.h"
 
 #include <vector>
-#include "DirectionalLight.h"
+#include "PositionalLight.h"
 #include "PostProcessing.h"
 
 class RendererOGL : public IRenderer
@@ -31,7 +31,7 @@ public:
 	void addMesh(class MeshComponent* mesh);
 	void removeMesh(class MeshComponent* mesh);
 
-	DirectionalLight& getDirectionalLight() { return dirLight; }
+	PositionalLight& getPositionalLight() { return positionalLight; }
 
 	void setViewMatrix(const Matrix4& viewP);
 	void setLightUniforms(Shader& shader);
@@ -65,7 +65,7 @@ private:
 	std::vector<class SpriteComponent*> sprites;
 
 	Vector3 ambientLight;
-	DirectionalLight dirLight;
+	PositionalLight positionalLight;
 
 	PostProcessing* postProcessing;
 };

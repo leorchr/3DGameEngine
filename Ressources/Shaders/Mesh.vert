@@ -14,9 +14,10 @@ out vec3 fragWorldPos;
 void main()
 {
     vec4 pos = vec4(inPosition, 1.0);
-    fragWorldPos = pos.xyz;
-    gl_Position = uViewProjection * uWorldTransform * pos;
-    
-    fragNormal = (vec4(inNormal, 0.0f) * uWorldTransform).xyz;
+
+    fragWorldPos = vec3(pos * uWorldTransform);
+    fragNormal = vec3(vec4(inNormal,1.0) * uWorldTransform);
     fragTexCoord = inTexCoord;
+    
+    gl_Position = uViewProjection * uWorldTransform * pos;
 }

@@ -315,7 +315,7 @@ xcopy "$(ProjectDir)Libraries\*" "$(TargetDir)" /e /y /i /r</Command>
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ControllerState.h" />
     <ClInclude Include="src\Cube.h" />
-    <ClInclude Include="src\DirectionalLight.h" />
+    <ClInclude Include="src\PositionalLight.h" />
     <ClInclude Include="src\FPSActor.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameOverScreen.h" />

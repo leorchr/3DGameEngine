@@ -21,7 +21,7 @@ RendererOGL::RendererOGL() :
 	view(Matrix4::createLookAt(Vector3::zero, Vector3::unitX, Vector3::unitZ)),
 	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(80.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 1.0f, 20000.0f)),
 	ambientLight(Vector3(1.0f, 1.0f, 1.0f)),
-	dirLight({Vector3::zero, Vector3::zero, Vector3::zero}),
+	positionalLight({Vector3::zero, Vector3::zero, Vector3::zero}),
 	postProcessing(nullptr) {}
 
 RendererOGL::~RendererOGL() {}
@@ -248,13 +248,15 @@ void RendererOGL::setLightUniforms(Shader& shader)
 	// Camera position is from inverted view
 	Matrix4 invertedView = view;
 	invertedView.invert();
+
+	Vector3 camPos = invertedView.getTranslation();
 	shader.setVector3f("uCameraPos", invertedView.getTranslation());
 	// Ambient
 	shader.setVector3f("uAmbientLight", ambientLight);
 	// Directional light
-	shader.setVector3f("uDirLight.direction", dirLight.direction);
-	shader.setVector3f("uDirLight.diffuseColor", dirLight.diffuseColor);
-	shader.setVector3f("uDirLight.specColor", dirLight.specColor);
+	shader.setVector3f("uPositionalLight.position", positionalLight.position);
+	shader.setVector3f("uPositionalLight.diffuseColor", positionalLight.diffuseColor);
+	shader.setVector3f("uPositionalLight.specColor", positionalLight.specColor);
 }
 
 void RendererOGL::setAmbientLight(const Vector3& ambientP)
