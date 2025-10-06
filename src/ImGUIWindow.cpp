@@ -13,6 +13,8 @@
 
 #include <imgui.h>
 
+#include "ImGuizmo.h"
+
 bool ImGUIWindow::showDemoWindow = false;
 bool ImGUIWindow::showStyleEditor = false;
 int ImGUIWindow::selectedActorIndex = -1;
@@ -33,6 +35,7 @@ void ImGUIWindow::update()
 		viewport();
 		outliner();
 		playmode();
+		imguizmo();
 		if(showDemoWindow) ImGui::ShowDemoWindow();
 		if(showStyleEditor) ImGui::ShowStyleEditor();
 		postProcessing();
@@ -158,6 +161,35 @@ void ImGUIWindow::playmode()
 	{
 		Game::instance().setMode(EngineMode::Game);
 	}
+	ImGui::End();
+}
+
+void ImGUIWindow::imguizmo()
+{
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoTitleBar;
+	ImGui::SetNextWindowPos(ImVec2(0,0));
+	ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH,WINDOW_HEIGHT));
+	
+	ImGui::Begin("Scene", nullptr, flags);
+
+	ImVec2 winPos   = ImGui::GetWindowPos();
+	ImVec2 rMin     = ImGui::GetWindowContentRegionMin();
+	ImVec2 rMax     = ImGui::GetWindowContentRegionMax();
+	ImVec2 p0       = ImVec2(winPos.x + rMin.x, winPos.y + rMin.y);
+	ImVec2 p1       = ImVec2(winPos.x + rMax.x, winPos.y + rMax.y);
+	ImVec2 size     = ImVec2(p1.x - p0.x, p1.y - p0.y);
+
+	ImGuizmo::SetDrawlist(ImGui::GetWindowDrawList());
+	ImGuizmo::SetRect(p0.x, p0.y, size.x, size.y);
+
+	if(currentActor != nullptr)
+	{
+		if(currentActor->getState() == Actor::ActorState::Active)
+		{
+			currentActor->updateImGuizmo();
+		}
+	}
+
 	ImGui::End();
 }
 

@@ -33,6 +33,8 @@ public:
 
 	PositionalLight& getPositionalLight() { return positionalLight; }
 
+	Matrix4 getViewMatrix();
+	Matrix4 getProjMatrix();
 	void setViewMatrix(const Matrix4& viewP);
 	void setLightUniforms(Shader& shader);
 	void setAmbientLight(const Vector3& ambientP);

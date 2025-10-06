@@ -5,10 +5,21 @@
 #include "Matrix4.h"
 #include <document.h>
 #include <string>
+
+class RendererOGL;
 using std::vector;
 
 class Game;
 class Component;
+
+#ifdef _DEBUG
+struct Config
+{
+	Vector3 snapTranslation{};
+	Vector3 snapRotation{};
+	Vector3 snapScale{};
+};
+#endif
 
 class Actor
 {
@@ -78,12 +89,11 @@ protected:
 	
 public:
 	virtual void updateImGUIOutliner();
-	
+	void updateImGuizmo();
+
 private:
-	bool isScaleLocked;
-	Vector3 uiRotation;
-	Vector3 uiPosition;
-	Vector3 uiScale;
+	Vector3 snap;
+	Config snapConfig;
 	
 #endif
 	// End of ImGUI

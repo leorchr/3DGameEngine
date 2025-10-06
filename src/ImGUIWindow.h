@@ -21,10 +21,12 @@ public:
 	static bool showStyleEditor;
 	static int selectedActorIndex;
 	static bool showRendererPostProcessWindow;
+	static bool useSnap;
 protected:
 	void viewport();
 	void outliner();
 	void playmode();
+	void imguizmo();
 	static void postProcessing();
 	
 private:

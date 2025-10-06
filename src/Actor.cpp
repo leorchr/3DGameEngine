@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "Component.h"
 #include "imgui.h"
+#include "ImGUIWindow.h"
+#include "ImGuizmo.h"
 #include "Maths.h"
 
 Actor::Actor() :
@@ -13,9 +15,6 @@ Actor::Actor() :
 	mustRecomputeWorldTransform(true),
 	game(Game::instance()),
 	name("Unnamed")
-#ifdef _DEBUG
-	,isScaleLocked(false)
-#endif
 {
 	game.addActor(this);
 }
@@ -236,75 +235,70 @@ std::string Actor::getTypeName() const
 }
 
 #ifdef _DEBUG
+static ImGuizmo::OPERATION currentGizmoOperation(ImGuizmo::ROTATE);
+static ImGuizmo::MODE currentGizmoMode(ImGuizmo::WORLD);
+static bool useSnap(false);
+
 void Actor::updateImGUIOutliner()
 {
-	ImGui::Text(name.c_str());
-				
-	Vector3 currentPosition = getPosition();
-	Vector3 uiPosition = currentPosition;
-					
-	if (ImGui::DragFloat3("Position", &uiPosition.x, 1.0f)) {
-		if (uiPosition != currentPosition) {
-			setPosition(uiPosition);
-		}
-	}
+    if (ImGui::IsKeyPressed(ImGuiKey_W))
+        currentGizmoOperation = ImGuizmo::TRANSLATE;
+    if (ImGui::IsKeyPressed(ImGuiKey_E))
+        currentGizmoOperation = ImGuizmo::ROTATE;
+    if (ImGui::IsKeyPressed(ImGuiKey_R))
+        currentGizmoOperation = ImGuizmo::SCALE;
+    if (ImGui::RadioButton("Translate", currentGizmoOperation == ImGuizmo::TRANSLATE))
+        currentGizmoOperation = ImGuizmo::TRANSLATE;
+    ImGui::SameLine();
+    if (ImGui::RadioButton("Rotate", currentGizmoOperation == ImGuizmo::ROTATE))
+        currentGizmoOperation = ImGuizmo::ROTATE;
+    ImGui::SameLine();
+    if (ImGui::RadioButton("Scale", currentGizmoOperation == ImGuizmo::SCALE))
+        currentGizmoOperation = ImGuizmo::SCALE;
+    float matrixTranslation[3], matrixRotation[3], matrixScale[3];
+    ImGuizmo::DecomposeMatrixToComponents(worldTransform.getAsFloatPtr(), matrixTranslation, matrixRotation, matrixScale);
+    ImGui::InputFloat3("Translation", matrixTranslation, "%.2f");
+    ImGui::InputFloat3("Rotation", matrixRotation, "%.2f");
+    ImGui::InputFloat3("Scale", matrixScale, "%.2f");
+    ImGuizmo::RecomposeMatrixFromComponents(matrixTranslation, matrixRotation, matrixScale, &worldTransform.mat[0][0]);
+    
+    if (currentGizmoOperation != ImGuizmo::SCALE)
+    {
+        if (ImGui::RadioButton("Local", currentGizmoMode == ImGuizmo::LOCAL))
+            currentGizmoMode = ImGuizmo::LOCAL;
+        ImGui::SameLine();
+        if (ImGui::RadioButton("World", currentGizmoMode == ImGuizmo::WORLD))
+            currentGizmoMode = ImGuizmo::WORLD;
+    }
 
-
-	//Rotation
-	Vector3 currentRotation = uiRotation;
-
-	if (ImGui::DragFloat3("Rotation", &uiRotation.x, 1.0f)) {
-		if (uiRotation != currentRotation) {
-
-			// ZYX order for rotations
-			Quaternion rot = Quaternion::identity;
-						
-			Quaternion yaw = Quaternion(Vector3::unitZ, uiRotation.z*(Maths::pi/180));
-			rot = Quaternion::concatenate(yaw, rot);
-						
-			Quaternion pitch = Quaternion(Vector3::unitY, uiRotation.y*(Maths::pi/180));
-			rot = Quaternion::concatenate(pitch, rot);
-						
-			Quaternion roll = Quaternion(Vector3::unitX, uiRotation.x*(Maths::pi/180));
-			rot = Quaternion::concatenate(roll, rot);
-						
-			setRotation(rot);
-		}
-	}
-
-	// Scale
-				
-	Vector3 currentScale = getScale();
-	Vector3 uiScale = currentScale;
-				
-	if (ImGui::DragFloat3("Scale", &uiScale.x, 0.1f)) {
-		if (uiScale != currentScale) {
-			if (isScaleLocked)
-			{
-				if (uiScale.x != currentScale.x)
-				{
-					float difference = uiScale.x - currentScale.x;
-					uiScale.y += difference;
-					uiScale.z += difference;
-				}
-				if (uiScale.y != currentScale.y)
-				{
-					float difference = uiScale.y- currentScale.y;
-					uiScale.x += difference;
-					uiScale.z += difference;
-				}
-				if (uiScale.z != currentScale.z)
-				{
-					float difference = uiScale.z - currentScale.z;
-					uiScale.x += difference;
-					uiScale.y += difference;
-				}
-			}
-			setScale(uiScale);
-		}
-	}
+	if (ImGui::IsKeyPressed(ImGuiKey_T))
+		useSnap = !useSnap;
+	ImGui::Checkbox("useSnap", &useSnap);
 	ImGui::SameLine();
-	ImGui::Checkbox("Lock", &isScaleLocked);
+	switch (currentGizmoOperation)
+	{
+	case ImGuizmo::TRANSLATE:
+		snap = snapConfig.snapTranslation;
+		ImGui::InputFloat3("Snap", &snap.x);
+		snapConfig.snapTranslation = snap;
+		break;
+	case ImGuizmo::ROTATE:
+		snap = snapConfig.snapRotation;
+		ImGui::InputFloat("Angle Snap", &snap.x);
+		snapConfig.snapRotation = snap;
+		break;
+	case ImGuizmo::SCALE:
+		snap = snapConfig.snapScale;
+		ImGui::InputFloat("Scale Snap", &snap.x);
+		snapConfig.snapScale = snap;
+		break;
+	}
+	
+}
+
+void Actor::updateImGuizmo()
+{
+    ImGuizmo::Manipulate(getGame().getRenderer().getViewMatrix().getAsFloatPtr(), getGame().getRenderer().getProjMatrix().getAsFloatPtr(), currentGizmoOperation, currentGizmoMode, &worldTransform.mat[0][0], NULL, useSnap ? snap.getAsFloatPtr() : NULL);
 }
 #endif
 

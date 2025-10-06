@@ -238,6 +238,16 @@ void RendererOGL::removeMesh(MeshComponent* mesh)
 	meshes.erase(iter);
 }
 
+Matrix4 RendererOGL::getViewMatrix()
+{
+	return view;
+}
+
+Matrix4 RendererOGL::getProjMatrix()
+{
+	return projection;
+}
+
 void RendererOGL::setViewMatrix(const Matrix4& viewP)
 {
 	view = viewP;

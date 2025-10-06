@@ -6,6 +6,8 @@
 #include <imgui.h>
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_sdl2.h>
+#include <ImGuizmo.h>
+
 
 bool ImGUIManager::initialize()
 {
@@ -100,6 +102,7 @@ bool ImGUIManager::initialize()
 	colors[ImGuiCol_NavWindowingDimBg]      = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 	colors[ImGuiCol_ModalWindowDimBg]       = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 
+	ImGuizmo::Enable(true);
 	return true;
 }
 
@@ -108,6 +111,7 @@ void ImGUIManager::beginDraw()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
+	ImGuizmo::BeginFrame();	
 	Game::instance().getImGuiWindow()->update();
 }
 

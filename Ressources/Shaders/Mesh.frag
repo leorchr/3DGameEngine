@@ -45,5 +45,5 @@ void main()
     // phong results
     phong += diffuse + specular;
     
-    fragColor = texture(gSampler, fragTexCoord) * vec4(phong, 1.0f);
+    fragColor = texture(gSampler, fragTexCoord);// * vec4(phong, 1.0f);
 }
