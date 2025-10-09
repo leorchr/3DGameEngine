@@ -19,6 +19,7 @@
 #include "Font.h"
 #include "ImGUIWindow.h"
 #include "SaveSystem.h"
+#include "SoundManager.h"
 #include "SunActor.h"
 
 #ifdef _DEBUG
@@ -46,7 +47,8 @@ bool Game::initialize()
 #endif
 	const bool isInputInit = inputSystem.initialize();
 	const bool isFontInit = Font::initialize();
-	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit
+	const bool isSoundInit = SoundManager::initialize();
+	return isWindowInit && isRendererInit && isInputInit && isFontInit && isLogInit && isSoundInit
 #ifdef _DEBUG
 	&& isImGUIInit
 #endif
@@ -227,6 +229,7 @@ void Game::processInput()
 
 void Game::update(float dt)
 {
+	SoundManager::processAudio();
 	switch (mode)
 	{
 	case EngineMode::Game:
@@ -368,6 +371,7 @@ void Game::unload()
 void Game::close()
 {
 	Font::close();
+	SoundManager::close();
 	inputSystem.close();
 	renderer.close();
 	window.close();

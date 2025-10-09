@@ -295,6 +295,37 @@
     <ClCompile Include="src\ImGUISettings.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="src\SoundManager.cpp" />
+    <ClCompile Include="src\AK\AkDefaultIOHookDeferred.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkDefaultLowLevelIODispatcher.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkFileLocationBase.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkFilePackage.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkFilePackageLUT.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkGeneratedSoundBanksResolver.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkJobWorkerMgr.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkMultipleFileLocation.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\AkPlatformProfilerHooks.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AK\stdafx.cpp">
+      <Filter>AK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
@@ -337,9 +368,6 @@
     </ClInclude>
     <ClInclude Include="src\SplineCameraComponent.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DirectionalLight.h">
-      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\IRenderer.h">
       <Filter>Graphics</Filter>
@@ -617,6 +645,53 @@
     <ClInclude Include="Include\imguizmo\ImZoomSlider.h">
       <Filter>Include\imguizmo</Filter>
     </ClInclude>
+    <ClInclude Include="src\PositionalLight.h" />
+    <ClInclude Include="src\SoundManager.h" />
+    <ClInclude Include="src\AK\AkDefaultIOHookDeferred.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkDefaultLowLevelIODispatcher.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFileHelpers.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFileHelpersBase.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFileLocationBase.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFilePackage.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFilePackageLowLevelIO.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFilePackageLowLevelIO.inl">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFilePackageLowLevelIODeferred.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkFilePackageLUT.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkGeneratedSoundBanksResolver.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkJobWorkerMgr.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkMultipleFileLocation.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\AkPlatformProfilerHooks.h">
+      <Filter>AK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AK\stdafx.h">
+      <Filter>AK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Shaders\Mesh.frag">
@@ -701,6 +776,12 @@
     </Filter>
     <Filter Include="Include\imguizmo">
       <UniqueIdentifier>{5e551c2c-b643-402e-9461-b463c0a770c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Sound">
+      <UniqueIdentifier>{b27fc970-fa21-4aff-8ca7-4d8072139320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AK">
+      <UniqueIdentifier>{91d32ab4-f494-4e31-9f7f-c6198bfceca8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
