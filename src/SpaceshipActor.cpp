@@ -26,6 +26,7 @@ SpaceshipActor::SpaceshipActor() :
 	setPosition(Vector3(0.0f,0.0f,10.0f));
 	Game::instance().setPlayer(this);
 
+	akComponent->setAsListener();
 	ui = new SpaceshipUi(*this);
 }
 
@@ -37,6 +38,7 @@ SpaceshipActor::~SpaceshipActor()
 void SpaceshipActor::updateActor(float dt)
 {
 	Actor::updateActor(dt);
+	akComponent->updatePosition();
 }
 
 void SpaceshipActor::actorInput(const InputState& inputState)

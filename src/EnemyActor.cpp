@@ -1,9 +1,13 @@
 ﻿#include "Game.h"
 #include "EnemyActor.h"
+
+#include "AkComponent.h"
 #include "EnemyRocketActor.h"
+#include "../Wwise/GeneratedSoundBanks/Wwise_IDs.h"
 
 EnemyActor::EnemyActor() : MeshActor("Turret"), currentShootIntervals(baseShootingIntervals), currentLife(baseLife)
 {
+	akComponent = new AkComponent(this);
 	setName("Enemy");
 	game.addEnemy(this);
 }
@@ -54,6 +58,11 @@ void EnemyActor::shoot()
 		
 	// Rotate the ball to face new direction
 	ball->rotateToNewForward(dir);
+
+	if (akComponent != nullptr)
+	{
+		akComponent->PostEvent(AK::EVENTS::PLAY_SHOT);
+	}
 }
 
 void EnemyActor::onHit(int damages)

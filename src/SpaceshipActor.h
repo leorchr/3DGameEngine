@@ -27,6 +27,6 @@ private:
 	
 	const float radius = 10;
 
-	const int baseLife = 100;
+	const int baseLife = 1000000;
 	int currentLife;
 };

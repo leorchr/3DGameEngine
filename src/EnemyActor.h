@@ -15,6 +15,9 @@ public:
 	void onHit(int damages);
 
 private:
+
+	class AkComponent* akComponent = nullptr;
+	
 	const float baseShootingIntervals = 2.0f;
 	float currentShootIntervals;
 

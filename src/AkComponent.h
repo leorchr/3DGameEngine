@@ -8,7 +8,9 @@ public:
     AkComponent(class Actor* owner, int updateOrder = 100);
     virtual ~AkComponent();
 
-    void PostEvent(AkUniqueID eventId);
+    void setAsListener() const;
+    void updatePosition() const;
+    void PostEvent(AkUniqueID eventId) const;
 
 private:
     AkGameObjectID gameObjectId;

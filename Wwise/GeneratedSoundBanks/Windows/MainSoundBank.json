@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{BAD9386B-6FA0-43C6-B2C9-345C03BB5A29}",
     "Language": "SFX",
-    "Hash": "{9C74A7DC-EA2F-6BEB-1603-65EB643C8B87}",
+    "Hash": "{EC45FF7F-1483-E483-3C18-6731025BD0F1}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\MainSoundBank",
     "ShortName": "MainSoundBank",
     "Path": "MainSoundBank.bnk",
@@ -38,6 +38,7 @@
       "Name": "play_shot",
       "ObjectPath": "\\Events\\Default Work Unit\\Sounds\\play_shot",
       "GUID": "{6AA6F109-F747-4360-BA29-60AC2A55E265}",
+      "MaxAttenuation": "500",
       "DurationType": "OneShot",
       "DurationMin": "0.984",
       "DurationMax": "0.984",
@@ -64,6 +65,6 @@
     ]
    }
   ],
-  "FileHash": "{1EF67401-96C3-F4C7-FB3F-D47652B873B8}"
+  "FileHash": "{E6B0AB6C-6DAA-D503-0D74-62FFE162BB6E}"
  }
 }

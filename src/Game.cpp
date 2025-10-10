@@ -432,9 +432,9 @@ void Game::setMode(EngineMode mode)
 		new SpaceshipActor();
 		player->setName("Spaceship Actor");
 		player->setPosition(Vector3(0.0f,0.0f,50.0f));
-		AK::SoundEngine::RegisterGameObj( GAME_OBJECT_ID, "Music" );
-		AK::SoundEngine::SetPosition(GAME_OBJECT_ID, AkTransform{});
-		AK::SoundEngine::PostEvent( AK::EVENTS::PLAY_SHOT_IN_THE_DARK, GAME_OBJECT_ID );
+		// AK::SoundEngine::RegisterGameObj( GAME_OBJECT_ID, "Music" );
+		// AK::SoundEngine::SetPosition(GAME_OBJECT_ID, AkTransform{});
+		// AK::SoundEngine::PostEvent( AK::EVENTS::PLAY_SHOT_IN_THE_DARK, GAME_OBJECT_ID );
 		imGuiWindow->setShowImGUI(false);
 		break;
 	case EngineMode::None:

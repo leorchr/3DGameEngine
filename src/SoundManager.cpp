@@ -18,7 +18,6 @@
 #define BANKNAME_INIT L"Init.bnk"
 #define BANKNAME_MAIN L"MainSoundBank.bnk"
 
-const AkGameObjectID DEFAULT_LISTENER = 0;
 CAkFilePackageLowLevelIODeferred g_lowLevelIO;
 
 bool SoundManager::initialize()
@@ -91,8 +90,8 @@ bool SoundManager::initialize()
     }
 #endif // AK_OPTIMIZED
 
-    AK::SoundEngine::RegisterGameObj(DEFAULT_LISTENER, "Default Listener");
-    AK::SoundEngine::SetDefaultListeners(&DEFAULT_LISTENER, 1);
+    //AK::SoundEngine::RegisterGameObj(DEFAULT_LISTENER, "Default Listener");
+    //AK::SoundEngine::SetDefaultListeners(&DEFAULT_LISTENER, 1);
 
     return true;
 }
@@ -112,6 +111,7 @@ void SoundManager::loadBanks()
 void SoundManager::processAudio()
 {
     AK::SoundEngine::RenderAudio();
+
 }
 
 void SoundManager::close()
