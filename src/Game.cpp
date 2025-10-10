@@ -1,4 +1,7 @@
 #include "Game.h"
+
+#include <AK/SoundEngine/Common/AkSoundEngine.h>
+
 #include "ActorFactory.h"
 #include "Assets.h"
 #include "ComputeShader.h"
@@ -34,6 +37,10 @@
 #else
 	#define ENGINE_MODE EngineMode::Game
 #endif
+
+#include "../Wwise/GeneratedSoundBanks/Wwise_IDs.h"
+
+const AkGameObjectID GAME_OBJECT_ID = 100;
 
 Game::Game() : state(GameState::Running), mode(EngineMode::None), isUpdatingActors(false), player(nullptr) {}
 
@@ -130,6 +137,14 @@ void Game::load()
 	positionalLight.specColor = Vector3(1.0f,1.0f,1.0f);
 
 	SaveSystem::loadFirstFile();
+	SoundManager::loadBanks();
+
+#ifdef NDEBUG
+	AKRESULT result = AK::SoundEngine::RegisterGameObj( GAME_OBJECT_ID, "Music" );
+	AK::SoundEngine::SetPosition(GAME_OBJECT_ID, AkTransform{});
+	AK::SoundEngine::PostEvent( AK::EVENTS::PLAY_SHOT_IN_THE_DARK, GAME_OBJECT_ID );
+#endif
+	
 }
 
 void Game::setPlayer(Actor* player)
@@ -417,6 +432,9 @@ void Game::setMode(EngineMode mode)
 		new SpaceshipActor();
 		player->setName("Spaceship Actor");
 		player->setPosition(Vector3(0.0f,0.0f,50.0f));
+		AK::SoundEngine::RegisterGameObj( GAME_OBJECT_ID, "Music" );
+		AK::SoundEngine::SetPosition(GAME_OBJECT_ID, AkTransform{});
+		AK::SoundEngine::PostEvent( AK::EVENTS::PLAY_SHOT_IN_THE_DARK, GAME_OBJECT_ID );
 		imGuiWindow->setShowImGUI(false);
 		break;
 	case EngineMode::None:

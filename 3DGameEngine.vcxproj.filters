@@ -326,6 +326,9 @@
     <ClCompile Include="src\AK\stdafx.cpp">
       <Filter>AK</Filter>
     </ClCompile>
+    <ClCompile Include="src\AkComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
@@ -692,6 +695,10 @@
     <ClInclude Include="src\AK\stdafx.h">
       <Filter>AK</Filter>
     </ClInclude>
+    <ClInclude Include="src\AkComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Shaders\Mesh.frag">

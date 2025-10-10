@@ -1,0 +1,29 @@
+{
+ "ProjectInfo": {
+  "Project": {
+   "Name": "Wwise",
+   "GUID": "{225C68E2-B522-4734-9466-E0755217F6A1}",
+   "Generator": "2024.1.7.8863"
+  },
+  "CacheRoot": "../.cache",
+  "Platforms": [
+   {
+    "Name": "Windows",
+    "GUID": "{CBADB626-0E61-4F13-9E98-C1556D2F1E03}",
+    "BasePlatform": "Windows",
+    "BasePlatformGUID": "{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}",
+    "Path": "Windows"
+   }
+  ],
+  "Languages": [
+   {
+    "Name": "English(US)",
+    "Id": "684519430",
+    "GUID": "{EF65C0D7-9125-4755-BBDF-D054A67524F0}",
+    "Default": "true",
+    "UseAsStandIn": "true"
+   }
+  ],
+  "FileHash": "{9F429EB2-8EC6-7507-AE8A-D884EE8D3012}"
+ }
+}

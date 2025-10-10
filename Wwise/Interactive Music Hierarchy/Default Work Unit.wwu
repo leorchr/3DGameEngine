@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{3054F849-9F9A-4CA6-9BDD-D93D5C4837F5}" SchemaVersion="123">
+	<InteractiveMusic>
+		<WorkUnit Name="Default Work Unit" ID="{3054F849-9F9A-4CA6-9BDD-D93D5C4837F5}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicSegment Name="ShotInTheDark" ID="{20497865-52C1-4932-88D9-452E58221FA4}" ShortID="576737628">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="186386.575963719"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0C07AE6A-1F1C-4B74-98C9-88E1FA3589CB}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{678A8251-0E78-4C34-8957-962F735051C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="ShotInTheDark" ID="{8BDDC30D-877A-4F80-B676-88A0568DB660}" ShortID="633935165">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{678A8251-0E78-4C34-8957-962F735051C2}"/>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{D10ED5CF-41B4-462B-AFCF-4C98D86B2331}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ShotInTheDark" ID="{47C6718D-F168-4F28-AA7A-1F2BB1E8C7F9}">
+									<Language>SFX</Language>
+									<AudioFile>ShotInTheDark.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="311342065"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{301941E3-4D32-4C54-BD14-5F0D330F92F7}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="ShotInTheDark" ID="{A3573617-0BD9-4600-B769-B7904736DCA7}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="186386.575963719"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="ShotInTheDark" ID="{47C6718D-F168-4F28-AA7A-1F2BB1E8C7F9}"/>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{FB6A2E65-9CA8-45BA-A668-43099DAE9402}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{2096FB82-1F05-4479-B097-7BC2C955764E}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="186386.575963719"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
+			</ChildrenList>
+		</WorkUnit>
+	</InteractiveMusic>
+</WwiseDocument>

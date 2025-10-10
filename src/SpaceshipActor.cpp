@@ -1,15 +1,19 @@
 #include "SpaceshipActor.h"
+
+#include "AkComponent.h"
 #include "Game.h"
 #include "SpaceshipMovementInput.h"
 #include "SpaceshipCameraComponent.h"
 #include "SpaceshipCollisionsComponent.h"
 #include "RocketActor.h"
 #include "SpaceshipUI.h"
+#include "../Wwise/GeneratedSoundBanks/Wwise_IDs.h"
 
 SpaceshipActor::SpaceshipActor() :
 	moveInputComponent(nullptr),
 	cameraComponent(nullptr),
 	physicsComponent(nullptr),
+	akComponent(nullptr),
 	ui(nullptr),
 	currentLife(baseLife)
 {
@@ -17,6 +21,7 @@ SpaceshipActor::SpaceshipActor() :
 	moveInputComponent = new SpaceshipMovementInput(this);
 	cameraComponent = new SpaceshipCameraComponent(this);
 	physicsComponent = new SpaceshipCollisionsComponent(this, radius);
+	akComponent = new AkComponent(this);
 	setName("Spaceship");
 	setPosition(Vector3(0.0f,0.0f,10.0f));
 	Game::instance().setPlayer(this);
@@ -92,4 +97,6 @@ void SpaceshipActor::shoot() const
 	RocketActor* ball = new RocketActor();
 	ball->rotateToNewForward(dir);
 	ball->setPosition(adjustedStart);
+
+	akComponent->PostEvent(AK::EVENTS::PLAY_SHOT);
 }

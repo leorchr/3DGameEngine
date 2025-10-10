@@ -1,0 +1,8 @@
+Event	ID	Name			Wwise Object Path	Notes
+	268953978	play_shot			\Default Work Unit\Sounds\play_shot	
+	2717245987	play_shot_in_the_dark			\Default Work Unit\Sounds\play_shot_in_the_dark	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	311342065	ShotInTheDark	D:\5Game\git\3d-game-engine\Wwise\.cache\B1\{B19C8CA8-D4DD-64FE-BA78-BABE3F1291D6}.wem		\Interactive Music Hierarchy\Default Work Unit\ShotInTheDark\ShotInTheDark		32878688
+	1029457135	Shot	D:\5Game\git\3d-game-engine\Wwise\.cache\5F\{5F577BCD-C469-EC55-4F60-33DBA3CD7D76}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Shot		189024
+

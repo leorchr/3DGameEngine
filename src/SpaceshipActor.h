@@ -22,6 +22,7 @@ private:
 	class SpaceshipMovementInput* moveInputComponent;
 	class SpaceshipCameraComponent* cameraComponent;
 	class SpaceshipCollisionsComponent* physicsComponent;
+	class AkComponent* akComponent;
 	class SpaceshipUi* ui;
 	
 	const float radius = 10;

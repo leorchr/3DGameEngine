@@ -2,14 +2,11 @@
 
 #include "AK/AkFilePackageLowLevelIODeferred.h"
 #include <cassert>
+#include <AK/SoundEngine/Common/AkMemoryMgr.h>
 #include <AK/SoundEngine/Common/AkMemoryMgrModule.h>
 #include <AK/SoundEngine/Common/AkStreamMgrModule.h>
 #include <AK/SoundEngine/Common/AkSoundEngine.h>
 #include <AK/MusicEngine/Common/AkMusicEngine.h>
-
-#ifdef _RELEASE
-    #define AK_OPTIMIZED
-#endif
 
 #define AKSOUNDENGINE_DLL
 
@@ -17,6 +14,11 @@
     #include <AK/Comm/AkCommunication.h>
 #endif // AK_OPTIMIZED
 
+// Bank file names
+#define BANKNAME_INIT L"Init.bnk"
+#define BANKNAME_MAIN L"MainSoundBank.bnk"
+
+const AkGameObjectID DEFAULT_LISTENER = 0;
 CAkFilePackageLowLevelIODeferred g_lowLevelIO;
 
 bool SoundManager::initialize()
@@ -89,7 +91,22 @@ bool SoundManager::initialize()
     }
 #endif // AK_OPTIMIZED
 
+    AK::SoundEngine::RegisterGameObj(DEFAULT_LISTENER, "Default Listener");
+    AK::SoundEngine::SetDefaultListeners(&DEFAULT_LISTENER, 1);
+
     return true;
+}
+
+void SoundManager::loadBanks()
+{
+    g_lowLevelIO.SetBasePath( AKTEXT("Wwise/GeneratedSoundBanks/Windows/") );
+    AK::StreamMgr::SetCurrentLanguage( AKTEXT("English(US)") );
+
+    AkBankID bankID; // Not used. These banks can be unloaded with their file name.
+    AKRESULT eResult = AK::SoundEngine::LoadBank( BANKNAME_INIT, bankID );
+    assert( eResult == AK_Success );
+    eResult = AK::SoundEngine::LoadBank( BANKNAME_MAIN, bankID );
+    assert( eResult == AK_Success );
 }
 
 void SoundManager::processAudio()

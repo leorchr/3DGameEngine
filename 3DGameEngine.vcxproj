@@ -139,7 +139,7 @@ xcopy "$(ProjectDir)Libraries\Debug\AK\bin" "$(TargetDir)" /e /y /i /r</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;AK_OPTIMIZED;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -148,7 +148,7 @@ xcopy "$(ProjectDir)Libraries\Debug\AK\bin" "$(TargetDir)" /e /y /i /r</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;CommunicationCentral.lib;AkMusicEngine.lib;AkSpatialAudio.lib;ws2_32.lib;Winmm.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;AkMusicEngine.lib;AkSpatialAudio.lib;ws2_32.lib;Winmm.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Ressources" mkdir "$(TargetDir)Ressources"
@@ -163,7 +163,7 @@ xcopy "$(ProjectDir)Libraries\Release\AK\bin" "$(TargetDir)" /e /y /i /r</Comman
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;AK_OPTIMIZED;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -172,7 +172,7 @@ xcopy "$(ProjectDir)Libraries\Release\AK\bin" "$(TargetDir)" /e /y /i /r</Comman
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;CommunicationCentral.lib;AkMusicEngine.lib;AkSpatialAudio.lib;ws2_32.lib;Winmm.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;assimp-vc143-mtd.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;AkMusicEngine.lib;AkSpatialAudio.lib;ws2_32.lib;Winmm.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Ressources" mkdir "$(TargetDir)Ressources"
@@ -185,6 +185,7 @@ xcopy "$(ProjectDir)Libraries\Release\AK\bin" "$(TargetDir)" /e /y /i /r</Comman
     <ClCompile Include="src\AABB.cpp" />
     <ClCompile Include="src\Actor.cpp" />
     <ClCompile Include="src\ActorFactory.cpp" />
+    <ClCompile Include="src\AkComponent.cpp" />
     <ClCompile Include="src\AK\AkDefaultIOHookDeferred.cpp" />
     <ClCompile Include="src\AK\AkDefaultLowLevelIODispatcher.cpp" />
     <ClCompile Include="src\AK\AkFileLocationBase.cpp" />
@@ -298,6 +299,7 @@ xcopy "$(ProjectDir)Libraries\Release\AK\bin" "$(TargetDir)" /e /y /i /r</Comman
     <ClInclude Include="src\AABB.h" />
     <ClInclude Include="src\Actor.h" />
     <ClInclude Include="src\ActorFactory.h" />
+    <ClInclude Include="src\AkComponent.h" />
     <ClInclude Include="src\AK\AkDefaultIOHookDeferred.h" />
     <ClInclude Include="src\AK\AkDefaultLowLevelIODispatcher.h" />
     <ClInclude Include="src\AK\AkFileHelpers.h" />
@@ -414,6 +416,7 @@ xcopy "$(ProjectDir)Libraries\Release\AK\bin" "$(TargetDir)" /e /y /i /r</Comman
     <ClInclude Include="src\TPActor.h" />
     <ClInclude Include="src\TPSCameraComponent.h" />
     <ClInclude Include="src\UIScreen.h" />
+    <ClInclude Include="src\Utilities.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Vector3.h" />
     <ClInclude Include="src\VertexArray.h" />

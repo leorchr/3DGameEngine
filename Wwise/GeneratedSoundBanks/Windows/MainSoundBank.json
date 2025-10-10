@@ -1,0 +1,69 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "534561221",
+    "Type": "User",
+    "GUID": "{BAD9386B-6FA0-43C6-B2C9-345C03BB5A29}",
+    "Language": "SFX",
+    "Hash": "{9C74A7DC-EA2F-6BEB-1603-65EB643C8B87}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\MainSoundBank",
+    "ShortName": "MainSoundBank",
+    "Path": "MainSoundBank.bnk",
+    "Media": [
+     {
+      "Id": "311342065",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "ShotInTheDark.wav",
+      "CachePath": "B1/{B19C8CA8-D4DD-64FE-BA78-BABE3F1291D6}.wem"
+     },
+     {
+      "Id": "1029457135",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Shot.wav",
+      "CachePath": "5F/{5F577BCD-C469-EC55-4F60-33DBA3CD7D76}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "268953978",
+      "Name": "play_shot",
+      "ObjectPath": "\\Events\\Default Work Unit\\Sounds\\play_shot",
+      "GUID": "{6AA6F109-F747-4360-BA29-60AC2A55E265}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.984",
+      "DurationMax": "0.984",
+      "MediaRefs": [
+       {
+        "Id": "1029457135"
+       }
+      ]
+     },
+     {
+      "Id": "2717245987",
+      "Name": "play_shot_in_the_dark",
+      "ObjectPath": "\\Events\\Default Work Unit\\Sounds\\play_shot_in_the_dark",
+      "GUID": "{179C803B-640F-46B7-B590-6815C147D91E}",
+      "DurationType": "OneShot",
+      "DurationMin": "186.38658",
+      "DurationMax": "186.38658",
+      "MediaRefs": [
+       {
+        "Id": "311342065"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{1EF67401-96C3-F4C7-FB3F-D47652B873B8}"
+ }
+}

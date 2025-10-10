@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C1B5B041-1A6B-4E99-93EB-57958CC21BD4}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{C1B5B041-1A6B-4E99-93EB-57958CC21BD4}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Sounds" ID="{C395EB0B-9586-4DC1-B079-61B2D8BC8E12}" ShortID="141880635">
+					<ChildrenList>
+						<Event Name="play_shot" ID="{6AA6F109-F747-4360-BA29-60AC2A55E265}">
+							<ChildrenList>
+								<Action Name="" ID="{D2107E0E-9437-4175-B212-6A85254897FC}" ShortID="569338378">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Shot" ID="{CE0F298B-0D55-41EC-B482-420493180281}" WorkUnitID="{D122201F-74C9-4A92-BAEF-65AF4C760A56}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_shot_in_the_dark" ID="{179C803B-640F-46B7-B590-6815C147D91E}">
+							<ChildrenList>
+								<Action Name="" ID="{092F620C-FD06-4915-AB0A-326B677557EF}" ShortID="179141856">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ShotInTheDark" ID="{20497865-52C1-4932-88D9-452E58221FA4}" WorkUnitID="{3054F849-9F9A-4CA6-9BDD-D93D5C4837F5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

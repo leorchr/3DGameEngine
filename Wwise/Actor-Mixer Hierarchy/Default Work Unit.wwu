@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D122201F-74C9-4A92-BAEF-65AF4C760A56}" SchemaVersion="123">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{D122201F-74C9-4A92-BAEF-65AF4C760A56}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Shot" ID="{CE0F298B-0D55-41EC-B482-420493180281}" ShortID="891912531">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{0C07AE6A-1F1C-4B74-98C9-88E1FA3589CB}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{678A8251-0E78-4C34-8957-962F735051C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Shot" ID="{4E25A456-4933-45F7-8EA7-DA98AC5828E3}">
+							<Language>SFX</Language>
+							<AudioFile>Shot.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="1029457135"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Shot" ID="{4E25A456-4933-45F7-8EA7-DA98AC5828E3}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
